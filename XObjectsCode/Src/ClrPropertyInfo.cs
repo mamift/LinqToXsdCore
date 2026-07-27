@@ -283,7 +283,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public override XCodeTypeReference ReturnType
-            => returnType ??= CreateReturnType(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+            => returnType ??= CreateReturnType(IsEnum && !IsRef ? typeRef.ClrFullTypeName : clrTypeName);
 
         private string? returnTypeStr = null, returnTypeNested = null;
 
@@ -829,7 +829,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             fixedOrDefaultField.Attributes =
                 (fixedOrDefaultField.Attributes & ~MemberAttributes.AccessMask & ~MemberAttributes.ScopeMask)
-                | MemberAttributes.Private
+                | MemberAttributes.FamilyAndAssembly
                 | MemberAttributes.Static;
 
             fixedOrDefaultField.InitExpression =

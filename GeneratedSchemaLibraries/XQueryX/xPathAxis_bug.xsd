@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:LinqToXsdCore.XQuery.xpathAxisBug"
+    xmlns="urn:LinqToXsdCore.XQuery.xpathAxisBug">
+
+    <xsd:simpleType name="xpathAxis">
+        <xsd:restriction base="xsd:NMTOKEN">
+            <xsd:enumeration value="child"/>
+            <xsd:enumeration value="attribute"/>
+            <xsd:enumeration value="self"/>
+            <xsd:enumeration value="parent"/>
+            <xsd:enumeration value="descendant-or-self"/>
+            <xsd:enumeration value="descendant"/>
+            <xsd:enumeration value="following"/>
+            <xsd:enumeration value="following-sibling"/>
+            <xsd:enumeration value="ancestor"/>
+            <xsd:enumeration value="ancestor-or-self"/>
+            <xsd:enumeration value="preceding"/>
+            <xsd:enumeration value="preceding-sibling"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="xpathAxis" type="xpathAxis"/>
+    <xsd:complexType name="stepExpr">
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:sequence>
+                    <xsd:element ref="xpathAxis"/>
+                </xsd:sequence>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="stepExpr" type="stepExpr"/>
+</xsd:schema>

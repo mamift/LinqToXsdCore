@@ -31,67 +31,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TraMLType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvListXName = System.Xml.Linq.XName.Get("cvList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SourceFileListXName = System.Xml.Linq.XName.Get("SourceFileList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ContactListXName = System.Xml.Linq.XName.Get("ContactList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PublicationListXName = System.Xml.Linq.XName.Get("PublicationList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InstrumentListXName = System.Xml.Linq.XName.Get("InstrumentList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SoftwareListXName = System.Xml.Linq.XName.Get("SoftwareList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinListXName = System.Xml.Linq.XName.Get("ProteinList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CompoundListXName = System.Xml.Linq.XName.Get("CompoundList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TransitionListXName = System.Xml.Linq.XName.Get("TransitionList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TargetListXName = System.Xml.Linq.XName.Get("TargetList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TraMLType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TraMLType(XElement xe) { return XTypedServices.ToXTypedElement<TraMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TraMLType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvListXName), new NamedContentModelEntity(SourceFileListXName), new NamedContentModelEntity(ContactListXName), new NamedContentModelEntity(PublicationListXName), new NamedContentModelEntity(InstrumentListXName), new NamedContentModelEntity(SoftwareListXName), new NamedContentModelEntity(ProteinListXName), new NamedContentModelEntity(CompoundListXName), new NamedContentModelEntity(TransitionListXName), new NamedContentModelEntity(TargetListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TraMLType>(this);
         }
         
         /// <summary>
@@ -104,6 +47,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public TraMLType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvListXName = System.Xml.Linq.XName.Get("cvList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -123,6 +70,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SourceFileListXName = System.Xml.Linq.XName.Get("SourceFileList", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -134,12 +85,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual SourceFileListType SourceFileList {
             get {
                 XElement x = this.GetElement(SourceFileListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((SourceFileListType)(x));
             }
             set {
                 this.SetElement(SourceFileListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ContactListXName = System.Xml.Linq.XName.Get("ContactList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -152,12 +110,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual ContactListType ContactList {
             get {
                 XElement x = this.GetElement(ContactListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ContactListType)(x));
             }
             set {
                 this.SetElement(ContactListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PublicationListXName = System.Xml.Linq.XName.Get("PublicationList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -170,12 +135,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual PublicationListType PublicationList {
             get {
                 XElement x = this.GetElement(PublicationListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((PublicationListType)(x));
             }
             set {
                 this.SetElement(PublicationListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InstrumentListXName = System.Xml.Linq.XName.Get("InstrumentList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -188,12 +160,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual InstrumentListType InstrumentList {
             get {
                 XElement x = this.GetElement(InstrumentListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((InstrumentListType)(x));
             }
             set {
                 this.SetElement(InstrumentListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SoftwareListXName = System.Xml.Linq.XName.Get("SoftwareList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -206,12 +185,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual SoftwareListType SoftwareList {
             get {
                 XElement x = this.GetElement(SoftwareListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((SoftwareListType)(x));
             }
             set {
                 this.SetElement(SoftwareListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinListXName = System.Xml.Linq.XName.Get("ProteinList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -224,12 +210,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual ProteinListType ProteinList {
             get {
                 XElement x = this.GetElement(ProteinListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProteinListType)(x));
             }
             set {
                 this.SetElement(ProteinListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CompoundListXName = System.Xml.Linq.XName.Get("CompoundList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -242,12 +235,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual CompoundListType CompoundList {
             get {
                 XElement x = this.GetElement(CompoundListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((CompoundListType)(x));
             }
             set {
                 this.SetElement(CompoundListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TransitionListXName = System.Xml.Linq.XName.Get("TransitionList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -260,12 +260,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual TransitionListType TransitionList {
             get {
                 XElement x = this.GetElement(TransitionListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((TransitionListType)(x));
             }
             set {
                 this.SetElement(TransitionListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TargetListXName = System.Xml.Linq.XName.Get("TargetList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -278,12 +285,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual TargetListType TargetList {
             get {
                 XElement x = this.GetElement(TargetListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((TargetListType)(x));
             }
             set {
                 this.SetElement(TargetListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -296,12 +310,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
         
         /// <summary>
         /// <para>
@@ -321,11 +342,41 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TraMLType", "http://psi.hupo.org/ms/traml");
+        
+        static TraMLType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvListXName), new NamedContentModelEntity(SourceFileListXName), new NamedContentModelEntity(ContactListXName), new NamedContentModelEntity(PublicationListXName), new NamedContentModelEntity(InstrumentListXName), new NamedContentModelEntity(SoftwareListXName), new NamedContentModelEntity(ProteinListXName), new NamedContentModelEntity(CompoundListXName), new NamedContentModelEntity(TransitionListXName), new NamedContentModelEntity(TargetListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvListXName, typeof(cvListType));
+            localElementDictionary.Add(SourceFileListXName, typeof(SourceFileListType));
+            localElementDictionary.Add(ContactListXName, typeof(ContactListType));
+            localElementDictionary.Add(PublicationListXName, typeof(PublicationListType));
+            localElementDictionary.Add(InstrumentListXName, typeof(InstrumentListType));
+            localElementDictionary.Add(SoftwareListXName, typeof(SoftwareListType));
+            localElementDictionary.Add(ProteinListXName, typeof(ProteinListType));
+            localElementDictionary.Add(CompoundListXName, typeof(CompoundListType));
+            localElementDictionary.Add(TransitionListXName, typeof(TransitionListType));
+            localElementDictionary.Add(TargetListXName, typeof(TargetListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -348,27 +399,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TraMLType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvListXName, typeof(cvListType));
-            localElementDictionary.Add(SourceFileListXName, typeof(SourceFileListType));
-            localElementDictionary.Add(ContactListXName, typeof(ContactListType));
-            localElementDictionary.Add(PublicationListXName, typeof(PublicationListType));
-            localElementDictionary.Add(InstrumentListXName, typeof(InstrumentListType));
-            localElementDictionary.Add(SoftwareListXName, typeof(SoftwareListType));
-            localElementDictionary.Add(ProteinListXName, typeof(ProteinListType));
-            localElementDictionary.Add(CompoundListXName, typeof(CompoundListType));
-            localElementDictionary.Add(TransitionListXName, typeof(TransitionListType));
-            localElementDictionary.Add(TargetListXName, typeof(TargetListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -381,44 +411,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class CompoundType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RetentionTimeListXName = System.Xml.Linq.XName.Get("RetentionTimeList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<RetentionTimeListType> RetentionTimeListField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CompoundType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator CompoundType(XElement xe) { return XTypedServices.ToXTypedElement<CompoundType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static CompoundType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(RetentionTimeListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CompoundType>(this);
         }
         
         /// <summary>
@@ -431,6 +427,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public CompoundType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -462,6 +465,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -491,6 +501,13 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RetentionTimeListXName = System.Xml.Linq.XName.Get("RetentionTimeList", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<RetentionTimeListType> RetentionTimeListField;
         
         /// <summary>
         /// <para>
@@ -522,6 +539,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Identifier for the compound to be used for referencing within a document
@@ -540,11 +561,34 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CompoundType", "http://psi.hupo.org/ms/traml");
+        
+        static CompoundType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(RetentionTimeListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(RetentionTimeListXName, typeof(RetentionTimeListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -567,20 +611,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CompoundType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(RetentionTimeListXName, typeof(RetentionTimeListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -593,47 +623,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class CompoundListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideXName = System.Xml.Linq.XName.Get("Peptide", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PeptideType> PeptideField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CompoundXName = System.Xml.Linq.XName.Get("Compound", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CompoundType> CompoundField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CompoundListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator CompoundListType(XElement xe) { return XTypedServices.ToXTypedElement<CompoundListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static CompoundListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(PeptideXName), new NamedContentModelEntity(CompoundXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CompoundListType>(this);
         }
         
         /// <summary>
@@ -646,6 +639,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public CompoundListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -677,6 +677,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -706,6 +713,13 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideXName = System.Xml.Linq.XName.Get("Peptide", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PeptideType> PeptideField;
         
         /// <summary>
         /// <para>
@@ -737,6 +751,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CompoundXName = System.Xml.Linq.XName.Get("Compound", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CompoundType> CompoundField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -767,11 +788,35 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CompoundListType", "http://psi.hupo.org/ms/traml");
+        
+        static CompoundListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(PeptideXName), new NamedContentModelEntity(CompoundXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(PeptideXName, typeof(PeptideType));
+            localElementDictionary.Add(CompoundXName, typeof(CompoundType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -794,21 +839,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CompoundListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(PeptideXName, typeof(PeptideType));
-            localElementDictionary.Add(CompoundXName, typeof(CompoundType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -821,48 +851,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ConfigurationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValidationStatusXName = System.Xml.Linq.XName.Get("ValidationStatus", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ValidationStatusType> ValidationStatusField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contactRefXName = System.Xml.Linq.XName.Get("contactRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName instrumentRefXName = System.Xml.Linq.XName.Get("instrumentRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ConfigurationType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ConfigurationType(XElement xe) { return XTypedServices.ToXTypedElement<ConfigurationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ConfigurationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(ValidationStatusXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ConfigurationType>(this);
         }
         
         /// <summary>
@@ -875,6 +867,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ConfigurationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -906,6 +905,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -935,6 +941,13 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValidationStatusXName = System.Xml.Linq.XName.Get("ValidationStatus", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ValidationStatusType> ValidationStatusField;
         
         /// <summary>
         /// <para>
@@ -966,6 +979,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contactRefXName = System.Xml.Linq.XName.Get("contactRef", "");
+        
         /// <summary>
         /// <para>
         /// Reference to a contact person originating this information
@@ -977,12 +994,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string contactRef {
             get {
                 XAttribute x = this.Attribute(contactRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(contactRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName instrumentRefXName = System.Xml.Linq.XName.Get("instrumentRef", "");
         
         /// <summary>
         /// <para>
@@ -1002,11 +1026,34 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ConfigurationType", "http://psi.hupo.org/ms/traml");
+        
+        static ConfigurationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(ValidationStatusXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(ValidationStatusXName, typeof(ValidationStatusType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1029,20 +1076,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ConfigurationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(ValidationStatusXName, typeof(ValidationStatusType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1055,26 +1088,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ConfigurationListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ConfigurationXName = System.Xml.Linq.XName.Get("Configuration", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ConfigurationType> ConfigurationField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ConfigurationListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ConfigurationListType(XElement xe) { return XTypedServices.ToXTypedElement<ConfigurationListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ConfigurationListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ConfigurationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ConfigurationListType>(this);
         }
         
         /// <summary>
@@ -1087,6 +1104,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ConfigurationListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ConfigurationXName = System.Xml.Linq.XName.Get("Configuration", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ConfigurationType> ConfigurationField;
         
         /// <summary>
         /// <para>
@@ -1118,11 +1142,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ConfigurationListType", "http://psi.hupo.org/ms/traml");
+        
+        static ConfigurationListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ConfigurationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ConfigurationXName, typeof(ConfigurationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1145,18 +1190,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ConfigurationListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ConfigurationXName, typeof(ConfigurationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1169,37 +1202,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ContactType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ContactType(XElement xe) { return XTypedServices.ToXTypedElement<ContactType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ContactType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ContactType>(this);
         }
         
         /// <summary>
@@ -1212,6 +1218,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ContactType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -1243,6 +1256,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -1273,6 +1293,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Identifier for the contact to be used for referencing within a document
@@ -1291,11 +1315,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactType", "http://psi.hupo.org/ms/traml");
+        
+        static ContactType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1318,19 +1364,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ContactType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1343,26 +1376,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ContactListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ContactXName = System.Xml.Linq.XName.Get("Contact", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ContactType> ContactField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ContactListType(XElement xe) { return XTypedServices.ToXTypedElement<ContactListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ContactListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ContactListType>(this);
         }
         
         /// <summary>
@@ -1375,6 +1392,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ContactListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ContactXName = System.Xml.Linq.XName.Get("Contact", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ContactType> ContactField;
         
         /// <summary>
         /// <para>
@@ -1406,11 +1430,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactListType", "http://psi.hupo.org/ms/traml");
+        
+        static ContactListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ContactXName, typeof(ContactType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1433,18 +1478,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ContactListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ContactXName, typeof(ContactType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1454,25 +1487,11 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class cvType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName URIXName = System.Xml.Linq.XName.Get("URI", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fullNameXName = System.Xml.Linq.XName.Get("fullName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvType", "http://psi.hupo.org/ms/traml");
-        
 		public static explicit operator cvType(XElement xe) { return XTypedServices.ToXTypedElement<cvType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<cvType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -1481,6 +1500,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public cvType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
         
         /// <summary>
         /// <para>
@@ -1500,6 +1523,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName URIXName = System.Xml.Linq.XName.Get("URI", "");
+        
         /// <summary>
         /// <para>
         /// Uniform Resource Identifier for the controlled vocabulary
@@ -1517,6 +1544,10 @@ namespace psi.hupo.org.ms.traml {
                 this.SetAttribute(URIXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName fullNameXName = System.Xml.Linq.XName.Get("fullName", "");
         
         /// <summary>
         /// <para>
@@ -1536,6 +1567,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Identifier for the controlled vocabulary to be used for referencing within a document
@@ -1552,6 +1587,12 @@ namespace psi.hupo.org.ms.traml {
             set {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvType", "http://psi.hupo.org/ms/traml");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1574,14 +1615,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<cvType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -1594,26 +1627,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class cvListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvXName = System.Xml.Linq.XName.Get("cv", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvType> cvField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator cvListType(XElement xe) { return XTypedServices.ToXTypedElement<cvListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static cvListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<cvListType>(this);
         }
         
         /// <summary>
@@ -1626,6 +1643,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public cvListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvXName = System.Xml.Linq.XName.Get("cv", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvType> cvField;
         
         /// <summary>
         /// <para>
@@ -1657,11 +1681,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvListType", "http://psi.hupo.org/ms/traml");
+        
+        static cvListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvXName, typeof(cvType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1684,18 +1729,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<cvListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvXName, typeof(cvType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1705,37 +1738,11 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class cvParamType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvRefXName = System.Xml.Linq.XName.Get("cvRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvParamType", "http://psi.hupo.org/ms/traml");
-        
 		public static explicit operator cvParamType(XElement xe) { return XTypedServices.ToXTypedElement<cvParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<cvParamType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -1744,6 +1751,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public cvParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvRefXName = System.Xml.Linq.XName.Get("cvRef", "");
         
         /// <summary>
         /// <para>
@@ -1763,6 +1774,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        
         /// <summary>
         /// <para>
         /// Name of the controlled vocabulary term referenced
@@ -1780,6 +1795,10 @@ namespace psi.hupo.org.ms.traml {
                 this.SetAttribute(nameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
         
         /// <summary>
         /// <para>
@@ -1799,6 +1818,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
+        
         /// <summary>
         /// <para>
         /// Scalar value qualifying the controlled vocabulary term referenced
@@ -1810,12 +1833,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string value {
             get {
                 XAttribute x = this.Attribute(valueXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(valueXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
         
         /// <summary>
         /// <para>
@@ -1828,12 +1858,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string unitAccession {
             get {
                 XAttribute x = this.Attribute(unitAccessionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitAccessionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
         
         /// <summary>
         /// <para>
@@ -1846,12 +1883,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string unitName {
             get {
                 XAttribute x = this.Attribute(unitNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
         
         /// <summary>
         /// <para>
@@ -1864,11 +1908,20 @@ namespace psi.hupo.org.ms.traml {
         public virtual string unitCvRef {
             get {
                 XAttribute x = this.Attribute(unitCvRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(unitCvRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvParamType", "http://psi.hupo.org/ms/traml");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1891,14 +1944,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<cvParamType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -1911,33 +1956,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class EvidenceType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EvidenceType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator EvidenceType(XElement xe) { return XTypedServices.ToXTypedElement<EvidenceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static EvidenceType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<EvidenceType>(this);
         }
         
         /// <summary>
@@ -1950,6 +1972,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public EvidenceType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -1981,6 +2010,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -2011,11 +2047,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EvidenceType", "http://psi.hupo.org/ms/traml");
+        
+        static EvidenceType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2038,19 +2096,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<EvidenceType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2063,34 +2108,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class InstrumentType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InstrumentType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InstrumentType(XElement xe) { return XTypedServices.ToXTypedElement<InstrumentType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InstrumentType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InstrumentType>(this);
         }
         
         /// <summary>
@@ -2103,6 +2124,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public InstrumentType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -2121,6 +2146,13 @@ namespace psi.hupo.org.ms.traml {
                 this.SetElement(cvParamXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -2152,6 +2184,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Identifier for the instrument to be used for referencing within a document
@@ -2170,11 +2206,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InstrumentType", "http://psi.hupo.org/ms/traml");
+        
+        static InstrumentType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2197,19 +2255,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InstrumentType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2222,26 +2267,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class InstrumentListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InstrumentXName = System.Xml.Linq.XName.Get("Instrument", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<InstrumentType> InstrumentField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InstrumentListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InstrumentListType(XElement xe) { return XTypedServices.ToXTypedElement<InstrumentListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InstrumentListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InstrumentXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InstrumentListType>(this);
         }
         
         /// <summary>
@@ -2254,6 +2283,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public InstrumentListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InstrumentXName = System.Xml.Linq.XName.Get("Instrument", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<InstrumentType> InstrumentField;
         
         /// <summary>
         /// <para>
@@ -2285,11 +2321,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InstrumentListType", "http://psi.hupo.org/ms/traml");
+        
+        static InstrumentListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InstrumentXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(InstrumentXName, typeof(InstrumentType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2312,18 +2369,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InstrumentListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(InstrumentXName, typeof(InstrumentType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2336,33 +2381,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class InterpretationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InterpretationType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InterpretationType(XElement xe) { return XTypedServices.ToXTypedElement<InterpretationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InterpretationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InterpretationType>(this);
         }
         
         /// <summary>
@@ -2375,6 +2397,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public InterpretationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -2406,6 +2435,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -2436,11 +2472,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InterpretationType", "http://psi.hupo.org/ms/traml");
+        
+        static InterpretationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2463,19 +2521,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InterpretationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2488,26 +2533,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class InterpretationListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InterpretationXName = System.Xml.Linq.XName.Get("Interpretation", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<InterpretationType> InterpretationField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InterpretationListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InterpretationListType(XElement xe) { return XTypedServices.ToXTypedElement<InterpretationListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InterpretationListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InterpretationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InterpretationListType>(this);
         }
         
         /// <summary>
@@ -2520,6 +2549,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public InterpretationListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InterpretationXName = System.Xml.Linq.XName.Get("Interpretation", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<InterpretationType> InterpretationField;
         
         /// <summary>
         /// <para>
@@ -2551,11 +2587,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InterpretationListType", "http://psi.hupo.org/ms/traml");
+        
+        static InterpretationListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InterpretationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(InterpretationXName, typeof(InterpretationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2578,18 +2635,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InterpretationListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(InterpretationXName, typeof(InterpretationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2602,45 +2647,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ModificationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName averageMassDeltaXName = System.Xml.Linq.XName.Get("averageMassDelta", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ModificationType(XElement xe) { return XTypedServices.ToXTypedElement<ModificationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ModificationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ModificationType>(this);
         }
         
         /// <summary>
@@ -2653,6 +2663,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ModificationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -2684,6 +2701,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -2714,6 +2738,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
+        
         /// <summary>
         /// <para>
         /// Location of the modification within the peptide sequence, counted from the N-terminus, starting at position 1. Specific modifications to the N-terminus should be given the location 0. Modification to the C-terminus should be given as peptide length + 1.
@@ -2731,6 +2759,10 @@ namespace psi.hupo.org.ms.traml {
                 this.SetAttribute(locationXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
         
         /// <summary>
         /// <para>
@@ -2753,6 +2785,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName averageMassDeltaXName = System.Xml.Linq.XName.Get("averageMassDelta", "");
+        
         /// <summary>
         /// <para>
         /// Atomic mass delta when considering the natural distribution of isotopes in Daltons.
@@ -2774,11 +2810,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationType", "http://psi.hupo.org/ms/traml");
+        
+        static ModificationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2801,19 +2859,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ModificationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2826,63 +2871,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class PeptideType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinRefXName = System.Xml.Linq.XName.Get("ProteinRef", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProteinRefType> ProteinRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ModificationType> ModificationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RetentionTimeListXName = System.Xml.Linq.XName.Get("RetentionTimeList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EvidenceXName = System.Xml.Linq.XName.Get("Evidence", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PeptideType(XElement xe) { return XTypedServices.ToXTypedElement<PeptideType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PeptideType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(ProteinRefXName), new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(RetentionTimeListXName), new NamedContentModelEntity(EvidenceXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PeptideType>(this);
         }
         
         /// <summary>
@@ -2895,6 +2887,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public PeptideType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -2926,6 +2925,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -2955,6 +2961,13 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinRefXName = System.Xml.Linq.XName.Get("ProteinRef", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProteinRefType> ProteinRefField;
         
         /// <summary>
         /// <para>
@@ -2986,6 +2999,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ModificationType> ModificationField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -3016,6 +3036,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RetentionTimeListXName = System.Xml.Linq.XName.Get("RetentionTimeList", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3027,12 +3051,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual RetentionTimeListType RetentionTimeList {
             get {
                 XElement x = this.GetElement(RetentionTimeListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RetentionTimeListType)(x));
             }
             set {
                 this.SetElement(RetentionTimeListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EvidenceXName = System.Xml.Linq.XName.Get("Evidence", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -3045,12 +3076,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual EvidenceType Evidence {
             get {
                 XElement x = this.GetElement(EvidenceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((EvidenceType)(x));
             }
             set {
                 this.SetElement(EvidenceXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -3070,6 +3108,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "");
+        
         /// <summary>
         /// <para>
         /// Amino acid sequence of the peptide being described
@@ -3088,11 +3130,37 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideType", "http://psi.hupo.org/ms/traml");
+        
+        static PeptideType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(ProteinRefXName), new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(RetentionTimeListXName), new NamedContentModelEntity(EvidenceXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(ProteinRefXName, typeof(ProteinRefType));
+            localElementDictionary.Add(ModificationXName, typeof(ModificationType));
+            localElementDictionary.Add(RetentionTimeListXName, typeof(RetentionTimeListType));
+            localElementDictionary.Add(EvidenceXName, typeof(EvidenceType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3114,23 +3182,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PeptideType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(ProteinRefXName, typeof(ProteinRefType));
-            localElementDictionary.Add(ModificationXName, typeof(ModificationType));
-            localElementDictionary.Add(RetentionTimeListXName, typeof(RetentionTimeListType));
-            localElementDictionary.Add(EvidenceXName, typeof(EvidenceType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -3144,33 +3195,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class PrecursorType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PrecursorType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PrecursorType(XElement xe) { return XTypedServices.ToXTypedElement<PrecursorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PrecursorType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PrecursorType>(this);
         }
         
         /// <summary>
@@ -3184,6 +3212,13 @@ namespace psi.hupo.org.ms.traml {
         public PrecursorType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -3213,6 +3248,13 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -3244,11 +3286,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PrecursorType", "http://psi.hupo.org/ms/traml");
+        
+        static PrecursorType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3270,19 +3334,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PrecursorType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -3296,41 +3347,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class IntermediateProductType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InterpretationListXName = System.Xml.Linq.XName.Get("InterpretationList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ConfigurationListXName = System.Xml.Linq.XName.Get("ConfigurationList", "http://psi.hupo.org/ms/traml");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IntermediateProductType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator IntermediateProductType(XElement xe) { return XTypedServices.ToXTypedElement<IntermediateProductType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static IntermediateProductType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(InterpretationListXName), new NamedContentModelEntity(ConfigurationListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<IntermediateProductType>(this);
         }
         
         /// <summary>
@@ -3344,6 +3364,13 @@ namespace psi.hupo.org.ms.traml {
         public IntermediateProductType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -3373,6 +3400,13 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -3404,6 +3438,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InterpretationListXName = System.Xml.Linq.XName.Get("InterpretationList", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3415,12 +3453,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual InterpretationListType InterpretationList {
             get {
                 XElement x = this.GetElement(InterpretationListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((InterpretationListType)(x));
             }
             set {
                 this.SetElement(InterpretationListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ConfigurationListXName = System.Xml.Linq.XName.Get("ConfigurationList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -3433,6 +3478,9 @@ namespace psi.hupo.org.ms.traml {
         public virtual ConfigurationListType ConfigurationList {
             get {
                 XElement x = this.GetElement(ConfigurationListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ConfigurationListType)(x));
             }
             set {
@@ -3440,11 +3488,35 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IntermediateProductType", "http://psi.hupo.org/ms/traml");
+        
+        static IntermediateProductType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(InterpretationListXName), new NamedContentModelEntity(ConfigurationListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(InterpretationListXName, typeof(InterpretationListType));
+            localElementDictionary.Add(ConfigurationListXName, typeof(ConfigurationListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3466,21 +3538,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<IntermediateProductType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(InterpretationListXName, typeof(InterpretationListType));
-            localElementDictionary.Add(ConfigurationListXName, typeof(ConfigurationListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -3494,41 +3551,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ProductType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InterpretationListXName = System.Xml.Linq.XName.Get("InterpretationList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ConfigurationListXName = System.Xml.Linq.XName.Get("ConfigurationList", "http://psi.hupo.org/ms/traml");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProductType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProductType(XElement xe) { return XTypedServices.ToXTypedElement<ProductType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProductType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(InterpretationListXName), new NamedContentModelEntity(ConfigurationListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProductType>(this);
         }
         
         /// <summary>
@@ -3541,6 +3567,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ProductType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -3572,6 +3605,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -3602,6 +3642,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InterpretationListXName = System.Xml.Linq.XName.Get("InterpretationList", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3613,12 +3657,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual InterpretationListType InterpretationList {
             get {
                 XElement x = this.GetElement(InterpretationListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((InterpretationListType)(x));
             }
             set {
                 this.SetElement(InterpretationListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ConfigurationListXName = System.Xml.Linq.XName.Get("ConfigurationList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -3631,6 +3682,9 @@ namespace psi.hupo.org.ms.traml {
         public virtual ConfigurationListType ConfigurationList {
             get {
                 XElement x = this.GetElement(ConfigurationListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ConfigurationListType)(x));
             }
             set {
@@ -3638,11 +3692,35 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProductType", "http://psi.hupo.org/ms/traml");
+        
+        static ProductType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(InterpretationListXName), new NamedContentModelEntity(ConfigurationListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(InterpretationListXName, typeof(InterpretationListType));
+            localElementDictionary.Add(ConfigurationListXName, typeof(ConfigurationListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3665,21 +3743,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProductType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(InterpretationListXName, typeof(InterpretationListType));
-            localElementDictionary.Add(ConfigurationListXName, typeof(ConfigurationListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3692,41 +3755,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class PredictionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName softwareRefXName = System.Xml.Linq.XName.Get("softwareRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contactRefXName = System.Xml.Linq.XName.Get("contactRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PredictionType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PredictionType(XElement xe) { return XTypedServices.ToXTypedElement<PredictionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PredictionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PredictionType>(this);
         }
         
         /// <summary>
@@ -3739,6 +3771,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public PredictionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -3770,6 +3809,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -3799,6 +3845,10 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName softwareRefXName = System.Xml.Linq.XName.Get("softwareRef", "");
         
         /// <summary>
         /// <para>
@@ -3818,6 +3868,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contactRefXName = System.Xml.Linq.XName.Get("contactRef", "");
+        
         /// <summary>
         /// <para>
         /// Reference to a contact person that generated this prediction
@@ -3829,6 +3883,9 @@ namespace psi.hupo.org.ms.traml {
         public virtual string contactRef {
             get {
                 XAttribute x = this.Attribute(contactRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -3836,11 +3893,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PredictionType", "http://psi.hupo.org/ms/traml");
+        
+        static PredictionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3863,19 +3942,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PredictionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3888,41 +3954,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ProteinType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SequenceXName = System.Xml.Linq.XName.Get("Sequence", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(SequenceXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinType>(this);
         }
         
         /// <summary>
@@ -3935,6 +3970,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ProteinType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -3966,6 +4008,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -3996,6 +4045,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SequenceXName = System.Xml.Linq.XName.Get("Sequence", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -4007,12 +4060,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual SequenceType Sequence {
             get {
                 XElement x = this.GetElement(SequenceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((SequenceType)(x));
             }
             set {
                 this.SetElement(SequenceXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -4032,11 +4092,34 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinType", "http://psi.hupo.org/ms/traml");
+        
+        static ProteinType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(SequenceXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(SequenceXName, typeof(SequenceType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4059,20 +4142,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(SequenceXName, typeof(SequenceType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4085,26 +4154,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ProteinListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinXName = System.Xml.Linq.XName.Get("Protein", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProteinType> ProteinField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinListType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinListType>(this);
         }
         
         /// <summary>
@@ -4117,6 +4170,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ProteinListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinXName = System.Xml.Linq.XName.Get("Protein", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProteinType> ProteinField;
         
         /// <summary>
         /// <para>
@@ -4148,11 +4208,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinListType", "http://psi.hupo.org/ms/traml");
+        
+        static ProteinListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ProteinXName, typeof(ProteinType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4175,18 +4256,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ProteinXName, typeof(ProteinType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4196,13 +4265,11 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ProteinRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinRefType", "http://psi.hupo.org/ms/traml");
-        
 		public static explicit operator ProteinRefType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinRefType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -4211,6 +4278,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ProteinRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
         
         /// <summary>
         /// <para>
@@ -4223,11 +4294,20 @@ namespace psi.hupo.org.ms.traml {
         public virtual string @ref {
             get {
                 XAttribute x = this.Attribute(@refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(@refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinRefType", "http://psi.hupo.org/ms/traml");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4249,14 +4329,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinRefType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -4270,37 +4342,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class PublicationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PublicationType(XElement xe) { return XTypedServices.ToXTypedElement<PublicationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PublicationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PublicationType>(this);
         }
         
         /// <summary>
@@ -4313,6 +4358,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public PublicationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4344,6 +4396,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -4374,6 +4433,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Identifier for the publication to be used for referencing within a document
@@ -4392,11 +4455,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationType", "http://psi.hupo.org/ms/traml");
+        
+        static PublicationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4419,19 +4504,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PublicationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4444,26 +4516,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class PublicationListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PublicationXName = System.Xml.Linq.XName.Get("Publication", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PublicationType> PublicationField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PublicationListType(XElement xe) { return XTypedServices.ToXTypedElement<PublicationListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PublicationListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PublicationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PublicationListType>(this);
         }
         
         /// <summary>
@@ -4476,6 +4532,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public PublicationListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PublicationXName = System.Xml.Linq.XName.Get("Publication", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PublicationType> PublicationField;
         
         /// <summary>
         /// <para>
@@ -4507,11 +4570,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationListType", "http://psi.hupo.org/ms/traml");
+        
+        static PublicationListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PublicationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PublicationXName, typeof(PublicationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4534,18 +4618,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PublicationListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PublicationXName, typeof(PublicationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4558,37 +4630,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class RetentionTimeType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName softwareRefXName = System.Xml.Linq.XName.Get("softwareRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RetentionTimeType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RetentionTimeType(XElement xe) { return XTypedServices.ToXTypedElement<RetentionTimeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RetentionTimeType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RetentionTimeType>(this);
         }
         
         /// <summary>
@@ -4601,6 +4646,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public RetentionTimeType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4632,6 +4684,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -4662,6 +4721,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName softwareRefXName = System.Xml.Linq.XName.Get("softwareRef", "");
+        
         /// <summary>
         /// <para>
         /// Software used to determine the retention time
@@ -4673,6 +4736,9 @@ namespace psi.hupo.org.ms.traml {
         public virtual string softwareRef {
             get {
                 XAttribute x = this.Attribute(softwareRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -4680,11 +4746,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RetentionTimeType", "http://psi.hupo.org/ms/traml");
+        
+        static RetentionTimeType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4707,19 +4795,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RetentionTimeType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4732,26 +4807,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class RetentionTimeListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RetentionTimeXName = System.Xml.Linq.XName.Get("RetentionTime", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<RetentionTimeType> RetentionTimeField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RetentionTimeListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RetentionTimeListType(XElement xe) { return XTypedServices.ToXTypedElement<RetentionTimeListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RetentionTimeListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RetentionTimeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RetentionTimeListType>(this);
         }
         
         /// <summary>
@@ -4764,6 +4823,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public RetentionTimeListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RetentionTimeXName = System.Xml.Linq.XName.Get("RetentionTime", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<RetentionTimeType> RetentionTimeField;
         
         /// <summary>
         /// <para>
@@ -4795,11 +4861,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RetentionTimeListType", "http://psi.hupo.org/ms/traml");
+        
+        static RetentionTimeListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RetentionTimeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RetentionTimeXName, typeof(RetentionTimeType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4821,18 +4908,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RetentionTimeListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RetentionTimeXName, typeof(RetentionTimeType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -4843,9 +4918,11 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class SequenceType : XTypedElement, IXMetaData {
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SequenceType", "http://psi.hupo.org/ms/traml");
-        
 		public static explicit operator SequenceType(XElement xe) { return XTypedServices.ToXTypedElement<SequenceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SequenceType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -4853,6 +4930,12 @@ namespace psi.hupo.org.ms.traml {
         /// </para>
         /// </summary>
         public SequenceType() {
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SequenceType", "http://psi.hupo.org/ms/traml");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4874,14 +4957,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SequenceType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -4895,38 +4970,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class SoftwareType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SoftwareType(XElement xe) { return XTypedServices.ToXTypedElement<SoftwareType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SoftwareType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SoftwareType>(this);
         }
         
         /// <summary>
@@ -4939,6 +4986,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public SoftwareType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -4957,6 +5008,13 @@ namespace psi.hupo.org.ms.traml {
                 this.SetElement(cvParamXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -4988,6 +5046,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Identifier for the software to be used for referencing within a document
@@ -5005,6 +5067,10 @@ namespace psi.hupo.org.ms.traml {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
         
         /// <summary>
         /// <para>
@@ -5024,11 +5090,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareType", "http://psi.hupo.org/ms/traml");
+        
+        static SoftwareType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5051,19 +5139,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SoftwareType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5076,26 +5151,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class SoftwareListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SoftwareXName = System.Xml.Linq.XName.Get("Software", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SoftwareType> SoftwareField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SoftwareListType(XElement xe) { return XTypedServices.ToXTypedElement<SoftwareListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SoftwareListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SoftwareXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SoftwareListType>(this);
         }
         
         /// <summary>
@@ -5108,6 +5167,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public SoftwareListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SoftwareXName = System.Xml.Linq.XName.Get("Software", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SoftwareType> SoftwareField;
         
         /// <summary>
         /// <para>
@@ -5139,11 +5205,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareListType", "http://psi.hupo.org/ms/traml");
+        
+        static SoftwareListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SoftwareXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SoftwareXName, typeof(SoftwareType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5166,18 +5253,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SoftwareListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SoftwareXName, typeof(SoftwareType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5190,45 +5265,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class SourceFileType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SourceFileType(XElement xe) { return XTypedServices.ToXTypedElement<SourceFileType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SourceFileType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SourceFileType>(this);
         }
         
         /// <summary>
@@ -5241,6 +5281,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public SourceFileType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -5272,6 +5319,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -5302,6 +5356,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Identifier for the sourceFile to be used for referencing within a document.
@@ -5319,6 +5377,10 @@ namespace psi.hupo.org.ms.traml {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -5338,6 +5400,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
+        
         /// <summary>
         /// <para>
         /// URI-formatted location where the file was retrieved.
@@ -5356,11 +5422,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileType", "http://psi.hupo.org/ms/traml");
+        
+        static SourceFileType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5383,19 +5471,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SourceFileType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5408,26 +5483,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class SourceFileListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SourceFileXName = System.Xml.Linq.XName.Get("SourceFile", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SourceFileType> SourceFileField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SourceFileListType(XElement xe) { return XTypedServices.ToXTypedElement<SourceFileListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SourceFileListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SourceFileXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SourceFileListType>(this);
         }
         
         /// <summary>
@@ -5440,6 +5499,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public SourceFileListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SourceFileXName = System.Xml.Linq.XName.Get("SourceFile", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SourceFileType> SourceFileField;
         
         /// <summary>
         /// <para>
@@ -5471,11 +5537,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileListType", "http://psi.hupo.org/ms/traml");
+        
+        static SourceFileListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SourceFileXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SourceFileXName, typeof(SourceFileType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5498,18 +5585,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SourceFileListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SourceFileXName, typeof(SourceFileType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5522,57 +5597,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TargetType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PrecursorXName = System.Xml.Linq.XName.Get("Precursor", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RetentionTimeXName = System.Xml.Linq.XName.Get("RetentionTime", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ConfigurationListXName = System.Xml.Linq.XName.Get("ConfigurationList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName peptideRefXName = System.Xml.Linq.XName.Get("peptideRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName compoundRefXName = System.Xml.Linq.XName.Get("compoundRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TargetType(XElement xe) { return XTypedServices.ToXTypedElement<TargetType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TargetType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrecursorXName), new NamedContentModelEntity(RetentionTimeXName), new NamedContentModelEntity(ConfigurationListXName), new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TargetType>(this);
         }
         
         /// <summary>
@@ -5585,6 +5613,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public TargetType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PrecursorXName = System.Xml.Linq.XName.Get("Precursor", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -5604,6 +5636,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RetentionTimeXName = System.Xml.Linq.XName.Get("RetentionTime", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5615,12 +5651,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual RetentionTimeType RetentionTime {
             get {
                 XElement x = this.GetElement(RetentionTimeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RetentionTimeType)(x));
             }
             set {
                 this.SetElement(RetentionTimeXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ConfigurationListXName = System.Xml.Linq.XName.Get("ConfigurationList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -5633,12 +5676,22 @@ namespace psi.hupo.org.ms.traml {
         public virtual ConfigurationListType ConfigurationList {
             get {
                 XElement x = this.GetElement(ConfigurationListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ConfigurationListType)(x));
             }
             set {
                 this.SetElement(ConfigurationListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -5670,6 +5723,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -5699,6 +5759,10 @@ namespace psi.hupo.org.ms.traml {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -5718,6 +5782,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName peptideRefXName = System.Xml.Linq.XName.Get("peptideRef", "");
+        
         /// <summary>
         /// <para>
         /// Reference to a peptide for which this target is the trigger
@@ -5729,12 +5797,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string peptideRef {
             get {
                 XAttribute x = this.Attribute(peptideRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(peptideRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName compoundRefXName = System.Xml.Linq.XName.Get("compoundRef", "");
         
         /// <summary>
         /// <para>
@@ -5747,6 +5822,9 @@ namespace psi.hupo.org.ms.traml {
         public virtual string compoundRef {
             get {
                 XAttribute x = this.Attribute(compoundRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -5754,11 +5832,36 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetType", "http://psi.hupo.org/ms/traml");
+        
+        static TargetType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrecursorXName), new NamedContentModelEntity(RetentionTimeXName), new NamedContentModelEntity(ConfigurationListXName), new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PrecursorXName, typeof(PrecursorType));
+            localElementDictionary.Add(RetentionTimeXName, typeof(RetentionTimeType));
+            localElementDictionary.Add(ConfigurationListXName, typeof(ConfigurationListType));
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5780,22 +5883,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TargetType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PrecursorXName, typeof(PrecursorType));
-            localElementDictionary.Add(RetentionTimeXName, typeof(RetentionTimeType));
-            localElementDictionary.Add(ConfigurationListXName, typeof(ConfigurationListType));
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -5809,26 +5896,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TargetExcludeListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TargetXName = System.Xml.Linq.XName.Get("Target", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<TargetType> TargetField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetExcludeListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TargetExcludeListType(XElement xe) { return XTypedServices.ToXTypedElement<TargetExcludeListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TargetExcludeListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TargetXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TargetExcludeListType>(this);
         }
         
         /// <summary>
@@ -5842,6 +5913,13 @@ namespace psi.hupo.org.ms.traml {
         public TargetExcludeListType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TargetXName = System.Xml.Linq.XName.Get("Target", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<TargetType> TargetField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, repeating
@@ -5872,11 +5950,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetExcludeListType", "http://psi.hupo.org/ms/traml");
+        
+        static TargetExcludeListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TargetXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TargetXName, typeof(TargetType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5898,18 +5997,6 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TargetExcludeListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(TargetXName, typeof(TargetType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -5923,26 +6010,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TargetIncludeListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TargetXName = System.Xml.Linq.XName.Get("Target", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<TargetType> TargetField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetIncludeListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TargetIncludeListType(XElement xe) { return XTypedServices.ToXTypedElement<TargetIncludeListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TargetIncludeListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TargetXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TargetIncludeListType>(this);
         }
         
         /// <summary>
@@ -5955,6 +6026,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public TargetIncludeListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TargetXName = System.Xml.Linq.XName.Get("Target", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<TargetType> TargetField;
         
         /// <summary>
         /// <para>
@@ -5986,11 +6064,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetIncludeListType", "http://psi.hupo.org/ms/traml");
+        
+        static TargetIncludeListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TargetXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TargetXName, typeof(TargetType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6013,18 +6112,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TargetIncludeListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(TargetXName, typeof(TargetType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6037,41 +6124,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TargetListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TargetIncludeListXName = System.Xml.Linq.XName.Get("TargetIncludeList", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TargetExcludeListXName = System.Xml.Linq.XName.Get("TargetExcludeList", "http://psi.hupo.org/ms/traml");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TargetListType(XElement xe) { return XTypedServices.ToXTypedElement<TargetListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TargetListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(TargetIncludeListXName), new NamedContentModelEntity(TargetExcludeListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TargetListType>(this);
         }
         
         /// <summary>
@@ -6084,6 +6140,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public TargetListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -6115,6 +6178,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -6145,6 +6215,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TargetIncludeListXName = System.Xml.Linq.XName.Get("TargetIncludeList", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -6156,12 +6230,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual TargetIncludeListType TargetIncludeList {
             get {
                 XElement x = this.GetElement(TargetIncludeListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((TargetIncludeListType)(x));
             }
             set {
                 this.SetElement(TargetIncludeListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TargetExcludeListXName = System.Xml.Linq.XName.Get("TargetExcludeList", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -6174,6 +6255,9 @@ namespace psi.hupo.org.ms.traml {
         public virtual TargetExcludeListType TargetExcludeList {
             get {
                 XElement x = this.GetElement(TargetExcludeListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((TargetExcludeListType)(x));
             }
             set {
@@ -6181,11 +6265,35 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TargetListType", "http://psi.hupo.org/ms/traml");
+        
+        static TargetListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(TargetIncludeListXName), new NamedContentModelEntity(TargetExcludeListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(TargetIncludeListXName, typeof(TargetIncludeListType));
+            localElementDictionary.Add(TargetExcludeListXName, typeof(TargetExcludeListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6208,21 +6316,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TargetListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(TargetIncludeListXName, typeof(TargetIncludeListType));
-            localElementDictionary.Add(TargetExcludeListXName, typeof(TargetExcludeListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6235,68 +6328,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TransitionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PrecursorXName = System.Xml.Linq.XName.Get("Precursor", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IntermediateProductXName = System.Xml.Linq.XName.Get("IntermediateProduct", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<IntermediateProductType> IntermediateProductField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProductXName = System.Xml.Linq.XName.Get("Product", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RetentionTimeXName = System.Xml.Linq.XName.Get("RetentionTime", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PredictionXName = System.Xml.Linq.XName.Get("Prediction", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName peptideRefXName = System.Xml.Linq.XName.Get("peptideRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName compoundRefXName = System.Xml.Linq.XName.Get("compoundRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TransitionType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TransitionType(XElement xe) { return XTypedServices.ToXTypedElement<TransitionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TransitionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrecursorXName), new NamedContentModelEntity(IntermediateProductXName), new NamedContentModelEntity(ProductXName), new NamedContentModelEntity(RetentionTimeXName), new NamedContentModelEntity(PredictionXName), new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TransitionType>(this);
         }
         
         /// <summary>
@@ -6309,6 +6344,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public TransitionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PrecursorXName = System.Xml.Linq.XName.Get("Precursor", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -6327,6 +6366,13 @@ namespace psi.hupo.org.ms.traml {
                 this.SetElement(PrecursorXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IntermediateProductXName = System.Xml.Linq.XName.Get("IntermediateProduct", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<IntermediateProductType> IntermediateProductField;
         
         /// <summary>
         /// <para>
@@ -6358,6 +6404,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProductXName = System.Xml.Linq.XName.Get("Product", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -6376,6 +6426,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RetentionTimeXName = System.Xml.Linq.XName.Get("RetentionTime", "http://psi.hupo.org/ms/traml");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -6387,12 +6441,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual RetentionTimeType RetentionTime {
             get {
                 XElement x = this.GetElement(RetentionTimeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RetentionTimeType)(x));
             }
             set {
                 this.SetElement(RetentionTimeXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PredictionXName = System.Xml.Linq.XName.Get("Prediction", "http://psi.hupo.org/ms/traml");
         
         /// <summary>
         /// <para>
@@ -6405,12 +6466,22 @@ namespace psi.hupo.org.ms.traml {
         public virtual PredictionType Prediction {
             get {
                 XElement x = this.GetElement(PredictionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((PredictionType)(x));
             }
             set {
                 this.SetElement(PredictionXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -6442,6 +6513,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -6472,6 +6550,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName peptideRefXName = System.Xml.Linq.XName.Get("peptideRef", "");
+        
         /// <summary>
         /// <para>
         /// Reference to a peptide which this transition is intended to identify
@@ -6483,12 +6565,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string peptideRef {
             get {
                 XAttribute x = this.Attribute(peptideRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(peptideRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName compoundRefXName = System.Xml.Linq.XName.Get("compoundRef", "");
         
         /// <summary>
         /// <para>
@@ -6501,12 +6590,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string compoundRef {
             get {
                 XAttribute x = this.Attribute(compoundRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(compoundRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -6526,11 +6622,38 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TransitionType", "http://psi.hupo.org/ms/traml");
+        
+        static TransitionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrecursorXName), new NamedContentModelEntity(IntermediateProductXName), new NamedContentModelEntity(ProductXName), new NamedContentModelEntity(RetentionTimeXName), new NamedContentModelEntity(PredictionXName), new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PrecursorXName, typeof(PrecursorType));
+            localElementDictionary.Add(IntermediateProductXName, typeof(IntermediateProductType));
+            localElementDictionary.Add(ProductXName, typeof(ProductType));
+            localElementDictionary.Add(RetentionTimeXName, typeof(RetentionTimeType));
+            localElementDictionary.Add(PredictionXName, typeof(PredictionType));
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6553,24 +6676,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TransitionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PrecursorXName, typeof(PrecursorType));
-            localElementDictionary.Add(IntermediateProductXName, typeof(IntermediateProductType));
-            localElementDictionary.Add(ProductXName, typeof(ProductType));
-            localElementDictionary.Add(RetentionTimeXName, typeof(RetentionTimeType));
-            localElementDictionary.Add(PredictionXName, typeof(PredictionType));
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6583,26 +6688,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TransitionListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TransitionXName = System.Xml.Linq.XName.Get("Transition", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<TransitionType> TransitionField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TransitionListType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TransitionListType(XElement xe) { return XTypedServices.ToXTypedElement<TransitionListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TransitionListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TransitionXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TransitionListType>(this);
         }
         
         /// <summary>
@@ -6615,6 +6704,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public TransitionListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TransitionXName = System.Xml.Linq.XName.Get("Transition", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<TransitionType> TransitionField;
         
         /// <summary>
         /// <para>
@@ -6646,11 +6742,32 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TransitionListType", "http://psi.hupo.org/ms/traml");
+        
+        static TransitionListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TransitionXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TransitionXName, typeof(TransitionType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6673,18 +6790,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TransitionListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(TransitionXName, typeof(TransitionType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6694,33 +6799,11 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class UserParamType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserParamType", "http://psi.hupo.org/ms/traml");
-        
 		public static explicit operator UserParamType(XElement xe) { return XTypedServices.ToXTypedElement<UserParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<UserParamType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -6729,6 +6812,10 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public UserParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -6748,6 +6835,10 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
+        
         /// <summary>
         /// <para>
         /// The datatype of the parameter, where appropriate (e.g.: xsd:float).
@@ -6759,12 +6850,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(typeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
         
         /// <summary>
         /// <para>
@@ -6777,12 +6875,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string value {
             get {
                 XAttribute x = this.Attribute(valueXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(valueXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
         
         /// <summary>
         /// <para>
@@ -6795,12 +6900,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string unitAccession {
             get {
                 XAttribute x = this.Attribute(unitAccessionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitAccessionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
         
         /// <summary>
         /// <para>
@@ -6813,12 +6925,19 @@ namespace psi.hupo.org.ms.traml {
         public virtual string unitName {
             get {
                 XAttribute x = this.Attribute(unitNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
         
         /// <summary>
         /// <para>
@@ -6831,11 +6950,20 @@ namespace psi.hupo.org.ms.traml {
         public virtual string unitCvRef {
             get {
                 XAttribute x = this.Attribute(unitCvRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(unitCvRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserParamType", "http://psi.hupo.org/ms/traml");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6858,14 +6986,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<UserParamType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -6878,33 +6998,10 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class ValidationStatusType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ValidationStatusType", "http://psi.hupo.org/ms/traml");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ValidationStatusType(XElement xe) { return XTypedServices.ToXTypedElement<ValidationStatusType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ValidationStatusType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ValidationStatusType>(this);
         }
         
         /// <summary>
@@ -6917,6 +7014,13 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public ValidationStatusType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -6948,6 +7052,13 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psi.hupo.org/ms/traml");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -6978,11 +7089,33 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ValidationStatusType", "http://psi.hupo.org/ms/traml");
+        
+        static ValidationStatusType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7005,19 +7138,6 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ValidationStatusType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(cvParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7027,12 +7147,38 @@ namespace psi.hupo.org.ms.traml {
     /// </summary>
     public partial class TraML : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private TraMLType ContentField;
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TraML", "http://psi.hupo.org/ms/traml");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static TraML Load(string xmlFile) {
+            return XTypedServices.Load<TraML, TraMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static TraML Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<TraML, TraMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static TraML Parse(string xml) {
+            return XTypedServices.Parse<TraML, TraMLType>(xml, LinqToXsdTypeManager.Instance);
+        }
         
 		public static explicit operator TraML(XElement xe) { return XTypedServices.ToXTypedElement<TraML, TraMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return new TraML(((TraMLType)(this.Content.Clone())));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private TraMLType ContentField;
         
         /// <summary>
         /// <para>
@@ -7041,15 +7187,6 @@ namespace psi.hupo.org.ms.traml {
         /// </summary>
         public TraML() {
             SetInnerType(new TraMLType());
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Container for the HUPO PSI TraML format for encoding selected reaction monitoring transitions and other target lists
-        /// </para>
-        /// </summary>
-        public TraML(TraMLType content) {
-            SetInnerType(content);
         }
         
         public override XElement Untyped {
@@ -7066,6 +7203,20 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return ContentField;
             }
+        }
+        
+        private void SetInnerType(TraMLType ContentField) {
+            this.ContentField = ((TraMLType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Container for the HUPO PSI TraML format for encoding selected reaction monitoring transitions and other target lists
+        /// </para>
+        /// </summary>
+        public TraML(TraMLType content) {
+            SetInnerType(content);
         }
         
         /// <summary>
@@ -7272,6 +7423,8 @@ namespace psi.hupo.org.ms.traml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TraML", "http://psi.hupo.org/ms/traml");
+        
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
@@ -7283,6 +7436,10 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7305,103 +7462,14 @@ namespace psi.hupo.org.ms.traml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static TraML Load(string xmlFile) {
-            return XTypedServices.Load<TraML, TraMLType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static TraML Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<TraML, TraMLType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static TraML Parse(string xml) {
-            return XTypedServices.Parse<TraML, TraMLType>(xml, LinqToXsdTypeManager.Instance);
-        }
-        
-        public override XTypedElement Clone() {
-            return new TraML(((TraMLType)(this.Content.Clone())));
-        }
-        
-        private void SetInnerType(TraMLType ContentField) {
-            this.ContentField = ((TraMLType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
-        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
-        
-        private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
         private LinqToXsdTypeManager() {
         }
         
-        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
-            get {
-                if ((schemaSet == null)) {
-                    XmlSchemaSet tempSet = new XmlSchemaSet();
-                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
-                }
-                return schemaSet;
-            }
-            set {
-                schemaSet = value;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
-            get {
-                return typeDictionary;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
-            get {
-                return elementDictionary;
-            }
-        }
-        
-        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
-            get {
-                return wrapperDictionary;
-            }
-        }
-        
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
             typeDictionary.Add(System.Xml.Linq.XName.Get("TraMLType", "http://psi.hupo.org/ms/traml"), typeof(global::psi.hupo.org.ms.traml.TraMLType));
@@ -7447,20 +7515,72 @@ namespace psi.hupo.org.ms.traml {
             typeDictionary.Add(System.Xml.Linq.XName.Get("ValidationStatusType", "http://psi.hupo.org/ms/traml"), typeof(global::psi.hupo.org.ms.traml.ValidationStatusType));
         }
         
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
         private static void BuildElementDictionary() {
             elementDictionary.Add(System.Xml.Linq.XName.Get("TraML", "http://psi.hupo.org/ms/traml"), typeof(global::psi.hupo.org.ms.traml.TraML));
         }
         
+        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
+        
         private static void BuildWrapperDictionary() {
             wrapperDictionary.Add(typeof(psi.hupo.org.ms.traml.TraML), typeof(global::psi.hupo.org.ms.traml.TraMLType));
+        }
+        
+        private static XmlSchemaSet schemaSet;
+        
+        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+            get {
+                if ((schemaSet == null)) {
+                    XmlSchemaSet tempSet = new XmlSchemaSet();
+                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+                }
+                return schemaSet;
+            }
+            set {
+                schemaSet = value;
+            }
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
             schemas.Add(schemaSet);
         }
         
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+            get {
+                return typeDictionary;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+            get {
+                return elementDictionary;
+            }
+        }
+        
+        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+            get {
+                return wrapperDictionary;
+            }
+        }
+        
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
+        }
+        
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("TraML", "http://psi.hupo.org/ms/traml")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -7472,27 +7592,7 @@ namespace psi.hupo.org.ms.traml {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public TraML TraML {  get {return rootObject as TraML; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(TraML root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -7591,26 +7691,6 @@ namespace psi.hupo.org.ms.traml {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::psi.hupo.org.ms.traml.TraML TraML {  get {return rootObject as global::psi.hupo.org.ms.traml.TraML; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::psi.hupo.org.ms.traml.TraML root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -7622,6 +7702,26 @@ namespace psi.hupo.org.ms.traml {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(TraML root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public TraML TraML {  get {return rootObject as TraML; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -7720,5 +7820,25 @@ namespace psi.hupo.org.ms.traml {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::psi.hupo.org.ms.traml.TraML root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::psi.hupo.org.ms.traml.TraML TraML {  get {return rootObject as global::psi.hupo.org.ms.traml.TraML; } }
     }
 }

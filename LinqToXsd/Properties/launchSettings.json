@@ -4,12 +4,6 @@
       "commandName": "Project",
       "commandLineArgs": "gen -a C:\\Users\\mmiftah\\source\\Projects\\LinqToXsdCore\\GeneratedSchemaLibraries\\Atom\\atom.xsd"
     },
-    "EnumInvalidChars": {
-      "commandName": "Project",
-      "commandLineArgs": "gen EnumsTest.xsd -a",
-      "workingDirectory": "..\\GeneratedSchemaLibraries\\EnumsTest",
-      "hotReloadEnabled": false
-    },
     "W3C XSD": {
       "commandName": "Project",
       "commandLineArgs": "gen \"W3C XMLSchema v1.xsd\" -a",
@@ -25,7 +19,7 @@
     "LinqToXsdConfiguration": {
       "commandName": "Project",
       "commandLineArgs": "gen \"LinqToXsdConfiguration.xsd\" -a",
-      "workingDirectory": "..\\..\\XObjectsCode\\Configuration",
+      "workingDirectory": "..\\XObjectsCode\\Configuration",
       "hotReloadEnabled": false
     },
     "MSBuild": {
@@ -73,7 +67,7 @@
     "OPML": {
       "commandName": "Project",
       "commandLineArgs": "gen . -a",
-      "workingDirectory": "C:\\Projects\\GitHub\\LinqToXsdCore\\GeneratedSchemaLibraries\\Opml"
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Opml"
     },
     "ExpressionMedia": {
       "commandName": "Project",
@@ -125,6 +119,153 @@
       "commandName": "Project",
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\XQueryX"
+    },
+    "XQueryX bug": {
+      "commandName": "Project",
+      "commandLineArgs": "gen xPathAxis_bug.xsd -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XQueryX"
+    },
+    "AttributesFeatures": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\Attributes"
+    },
+    "ElementsFeatures": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\Elements"
+    },
+    "EnumTest": {
+      "commandName": "Project",
+      "commandLineArgs": "gen EnumsTest.xsd -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\EnumsTest",
+      "hotReloadEnabled": false
+    },
+    "TraML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\TraML",
+      "hotReloadEnabled": false
+    },
+    "ThermoML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\ThermoML",
+      "hotReloadEnabled": false
+    },
+    "SWRL": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\SWRL",
+      "hotReloadEnabled": false
+    },
+    "SBML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\SBML",
+      "hotReloadEnabled": false
+    },
+    "OpenPackagingConventions-XMLSchema": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OpenPackagingConventions-XMLSchema",
+      "hotReloadEnabled": false
+    },
+    "OPC": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\Ua\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OPC",
+      "hotReloadEnabled": false
+    },
+    "OGC-misc": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OGC-misc",
+      "hotReloadEnabled": false
+    },
+    "OFMX": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OFMX",
+      "hotReloadEnabled": false
+    },
+    "OfficeOpenXML-XMLSchema-Transitional": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OfficeOpenXML-XMLSchema-Transitional",
+      "hotReloadEnabled": false
+    },
+    "OfficeOpenXML-XMLSchema-Strict": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OfficeOpenXML-XMLSchema-Strict",
+      "hotReloadEnabled": false
+    },
+    "Office 2003 Reference schemas": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Office 2003 Reference schemas",
+      "hotReloadEnabled": false
+    },
+    "NHS CDS": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\NHS CDS",
+      "hotReloadEnabled": false
+    },
+    "NestedChoiceTest": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\NestedChoiceTest",
+      "hotReloadEnabled": false
+    },
+    "NameMangled": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\NameMangled",
+      "hotReloadEnabled": false
+    },
+    "mzQuantML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\mzQuantML",
+      "hotReloadEnabled": false
+    },
+    "mzML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\mzML",
+      "hotReloadEnabled": false
+    },
+    "mzIdentML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\mzIdentML",
+      "hotReloadEnabled": false
+    },
+    "Multi-namespaces": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Multi-namespaces",
+      "hotReloadEnabled": false
+    },
+    "Microsoft Project 2007": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Microsoft Project 2007",
+      "hotReloadEnabled": false
+    },
+    "MetaLEX": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\MetaLEX",
+      "hotReloadEnabled": false
+    },
+    "LegalRuleML basic": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\basic\\ruleml.xsd",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\LegalRuleML",
+      "hotReloadEnabled": false
     }
   }
 }

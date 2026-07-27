@@ -31,26 +31,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class CVListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvXName = System.Xml.Linq.XName.Get("cv", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<cvType> cvField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CVListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator CVListType(XElement xe) { return XTypedServices.ToXTypedElement<CVListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static CVListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CVListType>(this);
         }
         
         /// <summary>
@@ -63,6 +47,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public CVListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvXName = System.Xml.Linq.XName.Get("cv", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<cvType> cvField;
         
         /// <summary>
         /// <para>
@@ -94,11 +85,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CVListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static CVListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvXName, typeof(cvType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -121,18 +133,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CVListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvXName, typeof(cvType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -146,26 +146,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AnalysisSoftwareListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisSoftwareXName = System.Xml.Linq.XName.Get("AnalysisSoftware", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<AnalysisSoftwareType> AnalysisSoftwareField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisSoftwareListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AnalysisSoftwareListType(XElement xe) { return XTypedServices.ToXTypedElement<AnalysisSoftwareListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AnalysisSoftwareListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AnalysisSoftwareXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AnalysisSoftwareListType>(this);
         }
         
         /// <summary>
@@ -179,6 +163,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AnalysisSoftwareListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisSoftwareXName = System.Xml.Linq.XName.Get("AnalysisSoftware", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<AnalysisSoftwareType> AnalysisSoftwareField;
         
         /// <summary>
         /// <para>
@@ -210,11 +201,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisSoftwareListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AnalysisSoftwareListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AnalysisSoftwareXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AnalysisSoftwareXName, typeof(AnalysisSoftwareType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -237,18 +249,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AnalysisSoftwareListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(AnalysisSoftwareXName, typeof(AnalysisSoftwareType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -261,26 +261,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AnalysisSampleCollectionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SampleXName = System.Xml.Linq.XName.Get("Sample", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SampleType> SampleField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisSampleCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AnalysisSampleCollectionType(XElement xe) { return XTypedServices.ToXTypedElement<AnalysisSampleCollectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AnalysisSampleCollectionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SampleXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AnalysisSampleCollectionType>(this);
         }
         
         /// <summary>
@@ -293,6 +277,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AnalysisSampleCollectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SampleXName = System.Xml.Linq.XName.Get("Sample", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SampleType> SampleField;
         
         /// <summary>
         /// <para>
@@ -324,11 +315,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisSampleCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AnalysisSampleCollectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SampleXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SampleXName, typeof(SampleType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -351,18 +363,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AnalysisSampleCollectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SampleXName, typeof(SampleType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -375,40 +375,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SequenceCollectionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DBSequenceXName = System.Xml.Linq.XName.Get("DBSequence", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<DBSequenceType> DBSequenceField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideXName = System.Xml.Linq.XName.Get("Peptide", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PeptideType> PeptideField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideEvidenceXName = System.Xml.Linq.XName.Get("PeptideEvidence", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PeptideEvidenceType> PeptideEvidenceField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SequenceCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SequenceCollectionType(XElement xe) { return XTypedServices.ToXTypedElement<SequenceCollectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SequenceCollectionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DBSequenceXName), new NamedContentModelEntity(PeptideXName), new NamedContentModelEntity(PeptideEvidenceXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SequenceCollectionType>(this);
         }
         
         /// <summary>
@@ -421,6 +391,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SequenceCollectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DBSequenceXName = System.Xml.Linq.XName.Get("DBSequence", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<DBSequenceType> DBSequenceField;
         
         /// <summary>
         /// <para>
@@ -452,6 +429,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideXName = System.Xml.Linq.XName.Get("Peptide", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PeptideType> PeptideField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -481,6 +465,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideEvidenceXName = System.Xml.Linq.XName.Get("PeptideEvidence", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PeptideEvidenceType> PeptideEvidenceField;
         
         /// <summary>
         /// <para>
@@ -512,11 +503,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SequenceCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SequenceCollectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DBSequenceXName), new NamedContentModelEntity(PeptideXName), new NamedContentModelEntity(PeptideEvidenceXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DBSequenceXName, typeof(DBSequenceType));
+            localElementDictionary.Add(PeptideXName, typeof(PeptideType));
+            localElementDictionary.Add(PeptideEvidenceXName, typeof(PeptideEvidenceType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -539,20 +553,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SequenceCollectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DBSequenceXName, typeof(DBSequenceType));
-            localElementDictionary.Add(PeptideXName, typeof(PeptideType));
-            localElementDictionary.Add(PeptideEvidenceXName, typeof(PeptideEvidenceType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -565,30 +565,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AnalysisCollectionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectrumIdentificationXName = System.Xml.Linq.XName.Get("SpectrumIdentification", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpectrumIdentificationType> SpectrumIdentificationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinDetectionXName = System.Xml.Linq.XName.Get("ProteinDetection", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AnalysisCollectionType(XElement xe) { return XTypedServices.ToXTypedElement<AnalysisCollectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AnalysisCollectionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationXName), new NamedContentModelEntity(ProteinDetectionXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AnalysisCollectionType>(this);
         }
         
         /// <summary>
@@ -601,6 +581,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AnalysisCollectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectrumIdentificationXName = System.Xml.Linq.XName.Get("SpectrumIdentification", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpectrumIdentificationType> SpectrumIdentificationField;
         
         /// <summary>
         /// <para>
@@ -632,6 +619,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinDetectionXName = System.Xml.Linq.XName.Get("ProteinDetection", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -643,6 +634,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ProteinDetectionType ProteinDetection {
             get {
                 XElement x = this.GetElement(ProteinDetectionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProteinDetectionType)(x));
             }
             set {
@@ -650,11 +644,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AnalysisCollectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationXName), new NamedContentModelEntity(ProteinDetectionXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SpectrumIdentificationXName, typeof(SpectrumIdentificationType));
+            localElementDictionary.Add(ProteinDetectionXName, typeof(ProteinDetectionType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -677,19 +693,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AnalysisCollectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SpectrumIdentificationXName, typeof(SpectrumIdentificationType));
-            localElementDictionary.Add(ProteinDetectionXName, typeof(ProteinDetectionType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -702,30 +705,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AnalysisProtocolCollectionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectrumIdentificationProtocolXName = System.Xml.Linq.XName.Get("SpectrumIdentificationProtocol", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpectrumIdentificationProtocolType> SpectrumIdentificationProtocolField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinDetectionProtocolXName = System.Xml.Linq.XName.Get("ProteinDetectionProtocol", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisProtocolCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AnalysisProtocolCollectionType(XElement xe) { return XTypedServices.ToXTypedElement<AnalysisProtocolCollectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AnalysisProtocolCollectionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationProtocolXName), new NamedContentModelEntity(ProteinDetectionProtocolXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AnalysisProtocolCollectionType>(this);
         }
         
         /// <summary>
@@ -738,6 +721,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AnalysisProtocolCollectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectrumIdentificationProtocolXName = System.Xml.Linq.XName.Get("SpectrumIdentificationProtocol", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpectrumIdentificationProtocolType> SpectrumIdentificationProtocolField;
         
         /// <summary>
         /// <para>
@@ -769,6 +759,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinDetectionProtocolXName = System.Xml.Linq.XName.Get("ProteinDetectionProtocol", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -780,6 +774,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ProteinDetectionProtocolType ProteinDetectionProtocol {
             get {
                 XElement x = this.GetElement(ProteinDetectionProtocolXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProteinDetectionProtocolType)(x));
             }
             set {
@@ -787,11 +784,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisProtocolCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AnalysisProtocolCollectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationProtocolXName), new NamedContentModelEntity(ProteinDetectionProtocolXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SpectrumIdentificationProtocolXName, typeof(SpectrumIdentificationProtocolType));
+            localElementDictionary.Add(ProteinDetectionProtocolXName, typeof(ProteinDetectionProtocolType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -814,19 +833,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AnalysisProtocolCollectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SpectrumIdentificationProtocolXName, typeof(SpectrumIdentificationProtocolType));
-            localElementDictionary.Add(ProteinDetectionProtocolXName, typeof(ProteinDetectionProtocolType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -839,40 +845,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class InputsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SourceFileXName = System.Xml.Linq.XName.Get("SourceFile", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SourceFileType> SourceFileField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SearchDatabaseXName = System.Xml.Linq.XName.Get("SearchDatabase", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SearchDatabaseType> SearchDatabaseField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectraDataXName = System.Xml.Linq.XName.Get("SpectraData", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpectraDataType> SpectraDataField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputsType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InputsType(XElement xe) { return XTypedServices.ToXTypedElement<InputsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InputsType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SourceFileXName), new NamedContentModelEntity(SearchDatabaseXName), new NamedContentModelEntity(SpectraDataXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InputsType>(this);
         }
         
         /// <summary>
@@ -885,6 +861,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public InputsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SourceFileXName = System.Xml.Linq.XName.Get("SourceFile", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SourceFileType> SourceFileField;
         
         /// <summary>
         /// <para>
@@ -916,6 +899,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SearchDatabaseXName = System.Xml.Linq.XName.Get("SearchDatabase", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SearchDatabaseType> SearchDatabaseField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -945,6 +935,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectraDataXName = System.Xml.Linq.XName.Get("SpectraData", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpectraDataType> SpectraDataField;
         
         /// <summary>
         /// <para>
@@ -976,11 +973,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputsType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static InputsType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SourceFileXName), new NamedContentModelEntity(SearchDatabaseXName), new NamedContentModelEntity(SpectraDataXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SourceFileXName, typeof(SourceFileType));
+            localElementDictionary.Add(SearchDatabaseXName, typeof(SearchDatabaseType));
+            localElementDictionary.Add(SpectraDataXName, typeof(SpectraDataType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1003,20 +1023,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InputsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SourceFileXName, typeof(SourceFileType));
-            localElementDictionary.Add(SearchDatabaseXName, typeof(SearchDatabaseType));
-            localElementDictionary.Add(SpectraDataXName, typeof(SpectraDataType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1029,30 +1035,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AnalysisDataType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectrumIdentificationListXName = System.Xml.Linq.XName.Get("SpectrumIdentificationList", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpectrumIdentificationListType> SpectrumIdentificationListField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinDetectionListXName = System.Xml.Linq.XName.Get("ProteinDetectionList", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisDataType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AnalysisDataType(XElement xe) { return XTypedServices.ToXTypedElement<AnalysisDataType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AnalysisDataType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationListXName), new NamedContentModelEntity(ProteinDetectionListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AnalysisDataType>(this);
         }
         
         /// <summary>
@@ -1065,6 +1051,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AnalysisDataType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectrumIdentificationListXName = System.Xml.Linq.XName.Get("SpectrumIdentificationList", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpectrumIdentificationListType> SpectrumIdentificationListField;
         
         /// <summary>
         /// <para>
@@ -1096,6 +1089,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinDetectionListXName = System.Xml.Linq.XName.Get("ProteinDetectionList", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1107,6 +1104,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ProteinDetectionListType ProteinDetectionList {
             get {
                 XElement x = this.GetElement(ProteinDetectionListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProteinDetectionListType)(x));
             }
             set {
@@ -1114,11 +1114,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisDataType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AnalysisDataType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationListXName), new NamedContentModelEntity(ProteinDetectionListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SpectrumIdentificationListXName, typeof(SpectrumIdentificationListType));
+            localElementDictionary.Add(ProteinDetectionListXName, typeof(ProteinDetectionListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1141,19 +1163,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AnalysisDataType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SpectrumIdentificationListXName, typeof(SpectrumIdentificationListType));
-            localElementDictionary.Add(ProteinDetectionListXName, typeof(ProteinDetectionListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1167,27 +1176,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class DataCollectionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InputsXName = System.Xml.Linq.XName.Get("Inputs", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisDataXName = System.Xml.Linq.XName.Get("AnalysisData", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DataCollectionType(XElement xe) { return XTypedServices.ToXTypedElement<DataCollectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DataCollectionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputsXName), new NamedContentModelEntity(AnalysisDataXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DataCollectionType>(this);
         }
         
         /// <summary>
@@ -1201,6 +1193,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public DataCollectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InputsXName = System.Xml.Linq.XName.Get("Inputs", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1220,6 +1216,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisDataXName = System.Xml.Linq.XName.Get("AnalysisData", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -1238,11 +1238,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static DataCollectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputsXName), new NamedContentModelEntity(AnalysisDataXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(InputsXName, typeof(InputsType));
+            localElementDictionary.Add(AnalysisDataXName, typeof(AnalysisDataType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1265,19 +1287,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DataCollectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(InputsXName, typeof(InputsType));
-            localElementDictionary.Add(AnalysisDataXName, typeof(AnalysisDataType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1290,70 +1299,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class MzIdentMLType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvListXName = System.Xml.Linq.XName.Get("cvList", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisSoftwareListXName = System.Xml.Linq.XName.Get("AnalysisSoftwareList", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProviderXName = System.Xml.Linq.XName.Get("Provider", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AuditCollectionXName = System.Xml.Linq.XName.Get("AuditCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisSampleCollectionXName = System.Xml.Linq.XName.Get("AnalysisSampleCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SequenceCollectionXName = System.Xml.Linq.XName.Get("SequenceCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisCollectionXName = System.Xml.Linq.XName.Get("AnalysisCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisProtocolCollectionXName = System.Xml.Linq.XName.Get("AnalysisProtocolCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataCollectionXName = System.Xml.Linq.XName.Get("DataCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BibliographicReferenceXName = System.Xml.Linq.XName.Get("BibliographicReference", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<BibliographicReferenceType> BibliographicReferenceField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName creationDateXName = System.Xml.Linq.XName.Get("creationDate", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzIdentMLType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MzIdentMLType(XElement xe) { return XTypedServices.ToXTypedElement<MzIdentMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MzIdentMLType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvListXName), new NamedContentModelEntity(AnalysisSoftwareListXName), new NamedContentModelEntity(ProviderXName), new NamedContentModelEntity(AuditCollectionXName), new NamedContentModelEntity(AnalysisSampleCollectionXName), new NamedContentModelEntity(SequenceCollectionXName), new NamedContentModelEntity(AnalysisCollectionXName), new NamedContentModelEntity(AnalysisProtocolCollectionXName), new NamedContentModelEntity(DataCollectionXName), new NamedContentModelEntity(BibliographicReferenceXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MzIdentMLType>(this);
         }
         
         /// <summary>
@@ -1366,6 +1315,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public MzIdentMLType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvListXName = System.Xml.Linq.XName.Get("cvList", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1385,6 +1338,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisSoftwareListXName = System.Xml.Linq.XName.Get("AnalysisSoftwareList", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1396,12 +1353,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual AnalysisSoftwareListType AnalysisSoftwareList {
             get {
                 XElement x = this.GetElement(AnalysisSoftwareListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((AnalysisSoftwareListType)(x));
             }
             set {
                 this.SetElement(AnalysisSoftwareListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProviderXName = System.Xml.Linq.XName.Get("Provider", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1417,12 +1381,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ProviderType Provider {
             get {
                 XElement x = this.GetElement(ProviderXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProviderType)(x));
             }
             set {
                 this.SetElement(ProviderXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AuditCollectionXName = System.Xml.Linq.XName.Get("AuditCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1435,12 +1406,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual AuditCollectionType AuditCollection {
             get {
                 XElement x = this.GetElement(AuditCollectionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((AuditCollectionType)(x));
             }
             set {
                 this.SetElement(AuditCollectionXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisSampleCollectionXName = System.Xml.Linq.XName.Get("AnalysisSampleCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1453,12 +1431,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual AnalysisSampleCollectionType AnalysisSampleCollection {
             get {
                 XElement x = this.GetElement(AnalysisSampleCollectionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((AnalysisSampleCollectionType)(x));
             }
             set {
                 this.SetElement(AnalysisSampleCollectionXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SequenceCollectionXName = System.Xml.Linq.XName.Get("SequenceCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1471,12 +1456,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual SequenceCollectionType SequenceCollection {
             get {
                 XElement x = this.GetElement(SequenceCollectionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((SequenceCollectionType)(x));
             }
             set {
                 this.SetElement(SequenceCollectionXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisCollectionXName = System.Xml.Linq.XName.Get("AnalysisCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1496,6 +1488,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisProtocolCollectionXName = System.Xml.Linq.XName.Get("AnalysisProtocolCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -1514,6 +1510,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataCollectionXName = System.Xml.Linq.XName.Get("DataCollection", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -1531,6 +1531,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetElement(DataCollectionXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BibliographicReferenceXName = System.Xml.Linq.XName.Get("BibliographicReference", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<BibliographicReferenceType> BibliographicReferenceField;
         
         /// <summary>
         /// <para>
@@ -1565,6 +1572,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName creationDateXName = System.Xml.Linq.XName.Get("creationDate", "");
+        
         /// <summary>
         /// <para>
         /// The date on which the file was produced.
@@ -1586,6 +1597,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// The version of the schema this instance document refers to, in the format x.y.z. Changes to z should not affect prevent instance documents from validating. 
@@ -1604,11 +1619,41 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzIdentMLType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static MzIdentMLType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvListXName), new NamedContentModelEntity(AnalysisSoftwareListXName), new NamedContentModelEntity(ProviderXName), new NamedContentModelEntity(AuditCollectionXName), new NamedContentModelEntity(AnalysisSampleCollectionXName), new NamedContentModelEntity(SequenceCollectionXName), new NamedContentModelEntity(AnalysisCollectionXName), new NamedContentModelEntity(AnalysisProtocolCollectionXName), new NamedContentModelEntity(DataCollectionXName), new NamedContentModelEntity(BibliographicReferenceXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvListXName, typeof(CVListType));
+            localElementDictionary.Add(AnalysisSoftwareListXName, typeof(AnalysisSoftwareListType));
+            localElementDictionary.Add(ProviderXName, typeof(ProviderType));
+            localElementDictionary.Add(AuditCollectionXName, typeof(AuditCollectionType));
+            localElementDictionary.Add(AnalysisSampleCollectionXName, typeof(AnalysisSampleCollectionType));
+            localElementDictionary.Add(SequenceCollectionXName, typeof(SequenceCollectionType));
+            localElementDictionary.Add(AnalysisCollectionXName, typeof(AnalysisCollectionType));
+            localElementDictionary.Add(AnalysisProtocolCollectionXName, typeof(AnalysisProtocolCollectionType));
+            localElementDictionary.Add(DataCollectionXName, typeof(DataCollectionType));
+            localElementDictionary.Add(BibliographicReferenceXName, typeof(BibliographicReferenceType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1631,27 +1676,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MzIdentMLType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvListXName, typeof(CVListType));
-            localElementDictionary.Add(AnalysisSoftwareListXName, typeof(AnalysisSoftwareListType));
-            localElementDictionary.Add(ProviderXName, typeof(ProviderType));
-            localElementDictionary.Add(AuditCollectionXName, typeof(AuditCollectionType));
-            localElementDictionary.Add(AnalysisSampleCollectionXName, typeof(AnalysisSampleCollectionType));
-            localElementDictionary.Add(SequenceCollectionXName, typeof(SequenceCollectionType));
-            localElementDictionary.Add(AnalysisCollectionXName, typeof(AnalysisCollectionType));
-            localElementDictionary.Add(AnalysisProtocolCollectionXName, typeof(AnalysisProtocolCollectionType));
-            localElementDictionary.Add(DataCollectionXName, typeof(DataCollectionType));
-            localElementDictionary.Add(BibliographicReferenceXName, typeof(BibliographicReferenceType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1664,46 +1688,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SearchDatabaseType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.ExternalDataType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DatabaseNameXName = System.Xml.Linq.XName.Get("DatabaseName", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName releaseDateXName = System.Xml.Linq.XName.Get("releaseDate", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName numDatabaseSequencesXName = System.Xml.Linq.XName.Get("numDatabaseSequences", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName numResiduesXName = System.Xml.Linq.XName.Get("numResidues", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchDatabaseType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SearchDatabaseType(XElement xe) { return XTypedServices.ToXTypedElement<SearchDatabaseType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SearchDatabaseType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new NamedContentModelEntity(DatabaseNameXName), new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SearchDatabaseType>(this);
         }
         
         /// <summary>
@@ -1716,6 +1704,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SearchDatabaseType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DatabaseNameXName = System.Xml.Linq.XName.Get("DatabaseName", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -1737,6 +1729,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetElement(DatabaseNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -1768,6 +1767,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// The version of the database.
@@ -1779,12 +1782,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName releaseDateXName = System.Xml.Linq.XName.Get("releaseDate", "");
         
         /// <summary>
         /// <para>
@@ -1807,6 +1817,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName numDatabaseSequencesXName = System.Xml.Linq.XName.Get("numDatabaseSequences", "");
+        
         /// <summary>
         /// <para>
         /// The total number of sequences in the database.
@@ -1827,6 +1841,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(numDatabaseSequencesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Long).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName numResiduesXName = System.Xml.Linq.XName.Get("numResidues", "");
         
         /// <summary>
         /// <para>
@@ -1849,11 +1867,35 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchDatabaseType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SearchDatabaseType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new NamedContentModelEntity(DatabaseNameXName), new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+            localElementDictionary.Add(DatabaseNameXName, typeof(ParamType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1876,21 +1918,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SearchDatabaseType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-            localElementDictionary.Add(DatabaseNameXName, typeof(ParamType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1903,33 +1930,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SourceFileType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.ExternalDataType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SourceFileType(XElement xe) { return XTypedServices.ToXTypedElement<SourceFileType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SourceFileType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SourceFileType>(this);
         }
         
         /// <summary>
@@ -1942,6 +1946,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SourceFileType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -1975,6 +1986,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -2009,11 +2027,35 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SourceFileType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2036,21 +2078,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SourceFileType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2063,26 +2090,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ModificationParamsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SearchModificationXName = System.Xml.Linq.XName.Get("SearchModification", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SearchModificationType> SearchModificationField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationParamsType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ModificationParamsType(XElement xe) { return XTypedServices.ToXTypedElement<ModificationParamsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ModificationParamsType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SearchModificationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ModificationParamsType>(this);
         }
         
         /// <summary>
@@ -2095,6 +2106,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ModificationParamsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SearchModificationXName = System.Xml.Linq.XName.Get("SearchModification", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SearchModificationType> SearchModificationField;
         
         /// <summary>
         /// <para>
@@ -2126,11 +2144,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationParamsType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ModificationParamsType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SearchModificationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SearchModificationXName, typeof(SearchModificationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2153,18 +2192,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ModificationParamsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SearchModificationXName, typeof(SearchModificationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2177,31 +2204,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class FilterType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FilterType1XName = System.Xml.Linq.XName.Get("FilterType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IncludeXName = System.Xml.Linq.XName.Get("Include", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ExcludeXName = System.Xml.Linq.XName.Get("Exclude", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FilterType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator FilterType(XElement xe) { return XTypedServices.ToXTypedElement<FilterType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static FilterType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FilterType1XName), new NamedContentModelEntity(IncludeXName), new NamedContentModelEntity(ExcludeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FilterType>(this);
         }
         
         /// <summary>
@@ -2214,6 +2220,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public FilterType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FilterType1XName = System.Xml.Linq.XName.Get("FilterType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2236,6 +2246,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IncludeXName = System.Xml.Linq.XName.Get("Include", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// All sequences fulfilling the specifed criteria are included.
@@ -2250,12 +2264,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ParamListType Include {
             get {
                 XElement x = this.GetElement(IncludeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParamListType)(x));
             }
             set {
                 this.SetElement(IncludeXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ExcludeXName = System.Xml.Linq.XName.Get("Exclude", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2271,6 +2292,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ParamListType Exclude {
             get {
                 XElement x = this.GetElement(ExcludeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParamListType)(x));
             }
             set {
@@ -2278,11 +2302,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FilterType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static FilterType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FilterType1XName), new NamedContentModelEntity(IncludeXName), new NamedContentModelEntity(ExcludeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FilterType1XName, typeof(ParamType));
+            localElementDictionary.Add(IncludeXName, typeof(ParamListType));
+            localElementDictionary.Add(ExcludeXName, typeof(ParamListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2305,20 +2352,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FilterType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(FilterType1XName, typeof(ParamType));
-            localElementDictionary.Add(IncludeXName, typeof(ParamListType));
-            localElementDictionary.Add(ExcludeXName, typeof(ParamListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2332,26 +2365,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class DatabaseFiltersType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FilterXName = System.Xml.Linq.XName.Get("Filter", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<FilterType> FilterField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DatabaseFiltersType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DatabaseFiltersType(XElement xe) { return XTypedServices.ToXTypedElement<DatabaseFiltersType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DatabaseFiltersType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FilterXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DatabaseFiltersType>(this);
         }
         
         /// <summary>
@@ -2365,6 +2382,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public DatabaseFiltersType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FilterXName = System.Xml.Linq.XName.Get("Filter", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<FilterType> FilterField;
         
         /// <summary>
         /// <para>
@@ -2396,11 +2420,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DatabaseFiltersType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static DatabaseFiltersType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FilterXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FilterXName, typeof(FilterType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2423,18 +2468,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DatabaseFiltersType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(FilterXName, typeof(FilterType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2447,26 +2480,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class TranslationTableType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TranslationTableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator TranslationTableType(XElement xe) { return XTypedServices.ToXTypedElement<TranslationTableType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static TranslationTableType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TranslationTableType>(this);
         }
         
         /// <summary>
@@ -2479,6 +2496,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public TranslationTableType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -2513,11 +2537,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TranslationTableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static TranslationTableType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2540,18 +2585,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TranslationTableType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2564,30 +2597,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class DatabaseTranslationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TranslationTableXName = System.Xml.Linq.XName.Get("TranslationTable", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<TranslationTableType> TranslationTableField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName framesXName = System.Xml.Linq.XName.Get("frames", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DatabaseTranslationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DatabaseTranslationType(XElement xe) { return XTypedServices.ToXTypedElement<DatabaseTranslationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DatabaseTranslationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TranslationTableXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DatabaseTranslationType>(this);
         }
         
         /// <summary>
@@ -2600,6 +2613,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public DatabaseTranslationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TranslationTableXName = System.Xml.Linq.XName.Get("TranslationTable", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<TranslationTableType> TranslationTableField;
         
         /// <summary>
         /// <para>
@@ -2631,6 +2651,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName framesXName = System.Xml.Linq.XName.Get("frames", "");
+        
         /// <summary>
         /// <para>
         /// The frames in which the nucleic acid sequence has been translated as a space separated list 
@@ -2642,6 +2666,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual IList<int> frames {
             get {
                 XAttribute x = this.Attribute(framesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<int>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
             set {
@@ -2649,11 +2676,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DatabaseTranslationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static DatabaseTranslationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TranslationTableXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TranslationTableXName, typeof(TranslationTableType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2676,18 +2724,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DatabaseTranslationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(TranslationTableXName, typeof(TranslationTableType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2700,66 +2736,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectrumIdentificationProtocolType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SearchTypeXName = System.Xml.Linq.XName.Get("SearchType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AdditionalSearchParamsXName = System.Xml.Linq.XName.Get("AdditionalSearchParams", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ModificationParamsXName = System.Xml.Linq.XName.Get("ModificationParams", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EnzymesXName = System.Xml.Linq.XName.Get("Enzymes", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MassTableXName = System.Xml.Linq.XName.Get("MassTable", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<MassTableType> MassTableField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FragmentToleranceXName = System.Xml.Linq.XName.Get("FragmentTolerance", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ParentToleranceXName = System.Xml.Linq.XName.Get("ParentTolerance", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ThresholdXName = System.Xml.Linq.XName.Get("Threshold", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DatabaseFiltersXName = System.Xml.Linq.XName.Get("DatabaseFilters", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DatabaseTranslationXName = System.Xml.Linq.XName.Get("DatabaseTranslation", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationProtocolType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpectrumIdentificationProtocolType(XElement xe) { return XTypedServices.ToXTypedElement<SpectrumIdentificationProtocolType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpectrumIdentificationProtocolType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SearchTypeXName), new NamedContentModelEntity(AdditionalSearchParamsXName), new NamedContentModelEntity(ModificationParamsXName), new NamedContentModelEntity(EnzymesXName), new NamedContentModelEntity(MassTableXName), new NamedContentModelEntity(FragmentToleranceXName), new NamedContentModelEntity(ParentToleranceXName), new NamedContentModelEntity(ThresholdXName), new NamedContentModelEntity(DatabaseFiltersXName), new NamedContentModelEntity(DatabaseTranslationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectrumIdentificationProtocolType>(this);
         }
         
         /// <summary>
@@ -2772,6 +2752,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpectrumIdentificationProtocolType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SearchTypeXName = System.Xml.Linq.XName.Get("SearchType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2794,6 +2778,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AdditionalSearchParamsXName = System.Xml.Linq.XName.Get("AdditionalSearchParams", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// The search parameters other than the modifications searched. 
@@ -2808,12 +2796,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ParamListType AdditionalSearchParams {
             get {
                 XElement x = this.GetElement(AdditionalSearchParamsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParamListType)(x));
             }
             set {
                 this.SetElement(AdditionalSearchParamsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ModificationParamsXName = System.Xml.Linq.XName.Get("ModificationParams", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2826,12 +2821,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ModificationParamsType ModificationParams {
             get {
                 XElement x = this.GetElement(ModificationParamsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ModificationParamsType)(x));
             }
             set {
                 this.SetElement(ModificationParamsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EnzymesXName = System.Xml.Linq.XName.Get("Enzymes", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2844,12 +2846,22 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual EnzymesType Enzymes {
             get {
                 XElement x = this.GetElement(EnzymesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((EnzymesType)(x));
             }
             set {
                 this.SetElement(EnzymesXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MassTableXName = System.Xml.Linq.XName.Get("MassTable", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<MassTableType> MassTableField;
         
         /// <summary>
         /// <para>
@@ -2881,6 +2893,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FragmentToleranceXName = System.Xml.Linq.XName.Get("FragmentTolerance", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2892,12 +2908,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ToleranceType FragmentTolerance {
             get {
                 XElement x = this.GetElement(FragmentToleranceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ToleranceType)(x));
             }
             set {
                 this.SetElement(FragmentToleranceXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ParentToleranceXName = System.Xml.Linq.XName.Get("ParentTolerance", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2910,12 +2933,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ToleranceType ParentTolerance {
             get {
                 XElement x = this.GetElement(ParentToleranceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ToleranceType)(x));
             }
             set {
                 this.SetElement(ParentToleranceXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ThresholdXName = System.Xml.Linq.XName.Get("Threshold", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2938,6 +2968,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DatabaseFiltersXName = System.Xml.Linq.XName.Get("DatabaseFilters", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2949,12 +2983,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual DatabaseFiltersType DatabaseFilters {
             get {
                 XElement x = this.GetElement(DatabaseFiltersXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((DatabaseFiltersType)(x));
             }
             set {
                 this.SetElement(DatabaseFiltersXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DatabaseTranslationXName = System.Xml.Linq.XName.Get("DatabaseTranslation", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -2967,12 +3008,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual DatabaseTranslationType DatabaseTranslation {
             get {
                 XElement x = this.GetElement(DatabaseTranslationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((DatabaseTranslationType)(x));
             }
             set {
                 this.SetElement(DatabaseTranslationXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
         
         /// <summary>
         /// <para>
@@ -2992,37 +3040,15 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationProtocolType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpectrumIdentificationProtocolType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SearchTypeXName), new NamedContentModelEntity(AdditionalSearchParamsXName), new NamedContentModelEntity(ModificationParamsXName), new NamedContentModelEntity(EnzymesXName), new NamedContentModelEntity(MassTableXName), new NamedContentModelEntity(FragmentToleranceXName), new NamedContentModelEntity(ParentToleranceXName), new NamedContentModelEntity(ThresholdXName), new NamedContentModelEntity(DatabaseFiltersXName), new NamedContentModelEntity(DatabaseTranslationXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectrumIdentificationProtocolType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(SearchTypeXName, typeof(ParamType));
@@ -3037,8 +3063,39 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             localElementDictionary.Add(DatabaseTranslationXName, typeof(DatabaseTranslationType));
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
@@ -3049,13 +3106,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class InputSpectraType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectraData_refXName = System.Xml.Linq.XName.Get("spectraData_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputSpectraType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator InputSpectraType(XElement xe) { return XTypedServices.ToXTypedElement<InputSpectraType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InputSpectraType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -3064,6 +3119,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public InputSpectraType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectraData_refXName = System.Xml.Linq.XName.Get("spectraData_ref", "");
         
         /// <summary>
         /// <para>
@@ -3076,11 +3135,20 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string spectraData_ref {
             get {
                 XAttribute x = this.Attribute(spectraData_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(spectraData_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputSpectraType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3103,14 +3171,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InputSpectraType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -3120,13 +3180,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SearchDatabaseRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchDatabaseRefType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator SearchDatabaseRefType(XElement xe) { return XTypedServices.ToXTypedElement<SearchDatabaseRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SearchDatabaseRefType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -3135,6 +3193,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SearchDatabaseRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
         
         /// <summary>
         /// <para>
@@ -3147,11 +3209,20 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string searchDatabase_ref {
             get {
                 XAttribute x = this.Attribute(searchDatabase_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(searchDatabase_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchDatabaseRefType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3173,14 +3244,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SearchDatabaseRefType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -3194,41 +3257,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectrumIdentificationType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.ProtocolApplicationType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InputSpectraXName = System.Xml.Linq.XName.Get("InputSpectra", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<InputSpectraType> InputSpectraField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SearchDatabaseRefXName = System.Xml.Linq.XName.Get("SearchDatabaseRef", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SearchDatabaseRefType> SearchDatabaseRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectrumIdentificationProtocol_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationProtocol_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectrumIdentificationList_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationList_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpectrumIdentificationType(XElement xe) { return XTypedServices.ToXTypedElement<SpectrumIdentificationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpectrumIdentificationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputSpectraXName), new NamedContentModelEntity(SearchDatabaseRefXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectrumIdentificationType>(this);
         }
         
         /// <summary>
@@ -3241,6 +3273,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpectrumIdentificationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InputSpectraXName = System.Xml.Linq.XName.Get("InputSpectra", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<InputSpectraType> InputSpectraField;
         
         /// <summary>
         /// <para>
@@ -3275,6 +3314,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SearchDatabaseRefXName = System.Xml.Linq.XName.Get("SearchDatabaseRef", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SearchDatabaseRefType> SearchDatabaseRefField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, repeating
@@ -3305,6 +3351,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectrumIdentificationProtocol_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationProtocol_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the search protocol used for this SpectrumIdentification. 
@@ -3322,6 +3372,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(spectrumIdentificationProtocol_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectrumIdentificationList_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationList_ref", "");
         
         /// <summary>
         /// <para>
@@ -3341,11 +3395,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpectrumIdentificationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputSpectraXName), new NamedContentModelEntity(SearchDatabaseRefXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(InputSpectraXName, typeof(InputSpectraType));
+            localElementDictionary.Add(SearchDatabaseRefXName, typeof(SearchDatabaseRefType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3368,19 +3444,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectrumIdentificationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(InputSpectraXName, typeof(InputSpectraType));
-            localElementDictionary.Add(SearchDatabaseRefXName, typeof(SearchDatabaseRefType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3393,26 +3456,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class MeasureType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MeasureType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MeasureType(XElement xe) { return XTypedServices.ToXTypedElement<MeasureType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MeasureType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MeasureType>(this);
         }
         
         /// <summary>
@@ -3425,6 +3472,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public MeasureType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -3456,11 +3510,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MeasureType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static MeasureType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3483,18 +3558,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MeasureType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3507,26 +3570,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class FragmentationTableType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MeasureXName = System.Xml.Linq.XName.Get("Measure", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<MeasureType> MeasureField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FragmentationTableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator FragmentationTableType(XElement xe) { return XTypedServices.ToXTypedElement<FragmentationTableType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static FragmentationTableType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MeasureXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FragmentationTableType>(this);
         }
         
         /// <summary>
@@ -3539,6 +3586,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public FragmentationTableType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MeasureXName = System.Xml.Linq.XName.Get("Measure", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<MeasureType> MeasureField;
         
         /// <summary>
         /// <para>
@@ -3570,11 +3624,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FragmentationTableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static FragmentationTableType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MeasureXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(MeasureXName, typeof(MeasureType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3597,18 +3672,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FragmentationTableType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(MeasureXName, typeof(MeasureType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3621,48 +3684,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectrumIdentificationListType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FragmentationTableXName = System.Xml.Linq.XName.Get("FragmentationTable", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectrumIdentificationResultXName = System.Xml.Linq.XName.Get("SpectrumIdentificationResult", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpectrumIdentificationResultType> SpectrumIdentificationResultField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName numSequencesSearchedXName = System.Xml.Linq.XName.Get("numSequencesSearched", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpectrumIdentificationListType(XElement xe) { return XTypedServices.ToXTypedElement<SpectrumIdentificationListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpectrumIdentificationListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FragmentationTableXName), new NamedContentModelEntity(SpectrumIdentificationResultXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectrumIdentificationListType>(this);
         }
         
         /// <summary>
@@ -3676,6 +3701,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public SpectrumIdentificationListType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FragmentationTableXName = System.Xml.Linq.XName.Get("FragmentationTable", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3687,12 +3716,22 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual FragmentationTableType FragmentationTable {
             get {
                 XElement x = this.GetElement(FragmentationTableXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((FragmentationTableType)(x));
             }
             set {
                 this.SetElement(FragmentationTableXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectrumIdentificationResultXName = System.Xml.Linq.XName.Get("SpectrumIdentificationResult", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpectrumIdentificationResultType> SpectrumIdentificationResultField;
         
         /// <summary>
         /// <para>
@@ -3723,6 +3762,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -3756,6 +3802,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -3790,6 +3843,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName numSequencesSearchedXName = System.Xml.Linq.XName.Get("numSequencesSearched", "");
+        
         /// <summary>
         /// <para>
         /// The number of database sequences searched against. This value should be provided unless a de novo search has been performed.
@@ -3811,11 +3868,35 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpectrumIdentificationListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FragmentationTableXName), new NamedContentModelEntity(SpectrumIdentificationResultXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FragmentationTableXName, typeof(FragmentationTableType));
+            localElementDictionary.Add(SpectrumIdentificationResultXName, typeof(SpectrumIdentificationResultType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3838,21 +3919,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectrumIdentificationListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(FragmentationTableXName, typeof(FragmentationTableType));
-            localElementDictionary.Add(SpectrumIdentificationResultXName, typeof(SpectrumIdentificationResultType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3865,26 +3931,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpecificityRulesType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpecificityRulesType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpecificityRulesType(XElement xe) { return XTypedServices.ToXTypedElement<SpecificityRulesType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpecificityRulesType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpecificityRulesType>(this);
         }
         
         /// <summary>
@@ -3897,6 +3947,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpecificityRulesType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -3928,11 +3985,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpecificityRulesType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpecificityRulesType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3955,18 +4033,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpecificityRulesType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3979,45 +4045,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SearchModificationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpecificityRulesXName = System.Xml.Linq.XName.Get("SpecificityRules", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpecificityRulesType> SpecificityRulesField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fixedModXName = System.Xml.Linq.XName.Get("fixedMod", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName massDeltaXName = System.Xml.Linq.XName.Get("massDelta", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchModificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SearchModificationType(XElement xe) { return XTypedServices.ToXTypedElement<SearchModificationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SearchModificationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpecificityRulesXName), new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SearchModificationType>(this);
         }
         
         /// <summary>
@@ -4030,6 +4061,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SearchModificationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpecificityRulesXName = System.Xml.Linq.XName.Get("SpecificityRules", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpecificityRulesType> SpecificityRulesField;
         
         /// <summary>
         /// <para>
@@ -4060,6 +4098,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4094,6 +4139,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName fixedModXName = System.Xml.Linq.XName.Get("fixedMod", "");
+        
         /// <summary>
         /// <para>
         /// True, if the modification is static (i.e. occurs always).
@@ -4111,6 +4160,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(fixedModXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName massDeltaXName = System.Xml.Linq.XName.Get("massDelta", "");
         
         /// <summary>
         /// <para>
@@ -4130,6 +4183,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
+        
         /// <summary>
         /// <para>
         /// The residue(s) searched with the specified modification. For N or C terminal modifications that can occur on any residue, the . character should be used to specify any, otherwise the list of amino acids should be provided.
@@ -4148,11 +4205,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchModificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SearchModificationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpecificityRulesXName), new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SpecificityRulesXName, typeof(SpecificityRulesType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4175,19 +4254,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SearchModificationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SpecificityRulesXName, typeof(SpecificityRulesType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4197,17 +4263,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class FragmentArrayType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName valuesXName = System.Xml.Linq.XName.Get("values", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName measure_refXName = System.Xml.Linq.XName.Get("measure_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FragmentArrayType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator FragmentArrayType(XElement xe) { return XTypedServices.ToXTypedElement<FragmentArrayType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FragmentArrayType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -4216,6 +4276,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public FragmentArrayType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName valuesXName = System.Xml.Linq.XName.Get("values", "");
         
         /// <summary>
         /// <para>
@@ -4235,6 +4299,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName measure_refXName = System.Xml.Linq.XName.Get("measure_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the Measure defined in the FragmentationTable
@@ -4251,6 +4319,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             set {
                 this.SetAttribute(measure_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FragmentArrayType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4273,14 +4347,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FragmentArrayType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -4293,48 +4359,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class IonTypeType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FragmentArrayXName = System.Xml.Linq.XName.Get("FragmentArray", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<FragmentArrayType> FragmentArrayField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName indexXName = System.Xml.Linq.XName.Get("index", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName chargeXName = System.Xml.Linq.XName.Get("charge", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IonTypeType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator IonTypeType(XElement xe) { return XTypedServices.ToXTypedElement<IonTypeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static IonTypeType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FragmentArrayXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<IonTypeType>(this);
         }
         
         /// <summary>
@@ -4347,6 +4375,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public IonTypeType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FragmentArrayXName = System.Xml.Linq.XName.Get("FragmentArray", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<FragmentArrayType> FragmentArrayField;
         
         /// <summary>
         /// <para>
@@ -4377,6 +4412,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -4411,6 +4453,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// The type of ion identified. In the case of neutral losses, one term should report the ion type, a second term should report the neutral loss - note: this is a change in practice from mzIdentML 1.1.
@@ -4444,6 +4493,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName indexXName = System.Xml.Linq.XName.Get("index", "");
+        
         /// <summary>
         /// <para>
         /// The index of ions identified as integers, following standard notation for a-c, x-z e.g. if b3 b5 and b6 have been identified, the index would store "3 5 6". For internal ions, the index contains pairs defining the start and end point - see specification document for examples. For immonium ions, the index is the position of the identified ion within the peptide sequence - if the peptide contains the same amino acid in multiple positions that cannot be distinguished, all positions should be given. For precursor ions, including neutral losses, the index value MUST be 0. For any other ions not related to the position within the peptide sequence e.g. quantification reporter ions, the index value MUST be 0. 
@@ -4455,12 +4508,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual IList<decimal> index {
             get {
                 XAttribute x = this.Attribute(indexXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer).Datatype);
             }
             set {
                 this.SetListAttribute(indexXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName chargeXName = System.Xml.Linq.XName.Get("charge", "");
         
         /// <summary>
         /// <para>
@@ -4480,11 +4540,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IonTypeType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static IonTypeType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FragmentArrayXName), new NamedContentModelEntity(userParamXName), new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FragmentArrayXName, typeof(FragmentArrayType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4507,20 +4590,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<IonTypeType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(FragmentArrayXName, typeof(FragmentArrayType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4533,26 +4602,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class FragmentationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IonTypeXName = System.Xml.Linq.XName.Get("IonType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<IonTypeType> IonTypeField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FragmentationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator FragmentationType(XElement xe) { return XTypedServices.ToXTypedElement<FragmentationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static FragmentationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IonTypeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FragmentationType>(this);
         }
         
         /// <summary>
@@ -4565,6 +4618,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public FragmentationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IonTypeXName = System.Xml.Linq.XName.Get("IonType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<IonTypeType> IonTypeField;
         
         /// <summary>
         /// <para>
@@ -4596,11 +4656,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FragmentationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static FragmentationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IonTypeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IonTypeXName, typeof(IonTypeType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4623,18 +4704,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FragmentationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(IonTypeXName, typeof(IonTypeType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4644,13 +4713,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class PeptideEvidenceRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName peptideEvidence_refXName = System.Xml.Linq.XName.Get("peptideEvidence_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideEvidenceRefType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator PeptideEvidenceRefType(XElement xe) { return XTypedServices.ToXTypedElement<PeptideEvidenceRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PeptideEvidenceRefType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -4659,6 +4726,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public PeptideEvidenceRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName peptideEvidence_refXName = System.Xml.Linq.XName.Get("peptideEvidence_ref", "");
         
         /// <summary>
         /// <para>
@@ -4678,6 +4749,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideEvidenceRefType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -4698,14 +4775,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PeptideEvidenceRefType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -4719,80 +4788,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectrumIdentificationItemType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideEvidenceRefXName = System.Xml.Linq.XName.Get("PeptideEvidenceRef", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PeptideEvidenceRefType> PeptideEvidenceRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FragmentationXName = System.Xml.Linq.XName.Get("Fragmentation", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName chargeStateXName = System.Xml.Linq.XName.Get("chargeState", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName experimentalMassToChargeXName = System.Xml.Linq.XName.Get("experimentalMassToCharge", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName calculatedMassToChargeXName = System.Xml.Linq.XName.Get("calculatedMassToCharge", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName calculatedPIXName = System.Xml.Linq.XName.Get("calculatedPI", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName peptide_refXName = System.Xml.Linq.XName.Get("peptide_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rankXName = System.Xml.Linq.XName.Get("rank", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName passThresholdXName = System.Xml.Linq.XName.Get("passThreshold", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName massTable_refXName = System.Xml.Linq.XName.Get("massTable_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sample_refXName = System.Xml.Linq.XName.Get("sample_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationItemType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpectrumIdentificationItemType(XElement xe) { return XTypedServices.ToXTypedElement<SpectrumIdentificationItemType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpectrumIdentificationItemType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideEvidenceRefXName), new NamedContentModelEntity(FragmentationXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectrumIdentificationItemType>(this);
         }
         
         /// <summary>
@@ -4806,6 +4805,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpectrumIdentificationItemType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideEvidenceRefXName = System.Xml.Linq.XName.Get("PeptideEvidenceRef", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PeptideEvidenceRefType> PeptideEvidenceRefField;
         
         /// <summary>
         /// <para>
@@ -4837,6 +4843,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FragmentationXName = System.Xml.Linq.XName.Get("Fragmentation", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -4848,12 +4858,22 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual FragmentationType Fragmentation {
             get {
                 XElement x = this.GetElement(FragmentationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((FragmentationType)(x));
             }
             set {
                 this.SetElement(FragmentationXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4888,6 +4908,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -4921,6 +4948,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName chargeStateXName = System.Xml.Linq.XName.Get("chargeState", "");
+        
         /// <summary>
         /// <para>
         /// The charge state of the identified peptide.
@@ -4939,6 +4970,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName experimentalMassToChargeXName = System.Xml.Linq.XName.Get("experimentalMassToCharge", "");
+        
         /// <summary>
         /// <para>
         /// The mass-to-charge value measured in the experiment in Daltons / charge. 
@@ -4956,6 +4991,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(experimentalMassToChargeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName calculatedMassToChargeXName = System.Xml.Linq.XName.Get("calculatedMassToCharge", "");
         
         /// <summary>
         /// <para>
@@ -4978,6 +5017,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName calculatedPIXName = System.Xml.Linq.XName.Get("calculatedPI", "");
+        
         /// <summary>
         /// <para>
         /// The calculated isoelectric point of the (poly)peptide, with relevant modifications included. Do not supply this value if the PI cannot be calcuated properly. 
@@ -4999,6 +5042,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName peptide_refXName = System.Xml.Linq.XName.Get("peptide_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the identified (poly)peptide sequence in the Peptide element. 
@@ -5016,6 +5063,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(peptide_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rankXName = System.Xml.Linq.XName.Get("rank", "");
         
         /// <summary>
         /// <para>
@@ -5035,6 +5086,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName passThresholdXName = System.Xml.Linq.XName.Get("passThreshold", "");
+        
         /// <summary>
         /// <para>
         /// Set to true if the producers of the file has deemed that the identification has passed a given threshold or been validated as correct. If no such threshold has been set, value of true should be given for all results. 
@@ -5053,6 +5108,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName massTable_refXName = System.Xml.Linq.XName.Get("massTable_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference should be given to the MassTable used to calculate the sequenceMass only if more than one MassTable has been given.
@@ -5064,12 +5123,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string massTable_ref {
             get {
                 XAttribute x = this.Attribute(massTable_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(massTable_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName sample_refXName = System.Xml.Linq.XName.Get("sample_ref", "");
         
         /// <summary>
         /// <para>
@@ -5082,6 +5148,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string sample_ref {
             get {
                 XAttribute x = this.Attribute(sample_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -5089,11 +5158,35 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationItemType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpectrumIdentificationItemType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideEvidenceRefXName), new NamedContentModelEntity(FragmentationXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PeptideEvidenceRefXName, typeof(PeptideEvidenceRefType));
+            localElementDictionary.Add(FragmentationXName, typeof(FragmentationType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5116,21 +5209,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectrumIdentificationItemType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PeptideEvidenceRefXName, typeof(PeptideEvidenceRefType));
-            localElementDictionary.Add(FragmentationXName, typeof(FragmentationType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5143,48 +5221,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectrumIdentificationResultType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectrumIdentificationItemXName = System.Xml.Linq.XName.Get("SpectrumIdentificationItem", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpectrumIdentificationItemType> SpectrumIdentificationItemField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectrumIDXName = System.Xml.Linq.XName.Get("spectrumID", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectraData_refXName = System.Xml.Linq.XName.Get("spectraData_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationResultType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpectrumIdentificationResultType(XElement xe) { return XTypedServices.ToXTypedElement<SpectrumIdentificationResultType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpectrumIdentificationResultType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationItemXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectrumIdentificationResultType>(this);
         }
         
         /// <summary>
@@ -5197,6 +5237,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpectrumIdentificationResultType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectrumIdentificationItemXName = System.Xml.Linq.XName.Get("SpectrumIdentificationItem", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpectrumIdentificationItemType> SpectrumIdentificationItemField;
         
         /// <summary>
         /// <para>
@@ -5228,6 +5275,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -5260,6 +5314,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -5294,6 +5355,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectrumIDXName = System.Xml.Linq.XName.Get("spectrumID", "");
+        
         /// <summary>
         /// <para>
         /// The locally unique id for the spectrum in the spectra data set specified by SpectraData_ref. External guidelines are provided on the use of consistent identifiers for spectra in different external formats. 
@@ -5311,6 +5376,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(spectrumIDXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectraData_refXName = System.Xml.Linq.XName.Get("spectraData_ref", "");
         
         /// <summary>
         /// <para>
@@ -5330,11 +5399,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationResultType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpectrumIdentificationResultType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationItemXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SpectrumIdentificationItemXName, typeof(SpectrumIdentificationItemType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5357,20 +5449,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectrumIdentificationResultType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SpectrumIdentificationItemXName, typeof(SpectrumIdentificationItemType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5380,13 +5458,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class InputSpectrumIdentificationsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectrumIdentificationList_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationList_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputSpectrumIdentificationsType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator InputSpectrumIdentificationsType(XElement xe) { return XTypedServices.ToXTypedElement<InputSpectrumIdentificationsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InputSpectrumIdentificationsType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -5395,6 +5471,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public InputSpectrumIdentificationsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectrumIdentificationList_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationList_ref", "");
         
         /// <summary>
         /// <para>
@@ -5414,6 +5494,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputSpectrumIdentificationsType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -5434,14 +5520,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InputSpectrumIdentificationsType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -5454,34 +5532,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ProteinDetectionType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.ProtocolApplicationType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InputSpectrumIdentificationsXName = System.Xml.Linq.XName.Get("InputSpectrumIdentifications", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<InputSpectrumIdentificationsType> InputSpectrumIdentificationsField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName proteinDetectionList_refXName = System.Xml.Linq.XName.Get("proteinDetectionList_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName proteinDetectionProtocol_refXName = System.Xml.Linq.XName.Get("proteinDetectionProtocol_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinDetectionType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinDetectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinDetectionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputSpectrumIdentificationsXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinDetectionType>(this);
         }
         
         /// <summary>
@@ -5494,6 +5548,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ProteinDetectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InputSpectrumIdentificationsXName = System.Xml.Linq.XName.Get("InputSpectrumIdentifications", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<InputSpectrumIdentificationsType> InputSpectrumIdentificationsField;
         
         /// <summary>
         /// <para>
@@ -5525,6 +5586,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName proteinDetectionList_refXName = System.Xml.Linq.XName.Get("proteinDetectionList_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the ProteinDetectionList in the DataCollection section. 
@@ -5542,6 +5607,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(proteinDetectionList_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName proteinDetectionProtocol_refXName = System.Xml.Linq.XName.Get("proteinDetectionProtocol_ref", "");
         
         /// <summary>
         /// <para>
@@ -5561,11 +5630,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ProteinDetectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputSpectrumIdentificationsXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(InputSpectrumIdentificationsXName, typeof(InputSpectrumIdentificationsType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5588,18 +5678,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinDetectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(InputSpectrumIdentificationsXName, typeof(InputSpectrumIdentificationsType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5612,31 +5690,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ProteinDetectionProtocolType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisParamsXName = System.Xml.Linq.XName.Get("AnalysisParams", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ThresholdXName = System.Xml.Linq.XName.Get("Threshold", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionProtocolType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinDetectionProtocolType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinDetectionProtocolType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinDetectionProtocolType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AnalysisParamsXName), new NamedContentModelEntity(ThresholdXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinDetectionProtocolType>(this);
         }
         
         /// <summary>
@@ -5649,6 +5706,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ProteinDetectionProtocolType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisParamsXName = System.Xml.Linq.XName.Get("AnalysisParams", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -5664,12 +5725,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ParamListType AnalysisParams {
             get {
                 XElement x = this.GetElement(AnalysisParamsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParamListType)(x));
             }
             set {
                 this.SetElement(AnalysisParamsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ThresholdXName = System.Xml.Linq.XName.Get("Threshold", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -5692,6 +5760,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
+        
         /// <summary>
         /// <para>
         /// The protein detection software used, given as a reference to the SoftwareCollection section. 
@@ -5710,11 +5782,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionProtocolType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ProteinDetectionProtocolType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AnalysisParamsXName), new NamedContentModelEntity(ThresholdXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AnalysisParamsXName, typeof(ParamListType));
+            localElementDictionary.Add(ThresholdXName, typeof(ParamListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5737,19 +5831,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinDetectionProtocolType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(AnalysisParamsXName, typeof(ParamListType));
-            localElementDictionary.Add(ThresholdXName, typeof(ParamListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5762,40 +5843,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ProteinDetectionListType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinAmbiguityGroupXName = System.Xml.Linq.XName.Get("ProteinAmbiguityGroup", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProteinAmbiguityGroupType> ProteinAmbiguityGroupField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinDetectionListType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinDetectionListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinDetectionListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinAmbiguityGroupXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinDetectionListType>(this);
         }
         
         /// <summary>
@@ -5808,6 +5859,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ProteinDetectionListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinAmbiguityGroupXName = System.Xml.Linq.XName.Get("ProteinAmbiguityGroup", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProteinAmbiguityGroupType> ProteinAmbiguityGroupField;
         
         /// <summary>
         /// <para>
@@ -5839,6 +5897,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -5871,6 +5936,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -5905,11 +5977,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ProteinDetectionListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinAmbiguityGroupXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ProteinAmbiguityGroupXName, typeof(ProteinAmbiguityGroupType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5932,20 +6027,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinDetectionListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ProteinAmbiguityGroupXName, typeof(ProteinAmbiguityGroupType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5955,13 +6036,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectrumIdentificationItemRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectrumIdentificationItem_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationItem_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationItemRefType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator SpectrumIdentificationItemRefType(XElement xe) { return XTypedServices.ToXTypedElement<SpectrumIdentificationItemRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectrumIdentificationItemRefType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -5970,6 +6049,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpectrumIdentificationItemRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectrumIdentificationItem_refXName = System.Xml.Linq.XName.Get("spectrumIdentificationItem_ref", "");
         
         /// <summary>
         /// <para>
@@ -5989,6 +6072,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIdentificationItemRefType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -6009,14 +6098,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectrumIdentificationItemRefType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -6029,30 +6110,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class PeptideHypothesisType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectrumIdentificationItemRefXName = System.Xml.Linq.XName.Get("SpectrumIdentificationItemRef", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SpectrumIdentificationItemRefType> SpectrumIdentificationItemRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName peptideEvidence_refXName = System.Xml.Linq.XName.Get("peptideEvidence_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideHypothesisType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PeptideHypothesisType(XElement xe) { return XTypedServices.ToXTypedElement<PeptideHypothesisType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PeptideHypothesisType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationItemRefXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PeptideHypothesisType>(this);
         }
         
         /// <summary>
@@ -6065,6 +6126,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public PeptideHypothesisType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectrumIdentificationItemRefXName = System.Xml.Linq.XName.Get("SpectrumIdentificationItemRef", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SpectrumIdentificationItemRefType> SpectrumIdentificationItemRefField;
         
         /// <summary>
         /// <para>
@@ -6096,6 +6164,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName peptideEvidence_refXName = System.Xml.Linq.XName.Get("peptideEvidence_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the PeptideEvidence element on which this hypothesis is based. 
@@ -6114,11 +6186,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideHypothesisType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static PeptideHypothesisType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SpectrumIdentificationItemRefXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SpectrumIdentificationItemRefXName, typeof(SpectrumIdentificationItemRefType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6141,18 +6234,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PeptideHypothesisType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SpectrumIdentificationItemRefXName, typeof(SpectrumIdentificationItemRefType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6165,48 +6246,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ProteinDetectionHypothesisType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideHypothesisXName = System.Xml.Linq.XName.Get("PeptideHypothesis", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PeptideHypothesisType> PeptideHypothesisField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName dBSequence_refXName = System.Xml.Linq.XName.Get("dBSequence_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName passThresholdXName = System.Xml.Linq.XName.Get("passThreshold", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionHypothesisType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinDetectionHypothesisType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinDetectionHypothesisType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinDetectionHypothesisType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideHypothesisXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinDetectionHypothesisType>(this);
         }
         
         /// <summary>
@@ -6219,6 +6262,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ProteinDetectionHypothesisType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideHypothesisXName = System.Xml.Linq.XName.Get("PeptideHypothesis", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PeptideHypothesisType> PeptideHypothesisField;
         
         /// <summary>
         /// <para>
@@ -6250,6 +6300,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -6282,6 +6339,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -6316,6 +6380,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName dBSequence_refXName = System.Xml.Linq.XName.Get("dBSequence_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the corresponding DBSequence entry. Note - this attribute was optional in mzIdentML 1.1 but is now mandatory in mzIdentML 1.2. Consuming software should assume that the DBSequence entry referenced here is the definitive identifier for the protein. 
@@ -6333,6 +6401,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(dBSequence_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName passThresholdXName = System.Xml.Linq.XName.Get("passThreshold", "");
         
         /// <summary>
         /// <para>
@@ -6352,11 +6424,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinDetectionHypothesisType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ProteinDetectionHypothesisType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideHypothesisXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PeptideHypothesisXName, typeof(PeptideHypothesisType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6379,20 +6474,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinDetectionHypothesisType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PeptideHypothesisXName, typeof(PeptideHypothesisType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6406,40 +6487,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ProteinAmbiguityGroupType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinDetectionHypothesisXName = System.Xml.Linq.XName.Get("ProteinDetectionHypothesis", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProteinDetectionHypothesisType> ProteinDetectionHypothesisField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinAmbiguityGroupType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinAmbiguityGroupType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinAmbiguityGroupType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinAmbiguityGroupType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinDetectionHypothesisXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinAmbiguityGroupType>(this);
         }
         
         /// <summary>
@@ -6453,6 +6504,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ProteinAmbiguityGroupType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinDetectionHypothesisXName = System.Xml.Linq.XName.Get("ProteinDetectionHypothesis", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProteinDetectionHypothesisType> ProteinDetectionHypothesisField;
         
         /// <summary>
         /// <para>
@@ -6484,6 +6542,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -6516,6 +6581,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -6550,11 +6622,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinAmbiguityGroupType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ProteinAmbiguityGroupType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinDetectionHypothesisXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ProteinDetectionHypothesisXName, typeof(ProteinDetectionHypothesisType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6577,20 +6672,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinAmbiguityGroupType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ProteinDetectionHypothesisXName, typeof(ProteinDetectionHypothesisType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6603,42 +6684,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ModificationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ModificationType(XElement xe) { return XTypedServices.ToXTypedElement<ModificationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ModificationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ModificationType>(this);
         }
         
         /// <summary>
@@ -6651,6 +6700,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ModificationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -6685,6 +6741,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
+        
         /// <summary>
         /// <para>
         /// Location of the modification within the peptide - position in peptide sequence, counted from the N-terminus residue, starting at position 1. Specific modifications to the N-terminus should be given the location 0. Modification to the C-terminus should be given as peptide length + 1. If the modification location is unknown e.g. for PMF data, this attribute should be omitted.	
@@ -6706,6 +6766,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
+        
         /// <summary>
         /// <para>
         /// Specification of the residue (amino acid) on which the modification occurs. If multiple values are given, it is assumed that the exact residue modified is unknown i.e. the modification is to ONE of the residues listed. Multiple residues would usually only be specified for PMF data.
@@ -6718,12 +6782,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual IList<string> residues {
             get {
                 XAttribute x = this.Attribute(residuesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetListAttribute(residuesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
         
         /// <summary>
         /// <para>
@@ -6746,6 +6817,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
+        
         /// <summary>
         /// <para>
         /// Atomic mass delta when assuming only the most common isotope of elements in Daltons. 
@@ -6767,11 +6842,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ModificationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6794,18 +6890,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ModificationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6818,51 +6902,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class PeptideType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideSequenceXName = System.Xml.Linq.XName.Get("PeptideSequence", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ModificationType> ModificationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SubstitutionModificationXName = System.Xml.Linq.XName.Get("SubstitutionModification", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SubstitutionModificationType> SubstitutionModificationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PeptideType(XElement xe) { return XTypedServices.ToXTypedElement<PeptideType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PeptideType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideSequenceXName), new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(SubstitutionModificationXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PeptideType>(this);
         }
         
         /// <summary>
@@ -6875,6 +6918,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public PeptideType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideSequenceXName = System.Xml.Linq.XName.Get("PeptideSequence", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -6897,6 +6944,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetElementWithValidation(PeptideSequenceXName, value, "PeptideSequence", global::psidev.info.psi.pi.mzIdentML.Item1.Item2.sequence.TypeDefinition);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ModificationType> ModificationField;
         
         /// <summary>
         /// <para>
@@ -6928,6 +6982,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SubstitutionModificationXName = System.Xml.Linq.XName.Get("SubstitutionModification", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SubstitutionModificationType> SubstitutionModificationField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -6957,6 +7018,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -6991,6 +7059,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -7024,11 +7099,36 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static PeptideType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideSequenceXName), new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(SubstitutionModificationXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PeptideSequenceXName, typeof(string));
+            localElementDictionary.Add(ModificationXName, typeof(ModificationType));
+            localElementDictionary.Add(SubstitutionModificationXName, typeof(SubstitutionModificationType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7051,22 +7151,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PeptideType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PeptideSequenceXName, typeof(string));
-            localElementDictionary.Add(ModificationXName, typeof(ModificationType));
-            localElementDictionary.Add(SubstitutionModificationXName, typeof(SubstitutionModificationType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7076,29 +7160,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SubstitutionModificationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName originalResidueXName = System.Xml.Linq.XName.Get("originalResidue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName replacementResidueXName = System.Xml.Linq.XName.Get("replacementResidue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SubstitutionModificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator SubstitutionModificationType(XElement xe) { return XTypedServices.ToXTypedElement<SubstitutionModificationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SubstitutionModificationType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -7107,6 +7173,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SubstitutionModificationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName originalResidueXName = System.Xml.Linq.XName.Get("originalResidue", "");
         
         /// <summary>
         /// <para>
@@ -7126,6 +7196,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName replacementResidueXName = System.Xml.Linq.XName.Get("replacementResidue", "");
+        
         /// <summary>
         /// <para>
         /// The residue that replaced the originalResidue.
@@ -7143,6 +7217,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(replacementResidueXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
         
         /// <summary>
         /// <para>
@@ -7167,6 +7245,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
+        
         /// <summary>
         /// <para>
         /// Atomic mass delta considering the natural distribution of isotopes in Daltons. This should only be reported if the original amino acid is known i.e. it is not "X" 
@@ -7187,6 +7269,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(avgMassDeltaXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
         
         /// <summary>
         /// <para>
@@ -7209,6 +7295,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SubstitutionModificationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -7229,14 +7321,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SubstitutionModificationType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -7249,23 +7333,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectraDataType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.ExternalDataType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpectrumIDFormatXName = System.Xml.Linq.XName.Get("SpectrumIDFormat", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectraDataType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpectraDataType(XElement xe) { return XTypedServices.ToXTypedElement<SpectraDataType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpectraDataType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new NamedContentModelEntity(SpectrumIDFormatXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectraDataType>(this);
         }
         
         /// <summary>
@@ -7278,6 +7349,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpectraDataType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpectrumIDFormatXName = System.Xml.Linq.XName.Get("SpectrumIDFormat", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -7297,11 +7372,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectraDataType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpectraDataType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new NamedContentModelEntity(SpectrumIDFormatXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+            localElementDictionary.Add(SpectrumIDFormatXName, typeof(SpectrumIDFormatType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7324,20 +7422,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectraDataType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-            localElementDictionary.Add(SpectrumIDFormatXName, typeof(SpectrumIDFormatType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7350,39 +7434,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AnalysisSoftwareType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SoftwareNameXName = System.Xml.Linq.XName.Get("SoftwareName", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CustomizationsXName = System.Xml.Linq.XName.Get("Customizations", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisSoftwareType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AnalysisSoftwareType(XElement xe) { return XTypedServices.ToXTypedElement<AnalysisSoftwareType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AnalysisSoftwareType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName), new NamedContentModelEntity(SoftwareNameXName), new NamedContentModelEntity(CustomizationsXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AnalysisSoftwareType>(this);
         }
         
         /// <summary>
@@ -7395,6 +7450,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AnalysisSoftwareType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -7410,12 +7469,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ContactRoleType ContactRole {
             get {
                 XElement x = this.GetElement(ContactRoleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ContactRoleType)(x));
             }
             set {
                 this.SetElement(ContactRoleXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SoftwareNameXName = System.Xml.Linq.XName.Get("SoftwareName", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -7438,6 +7504,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CustomizationsXName = System.Xml.Linq.XName.Get("Customizations", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Any customizations to the software, such as alternative scoring mechanisms implemented, should be documented here as free text. 
@@ -7452,12 +7522,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string Customizations {
             get {
                 XElement x = this.GetElement(CustomizationsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(CustomizationsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
         
         /// <summary>
         /// <para>
@@ -7470,12 +7547,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
         
         /// <summary>
         /// <para>
@@ -7488,6 +7572,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual System.Uri uri {
             get {
                 XAttribute x = this.Attribute(uriXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
@@ -7495,11 +7582,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AnalysisSoftwareType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AnalysisSoftwareType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName), new NamedContentModelEntity(SoftwareNameXName), new NamedContentModelEntity(CustomizationsXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
+            localElementDictionary.Add(SoftwareNameXName, typeof(ParamType));
+            localElementDictionary.Add(CustomizationsXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7522,20 +7632,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AnalysisSoftwareType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
-            localElementDictionary.Add(SoftwareNameXName, typeof(ParamType));
-            localElementDictionary.Add(CustomizationsXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7548,47 +7644,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class EnzymeType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SiteRegexpXName = System.Xml.Linq.XName.Get("SiteRegexp", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EnzymeNameXName = System.Xml.Linq.XName.Get("EnzymeName", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nTermGainXName = System.Xml.Linq.XName.Get("nTermGain", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cTermGainXName = System.Xml.Linq.XName.Get("cTermGain", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName semiSpecificXName = System.Xml.Linq.XName.Get("semiSpecific", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName missedCleavagesXName = System.Xml.Linq.XName.Get("missedCleavages", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minDistanceXName = System.Xml.Linq.XName.Get("minDistance", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EnzymeType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator EnzymeType(XElement xe) { return XTypedServices.ToXTypedElement<EnzymeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static EnzymeType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SiteRegexpXName), new NamedContentModelEntity(EnzymeNameXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<EnzymeType>(this);
         }
         
         /// <summary>
@@ -7601,6 +7660,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public EnzymeType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SiteRegexpXName = System.Xml.Linq.XName.Get("SiteRegexp", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -7616,12 +7679,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string SiteRegexp {
             get {
                 XElement x = this.GetElement(SiteRegexpXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(SiteRegexpXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EnzymeNameXName = System.Xml.Linq.XName.Get("EnzymeName", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -7637,12 +7707,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ParamListType EnzymeName {
             get {
                 XElement x = this.GetElement(EnzymeNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParamListType)(x));
             }
             set {
                 this.SetElement(EnzymeNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nTermGainXName = System.Xml.Linq.XName.Get("nTermGain", "");
         
         /// <summary>
         /// <para>
@@ -7655,12 +7732,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string nTermGain {
             get {
                 XAttribute x = this.Attribute(nTermGainXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(nTermGainXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cTermGainXName = System.Xml.Linq.XName.Get("cTermGain", "");
         
         /// <summary>
         /// <para>
@@ -7673,12 +7757,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string cTermGain {
             get {
                 XAttribute x = this.Attribute(cTermGainXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(cTermGainXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName semiSpecificXName = System.Xml.Linq.XName.Get("semiSpecific", "");
         
         /// <summary>
         /// <para>
@@ -7701,6 +7792,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName missedCleavagesXName = System.Xml.Linq.XName.Get("missedCleavages", "");
+        
         /// <summary>
         /// <para>
         /// The number of missed cleavage sites allowed by the search. The attribute must be provided if an enzyme has been used.
@@ -7721,6 +7816,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(missedCleavagesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName minDistanceXName = System.Xml.Linq.XName.Get("minDistance", "");
         
         /// <summary>
         /// <para>
@@ -7743,11 +7842,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EnzymeType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static EnzymeType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SiteRegexpXName), new NamedContentModelEntity(EnzymeNameXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SiteRegexpXName, typeof(string));
+            localElementDictionary.Add(EnzymeNameXName, typeof(ParamListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7770,19 +7891,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<EnzymeType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SiteRegexpXName, typeof(string));
-            localElementDictionary.Add(EnzymeNameXName, typeof(ParamListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7795,30 +7903,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class EnzymesType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EnzymeXName = System.Xml.Linq.XName.Get("Enzyme", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<EnzymeType> EnzymeField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName independentXName = System.Xml.Linq.XName.Get("independent", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EnzymesType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator EnzymesType(XElement xe) { return XTypedServices.ToXTypedElement<EnzymesType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static EnzymesType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnzymeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<EnzymesType>(this);
         }
         
         /// <summary>
@@ -7831,6 +7919,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public EnzymesType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EnzymeXName = System.Xml.Linq.XName.Get("Enzyme", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<EnzymeType> EnzymeField;
         
         /// <summary>
         /// <para>
@@ -7862,6 +7957,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName independentXName = System.Xml.Linq.XName.Get("independent", "");
+        
         /// <summary>
         /// <para>
         /// If there are multiple enzymes specified, this attribute is set to true if cleavage with different enzymes is performed independently.		
@@ -7883,11 +7982,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EnzymesType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static EnzymesType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnzymeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(EnzymeXName, typeof(EnzymeType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7910,36 +8030,22 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<EnzymesType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(EnzymeXName, typeof(EnzymeType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class ResidueType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName codeXName = System.Xml.Linq.XName.Get("code", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName massXName = System.Xml.Linq.XName.Get("mass", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ResidueType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator ResidueType(XElement xe) { return XTypedServices.ToXTypedElement<ResidueType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ResidueType>(this);
+        }
         
         public ResidueType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName codeXName = System.Xml.Linq.XName.Get("code", "");
         
         /// <summary>
         /// <para>
@@ -7959,6 +8065,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName massXName = System.Xml.Linq.XName.Get("mass", "");
+        
         /// <summary>
         /// <para>
         /// The residue mass in Daltons (not including any fixed modifications). 
@@ -7975,6 +8085,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             set {
                 this.SetAttribute(massXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ResidueType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7997,14 +8113,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ResidueType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -8017,37 +8125,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AmbiguousResidueType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName codeXName = System.Xml.Linq.XName.Get("code", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AmbiguousResidueType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AmbiguousResidueType(XElement xe) { return XTypedServices.ToXTypedElement<AmbiguousResidueType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AmbiguousResidueType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AmbiguousResidueType>(this);
         }
         
         /// <summary>
@@ -8060,6 +8141,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AmbiguousResidueType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -8094,6 +8182,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -8127,6 +8222,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName codeXName = System.Xml.Linq.XName.Get("code", "");
+        
         /// <summary>
         /// <para>
         /// The single letter code of the ambiguous residue e.g. X.
@@ -8145,11 +8244,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AmbiguousResidueType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AmbiguousResidueType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8172,19 +8293,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AmbiguousResidueType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8197,51 +8305,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class MassTableType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ResidueXName = System.Xml.Linq.XName.Get("Residue", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ResidueType> ResidueField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AmbiguousResidueXName = System.Xml.Linq.XName.Get("AmbiguousResidue", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<AmbiguousResidueType> AmbiguousResidueField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName msLevelXName = System.Xml.Linq.XName.Get("msLevel", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MassTableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MassTableType(XElement xe) { return XTypedServices.ToXTypedElement<MassTableType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MassTableType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ResidueXName), new NamedContentModelEntity(AmbiguousResidueXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MassTableType>(this);
         }
         
         /// <summary>
@@ -8254,6 +8321,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public MassTableType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ResidueXName = System.Xml.Linq.XName.Get("Residue", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ResidueType> ResidueField;
         
         /// <summary>
         /// <para>
@@ -8288,6 +8362,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AmbiguousResidueXName = System.Xml.Linq.XName.Get("AmbiguousResidue", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<AmbiguousResidueType> AmbiguousResidueField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -8318,6 +8399,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -8350,6 +8438,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -8384,6 +8479,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName msLevelXName = System.Xml.Linq.XName.Get("msLevel", "");
+        
         /// <summary>
         /// <para>
         /// The MS spectrum that the MassTable refers to e.g. "1" for MS1 "2" for MS2 or "1 2" for MS1 or MS2.
@@ -8402,11 +8501,35 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MassTableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static MassTableType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ResidueXName), new NamedContentModelEntity(AmbiguousResidueXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ResidueXName, typeof(ResidueType));
+            localElementDictionary.Add(AmbiguousResidueXName, typeof(AmbiguousResidueType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8429,21 +8552,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MassTableType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ResidueXName, typeof(ResidueType));
-            localElementDictionary.Add(AmbiguousResidueXName, typeof(AmbiguousResidueType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8456,72 +8564,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class PeptideEvidenceType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName dBSequence_refXName = System.Xml.Linq.XName.Get("dBSequence_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName peptide_refXName = System.Xml.Linq.XName.Get("peptide_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName startXName = System.Xml.Linq.XName.Get("start", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName endXName = System.Xml.Linq.XName.Get("end", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName preXName = System.Xml.Linq.XName.Get("pre", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName postXName = System.Xml.Linq.XName.Get("post", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName translationTable_refXName = System.Xml.Linq.XName.Get("translationTable_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName frameXName = System.Xml.Linq.XName.Get("frame", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName isDecoyXName = System.Xml.Linq.XName.Get("isDecoy", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool isDecoyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideEvidenceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PeptideEvidenceType(XElement xe) { return XTypedServices.ToXTypedElement<PeptideEvidenceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PeptideEvidenceType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PeptideEvidenceType>(this);
         }
         
         /// <summary>
@@ -8534,6 +8580,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public PeptideEvidenceType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -8568,6 +8621,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -8601,6 +8661,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName dBSequence_refXName = System.Xml.Linq.XName.Get("dBSequence_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the protein sequence in which the specified peptide has been linked. 
@@ -8619,6 +8683,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName peptide_refXName = System.Xml.Linq.XName.Get("peptide_ref", "");
+        
         /// <summary>
         /// <para>
         /// A reference to the identified (poly)peptide sequence in the Peptide element. 
@@ -8636,6 +8704,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(peptide_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName startXName = System.Xml.Linq.XName.Get("start", "");
         
         /// <summary>
         /// <para>
@@ -8658,6 +8730,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName endXName = System.Xml.Linq.XName.Get("end", "");
+        
         /// <summary>
         /// <para>
         /// The index position of the last amino acid of the peptide inside the protein sequence, where the first amino acid of the protein sequence is position 1. Must be provided unless this is a de novo search. 
@@ -8679,6 +8755,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName preXName = System.Xml.Linq.XName.Get("pre", "");
+        
         /// <summary>
         /// <para>
         /// Previous flanking residue. If the peptide is N-terminal, pre="-" and not pre="". If for any reason it is unknown (e.g. denovo), pre="?" should be used. 
@@ -8690,12 +8770,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string pre {
             get {
                 XAttribute x = this.Attribute(preXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(preXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName postXName = System.Xml.Linq.XName.Get("post", "");
         
         /// <summary>
         /// <para>
@@ -8708,12 +8795,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string post {
             get {
                 XAttribute x = this.Attribute(postXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(postXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName translationTable_refXName = System.Xml.Linq.XName.Get("translationTable_ref", "");
         
         /// <summary>
         /// <para>
@@ -8726,12 +8820,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string translationTable_ref {
             get {
                 XAttribute x = this.Attribute(translationTable_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(translationTable_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName frameXName = System.Xml.Linq.XName.Get("frame", "");
         
         /// <summary>
         /// <para>
@@ -8754,6 +8855,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName isDecoyXName = System.Xml.Linq.XName.Get("isDecoy", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static bool isDecoyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        
         /// <summary>
         /// <para>
         /// Set to true if the peptide is matched to a decoy sequence. 
@@ -8765,11 +8873,29 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual bool isDecoy {
             get {
                 XAttribute x = this.Attribute(isDecoyXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, isDecoyDefaultValue);
+                if ((x == null)) {
+                    return isDecoyDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(isDecoyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideEvidenceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static PeptideEvidenceType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8777,6 +8903,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8799,19 +8932,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PeptideEvidenceType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8824,26 +8944,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ToleranceType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ToleranceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ToleranceType(XElement xe) { return XTypedServices.ToXTypedElement<ToleranceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ToleranceType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ToleranceType>(this);
         }
         
         /// <summary>
@@ -8856,6 +8960,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ToleranceType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -8890,11 +9001,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ToleranceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ToleranceType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8917,18 +9049,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ToleranceType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8941,23 +9061,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SpectrumIDFormatType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIDFormatType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SpectrumIDFormatType(XElement xe) { return XTypedServices.ToXTypedElement<SpectrumIDFormatType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SpectrumIDFormatType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SpectrumIDFormatType>(this);
         }
         
         /// <summary>
@@ -8970,6 +9077,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SpectrumIDFormatType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -8992,11 +9103,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpectrumIDFormatType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SpectrumIDFormatType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9019,18 +9151,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SpectrumIDFormatType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9044,49 +9164,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class DBSequenceType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SeqXName = System.Xml.Linq.XName.Get("Seq", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DBSequenceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DBSequenceType(XElement xe) { return XTypedServices.ToXTypedElement<DBSequenceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DBSequenceType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SeqXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DBSequenceType>(this);
         }
         
         /// <summary>
@@ -9100,6 +9181,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public DBSequenceType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SeqXName = System.Xml.Linq.XName.Get("Seq", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -9115,6 +9200,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string Seq {
             get {
                 XElement x = this.GetElement(SeqXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -9126,6 +9214,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -9160,6 +9255,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -9193,6 +9295,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "");
+        
         /// <summary>
         /// <para>
         /// The length of the sequence as a number of bases or residues. 
@@ -9214,6 +9320,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
+        
         /// <summary>
         /// <para>
         /// The source database of this sequence.
@@ -9231,6 +9341,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(searchDatabase_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
         
         /// <summary>
         /// <para>
@@ -9250,11 +9364,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DBSequenceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static DBSequenceType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SeqXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SeqXName, typeof(string));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9277,20 +9414,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DBSequenceType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SeqXName, typeof(string));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9303,47 +9426,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SampleType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ContactRoleType> ContactRoleField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SubSampleXName = System.Xml.Linq.XName.Get("SubSample", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SubSampleType> SubSampleField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SampleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SampleType(XElement xe) { return XTypedServices.ToXTypedElement<SampleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SampleType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName), new NamedContentModelEntity(SubSampleXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SampleType>(this);
         }
         
         /// <summary>
@@ -9356,6 +9442,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SampleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ContactRoleType> ContactRoleField;
         
         /// <summary>
         /// <para>
@@ -9390,6 +9483,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SubSampleXName = System.Xml.Linq.XName.Get("SubSample", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SubSampleType> SubSampleField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -9419,6 +9519,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -9453,6 +9560,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -9486,11 +9600,35 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SampleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static SampleType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName), new NamedContentModelEntity(SubSampleXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
+            localElementDictionary.Add(SubSampleXName, typeof(SubSampleType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9513,21 +9651,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SampleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
-            localElementDictionary.Add(SubSampleXName, typeof(SubSampleType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9537,13 +9660,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class SubSampleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sample_refXName = System.Xml.Linq.XName.Get("sample_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SubSampleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator SubSampleType(XElement xe) { return XTypedServices.ToXTypedElement<SubSampleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SubSampleType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -9552,6 +9673,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public SubSampleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName sample_refXName = System.Xml.Linq.XName.Get("sample_ref", "");
         
         /// <summary>
         /// <para>
@@ -9571,6 +9696,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SubSampleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -9591,76 +9722,71 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SubSampleType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public sealed class listOfIntegers {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer), null));
-        
         private listOfIntegers() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer), null));
     }
     
     public sealed class listOfFloats {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null));
-        
         private listOfFloats() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null));
     }
     
     public sealed class listOfChars {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, psidev.info.psi.pi.mzIdentML.Item1.Item2.chars.TypeDefinition);
-        
         private listOfChars() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, psidev.info.psi.pi.mzIdentML.Item1.Item2.chars.TypeDefinition);
     }
     
     public sealed class listOfCharsOrAny {
+        
+        private listOfCharsOrAny() {
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, psidev.info.psi.pi.mzIdentML.Item1.Item2.chars.TypeDefinition),
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "."}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve))});
-        
-        private listOfCharsOrAny() {
-        }
+                                    ".:Period"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve))});
     }
     
     public sealed class chars {
         
+        private chars() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]{1}"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private chars() {
-        }
     }
     
     public sealed class sequence {
         
+        private sequence() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]*"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private sequence() {
-        }
     }
     
     public sealed class allowed_frames {
+        
+        private allowed_frames() {
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -9670,28 +9796,25 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                         -3,
                         -2,
                         -1}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
-        
-        private allowed_frames() {
-        }
     }
     
     public sealed class listOfAllowedFrames {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int), null, psidev.info.psi.pi.mzIdentML.Item1.Item2.allowed_frames.TypeDefinition);
-        
         private listOfAllowedFrames() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int), null, psidev.info.psi.pi.mzIdentML.Item1.Item2.allowed_frames.TypeDefinition);
     }
     
     public sealed class versionRegex {
         
+        private versionRegex() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "(1\\.2\\.\\d+)"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private versionRegex() {
-        }
     }
     
     /// <summary>
@@ -9704,31 +9827,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ExternalDataType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ExternalFormatDocumentationXName = System.Xml.Linq.XName.Get("ExternalFormatDocumentation", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FileFormatXName = System.Xml.Linq.XName.Get("FileFormat", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ExternalDataType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ExternalDataType(XElement xe) { return XTypedServices.ToXTypedElement<ExternalDataType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ExternalDataType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ExternalDataType>(this);
         }
         
         /// <summary>
@@ -9741,6 +9843,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ExternalDataType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ExternalFormatDocumentationXName = System.Xml.Linq.XName.Get("ExternalFormatDocumentation", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -9756,12 +9862,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual System.Uri ExternalFormatDocumentation {
             get {
                 XElement x = this.GetElement(ExternalFormatDocumentationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetElement(ExternalFormatDocumentationXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FileFormatXName = System.Xml.Linq.XName.Get("FileFormat", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -9781,6 +9894,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
+        
         /// <summary>
         /// <para>
         /// The location of the data file.
@@ -9799,11 +9916,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ExternalDataType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ExternalDataType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9826,19 +9965,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ExternalDataType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9851,23 +9977,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class FileFormatType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FileFormatType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator FileFormatType(XElement xe) { return XTypedServices.ToXTypedElement<FileFormatType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static FileFormatType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FileFormatType>(this);
         }
         
         /// <summary>
@@ -9880,6 +9993,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public FileFormatType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -9902,11 +10019,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FileFormatType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static FileFormatType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9929,18 +10067,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FileFormatType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9953,38 +10079,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class PersonType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.AbstractContactType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<AffiliationType> AffiliationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName lastNameXName = System.Xml.Linq.XName.Get("lastName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName firstNameXName = System.Xml.Linq.XName.Get("firstName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName midInitialsXName = System.Xml.Linq.XName.Get("midInitials", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PersonType(XElement xe) { return XTypedServices.ToXTypedElement<PersonType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PersonType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(AffiliationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PersonType>(this);
         }
         
         /// <summary>
@@ -9997,6 +10095,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public PersonType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<AffiliationType> AffiliationField;
         
         /// <summary>
         /// <para>
@@ -10031,6 +10136,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName lastNameXName = System.Xml.Linq.XName.Get("lastName", "");
+        
         /// <summary>
         /// <para>
         /// The Person's last/family name.
@@ -10042,12 +10151,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string lastName {
             get {
                 XAttribute x = this.Attribute(lastNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(lastNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName firstNameXName = System.Xml.Linq.XName.Get("firstName", "");
         
         /// <summary>
         /// <para>
@@ -10060,12 +10176,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string firstName {
             get {
                 XAttribute x = this.Attribute(firstNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(firstNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName midInitialsXName = System.Xml.Linq.XName.Get("midInitials", "");
         
         /// <summary>
         /// <para>
@@ -10078,6 +10201,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string midInitials {
             get {
                 XAttribute x = this.Attribute(midInitialsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -10085,11 +10211,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static PersonType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(AffiliationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(AffiliationXName, typeof(AffiliationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10112,34 +10261,22 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PersonType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(AffiliationXName, typeof(AffiliationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class AffiliationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AffiliationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator AffiliationType(XElement xe) { return XTypedServices.ToXTypedElement<AffiliationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AffiliationType>(this);
+        }
         
         public AffiliationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
         
         /// <summary>
         /// <para>
@@ -10159,6 +10296,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AffiliationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -10178,14 +10321,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AffiliationType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -10199,23 +10334,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class OrganizationType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.AbstractContactType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ParentXName = System.Xml.Linq.XName.Get("Parent", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OrganizationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator OrganizationType(XElement xe) { return XTypedServices.ToXTypedElement<OrganizationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static OrganizationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(ParentXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<OrganizationType>(this);
         }
         
         /// <summary>
@@ -10229,6 +10351,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public OrganizationType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ParentXName = System.Xml.Linq.XName.Get("Parent", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -10240,6 +10366,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ParentOrganizationType Parent {
             get {
                 XElement x = this.GetElement(ParentXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParentOrganizationType)(x));
             }
             set {
@@ -10247,11 +10376,34 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OrganizationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static OrganizationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(ParentXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(ParentXName, typeof(ParentOrganizationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10274,20 +10426,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<OrganizationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(ParentXName, typeof(ParentOrganizationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10297,13 +10435,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ParentOrganizationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParentOrganizationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator ParentOrganizationType(XElement xe) { return XTypedServices.ToXTypedElement<ParentOrganizationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ParentOrganizationType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -10312,6 +10448,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ParentOrganizationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
         
         /// <summary>
         /// <para>
@@ -10331,6 +10471,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParentOrganizationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -10351,14 +10497,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ParentOrganizationType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -10371,34 +10509,7 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public abstract partial class AbstractContactType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractContactType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AbstractContactType(XElement xe) {  return (AbstractContactType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static AbstractContactType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
-        }
         
         /// <summary>
         /// <para>
@@ -10410,6 +10521,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AbstractContactType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -10444,6 +10562,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -10477,11 +10602,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractContactType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AbstractContactType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10504,15 +10651,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10527,27 +10665,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ContactRoleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RoleXName = System.Xml.Linq.XName.Get("Role", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contact_refXName = System.Xml.Linq.XName.Get("contact_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactRoleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ContactRoleType(XElement xe) { return XTypedServices.ToXTypedElement<ContactRoleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ContactRoleType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RoleXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ContactRoleType>(this);
         }
         
         /// <summary>
@@ -10562,6 +10683,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ContactRoleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RoleXName = System.Xml.Linq.XName.Get("Role", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -10581,6 +10706,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contact_refXName = System.Xml.Linq.XName.Get("contact_ref", "");
+        
         /// <summary>
         /// <para>
         /// When a ContactRole is used, it specifies which Contact the role is associated with. 
@@ -10599,11 +10728,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactRoleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ContactRoleType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RoleXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RoleXName, typeof(RoleType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10626,18 +10776,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ContactRoleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RoleXName, typeof(RoleType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10651,23 +10789,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class RoleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RoleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RoleType(XElement xe) { return XTypedServices.ToXTypedElement<RoleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RoleType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RoleType>(this);
         }
         
         /// <summary>
@@ -10681,6 +10806,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public RoleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -10703,11 +10832,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RoleType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static RoleType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10730,18 +10880,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RoleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10751,49 +10889,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class BibliographicReferenceType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName authorsXName = System.Xml.Linq.XName.Get("authors", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName publicationXName = System.Xml.Linq.XName.Get("publication", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName publisherXName = System.Xml.Linq.XName.Get("publisher", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName editorXName = System.Xml.Linq.XName.Get("editor", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName yearXName = System.Xml.Linq.XName.Get("year", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName volumeXName = System.Xml.Linq.XName.Get("volume", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName issueXName = System.Xml.Linq.XName.Get("issue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName pagesXName = System.Xml.Linq.XName.Get("pages", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName doiXName = System.Xml.Linq.XName.Get("doi", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BibliographicReferenceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator BibliographicReferenceType(XElement xe) { return XTypedServices.ToXTypedElement<BibliographicReferenceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<BibliographicReferenceType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -10802,6 +10902,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public BibliographicReferenceType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName authorsXName = System.Xml.Linq.XName.Get("authors", "");
         
         /// <summary>
         /// <para>
@@ -10814,12 +10918,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string authors {
             get {
                 XAttribute x = this.Attribute(authorsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(authorsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName publicationXName = System.Xml.Linq.XName.Get("publication", "");
         
         /// <summary>
         /// <para>
@@ -10832,12 +10943,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string publication {
             get {
                 XAttribute x = this.Attribute(publicationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(publicationXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName publisherXName = System.Xml.Linq.XName.Get("publisher", "");
         
         /// <summary>
         /// <para>
@@ -10850,12 +10968,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string publisher {
             get {
                 XAttribute x = this.Attribute(publisherXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(publisherXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName editorXName = System.Xml.Linq.XName.Get("editor", "");
         
         /// <summary>
         /// <para>
@@ -10868,12 +10993,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string editor {
             get {
                 XAttribute x = this.Attribute(editorXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(editorXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName yearXName = System.Xml.Linq.XName.Get("year", "");
         
         /// <summary>
         /// <para>
@@ -10896,6 +11028,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName volumeXName = System.Xml.Linq.XName.Get("volume", "");
+        
         /// <summary>
         /// <para>
         /// The volume name or number.
@@ -10907,12 +11043,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string volume {
             get {
                 XAttribute x = this.Attribute(volumeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(volumeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName issueXName = System.Xml.Linq.XName.Get("issue", "");
         
         /// <summary>
         /// <para>
@@ -10925,12 +11068,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string issue {
             get {
                 XAttribute x = this.Attribute(issueXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(issueXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName pagesXName = System.Xml.Linq.XName.Get("pages", "");
         
         /// <summary>
         /// <para>
@@ -10943,12 +11093,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string pages {
             get {
                 XAttribute x = this.Attribute(pagesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(pagesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
         
         /// <summary>
         /// <para>
@@ -10961,12 +11118,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string title {
             get {
                 XAttribute x = this.Attribute(titleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(titleXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName doiXName = System.Xml.Linq.XName.Get("doi", "");
         
         /// <summary>
         /// <para>
@@ -10979,12 +11143,17 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string doi {
             get {
                 XAttribute x = this.Attribute(doiXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(doiXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BibliographicReferenceType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -11006,10 +11175,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<BibliographicReferenceType>(this);
-        }
     }
     
     /// <summary>
@@ -11019,12 +11184,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </para>
     /// </summary>
     public abstract partial class ProtocolApplicationType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName activityDateXName = System.Xml.Linq.XName.Get("activityDate", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProtocolApplicationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
 		public static explicit operator ProtocolApplicationType(XElement xe) {  return (ProtocolApplicationType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -11036,6 +11195,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ProtocolApplicationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName activityDateXName = System.Xml.Linq.XName.Get("activityDate", "");
         
         /// <summary>
         /// <para>
@@ -11057,6 +11220,8 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(activityDateXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProtocolApplicationType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -11087,28 +11252,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public abstract partial class AbstractParamType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator AbstractParamType(XElement xe) {  return (AbstractParamType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         /// <summary>
@@ -11118,6 +11261,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AbstractParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -11137,6 +11284,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
+        
         /// <summary>
         /// <para>
         /// The user-entered value of the parameter.
@@ -11148,12 +11299,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string value {
             get {
                 XAttribute x = this.Attribute(valueXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(valueXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
         
         /// <summary>
         /// <para>
@@ -11166,12 +11324,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string unitAccession {
             get {
                 XAttribute x = this.Attribute(unitAccessionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitAccessionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
         
         /// <summary>
         /// <para>
@@ -11184,12 +11349,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string unitName {
             get {
                 XAttribute x = this.Attribute(unitNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
         
         /// <summary>
         /// <para>
@@ -11202,11 +11374,20 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string unitCvRef {
             get {
                 XAttribute x = this.Attribute(unitCvRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitCvRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11229,10 +11410,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -11242,13 +11419,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class UserParamType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.AbstractParamType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator UserParamType(XElement xe) { return XTypedServices.ToXTypedElement<UserParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<UserParamType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -11257,6 +11432,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public UserParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
         
         /// <summary>
         /// <para>
@@ -11269,12 +11448,17 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(typeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -11296,10 +11480,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<UserParamType>(this);
-        }
     }
     
     /// <summary>
@@ -11310,17 +11490,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class CVParamType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.AbstractParamType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvRefXName = System.Xml.Linq.XName.Get("cvRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CVParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator CVParamType(XElement xe) { return XTypedServices.ToXTypedElement<CVParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CVParamType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -11330,6 +11504,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public CVParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvRefXName = System.Xml.Linq.XName.Get("cvRef", "");
         
         /// <summary>
         /// <para>
@@ -11349,6 +11527,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
+        
         /// <summary>
         /// <para>
         /// The accession or ID number of this CV term in the source CV. 
@@ -11366,6 +11548,8 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 this.SetAttribute(accessionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CVParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -11387,10 +11571,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CVParamType>(this);
-        }
     }
     
     /// <summary>
@@ -11400,25 +11580,11 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class cvType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fullNameXName = System.Xml.Linq.XName.Get("fullName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
 		public static explicit operator cvType(XElement xe) { return XTypedServices.ToXTypedElement<cvType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<cvType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -11427,6 +11593,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public cvType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName fullNameXName = System.Xml.Linq.XName.Get("fullName", "");
         
         /// <summary>
         /// <para>
@@ -11446,6 +11616,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// The version of the CV.
@@ -11457,12 +11631,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
         
         /// <summary>
         /// <para>
@@ -11482,6 +11663,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier of this cv within the document to be referenced by cvParam elements. 
@@ -11498,6 +11683,12 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             set {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11520,14 +11711,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<cvType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -11536,16 +11719,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </para>
     /// </summary>
     public abstract partial class IdentifiableType : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentifiableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
 		public static explicit operator IdentifiableType(XElement xe) {  return (IdentifiableType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -11556,6 +11729,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public IdentifiableType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -11575,6 +11752,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        
         /// <summary>
         /// <para>
         /// The potentially ambiguous common identifier, such as a human-readable name for the instance. 
@@ -11586,11 +11767,20 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(nameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentifiableType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11613,10 +11803,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -11629,33 +11815,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class AuditCollectionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PersonXName = System.Xml.Linq.XName.Get("Person", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PersonType> PersonField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OrganizationXName = System.Xml.Linq.XName.Get("Organization", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<OrganizationType> OrganizationField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuditCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AuditCollectionType(XElement xe) { return XTypedServices.ToXTypedElement<AuditCollectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AuditCollectionType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(PersonXName), new NamedContentModelEntity(OrganizationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AuditCollectionType>(this);
         }
         
         /// <summary>
@@ -11668,6 +11831,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public AuditCollectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PersonXName = System.Xml.Linq.XName.Get("Person", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PersonType> PersonField;
         
         /// <summary>
         /// <para>
@@ -11699,6 +11869,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OrganizationXName = System.Xml.Linq.XName.Get("Organization", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<OrganizationType> OrganizationField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -11729,11 +11906,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuditCollectionType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static AuditCollectionType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(PersonXName), new NamedContentModelEntity(OrganizationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PersonXName, typeof(PersonType));
+            localElementDictionary.Add(OrganizationXName, typeof(OrganizationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11756,19 +11955,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AuditCollectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PersonXName, typeof(PersonType));
-            localElementDictionary.Add(OrganizationXName, typeof(OrganizationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -11781,27 +11967,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ProviderType : global::psidev.info.psi.pi.mzIdentML.Item1.Item2.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProviderType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProviderType(XElement xe) { return XTypedServices.ToXTypedElement<ProviderType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProviderType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProviderType>(this);
         }
         
         /// <summary>
@@ -11814,6 +11983,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ProviderType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -11829,12 +12002,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual ContactRoleType ContactRole {
             get {
                 XElement x = this.GetElement(ContactRoleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ContactRoleType)(x));
             }
             set {
                 this.SetElement(ContactRoleXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
         
         /// <summary>
         /// <para>
@@ -11847,6 +12027,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual string analysisSoftware_ref {
             get {
                 XAttribute x = this.Attribute(analysisSoftware_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -11854,11 +12037,32 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProviderType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ProviderType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11881,18 +12085,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProviderType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -11905,33 +12097,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ParamListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ParamListType(XElement xe) { return XTypedServices.ToXTypedElement<ParamListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ParamListType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ParamListType>(this);
         }
         
         /// <summary>
@@ -11944,6 +12113,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public ParamListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -11975,6 +12151,13 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -12005,11 +12188,33 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamListType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ParamListType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -12031,19 +12236,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ParamListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -12057,27 +12249,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class ParamType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ParamType(XElement xe) { return XTypedServices.ToXTypedElement<ParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ParamType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ParamType>(this);
         }
         
         /// <summary>
@@ -12091,13 +12266,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public ParamType() {
         }
         
-        public ParamType(CVParamType cvParam) {
-            this.cvParam = cvParam;
-        }
-        
-        public ParamType(UserParamType userParam) {
-            this.userParam = userParam;
-        }
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -12110,12 +12281,19 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual CVParamType cvParam {
             get {
                 XElement x = this.GetElement(cvParamXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((CVParamType)(x));
             }
             set {
                 this.SetElement(cvParamXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzIdentML/1.2");
         
         /// <summary>
         /// <para>
@@ -12128,6 +12306,9 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual UserParamType userParam {
             get {
                 XElement x = this.GetElement(userParamXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((UserParamType)(x));
             }
             set {
@@ -12135,11 +12316,41 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        public ParamType(CVParamType cvParam) {
+            this.cvParam = cvParam;
+        }
+        
+        public ParamType(UserParamType userParam) {
+            this.userParam = userParam;
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamType", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
+        static ParamType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -12162,19 +12373,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ParamType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -12184,12 +12382,38 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
     /// </summary>
     public partial class MzIdentML : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private MzIdentMLType ContentField;
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzIdentML", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static MzIdentML Load(string xmlFile) {
+            return XTypedServices.Load<MzIdentML, MzIdentMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static MzIdentML Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<MzIdentML, MzIdentMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static MzIdentML Parse(string xml) {
+            return XTypedServices.Parse<MzIdentML, MzIdentMLType>(xml, LinqToXsdTypeManager.Instance);
+        }
         
 		public static explicit operator MzIdentML(XElement xe) { return XTypedServices.ToXTypedElement<MzIdentML, MzIdentMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return new MzIdentML(((MzIdentMLType)(this.Content.Clone())));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private MzIdentMLType ContentField;
         
         /// <summary>
         /// <para>
@@ -12198,15 +12422,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         /// </summary>
         public MzIdentML() {
             SetInnerType(new MzIdentMLType());
-        }
-        
-        /// <summary>
-        /// <para>
-        /// The upper-most hierarchy level of mzIdentML with sub-containers for example describing software, protocols and search results (spectrum identifications or protein detection results). 
-        /// </para>
-        /// </summary>
-        public MzIdentML(MzIdentMLType content) {
-            SetInnerType(content);
         }
         
         public override XElement Untyped {
@@ -12223,6 +12438,20 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             get {
                 return ContentField;
             }
+        }
+        
+        private void SetInnerType(MzIdentMLType ContentField) {
+            this.ContentField = ((MzIdentMLType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// The upper-most hierarchy level of mzIdentML with sub-containers for example describing software, protocols and search results (spectrum identifications or protein detection results). 
+        /// </para>
+        /// </summary>
+        public MzIdentML(MzIdentMLType content) {
+            SetInnerType(content);
         }
         
         /// <summary>
@@ -12435,6 +12664,42 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             }
         }
         
+        /// <summary>
+        /// <para>
+        /// An identifier is an unambiguous string that is unique within the scope (i.e. a document, a set of related documents, or a repository) of its use.		
+        /// </para>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// The potentially ambiguous common identifier, such as a human-readable name for the instance. 
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzIdentML", "http://psidev.info/psi/pi/mzIdentML/1.2");
+        
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
@@ -12446,6 +12711,10 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -12468,103 +12737,14 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static MzIdentML Load(string xmlFile) {
-            return XTypedServices.Load<MzIdentML, MzIdentMLType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static MzIdentML Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<MzIdentML, MzIdentMLType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static MzIdentML Parse(string xml) {
-            return XTypedServices.Parse<MzIdentML, MzIdentMLType>(xml, LinqToXsdTypeManager.Instance);
-        }
-        
-        public override XTypedElement Clone() {
-            return new MzIdentML(((MzIdentMLType)(this.Content.Clone())));
-        }
-        
-        private void SetInnerType(MzIdentMLType ContentField) {
-            this.ContentField = ((MzIdentMLType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
-        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
-        
-        private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
         private LinqToXsdTypeManager() {
         }
         
-        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
-            get {
-                if ((schemaSet == null)) {
-                    XmlSchemaSet tempSet = new XmlSchemaSet();
-                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
-                }
-                return schemaSet;
-            }
-            set {
-                schemaSet = value;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
-            get {
-                return typeDictionary;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
-            get {
-                return elementDictionary;
-            }
-        }
-        
-        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
-            get {
-                return wrapperDictionary;
-            }
-        }
-        
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
             typeDictionary.Add(System.Xml.Linq.XName.Get("CVListType", "http://psidev.info/psi/pi/mzIdentML/1.2"), typeof(global::psidev.info.psi.pi.mzIdentML.Item1.Item2.CVListType));
@@ -12645,20 +12825,72 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             typeDictionary.Add(System.Xml.Linq.XName.Get("ParamType", "http://psidev.info/psi/pi/mzIdentML/1.2"), typeof(global::psidev.info.psi.pi.mzIdentML.Item1.Item2.ParamType));
         }
         
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
         private static void BuildElementDictionary() {
             elementDictionary.Add(System.Xml.Linq.XName.Get("MzIdentML", "http://psidev.info/psi/pi/mzIdentML/1.2"), typeof(global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML));
         }
         
+        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
+        
         private static void BuildWrapperDictionary() {
             wrapperDictionary.Add(typeof(psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML), typeof(global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentMLType));
+        }
+        
+        private static XmlSchemaSet schemaSet;
+        
+        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+            get {
+                if ((schemaSet == null)) {
+                    XmlSchemaSet tempSet = new XmlSchemaSet();
+                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+                }
+                return schemaSet;
+            }
+            set {
+                schemaSet = value;
+            }
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
             schemas.Add(schemaSet);
         }
         
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+            get {
+                return typeDictionary;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+            get {
+                return elementDictionary;
+            }
+        }
+        
+        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+            get {
+                return wrapperDictionary;
+            }
+        }
+        
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
+        }
+        
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("MzIdentML", "http://psidev.info/psi/pi/mzIdentML/1.2")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -12670,27 +12902,7 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public MzIdentML MzIdentML {  get {return rootObject as MzIdentML; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(MzIdentML root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -12789,26 +13001,6 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML MzIdentML {  get {return rootObject as global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -12820,6 +13012,26 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(MzIdentML root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public MzIdentML MzIdentML {  get {return rootObject as MzIdentML; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -12918,5 +13130,25 @@ namespace psidev.info.psi.pi.mzIdentML.Item1.Item2 {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML MzIdentML {  get {return rootObject as global::psidev.info.psi.pi.mzIdentML.Item1.Item2.MzIdentML; } }
     }
 }

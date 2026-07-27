@@ -27,7 +27,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class QueryPacket : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -52,12 +52,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<QueryPacket>(xml);
         }
         
-        public static explicit operator QueryPacket(XElement xe) { return XTypedServices.ToXTypedElement<QueryPacket>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator QueryPacket(XElement xe) { return XTypedServices.ToXTypedElement<QueryPacket>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<QueryPacket>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (Query)
@@ -65,11 +65,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public QueryPacket() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName QueryXName = System.Xml.Linq.XName.Get("Query", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -79,7 +79,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual QueryLocalType Query {
-            get {                
+            get {
                 XElement x = this.GetElement(QueryXName);
                 return ((QueryLocalType)(x));
             }
@@ -87,11 +87,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(QueryXName, value);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName revisionXName = System.Xml.Linq.XName.Get("revision", "");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -109,11 +109,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(revisionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName buildXName = System.Xml.Linq.XName.Get("build", "");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -131,13 +131,13 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(buildXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("QueryPacket", "urn:Microsoft.Search.Query");
-    
+        
         static QueryPacket() {
             BuildElementDictionary();
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -176,7 +176,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (QueryId?, Context?, Range?, Properties?, SortByProperties?, ImplicitAndBehavior?, RelevanceModel?, EnableStemming?, TrimDuplicates?, IncludeSpecialTermResults?, PreQuerySuggestions?, HighlightQuerySuggestions?, CapitalizeFirstLetters?, ResultProvider?, ResubmitFlags?, EnableSpellcheck?, UserContext?, FindSimilar?, IncludeRefinementResults?, RefinementFilters?, IgnoreAllNoiseQuery?, IncludeRelevantResults?, IncludeHighConfidenceResults?)
@@ -184,12 +184,12 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public partial class QueryLocalType : XTypedElement, IXMetaData {
             
-            public static explicit operator QueryLocalType(XElement xe) { return XTypedServices.ToXTypedElement<QueryLocalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator QueryLocalType(XElement xe) { return XTypedServices.ToXTypedElement<QueryLocalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
             
             public override XTypedElement Clone() {
                 return XTypedServices.CloneXTypedElement<QueryLocalType>(this);
             }
-        
+            
             /// <summary>
             /// <para>
             /// Regular expression: (QueryId?, Context?, Range?, Properties?, SortByProperties?, ImplicitAndBehavior?, RelevanceModel?, EnableStemming?, TrimDuplicates?, IncludeSpecialTermResults?, PreQuerySuggestions?, HighlightQuerySuggestions?, CapitalizeFirstLetters?, ResultProvider?, ResubmitFlags?, EnableSpellcheck?, UserContext?, FindSimilar?, IncludeRefinementResults?, RefinementFilters?, IgnoreAllNoiseQuery?, IncludeRelevantResults?, IncludeHighConfidenceResults?)
@@ -197,11 +197,11 @@ namespace Microsoft.Search.Query.Schemas {
             /// </summary>
             public QueryLocalType() {
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName QueryIdXName = System.Xml.Linq.XName.Get("QueryId", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// If this element is present, it must be returned in the response from the Query Web service.
@@ -214,7 +214,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual QueryId QueryId {
-                get {                
+                get {
                     XElement x = this.GetElement(QueryIdXName);
                     if ((x == null)) {
                         return null;
@@ -225,11 +225,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(QueryIdXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName ContextXName = System.Xml.Linq.XName.Get("Context", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -239,7 +239,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual Context Context {
-                get {                
+                get {
                     XElement x = this.GetElement(ContextXName);
                     if ((x == null)) {
                         return null;
@@ -250,11 +250,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(ContextXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName RangeXName = System.Xml.Linq.XName.Get("Range", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -264,7 +264,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual Range Range {
-                get {                
+                get {
                     XElement x = this.GetElement(RangeXName);
                     if ((x == null)) {
                         return null;
@@ -275,11 +275,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(RangeXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName PropertiesXName = System.Xml.Linq.XName.Get("Properties", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -289,7 +289,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual Properties Properties {
-                get {                
+                get {
                     XElement x = this.GetElement(PropertiesXName);
                     if ((x == null)) {
                         return null;
@@ -300,11 +300,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(PropertiesXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName SortByPropertiesXName = System.Xml.Linq.XName.Get("SortByProperties", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// If no managed properties are specified for sorting results, by default the results will be sorted by Rank.
@@ -317,7 +317,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual SortByProperties SortByProperties {
-                get {                
+                get {
                     XElement x = this.GetElement(SortByPropertiesXName);
                     if ((x == null)) {
                         return null;
@@ -328,11 +328,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(SortByPropertiesXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName ImplicitAndBehaviorXName = System.Xml.Linq.XName.Get("ImplicitAndBehavior", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// This element applies to the Query Web method, and only when using the Keyword Query Syntax Reference. The only format that is supported is the Microsoft.Search.Response.Document format.
@@ -345,7 +345,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual ImplicitAndBehavior ImplicitAndBehavior {
-                get {                
+                get {
                     XElement x = this.GetElement(ImplicitAndBehaviorXName);
                     if ((x == null)) {
                         return null;
@@ -356,11 +356,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(ImplicitAndBehaviorXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName RelevanceModelXName = System.Xml.Linq.XName.Get("RelevanceModel", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -370,7 +370,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual RelevanceModel RelevanceModel {
-                get {                
+                get {
                     XElement x = this.GetElement(RelevanceModelXName);
                     if ((x == null)) {
                         return null;
@@ -381,11 +381,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(RelevanceModelXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName EnableStemmingXName = System.Xml.Linq.XName.Get("EnableStemming", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// When using the FAST Query Language, it is also possible to control stemming more precisely inside the query string.
@@ -398,7 +398,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual EnableStemming EnableStemming {
-                get {                
+                get {
                     XElement x = this.GetElement(EnableStemmingXName);
                     if ((x == null)) {
                         return null;
@@ -409,11 +409,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(EnableStemmingXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName TrimDuplicatesXName = System.Xml.Linq.XName.Get("TrimDuplicates", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// For FAST Search Server 2010 for SharePoint, this element can also be used to collapse hits in the result set by using a group identifier (ID).
@@ -428,7 +428,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual TrimDuplicates TrimDuplicates {
-                get {                
+                get {
                     XElement x = this.GetElement(TrimDuplicatesXName);
                     if ((x == null)) {
                         return null;
@@ -439,11 +439,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(TrimDuplicatesXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName IncludeSpecialTermResultsXName = System.Xml.Linq.XName.Get("IncludeSpecialTermResults", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// For FAST Search Server 2010 for SharePoint, special term results includes best bets and Visual best bets.
@@ -456,7 +456,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual IncludeSpecialTermResults IncludeSpecialTermResults {
-                get {                
+                get {
                     XElement x = this.GetElement(IncludeSpecialTermResultsXName);
                     if ((x == null)) {
                         return null;
@@ -467,11 +467,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(IncludeSpecialTermResultsXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName PreQuerySuggestionsXName = System.Xml.Linq.XName.Get("PreQuerySuggestions", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -481,7 +481,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual PreQuerySuggestions PreQuerySuggestions {
-                get {                
+                get {
                     XElement x = this.GetElement(PreQuerySuggestionsXName);
                     if ((x == null)) {
                         return null;
@@ -492,11 +492,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(PreQuerySuggestionsXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName HighlightQuerySuggestionsXName = System.Xml.Linq.XName.Get("HighlightQuerySuggestions", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -506,7 +506,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual HighlightQuerySuggestions HighlightQuerySuggestions {
-                get {                
+                get {
                     XElement x = this.GetElement(HighlightQuerySuggestionsXName);
                     if ((x == null)) {
                         return null;
@@ -517,11 +517,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(HighlightQuerySuggestionsXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName CapitalizeFirstLettersXName = System.Xml.Linq.XName.Get("CapitalizeFirstLetters", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -531,7 +531,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual CapitalizeFirstLetters CapitalizeFirstLetters {
-                get {                
+                get {
                     XElement x = this.GetElement(CapitalizeFirstLettersXName);
                     if ((x == null)) {
                         return null;
@@ -542,11 +542,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(CapitalizeFirstLettersXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName ResultProviderXName = System.Xml.Linq.XName.Get("ResultProvider", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// NOTE: For People Search queries, specify SharePointSearch as the result provider even when FAST Search Server 2010 for SharePoint is the search back-end.
@@ -558,23 +558,23 @@ namespace Microsoft.Search.Query.Schemas {
             /// Regular expression: (QueryId?, Context?, Range?, Properties?, SortByProperties?, ImplicitAndBehavior?, RelevanceModel?, EnableStemming?, TrimDuplicates?, IncludeSpecialTermResults?, PreQuerySuggestions?, HighlightQuerySuggestions?, CapitalizeFirstLetters?, ResultProvider?, ResubmitFlags?, EnableSpellcheck?, UserContext?, FindSimilar?, IncludeRefinementResults?, RefinementFilters?, IgnoreAllNoiseQuery?, IncludeRelevantResults?, IncludeHighConfidenceResults?)
             /// </para>
             /// </summary>
-            public virtual Microsoft.Search.Query.Schemas.ResultProvider ResultProvider {
-                get {                
+            public virtual ResultProvider ResultProvider {
+                get {
                     XElement x = this.GetElement(ResultProviderXName);
                     if ((x == null)) {
                         return null;
                     }
-                    return ((Microsoft.Search.Query.Schemas.ResultProvider)(x));
+                    return ((ResultProvider)(x));
                 }
                 set {
                     this.SetElement(ResultProviderXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName ResubmitFlagsXName = System.Xml.Linq.XName.Get("ResubmitFlags", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -584,7 +584,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual ResubmitFlags ResubmitFlags {
-                get {                
+                get {
                     XElement x = this.GetElement(ResubmitFlagsXName);
                     if ((x == null)) {
                         return null;
@@ -595,11 +595,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(ResubmitFlagsXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName EnableSpellcheckXName = System.Xml.Linq.XName.Get("EnableSpellcheck", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// The element value specifies the spelling correction mode to apply to the query.
@@ -611,23 +611,23 @@ namespace Microsoft.Search.Query.Schemas {
             /// Regular expression: (QueryId?, Context?, Range?, Properties?, SortByProperties?, ImplicitAndBehavior?, RelevanceModel?, EnableStemming?, TrimDuplicates?, IncludeSpecialTermResults?, PreQuerySuggestions?, HighlightQuerySuggestions?, CapitalizeFirstLetters?, ResultProvider?, ResubmitFlags?, EnableSpellcheck?, UserContext?, FindSimilar?, IncludeRefinementResults?, RefinementFilters?, IgnoreAllNoiseQuery?, IncludeRelevantResults?, IncludeHighConfidenceResults?)
             /// </para>
             /// </summary>
-            public virtual Microsoft.Search.Query.Schemas.EnableSpellcheck EnableSpellcheck {
-                get {                
+            public virtual EnableSpellcheck EnableSpellcheck {
+                get {
                     XElement x = this.GetElement(EnableSpellcheckXName);
                     if ((x == null)) {
                         return null;
                     }
-                    return ((Microsoft.Search.Query.Schemas.EnableSpellcheck)(x));
+                    return ((EnableSpellcheck)(x));
                 }
                 set {
                     this.SetElement(EnableSpellcheckXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName UserContextXName = System.Xml.Linq.XName.Get("UserContext", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// The keyword management search settings can be restricted to context. A context defines when a search setting should apply, typically targeting a specific group of users.
@@ -640,7 +640,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual UserContext UserContext {
-                get {                
+                get {
                     XElement x = this.GetElement(UserContextXName);
                     if ((x == null)) {
                         return null;
@@ -651,11 +651,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(UserContextXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName FindSimilarXName = System.Xml.Linq.XName.Get("FindSimilar", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// The find similar features enable you to search for documents that are similar to already retrieved query results. The similarity evaluation is based on a statistical measure.
@@ -668,7 +668,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual FindSimilar FindSimilar {
-                get {                
+                get {
                     XElement x = this.GetElement(FindSimilarXName);
                     if ((x == null)) {
                         return null;
@@ -679,11 +679,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(FindSimilarXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName IncludeRefinementResultsXName = System.Xml.Linq.XName.Get("IncludeRefinementResults", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -693,7 +693,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual IncludeRefinementResults IncludeRefinementResults {
-                get {                
+                get {
                     XElement x = this.GetElement(IncludeRefinementResultsXName);
                     if ((x == null)) {
                         return null;
@@ -704,11 +704,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(IncludeRefinementResultsXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName RefinementFiltersXName = System.Xml.Linq.XName.Get("RefinementFilters", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -718,7 +718,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual RefinementFilters RefinementFilters {
-                get {                
+                get {
                     XElement x = this.GetElement(RefinementFiltersXName);
                     if ((x == null)) {
                         return null;
@@ -729,11 +729,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(RefinementFiltersXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName IgnoreAllNoiseQueryXName = System.Xml.Linq.XName.Get("IgnoreAllNoiseQuery", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -743,7 +743,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual IgnoreAllNoiseQuery IgnoreAllNoiseQuery {
-                get {                
+                get {
                     XElement x = this.GetElement(IgnoreAllNoiseQueryXName);
                     if ((x == null)) {
                         return null;
@@ -754,11 +754,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(IgnoreAllNoiseQueryXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName IncludeRelevantResultsXName = System.Xml.Linq.XName.Get("IncludeRelevantResults", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -768,7 +768,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual IncludeRelevantResults IncludeRelevantResults {
-                get {                
+                get {
                     XElement x = this.GetElement(IncludeRelevantResultsXName);
                     if ((x == null)) {
                         return null;
@@ -779,11 +779,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(IncludeRelevantResultsXName, value);
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected internal static readonly System.Xml.Linq.XName IncludeHighConfidenceResultsXName = System.Xml.Linq.XName.Get("IncludeHighConfidenceResults", "urn:Microsoft.Search.Query");
-        
+            
             /// <summary>
             /// <para>
             /// Occurrence: optional
@@ -793,7 +793,7 @@ namespace Microsoft.Search.Query.Schemas {
             /// </para>
             /// </summary>
             public virtual IncludeHighConfidenceResults IncludeHighConfidenceResults {
-                get {                
+                get {
                     XElement x = this.GetElement(IncludeHighConfidenceResultsXName);
                     if ((x == null)) {
                         return null;
@@ -804,14 +804,14 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetElement(IncludeHighConfidenceResultsXName, value);
                 }
             }
-        
+            
             private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Query", "urn:Microsoft.Search.Query");
-        
+            
             static QueryLocalType() {
                 BuildElementDictionary();
                 contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(QueryIdXName), new NamedContentModelEntity(ContextXName), new NamedContentModelEntity(RangeXName), new NamedContentModelEntity(PropertiesXName), new NamedContentModelEntity(SortByPropertiesXName), new NamedContentModelEntity(ImplicitAndBehaviorXName), new NamedContentModelEntity(RelevanceModelXName), new NamedContentModelEntity(EnableStemmingXName), new NamedContentModelEntity(TrimDuplicatesXName), new NamedContentModelEntity(IncludeSpecialTermResultsXName), new NamedContentModelEntity(PreQuerySuggestionsXName), new NamedContentModelEntity(HighlightQuerySuggestionsXName), new NamedContentModelEntity(CapitalizeFirstLettersXName), new NamedContentModelEntity(ResultProviderXName), new NamedContentModelEntity(ResubmitFlagsXName), new NamedContentModelEntity(EnableSpellcheckXName), new NamedContentModelEntity(UserContextXName), new NamedContentModelEntity(FindSimilarXName), new NamedContentModelEntity(IncludeRefinementResultsXName), new NamedContentModelEntity(RefinementFiltersXName), new NamedContentModelEntity(IgnoreAllNoiseQueryXName), new NamedContentModelEntity(IncludeRelevantResultsXName), new NamedContentModelEntity(IncludeHighConfidenceResultsXName));
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
             
@@ -847,7 +847,7 @@ namespace Microsoft.Search.Query.Schemas {
                     return localElementDictionary;
                 }
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             private static ContentModelEntity contentModel;
             
@@ -879,7 +879,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class QueryId : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -904,15 +904,15 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<QueryId>(xml);
         }
         
-        public static explicit operator QueryId(XElement xe) { return XTypedServices.ToXTypedElement<QueryId>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator QueryId(XElement xe) { return XTypedServices.ToXTypedElement<QueryId>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<QueryId>(this);
         }
-    
+        
         public QueryId() {
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("QueryId", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -947,7 +947,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class Context : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -972,12 +972,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<Context>(xml);
         }
         
-        public static explicit operator Context(XElement xe) { return XTypedServices.ToXTypedElement<Context>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Context(XElement xe) { return XTypedServices.ToXTypedElement<Context>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Context>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (QueryText)
@@ -985,11 +985,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public Context() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName QueryTextXName = System.Xml.Linq.XName.Get("QueryText", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -999,7 +999,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual QueryText QueryText {
-            get {                
+            get {
                 XElement x = this.GetElement(QueryTextXName);
                 return ((QueryText)(x));
             }
@@ -1007,14 +1007,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(QueryTextXName, value);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Context", "urn:Microsoft.Search.Query");
-    
+        
         static Context() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(QueryTextXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -1028,7 +1028,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -1059,7 +1059,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class QueryText : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1084,15 +1084,15 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<QueryText>(xml);
         }
         
-        public static explicit operator QueryText(XElement xe) { return XTypedServices.ToXTypedElement<QueryText>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator QueryText(XElement xe) { return XTypedServices.ToXTypedElement<QueryText>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<QueryText>(this);
         }
-    
+        
         public QueryText() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -1106,26 +1106,26 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
-    
+        
         public enum TypeEnum {
-        
+            
             STRING,
-        
+            
             MSSQLFT,
-        
+            
             FQL,
         }
         
         public sealed class TypeEnumValidator {
-        
+            
             private TypeEnumValidator() {
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                "STRING",
-                "MSSQLFT",
-                "FQL"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                            "STRING",
+                            "MSSQLFT",
+                            "FQL"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1153,15 +1153,15 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetAttribute(typeXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
                 }
                 else {
-                    this.SetAttributeWithValidation(typeXName, value.ToString(), "type", TypeEnumValidator.TypeDefinition);    
+                    this.SetAttributeWithValidation(typeXName, value.ToString(), "type", TypeEnumValidator.TypeDefinition);
                 }
-            }    
+            }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName languageXName = System.Xml.Linq.XName.Get("language", "");
-    
+        
         /// <summary>
         /// <para>
         /// Identifies the language of the keyword search. The value type is xml:lang. If specified, this is interpreted by SharePoint Enterprise Search as the query locale. If not specified, the default value is the language of the site.
@@ -1184,7 +1184,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(languageXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("QueryText", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -1219,7 +1219,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class Range : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1244,12 +1244,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<Range>(xml);
         }
         
-        public static explicit operator Range(XElement xe) { return XTypedServices.ToXTypedElement<Range>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Range(XElement xe) { return XTypedServices.ToXTypedElement<Range>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Range>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (StartAt, Count)
@@ -1257,11 +1257,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public Range() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName StartAtXName = System.Xml.Linq.XName.Get("StartAt", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -1271,7 +1271,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual StartAt StartAt {
-            get {                
+            get {
                 XElement x = this.GetElement(StartAtXName);
                 return ((StartAt)(x));
             }
@@ -1279,11 +1279,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(StartAtXName, value);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName CountXName = System.Xml.Linq.XName.Get("Count", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -1293,7 +1293,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual Count Count {
-            get {                
+            get {
                 XElement x = this.GetElement(CountXName);
                 return ((Count)(x));
             }
@@ -1301,14 +1301,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(CountXName, value);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Range", "urn:Microsoft.Search.Query");
-    
+        
         static Range() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(StartAtXName), new NamedContentModelEntity(CountXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -1323,7 +1323,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -1359,7 +1359,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class Properties : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1384,12 +1384,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<Properties>(xml);
         }
         
-        public static explicit operator Properties(XElement xe) { return XTypedServices.ToXTypedElement<Properties>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Properties(XElement xe) { return XTypedServices.ToXTypedElement<Properties>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Properties>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (Property+)
@@ -1397,14 +1397,14 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public Properties() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName PropertyXName = System.Xml.Linq.XName.Get("Property", "urn:Microsoft.Search.Query");
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<Property> PropertyField;
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, repeating
@@ -1434,14 +1434,14 @@ namespace Microsoft.Search.Query.Schemas {
                 }
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Properties", "urn:Microsoft.Search.Query");
-    
+        
         static Properties() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PropertyXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -1455,7 +1455,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -1486,7 +1486,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class Property : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1511,19 +1511,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<Property>(xml);
         }
         
-        public static explicit operator Property(XElement xe) { return XTypedServices.ToXTypedElement<Property>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Property(XElement xe) { return XTypedServices.ToXTypedElement<Property>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Property>(this);
         }
-    
+        
         public Property() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1541,7 +1541,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(nameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Property", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -1576,7 +1576,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class SortByProperties : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1601,12 +1601,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<SortByProperties>(xml);
         }
         
-        public static explicit operator SortByProperties(XElement xe) { return XTypedServices.ToXTypedElement<SortByProperties>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator SortByProperties(XElement xe) { return XTypedServices.ToXTypedElement<SortByProperties>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<SortByProperties>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (SortByProperty+)
@@ -1614,14 +1614,14 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public SortByProperties() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName SortByPropertyXName = System.Xml.Linq.XName.Get("SortByProperty", "urn:Microsoft.Search.Query");
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<SortByProperty> SortByPropertyField;
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, repeating
@@ -1651,14 +1651,14 @@ namespace Microsoft.Search.Query.Schemas {
                 }
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SortByProperties", "urn:Microsoft.Search.Query");
-    
+        
         static SortByProperties() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SortByPropertyXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -1672,7 +1672,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -1703,7 +1703,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class SortByProperty : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1728,19 +1728,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<SortByProperty>(xml);
         }
         
-        public static explicit operator SortByProperty(XElement xe) { return XTypedServices.ToXTypedElement<SortByProperty>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator SortByProperty(XElement xe) { return XTypedServices.ToXTypedElement<SortByProperty>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<SortByProperty>(this);
         }
-    
+        
         public SortByProperty() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-    
+        
         /// <summary>
         /// <para>
         /// The name of the managed property to sort on.
@@ -1767,23 +1767,23 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(nameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
-    
+        
         public enum DirectionEnum {
-        
+            
             Ascending,
-        
+            
             Descending,
         }
         
         public sealed class DirectionEnumValidator {
-        
+            
             private DirectionEnumValidator() {
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                "Ascending",
-                "Descending"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                            "Ascending",
+                            "Descending"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1791,7 +1791,7 @@ namespace Microsoft.Search.Query.Schemas {
         protected internal static readonly System.Xml.Linq.XName directionXName = System.Xml.Linq.XName.Get("direction", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum directionDefaultValue = Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum.Descending;
+        internal static Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum directionDefaultValue = Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum.Descending;
         
         /// <summary>
         /// <para>
@@ -1820,9 +1820,9 @@ namespace Microsoft.Search.Query.Schemas {
             }
             set {
                 this.SetAttributeWithValidation(directionXName, value.ToString(), "direction", DirectionEnumValidator.TypeDefinition);
-            }    
+            }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SortByProperty", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -1852,7 +1852,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class RelevanceModel : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1877,15 +1877,15 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<RelevanceModel>(xml);
         }
         
-        public static explicit operator RelevanceModel(XElement xe) { return XTypedServices.ToXTypedElement<RelevanceModel>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator RelevanceModel(XElement xe) { return XTypedServices.ToXTypedElement<RelevanceModel>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<RelevanceModel>(this);
         }
-    
+        
         public RelevanceModel() {
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RelevanceModel", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -1915,7 +1915,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class TrimDuplicates : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -1940,15 +1940,15 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<TrimDuplicates>(xml);
         }
         
-        public static explicit operator TrimDuplicates(XElement xe) { return XTypedServices.ToXTypedElement<TrimDuplicates>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator TrimDuplicates(XElement xe) { return XTypedServices.ToXTypedElement<TrimDuplicates>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<TrimDuplicates>(this);
         }
-    
+        
         public TrimDuplicates() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -1962,11 +1962,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName onpropertyXName = System.Xml.Linq.XName.Get("onproperty", "");
-    
+        
         /// <summary>
         /// <para>
         /// Optional attribute indicating the name of a non-default managed property to use as the basis for duplicate removal.
@@ -1987,11 +1987,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(onpropertyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName keepcountXName = System.Xml.Linq.XName.Get("keepcount", "");
-    
+        
         /// <summary>
         /// <para>
         /// Optional attribute specifying how many items to keep for each set of duplicates.
@@ -2014,11 +2014,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(keepcountXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName includeidXName = System.Xml.Linq.XName.Get("includeid", "");
-    
+        
         /// <summary>
         /// <para>
         /// Specifies the value associated with a collapse group, typically used when a user clicks the Duplicates(n) link of an item with duplicates.
@@ -2039,7 +2039,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(includeidXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TrimDuplicates", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -2069,7 +2069,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class ResultProvider : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -2094,34 +2094,34 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<ResultProvider>(xml);
         }
         
-        public static explicit operator ResultProvider(XElement xe) { return XTypedServices.ToXTypedElement<ResultProvider>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator ResultProvider(XElement xe) { return XTypedServices.ToXTypedElement<ResultProvider>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ResultProvider>(this);
         }
-    
+        
         public ResultProvider() {
         }
-    
+        
         public enum ResultProvider1Enum {
-        
+            
             Default,
-        
+            
             SharePointSearch,
-        
+            
             FASTSearch,
         }
         
         public sealed class ResultProvider1EnumValidator {
-        
+            
             private ResultProvider1EnumValidator() {
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                "Default",
-                "SharePointSearch",
-                "FASTSearch"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                            "Default",
+                            "SharePointSearch",
+                            "FASTSearch"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2137,7 +2137,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValueWithValidation(value.ToString(), "TypedValue", ResultProvider1EnumValidator.TypeDefinition);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ResultProvider", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -2172,7 +2172,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class ResubmitFlags : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -2197,12 +2197,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<ResubmitFlags>(xml);
         }
         
-        public static explicit operator ResubmitFlags(XElement xe) { return XTypedServices.ToXTypedElement<ResubmitFlags>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator ResubmitFlags(XElement xe) { return XTypedServices.ToXTypedElement<ResubmitFlags>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ResubmitFlags>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (ResubmitFlag+)
@@ -2210,14 +2210,14 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public ResubmitFlags() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName ResubmitFlagXName = System.Xml.Linq.XName.Get("ResubmitFlag", "urn:Microsoft.Search.Query");
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<ResubmitFlag> ResubmitFlagField;
-    
+        
         /// <summary>
         /// <para>
         /// The effect of an automatic resubmit is that the query is modified and automatically re-evaluated before results are returned to the client.
@@ -2250,14 +2250,14 @@ namespace Microsoft.Search.Query.Schemas {
                 }
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ResubmitFlags", "urn:Microsoft.Search.Query");
-    
+        
         static ResubmitFlags() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ResubmitFlagXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -2271,7 +2271,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -2302,7 +2302,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class ResubmitFlag : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -2327,40 +2327,40 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<ResubmitFlag>(xml);
         }
         
-        public static explicit operator ResubmitFlag(XElement xe) { return XTypedServices.ToXTypedElement<ResubmitFlag>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator ResubmitFlag(XElement xe) { return XTypedServices.ToXTypedElement<ResubmitFlag>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ResubmitFlag>(this);
         }
-    
+        
         public ResubmitFlag() {
         }
-    
+        
         public enum ValueEnum {
-        
+            
             NoResubmit,
-        
+            
             EnableSpellcheckOnResubmit,
-        
+            
             EnableSpellcheckSuggestOnResubmit,
-        
+            
             EnableStemmingOnResubmit,
-        
+            
             AddSynonymsAutomatically,
         }
         
         public sealed class ValueEnumValidator {
-        
+            
             private ValueEnumValidator() {
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                "NoResubmit",
-                "EnableSpellcheckOnResubmit",
-                "EnableSpellcheckSuggestOnResubmit",
-                "EnableStemmingOnResubmit",
-                "AddSynonymsAutomatically"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                            "NoResubmit",
+                            "EnableSpellcheckOnResubmit",
+                            "EnableSpellcheckSuggestOnResubmit",
+                            "EnableStemmingOnResubmit",
+                            "AddSynonymsAutomatically"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2396,11 +2396,11 @@ namespace Microsoft.Search.Query.Schemas {
                     this.SetAttribute(valueXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
                 }
                 else {
-                    this.SetAttributeWithValidation(valueXName, value.ToString(), "value", ValueEnumValidator.TypeDefinition);    
+                    this.SetAttributeWithValidation(valueXName, value.ToString(), "value", ValueEnumValidator.TypeDefinition);
                 }
-            }    
+            }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ResubmitFlag", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -2437,7 +2437,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class EnableSpellcheck : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -2462,12 +2462,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<EnableSpellcheck>(xml);
         }
         
-        public static explicit operator EnableSpellcheck(XElement xe) { return XTypedServices.ToXTypedElement<EnableSpellcheck>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator EnableSpellcheck(XElement xe) { return XTypedServices.ToXTypedElement<EnableSpellcheck>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<EnableSpellcheck>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Off: Do not apply spelling correction to the query text.
@@ -2477,26 +2477,26 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public EnableSpellcheck() {
         }
-    
+        
         public enum EnableSpellcheck1Enum {
-        
+            
             off,
-        
+            
             suggest,
-        
+            
             on,
         }
         
         public sealed class EnableSpellcheck1EnumValidator {
-        
+            
             private EnableSpellcheck1EnumValidator() {
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                "off",
-                "suggest",
-                "on"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                            "off",
+                            "suggest",
+                            "on"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2512,7 +2512,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValueWithValidation(value.ToString(), "TypedValue", EnableSpellcheck1EnumValidator.TypeDefinition);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EnableSpellcheck", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -2547,7 +2547,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class UserContext : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -2572,12 +2572,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<UserContext>(xml);
         }
         
-        public static explicit operator UserContext(XElement xe) { return XTypedServices.ToXTypedElement<UserContext>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator UserContext(XElement xe) { return XTypedServices.ToXTypedElement<UserContext>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<UserContext>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (UserContextData)
@@ -2585,11 +2585,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public UserContext() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName UserContextDataXName = System.Xml.Linq.XName.Get("UserContextData", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// The keyword management search settings can be restricted to context. A context defines when a search setting should apply, typically targeting a specific group of users.
@@ -2605,7 +2605,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual UserContextData UserContextData {
-            get {                
+            get {
                 XElement x = this.GetElement(UserContextDataXName);
                 return ((UserContextData)(x));
             }
@@ -2613,14 +2613,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(UserContextDataXName, value);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName includeuserprofileXName = System.Xml.Linq.XName.Get("includeuserprofile", "");
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool includeuserprofileDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
-    
+        internal static bool includeuserprofileDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
+        
         /// <summary>
         /// <para>
         /// Specifies the type of user context data to be applied.
@@ -2647,14 +2647,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetAttribute(includeuserprofileXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserContext", "urn:Microsoft.Search.Query");
-    
+        
         static UserContext() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(UserContextDataXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -2668,7 +2668,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -2704,7 +2704,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class FindSimilar : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -2729,12 +2729,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<FindSimilar>(xml);
         }
         
-        public static explicit operator FindSimilar(XElement xe) { return XTypedServices.ToXTypedElement<FindSimilar>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator FindSimilar(XElement xe) { return XTypedServices.ToXTypedElement<FindSimilar>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<FindSimilar>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (SimilarTo, SimilarType, SortSimilar)
@@ -2742,11 +2742,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public FindSimilar() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName SimilarToXName = System.Xml.Linq.XName.Get("SimilarTo", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -2756,7 +2756,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual SimilarTo SimilarTo {
-            get {                
+            get {
                 XElement x = this.GetElement(SimilarToXName);
                 return ((SimilarTo)(x));
             }
@@ -2764,11 +2764,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(SimilarToXName, value);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName SimilarTypeXName = System.Xml.Linq.XName.Get("SimilarType", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// An explanation of possible values follows.
@@ -2784,20 +2784,20 @@ namespace Microsoft.Search.Query.Schemas {
         /// Regular expression: (SimilarTo, SimilarType, SortSimilar)
         /// </para>
         /// </summary>
-        public virtual Microsoft.Search.Query.Schemas.SimilarType SimilarType {
-            get {                
+        public virtual SimilarType SimilarType {
+            get {
                 XElement x = this.GetElement(SimilarTypeXName);
-                return ((Microsoft.Search.Query.Schemas.SimilarType)(x));
+                return ((SimilarType)(x));
             }
             set {
                 this.SetElement(SimilarTypeXName, value);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName SortSimilarXName = System.Xml.Linq.XName.Get("SortSimilar", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// If set to False, the result is sorted by relevance score (rank). Default: true.
@@ -2810,7 +2810,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual SortSimilar SortSimilar {
-            get {                
+            get {
                 XElement x = this.GetElement(SortSimilarXName);
                 return ((SortSimilar)(x));
             }
@@ -2818,14 +2818,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(SortSimilarXName, value);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FindSimilar", "urn:Microsoft.Search.Query");
-    
+        
         static FindSimilar() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SimilarToXName), new NamedContentModelEntity(SimilarTypeXName), new NamedContentModelEntity(SortSimilarXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -2841,7 +2841,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -2872,7 +2872,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class SimilarType : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -2897,34 +2897,34 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<SimilarType>(xml);
         }
         
-        public static explicit operator SimilarType(XElement xe) { return XTypedServices.ToXTypedElement<SimilarType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator SimilarType(XElement xe) { return XTypedServices.ToXTypedElement<SimilarType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<SimilarType>(this);
         }
-    
+        
         public SimilarType() {
         }
-    
+        
         public enum SimilarType1Enum {
-        
+            
             FindSimilar,
-        
+            
             RefineSimilar,
-        
+            
             ExcludeSimilar,
         }
         
         public sealed class SimilarType1EnumValidator {
-        
+            
             private SimilarType1EnumValidator() {
             }
-        
+            
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                "FindSimilar",
-                "RefineSimilar",
-                "ExcludeSimilar"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                            "FindSimilar",
+                            "RefineSimilar",
+                            "ExcludeSimilar"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2940,7 +2940,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValueWithValidation(value.ToString(), "TypedValue", SimilarType1EnumValidator.TypeDefinition);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SimilarType", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -2975,7 +2975,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class IncludeRefinementResults : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3000,12 +3000,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<IncludeRefinementResults>(xml);
         }
         
-        public static explicit operator IncludeRefinementResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeRefinementResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator IncludeRefinementResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeRefinementResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<IncludeRefinementResults>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (Refiners, MaxShallowRefinementHits)
@@ -3013,11 +3013,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public IncludeRefinementResults() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName RefinersXName = System.Xml.Linq.XName.Get("Refiners", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -3027,7 +3027,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual Refiners Refiners {
-            get {                
+            get {
                 XElement x = this.GetElement(RefinersXName);
                 return ((Refiners)(x));
             }
@@ -3035,11 +3035,11 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(RefinersXName, value);
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName MaxShallowRefinementHitsXName = System.Xml.Linq.XName.Get("MaxShallowRefinementHits", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -3049,7 +3049,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual MaxShallowRefinementHits MaxShallowRefinementHits {
-            get {                
+            get {
                 XElement x = this.GetElement(MaxShallowRefinementHitsXName);
                 return ((MaxShallowRefinementHits)(x));
             }
@@ -3057,14 +3057,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(MaxShallowRefinementHitsXName, value);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IncludeRefinementResults", "urn:Microsoft.Search.Query");
-    
+        
         static IncludeRefinementResults() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RefinersXName), new NamedContentModelEntity(MaxShallowRefinementHitsXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -3079,7 +3079,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -3115,7 +3115,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class Refiners : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3140,12 +3140,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<Refiners>(xml);
         }
         
-        public static explicit operator Refiners(XElement xe) { return XTypedServices.ToXTypedElement<Refiners>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Refiners(XElement xe) { return XTypedServices.ToXTypedElement<Refiners>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Refiners>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (Refiner)
@@ -3153,11 +3153,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public Refiners() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName RefinerXName = System.Xml.Linq.XName.Get("Refiner", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -3167,7 +3167,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual Refiner Refiner {
-            get {                
+            get {
                 XElement x = this.GetElement(RefinerXName);
                 return ((Refiner)(x));
             }
@@ -3175,14 +3175,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(RefinerXName, value);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Refiners", "urn:Microsoft.Search.Query");
-    
+        
         static Refiners() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RefinerXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -3196,7 +3196,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -3232,7 +3232,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class RefinementFilters : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3257,12 +3257,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<RefinementFilters>(xml);
         }
         
-        public static explicit operator RefinementFilters(XElement xe) { return XTypedServices.ToXTypedElement<RefinementFilters>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator RefinementFilters(XElement xe) { return XTypedServices.ToXTypedElement<RefinementFilters>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<RefinementFilters>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// Regular expression: (RefinementFilter)
@@ -3270,11 +3270,11 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public RefinementFilters() {
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName RefinementFilterXName = System.Xml.Linq.XName.Get("RefinementFilter", "urn:Microsoft.Search.Query");
-    
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -3284,7 +3284,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </para>
         /// </summary>
         public virtual RefinementFilter RefinementFilter {
-            get {                
+            get {
                 XElement x = this.GetElement(RefinementFilterXName);
                 return ((RefinementFilter)(x));
             }
@@ -3292,14 +3292,14 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetElement(RefinementFilterXName, value);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RefinementFilters", "urn:Microsoft.Search.Query");
-    
+        
         static RefinementFilters() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RefinementFilterXName));
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
@@ -3313,7 +3313,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return localElementDictionary;
             }
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
@@ -3372,7 +3372,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class StartAt : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3397,19 +3397,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<StartAt>(xml);
         }
         
-        public static explicit operator StartAt(XElement xe) { return XTypedServices.ToXTypedElement<StartAt>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator StartAt(XElement xe) { return XTypedServices.ToXTypedElement<StartAt>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<StartAt>(this);
         }
-    
+        
         public StartAt() {
         }
-    
+        
         public StartAt(int content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3423,7 +3423,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("StartAt", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -3453,7 +3453,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class Count : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3478,19 +3478,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<Count>(xml);
         }
         
-        public static explicit operator Count(XElement xe) { return XTypedServices.ToXTypedElement<Count>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Count(XElement xe) { return XTypedServices.ToXTypedElement<Count>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Count>(this);
         }
-    
+        
         public Count() {
         }
-    
+        
         public Count(int content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3504,7 +3504,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Count", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -3534,7 +3534,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class ImplicitAndBehavior : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3559,19 +3559,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<ImplicitAndBehavior>(xml);
         }
         
-        public static explicit operator ImplicitAndBehavior(XElement xe) { return XTypedServices.ToXTypedElement<ImplicitAndBehavior>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator ImplicitAndBehavior(XElement xe) { return XTypedServices.ToXTypedElement<ImplicitAndBehavior>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ImplicitAndBehavior>(this);
         }
-    
+        
         public ImplicitAndBehavior() {
         }
-    
+        
         public ImplicitAndBehavior(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3585,7 +3585,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ImplicitAndBehavior", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -3615,7 +3615,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class EnableStemming : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3640,19 +3640,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<EnableStemming>(xml);
         }
         
-        public static explicit operator EnableStemming(XElement xe) { return XTypedServices.ToXTypedElement<EnableStemming>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator EnableStemming(XElement xe) { return XTypedServices.ToXTypedElement<EnableStemming>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<EnableStemming>(this);
         }
-    
+        
         public EnableStemming() {
         }
-    
+        
         public EnableStemming(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3666,7 +3666,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EnableStemming", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -3696,7 +3696,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class IncludeSpecialTermResults : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3721,19 +3721,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<IncludeSpecialTermResults>(xml);
         }
         
-        public static explicit operator IncludeSpecialTermResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeSpecialTermResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator IncludeSpecialTermResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeSpecialTermResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<IncludeSpecialTermResults>(this);
         }
-    
+        
         public IncludeSpecialTermResults() {
         }
-    
+        
         public IncludeSpecialTermResults(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3747,7 +3747,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IncludeSpecialTermResults", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -3777,7 +3777,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class PreQuerySuggestions : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3802,19 +3802,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<PreQuerySuggestions>(xml);
         }
         
-        public static explicit operator PreQuerySuggestions(XElement xe) { return XTypedServices.ToXTypedElement<PreQuerySuggestions>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator PreQuerySuggestions(XElement xe) { return XTypedServices.ToXTypedElement<PreQuerySuggestions>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<PreQuerySuggestions>(this);
         }
-    
+        
         public PreQuerySuggestions() {
         }
-    
+        
         public PreQuerySuggestions(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3828,7 +3828,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PreQuerySuggestions", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -3858,7 +3858,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class HighlightQuerySuggestions : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3883,19 +3883,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<HighlightQuerySuggestions>(xml);
         }
         
-        public static explicit operator HighlightQuerySuggestions(XElement xe) { return XTypedServices.ToXTypedElement<HighlightQuerySuggestions>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator HighlightQuerySuggestions(XElement xe) { return XTypedServices.ToXTypedElement<HighlightQuerySuggestions>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<HighlightQuerySuggestions>(this);
         }
-    
+        
         public HighlightQuerySuggestions() {
         }
-    
+        
         public HighlightQuerySuggestions(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3909,7 +3909,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("HighlightQuerySuggestions", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -3939,7 +3939,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class CapitalizeFirstLetters : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -3964,19 +3964,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<CapitalizeFirstLetters>(xml);
         }
         
-        public static explicit operator CapitalizeFirstLetters(XElement xe) { return XTypedServices.ToXTypedElement<CapitalizeFirstLetters>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator CapitalizeFirstLetters(XElement xe) { return XTypedServices.ToXTypedElement<CapitalizeFirstLetters>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<CapitalizeFirstLetters>(this);
         }
-    
+        
         public CapitalizeFirstLetters() {
         }
-    
+        
         public CapitalizeFirstLetters(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -3990,7 +3990,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CapitalizeFirstLetters", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4020,7 +4020,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class UserContextData : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4045,19 +4045,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<UserContextData>(xml);
         }
         
-        public static explicit operator UserContextData(XElement xe) { return XTypedServices.ToXTypedElement<UserContextData>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator UserContextData(XElement xe) { return XTypedServices.ToXTypedElement<UserContextData>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<UserContextData>(this);
         }
-    
+        
         public UserContextData() {
         }
-    
+        
         public UserContextData(string content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4071,7 +4071,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserContextData", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4106,7 +4106,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class SimilarTo : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4131,12 +4131,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<SimilarTo>(xml);
         }
         
-        public static explicit operator SimilarTo(XElement xe) { return XTypedServices.ToXTypedElement<SimilarTo>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator SimilarTo(XElement xe) { return XTypedServices.ToXTypedElement<SimilarTo>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<SimilarTo>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// The similarityReference is a string that represents a statistical similarity reference when searching for similar items.
@@ -4144,7 +4144,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public SimilarTo() {
         }
-    
+        
         /// <summary>
         /// <para>
         /// The similarityReference is a string that represents a statistical similarity reference when searching for similar items.
@@ -4153,7 +4153,7 @@ namespace Microsoft.Search.Query.Schemas {
         public SimilarTo(string content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4167,7 +4167,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValueWithValidation(value, "TypedValue", global::Microsoft.Search.Query.Schemas.similarityReference.TypeDefinition);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SimilarTo", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4197,7 +4197,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class SortSimilar : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4222,19 +4222,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<SortSimilar>(xml);
         }
         
-        public static explicit operator SortSimilar(XElement xe) { return XTypedServices.ToXTypedElement<SortSimilar>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator SortSimilar(XElement xe) { return XTypedServices.ToXTypedElement<SortSimilar>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<SortSimilar>(this);
         }
-    
+        
         public SortSimilar() {
         }
-    
+        
         public SortSimilar(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4248,7 +4248,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SortSimilar", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4283,7 +4283,7 @@ namespace Microsoft.Search.Query.Schemas {
     /// </para>
     /// </summary>
     public partial class Refiner : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4308,12 +4308,12 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<Refiner>(xml);
         }
         
-        public static explicit operator Refiner(XElement xe) { return XTypedServices.ToXTypedElement<Refiner>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Refiner(XElement xe) { return XTypedServices.ToXTypedElement<Refiner>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Refiner>(this);
         }
-    
+        
         /// <summary>
         /// <para>
         /// This contains the name of the refiner, but you can also use an advanced syntax to apply non-default configuration values for the named refiner. For more information about the advanced syntax for the Refiner element, see Refiner Specification in the Query Web Service and Query Object Model (https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/gg984547%28v%3doffice.14%29).
@@ -4321,7 +4321,7 @@ namespace Microsoft.Search.Query.Schemas {
         /// </summary>
         public Refiner() {
         }
-    
+        
         /// <summary>
         /// <para>
         /// This contains the name of the refiner, but you can also use an advanced syntax to apply non-default configuration values for the named refiner. For more information about the advanced syntax for the Refiner element, see Refiner Specification in the Query Web Service and Query Object Model (https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/gg984547%28v%3doffice.14%29).
@@ -4330,7 +4330,7 @@ namespace Microsoft.Search.Query.Schemas {
         public Refiner(string content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4344,7 +4344,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValueWithValidation(value, "TypedValue", global::Microsoft.Search.Query.Schemas.refinerSpecification.TypeDefinition);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Refiner", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4374,7 +4374,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class MaxShallowRefinementHits : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4399,19 +4399,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<MaxShallowRefinementHits>(xml);
         }
         
-        public static explicit operator MaxShallowRefinementHits(XElement xe) { return XTypedServices.ToXTypedElement<MaxShallowRefinementHits>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator MaxShallowRefinementHits(XElement xe) { return XTypedServices.ToXTypedElement<MaxShallowRefinementHits>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<MaxShallowRefinementHits>(this);
         }
-    
+        
         public MaxShallowRefinementHits() {
         }
-    
+        
         public MaxShallowRefinementHits(int content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4425,7 +4425,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MaxShallowRefinementHits", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4455,7 +4455,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class RefinementFilter : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4480,19 +4480,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<RefinementFilter>(xml);
         }
         
-        public static explicit operator RefinementFilter(XElement xe) { return XTypedServices.ToXTypedElement<RefinementFilter>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator RefinementFilter(XElement xe) { return XTypedServices.ToXTypedElement<RefinementFilter>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<RefinementFilter>(this);
         }
-    
+        
         public RefinementFilter() {
         }
-    
+        
         public RefinementFilter(byte[] content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4506,7 +4506,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Base64Binary).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RefinementFilter", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4536,7 +4536,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class IgnoreAllNoiseQuery : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4561,19 +4561,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<IgnoreAllNoiseQuery>(xml);
         }
         
-        public static explicit operator IgnoreAllNoiseQuery(XElement xe) { return XTypedServices.ToXTypedElement<IgnoreAllNoiseQuery>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator IgnoreAllNoiseQuery(XElement xe) { return XTypedServices.ToXTypedElement<IgnoreAllNoiseQuery>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<IgnoreAllNoiseQuery>(this);
         }
-    
+        
         public IgnoreAllNoiseQuery() {
         }
-    
+        
         public IgnoreAllNoiseQuery(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4587,7 +4587,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IgnoreAllNoiseQuery", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4617,7 +4617,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class IncludeRelevantResults : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4642,19 +4642,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<IncludeRelevantResults>(xml);
         }
         
-        public static explicit operator IncludeRelevantResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeRelevantResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator IncludeRelevantResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeRelevantResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<IncludeRelevantResults>(this);
         }
-    
+        
         public IncludeRelevantResults() {
         }
-    
+        
         public IncludeRelevantResults(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4668,7 +4668,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IncludeRelevantResults", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4698,7 +4698,7 @@ namespace Microsoft.Search.Query.Schemas {
     }
     
     public partial class IncludeHighConfidenceResults : XTypedElement, IXMetaData {
-    
+        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -4723,19 +4723,19 @@ namespace Microsoft.Search.Query.Schemas {
             return XTypedServices.Parse<IncludeHighConfidenceResults>(xml);
         }
         
-        public static explicit operator IncludeHighConfidenceResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeHighConfidenceResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator IncludeHighConfidenceResults(XElement xe) { return XTypedServices.ToXTypedElement<IncludeHighConfidenceResults>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<IncludeHighConfidenceResults>(this);
         }
-    
+        
         public IncludeHighConfidenceResults() {
         }
-    
+        
         public IncludeHighConfidenceResults(bool content) {
             this.TypedValue = content;
         }
-    
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
@@ -4749,7 +4749,7 @@ namespace Microsoft.Search.Query.Schemas {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
-    
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IncludeHighConfidenceResults", "urn:Microsoft.Search.Query");
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -4777,7 +4777,7 @@ namespace Microsoft.Search.Query.Schemas {
             }
         }
     }
-
+    
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
         private LinqToXsdTypeManager() {
@@ -4825,7 +4825,7 @@ namespace Microsoft.Search.Query.Schemas {
             elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeRelevantResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeRelevantResults));
             elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeHighConfidenceResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults));
         }
-    
+        
         private static XmlSchemaSet schemaSet;
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
@@ -4865,7 +4865,7 @@ namespace Microsoft.Search.Query.Schemas {
         
         static LinqToXsdTypeManager() {
             BuildElementDictionary();
-            }
+        }
         
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("QueryPacket", "urn:Microsoft.Search.Query")];
@@ -5000,312 +5000,312 @@ namespace Microsoft.Search.Query.Schemas {
                 return rootObject;
             }
         }
-    
+        
         public XRootNamespace(QueryPacket root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public QueryPacket QueryPacket {  get {return rootObject as QueryPacket; } }
-    
+        
+
+		public QueryPacket QueryPacket {  get {return rootObject as QueryPacket; } }
+        
         public XRootNamespace(QueryId root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public QueryId QueryId {  get {return rootObject as QueryId; } }
-    
+        
+
+		public QueryId QueryId {  get {return rootObject as QueryId; } }
+        
         public XRootNamespace(Context root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public Context Context {  get {return rootObject as Context; } }
-    
+        
+
+		public Context Context {  get {return rootObject as Context; } }
+        
         public XRootNamespace(QueryText root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public QueryText QueryText {  get {return rootObject as QueryText; } }
-    
+        
+
+		public QueryText QueryText {  get {return rootObject as QueryText; } }
+        
         public XRootNamespace(Range root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public Range Range {  get {return rootObject as Range; } }
-    
+        
+
+		public Range Range {  get {return rootObject as Range; } }
+        
         public XRootNamespace(Properties root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public Properties Properties {  get {return rootObject as Properties; } }
-    
+        
+
+		public Properties Properties {  get {return rootObject as Properties; } }
+        
         public XRootNamespace(Property root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public Property Property {  get {return rootObject as Property; } }
-    
+        
+
+		public Property Property {  get {return rootObject as Property; } }
+        
         public XRootNamespace(SortByProperties root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public SortByProperties SortByProperties {  get {return rootObject as SortByProperties; } }
-    
+        
+
+		public SortByProperties SortByProperties {  get {return rootObject as SortByProperties; } }
+        
         public XRootNamespace(SortByProperty root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public SortByProperty SortByProperty {  get {return rootObject as SortByProperty; } }
-    
+        
+
+		public SortByProperty SortByProperty {  get {return rootObject as SortByProperty; } }
+        
         public XRootNamespace(RelevanceModel root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public RelevanceModel RelevanceModel {  get {return rootObject as RelevanceModel; } }
-    
+        
+
+		public RelevanceModel RelevanceModel {  get {return rootObject as RelevanceModel; } }
+        
         public XRootNamespace(TrimDuplicates root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public TrimDuplicates TrimDuplicates {  get {return rootObject as TrimDuplicates; } }
-    
+        
+
+		public TrimDuplicates TrimDuplicates {  get {return rootObject as TrimDuplicates; } }
+        
         public XRootNamespace(ResultProvider root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public ResultProvider ResultProvider {  get {return rootObject as ResultProvider; } }
-    
+        
+
+		public ResultProvider ResultProvider {  get {return rootObject as ResultProvider; } }
+        
         public XRootNamespace(ResubmitFlags root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public ResubmitFlags ResubmitFlags {  get {return rootObject as ResubmitFlags; } }
-    
+        
+
+		public ResubmitFlags ResubmitFlags {  get {return rootObject as ResubmitFlags; } }
+        
         public XRootNamespace(ResubmitFlag root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public ResubmitFlag ResubmitFlag {  get {return rootObject as ResubmitFlag; } }
-    
+        
+
+		public ResubmitFlag ResubmitFlag {  get {return rootObject as ResubmitFlag; } }
+        
         public XRootNamespace(EnableSpellcheck root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public EnableSpellcheck EnableSpellcheck {  get {return rootObject as EnableSpellcheck; } }
-    
+        
+
+		public EnableSpellcheck EnableSpellcheck {  get {return rootObject as EnableSpellcheck; } }
+        
         public XRootNamespace(UserContext root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public UserContext UserContext {  get {return rootObject as UserContext; } }
-    
+        
+
+		public UserContext UserContext {  get {return rootObject as UserContext; } }
+        
         public XRootNamespace(FindSimilar root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public FindSimilar FindSimilar {  get {return rootObject as FindSimilar; } }
-    
+        
+
+		public FindSimilar FindSimilar {  get {return rootObject as FindSimilar; } }
+        
         public XRootNamespace(SimilarType root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public SimilarType SimilarType {  get {return rootObject as SimilarType; } }
-    
+        
+
+		public SimilarType SimilarType {  get {return rootObject as SimilarType; } }
+        
         public XRootNamespace(IncludeRefinementResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as IncludeRefinementResults; } }
-    
+        
+
+		public IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as IncludeRefinementResults; } }
+        
         public XRootNamespace(Refiners root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public Refiners Refiners {  get {return rootObject as Refiners; } }
-    
+        
+
+		public Refiners Refiners {  get {return rootObject as Refiners; } }
+        
         public XRootNamespace(RefinementFilters root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public RefinementFilters RefinementFilters {  get {return rootObject as RefinementFilters; } }
-    
+        
+
+		public RefinementFilters RefinementFilters {  get {return rootObject as RefinementFilters; } }
+        
         public XRootNamespace(StartAt root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public StartAt StartAt {  get {return rootObject as StartAt; } }
-    
+        
+
+		public StartAt StartAt {  get {return rootObject as StartAt; } }
+        
         public XRootNamespace(Count root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public Count Count {  get {return rootObject as Count; } }
-    
+        
+
+		public Count Count {  get {return rootObject as Count; } }
+        
         public XRootNamespace(ImplicitAndBehavior root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as ImplicitAndBehavior; } }
-    
+        
+
+		public ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as ImplicitAndBehavior; } }
+        
         public XRootNamespace(EnableStemming root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public EnableStemming EnableStemming {  get {return rootObject as EnableStemming; } }
-    
+        
+
+		public EnableStemming EnableStemming {  get {return rootObject as EnableStemming; } }
+        
         public XRootNamespace(IncludeSpecialTermResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as IncludeSpecialTermResults; } }
-    
+        
+
+		public IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as IncludeSpecialTermResults; } }
+        
         public XRootNamespace(PreQuerySuggestions root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as PreQuerySuggestions; } }
-    
+        
+
+		public PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as PreQuerySuggestions; } }
+        
         public XRootNamespace(HighlightQuerySuggestions root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as HighlightQuerySuggestions; } }
-    
+        
+
+		public HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as HighlightQuerySuggestions; } }
+        
         public XRootNamespace(CapitalizeFirstLetters root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as CapitalizeFirstLetters; } }
-    
+        
+
+		public CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as CapitalizeFirstLetters; } }
+        
         public XRootNamespace(UserContextData root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public UserContextData UserContextData {  get {return rootObject as UserContextData; } }
-    
+        
+
+		public UserContextData UserContextData {  get {return rootObject as UserContextData; } }
+        
         public XRootNamespace(SimilarTo root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public SimilarTo SimilarTo {  get {return rootObject as SimilarTo; } }
-    
+        
+
+		public SimilarTo SimilarTo {  get {return rootObject as SimilarTo; } }
+        
         public XRootNamespace(SortSimilar root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public SortSimilar SortSimilar {  get {return rootObject as SortSimilar; } }
-    
+        
+
+		public SortSimilar SortSimilar {  get {return rootObject as SortSimilar; } }
+        
         public XRootNamespace(Refiner root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public Refiner Refiner {  get {return rootObject as Refiner; } }
-    
+        
+
+		public Refiner Refiner {  get {return rootObject as Refiner; } }
+        
         public XRootNamespace(MaxShallowRefinementHits root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as MaxShallowRefinementHits; } }
-    
+        
+
+		public MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as MaxShallowRefinementHits; } }
+        
         public XRootNamespace(RefinementFilter root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public RefinementFilter RefinementFilter {  get {return rootObject as RefinementFilter; } }
-    
+        
+
+		public RefinementFilter RefinementFilter {  get {return rootObject as RefinementFilter; } }
+        
         public XRootNamespace(IgnoreAllNoiseQuery root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as IgnoreAllNoiseQuery; } }
-    
+        
+
+		public IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as IgnoreAllNoiseQuery; } }
+        
         public XRootNamespace(IncludeRelevantResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as IncludeRelevantResults; } }
-    
+        
+
+		public IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as IncludeRelevantResults; } }
+        
         public XRootNamespace(IncludeHighConfidenceResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as IncludeHighConfidenceResults; } }
-    }
+        
 
+		public IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as IncludeHighConfidenceResults; } }
+    }
+    
     public partial class XRoot {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5425,309 +5425,309 @@ namespace Microsoft.Search.Query.Schemas {
                 return rootObject;
             }
         }
-    
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.QueryPacket root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.QueryPacket QueryPacket {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryPacket; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.QueryPacket QueryPacket {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryPacket; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.QueryId root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.QueryId QueryId {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryId; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.QueryId QueryId {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryId; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.Context root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.Context Context {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Context; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.Context Context {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Context; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.QueryText root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.QueryText QueryText {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryText; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.QueryText QueryText {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryText; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.Range root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.Range Range {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Range; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.Range Range {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Range; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.Properties root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.Properties Properties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Properties; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.Properties Properties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Properties; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.Property root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.Property Property {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Property; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.Property Property {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Property; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.SortByProperties root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.SortByProperties SortByProperties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperties; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.SortByProperties SortByProperties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperties; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.SortByProperty root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.SortByProperty SortByProperty {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperty; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.SortByProperty SortByProperty {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperty; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.RelevanceModel root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.RelevanceModel RelevanceModel {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RelevanceModel; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.RelevanceModel RelevanceModel {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RelevanceModel; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.TrimDuplicates root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.TrimDuplicates TrimDuplicates {  get {return rootObject as global::Microsoft.Search.Query.Schemas.TrimDuplicates; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.TrimDuplicates TrimDuplicates {  get {return rootObject as global::Microsoft.Search.Query.Schemas.TrimDuplicates; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.ResultProvider root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.ResultProvider ResultProvider {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResultProvider; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.ResultProvider ResultProvider {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResultProvider; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.ResubmitFlags root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.ResubmitFlags ResubmitFlags {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlags; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.ResubmitFlags ResubmitFlags {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlags; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.ResubmitFlag root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.ResubmitFlag ResubmitFlag {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlag; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.ResubmitFlag ResubmitFlag {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlag; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.EnableSpellcheck root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.EnableSpellcheck EnableSpellcheck {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableSpellcheck; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.EnableSpellcheck EnableSpellcheck {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableSpellcheck; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.UserContext root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.UserContext UserContext {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContext; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.UserContext UserContext {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContext; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.FindSimilar root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.FindSimilar FindSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.FindSimilar; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.FindSimilar FindSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.FindSimilar; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.SimilarType root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.SimilarType SimilarType {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarType; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.SimilarType SimilarType {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarType; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.IncludeRefinementResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRefinementResults; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRefinementResults; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.Refiners root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.Refiners Refiners {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiners; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.Refiners Refiners {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiners; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.RefinementFilters root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.RefinementFilters RefinementFilters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilters; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.RefinementFilters RefinementFilters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilters; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.StartAt root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.StartAt StartAt {  get {return rootObject as global::Microsoft.Search.Query.Schemas.StartAt; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.StartAt StartAt {  get {return rootObject as global::Microsoft.Search.Query.Schemas.StartAt; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.Count root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.Count Count {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Count; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.Count Count {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Count; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.EnableStemming root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.EnableStemming EnableStemming {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableStemming; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.EnableStemming EnableStemming {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableStemming; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.PreQuerySuggestions root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.PreQuerySuggestions; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.PreQuerySuggestions; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.UserContextData root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.UserContextData UserContextData {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContextData; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.UserContextData UserContextData {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContextData; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.SimilarTo root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.SimilarTo SimilarTo {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarTo; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.SimilarTo SimilarTo {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarTo; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.SortSimilar root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.SortSimilar SortSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortSimilar; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.SortSimilar SortSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortSimilar; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.Refiner root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.Refiner Refiner {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiner; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.Refiner Refiner {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiner; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.RefinementFilter root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.RefinementFilter RefinementFilter {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilter; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.RefinementFilter RefinementFilter {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilter; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.IncludeRelevantResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRelevantResults; } }
-    
+        
+
+		public global::Microsoft.Search.Query.Schemas.IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRelevantResults; } }
+        
         public XRoot(global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-    
-    
-        public global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults; } }
+        
+
+		public global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults; } }
     }
 }

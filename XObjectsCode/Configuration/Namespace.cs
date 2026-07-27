@@ -4,7 +4,7 @@ using XObjects;
 
 namespace Xml.Schema.Linq
 {
-    internal partial class @Namespace
+    public partial class @Namespace
     {
         /// <summary>
         /// Creates a new <see cref="Namespace"/> instance from given values. Defaults to <see cref="GeneratedTypesVisibility.Public"/> <paramref name="visibility"/>.
@@ -30,7 +30,7 @@ namespace Xml.Schema.Linq
             }
             
             return new Namespace {
-                DefaultVisibility = visibility.ToKeyword(),
+                DefaultVisibility = visibility.ToNamespaceEnum(),
                 Schema = possibleSchemaUriInstance,
                 Clr = clrNamespace
             };

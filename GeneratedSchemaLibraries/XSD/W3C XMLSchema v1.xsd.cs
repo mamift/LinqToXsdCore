@@ -69,7 +69,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName includeXName = System.Xml.Linq.XName.Get("include", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName includeXName = System.Xml.Linq.XName.Get("include", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<include> includeField;
@@ -109,7 +109,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName importXName = System.Xml.Linq.XName.Get("import", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName importXName = System.Xml.Linq.XName.Get("import", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<import> importField;
@@ -149,7 +149,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName redefineXName = System.Xml.Linq.XName.Get("redefine", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName redefineXName = System.Xml.Linq.XName.Get("redefine", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<redefine> redefineField;
@@ -189,7 +189,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<annotation> annotationField;
@@ -229,7 +229,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<simpleType> simpleTypeField;
@@ -269,7 +269,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName complexTypeXName = System.Xml.Linq.XName.Get("complexType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName complexTypeXName = System.Xml.Linq.XName.Get("complexType", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<complexType> complexTypeField;
@@ -309,7 +309,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<group> groupField;
@@ -349,7 +349,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeGroup> attributeGroupField;
@@ -389,7 +389,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName elementXName = System.Xml.Linq.XName.Get("element", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName elementXName = System.Xml.Linq.XName.Get("element", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<element> elementField;
@@ -429,7 +429,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attribute> attributeField;
@@ -469,7 +469,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName notationXName = System.Xml.Linq.XName.Get("notation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName notationXName = System.Xml.Linq.XName.Get("notation", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<notation> notationField;
@@ -509,7 +509,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName targetNamespaceXName = System.Xml.Linq.XName.Get("targetNamespace", "");
+        protected internal static readonly System.Xml.Linq.XName targetNamespaceXName = System.Xml.Linq.XName.Get("targetNamespace", "");
         
         /// <summary>
         /// <para>
@@ -519,6 +519,9 @@ namespace W3C.XSD {
         public virtual System.Uri targetNamespace {
             get {
                 XAttribute x = this.Attribute(targetNamespaceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
@@ -528,7 +531,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
         
         /// <summary>
         /// <para>
@@ -538,6 +541,9 @@ namespace W3C.XSD {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
             }
             set {
@@ -547,10 +553,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName finalDefaultXName = System.Xml.Linq.XName.Get("finalDefault", "");
+        protected internal static readonly System.Xml.Linq.XName finalDefaultXName = System.Xml.Linq.XName.Get("finalDefault", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string[] finalDefaultDefaultValue = new string[] {
+        internal static string[] finalDefaultDefaultValue = new string[] {
                 ""};
         
         /// <summary>
@@ -561,6 +567,9 @@ namespace W3C.XSD {
         public virtual object finalDefault {
             get {
                 XAttribute x = this.Attribute(finalDefaultXName);
+                if ((x == null)) {
+                    return finalDefaultDefaultValue;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.fullDerivationSet.TypeDefinition);
             }
             set {
@@ -570,10 +579,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName blockDefaultXName = System.Xml.Linq.XName.Get("blockDefault", "");
+        protected internal static readonly System.Xml.Linq.XName blockDefaultXName = System.Xml.Linq.XName.Get("blockDefault", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string[] blockDefaultDefaultValue = new string[] {
+        internal static string[] blockDefaultDefaultValue = new string[] {
                 ""};
         
         /// <summary>
@@ -584,6 +593,9 @@ namespace W3C.XSD {
         public virtual object blockDefault {
             get {
                 XAttribute x = this.Attribute(blockDefaultXName);
+                if ((x == null)) {
+                    return blockDefaultDefaultValue;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.blockSet.TypeDefinition);
             }
             set {
@@ -593,10 +605,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeFormDefaultXName = System.Xml.Linq.XName.Get("attributeFormDefault", "");
+        protected internal static readonly System.Xml.Linq.XName attributeFormDefaultXName = System.Xml.Linq.XName.Get("attributeFormDefault", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string attributeFormDefaultDefaultValue = "unqualified";
+        internal static W3C.XSD.formChoice attributeFormDefaultDefaultValue = W3C.XSD.formChoice.unqualified;
         
         /// <summary>
         /// <para>
@@ -606,19 +618,22 @@ namespace W3C.XSD {
         public virtual W3C.XSD.formChoice attributeFormDefault {
             get {
                 XAttribute x = this.Attribute(attributeFormDefaultXName);
-                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, attributeFormDefaultDefaultValue))));
+                if ((x == null)) {
+                    return attributeFormDefaultDefaultValue;
+                }
+                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::W3C.XSD.formChoiceValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(attributeFormDefaultXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(attributeFormDefaultXName, value.ToString(), "attributeFormDefault", global::W3C.XSD.formChoiceValidator.TypeDefinition);
             }
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName elementFormDefaultXName = System.Xml.Linq.XName.Get("elementFormDefault", "");
+        protected internal static readonly System.Xml.Linq.XName elementFormDefaultXName = System.Xml.Linq.XName.Get("elementFormDefault", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string elementFormDefaultDefaultValue = "unqualified";
+        internal static W3C.XSD.formChoice elementFormDefaultDefaultValue = W3C.XSD.formChoice.unqualified;
         
         /// <summary>
         /// <para>
@@ -628,16 +643,19 @@ namespace W3C.XSD {
         public virtual W3C.XSD.formChoice elementFormDefault {
             get {
                 XAttribute x = this.Attribute(elementFormDefaultXName);
-                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, elementFormDefaultDefaultValue))));
+                if ((x == null)) {
+                    return elementFormDefaultDefaultValue;
+                }
+                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::W3C.XSD.formChoiceValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(elementFormDefaultXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(elementFormDefaultXName, value.ToString(), "elementFormDefault", global::W3C.XSD.formChoiceValidator.TypeDefinition);
             }
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -647,6 +665,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -656,7 +677,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -666,6 +687,9 @@ namespace W3C.XSD {
         public virtual object lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.lang.TypeDefinition);
             }
             set {
@@ -780,7 +804,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -793,6 +817,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -802,7 +829,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName restrictionXName = System.Xml.Linq.XName.Get("restriction", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName restrictionXName = System.Xml.Linq.XName.Get("restriction", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -818,6 +845,9 @@ namespace W3C.XSD {
         public virtual complexRestrictionType restriction {
             get {
                 XElement x = this.GetElement(restrictionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((complexRestrictionType)(x));
             }
             set {
@@ -827,7 +857,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName extensionXName = System.Xml.Linq.XName.Get("extension", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName extensionXName = System.Xml.Linq.XName.Get("extension", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -843,6 +873,9 @@ namespace W3C.XSD {
         public virtual extensionType extension {
             get {
                 XElement x = this.GetElement(extensionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((extensionType)(x));
             }
             set {
@@ -852,7 +885,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName mixedXName = System.Xml.Linq.XName.Get("mixed", "");
+        protected internal static readonly System.Xml.Linq.XName mixedXName = System.Xml.Linq.XName.Get("mixed", "");
         
         /// <summary>
         /// <para>
@@ -878,7 +911,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -888,6 +921,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -994,7 +1030,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -1007,6 +1043,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -1016,7 +1055,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName restrictionXName = System.Xml.Linq.XName.Get("restriction", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName restrictionXName = System.Xml.Linq.XName.Get("restriction", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -1032,6 +1071,9 @@ namespace W3C.XSD {
         public virtual simpleRestrictionType restriction {
             get {
                 XElement x = this.GetElement(restrictionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((simpleRestrictionType)(x));
             }
             set {
@@ -1041,7 +1083,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName extensionXName = System.Xml.Linq.XName.Get("extension", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName extensionXName = System.Xml.Linq.XName.Get("extension", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -1057,6 +1099,9 @@ namespace W3C.XSD {
         public virtual simpleExtensionType extension {
             get {
                 XElement x = this.GetElement(extensionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((simpleExtensionType)(x));
             }
             set {
@@ -1066,7 +1111,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -1076,6 +1121,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -1182,7 +1230,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -1195,6 +1243,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -1204,10 +1255,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minOccursXName = System.Xml.Linq.XName.Get("minOccurs", "");
+        protected internal static readonly System.Xml.Linq.XName minOccursXName = System.Xml.Linq.XName.Get("minOccurs", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static decimal minOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
+        internal static decimal minOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
         
         /// <summary>
         /// <para>
@@ -1217,7 +1268,10 @@ namespace W3C.XSD {
         public virtual decimal minOccurs {
             get {
                 XAttribute x = this.Attribute(minOccursXName);
-                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype, minOccursDefaultValue);
+                if ((x == null)) {
+                    return minOccursDefaultValue;
+                }
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype);
             }
             set {
                 this.SetAttribute(minOccursXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype);
@@ -1226,10 +1280,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxOccursXName = System.Xml.Linq.XName.Get("maxOccurs", "");
+        protected internal static readonly System.Xml.Linq.XName maxOccursXName = System.Xml.Linq.XName.Get("maxOccurs", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static decimal maxOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
+        internal static decimal maxOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
         
         /// <summary>
         /// <para>
@@ -1239,6 +1293,9 @@ namespace W3C.XSD {
         public virtual object maxOccurs {
             get {
                 XAttribute x = this.Attribute(maxOccursXName);
+                if ((x == null)) {
+                    return maxOccursDefaultValue;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.allNNI.TypeDefinition);
             }
             set {
@@ -1248,10 +1305,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @namespaceXName = System.Xml.Linq.XName.Get("namespace", "");
+        protected internal static readonly System.Xml.Linq.XName @namespaceXName = System.Xml.Linq.XName.Get("namespace", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string @namespaceDefaultValue = "##any";
+        internal static string @namespaceDefaultValue = "##any";
         
         /// <summary>
         /// <para>
@@ -1261,6 +1318,9 @@ namespace W3C.XSD {
         public virtual object @namespace {
             get {
                 XAttribute x = this.Attribute(@namespaceXName);
+                if ((x == null)) {
+                    return @namespaceDefaultValue;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.namespaceList.TypeDefinition);
             }
             set {
@@ -1277,12 +1337,24 @@ namespace W3C.XSD {
             strict,
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName processContentsXName = System.Xml.Linq.XName.Get("processContents", "");
+        public sealed class ProcessContentsEnumValidator {
+            
+            private ProcessContentsEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "skip",
+                            "lax",
+                            "strict"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string processContentsDefaultValue = "strict";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName processContentsXName = System.Xml.Linq.XName.Get("processContents", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static W3C.XSD.any.ProcessContentsEnum processContentsDefaultValue = W3C.XSD.any.ProcessContentsEnum.strict;
         
         /// <summary>
         /// <para>
@@ -1292,16 +1364,19 @@ namespace W3C.XSD {
         public virtual W3C.XSD.any.ProcessContentsEnum processContents {
             get {
                 XAttribute x = this.Attribute(processContentsXName);
-                return ((W3C.XSD.any.ProcessContentsEnum)(Enum.Parse(typeof(W3C.XSD.any.ProcessContentsEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, processContentsDefaultValue))));
+                if ((x == null)) {
+                    return processContentsDefaultValue;
+                }
+                return ((W3C.XSD.any.ProcessContentsEnum)(Enum.Parse(typeof(W3C.XSD.any.ProcessContentsEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ProcessContentsEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(processContentsXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(processContentsXName, value.ToString(), "processContents", ProcessContentsEnumValidator.TypeDefinition);
             }
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -1311,6 +1386,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -1415,7 +1493,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -1428,6 +1506,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -1437,7 +1518,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName schemaLocationXName = System.Xml.Linq.XName.Get("schemaLocation", "");
+        protected internal static readonly System.Xml.Linq.XName schemaLocationXName = System.Xml.Linq.XName.Get("schemaLocation", "");
         
         /// <summary>
         /// <para>
@@ -1456,7 +1537,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -1466,6 +1547,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -1570,7 +1654,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<annotation> annotationField;
@@ -1607,7 +1691,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<simpleType> simpleTypeField;
@@ -1644,7 +1728,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName complexTypeXName = System.Xml.Linq.XName.Get("complexType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName complexTypeXName = System.Xml.Linq.XName.Get("complexType", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<complexType> complexTypeField;
@@ -1681,7 +1765,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<group> groupField;
@@ -1718,7 +1802,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeGroup> attributeGroupField;
@@ -1755,7 +1839,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName schemaLocationXName = System.Xml.Linq.XName.Get("schemaLocation", "");
+        protected internal static readonly System.Xml.Linq.XName schemaLocationXName = System.Xml.Linq.XName.Get("schemaLocation", "");
         
         /// <summary>
         /// <para>
@@ -1774,7 +1858,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -1784,6 +1868,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -1892,7 +1979,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -1905,6 +1992,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -1914,7 +2004,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @namespaceXName = System.Xml.Linq.XName.Get("namespace", "");
+        protected internal static readonly System.Xml.Linq.XName @namespaceXName = System.Xml.Linq.XName.Get("namespace", "");
         
         /// <summary>
         /// <para>
@@ -1924,6 +2014,9 @@ namespace W3C.XSD {
         public virtual System.Uri @namespace {
             get {
                 XAttribute x = this.Attribute(@namespaceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
@@ -1933,7 +2026,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName schemaLocationXName = System.Xml.Linq.XName.Get("schemaLocation", "");
+        protected internal static readonly System.Xml.Linq.XName schemaLocationXName = System.Xml.Linq.XName.Get("schemaLocation", "");
         
         /// <summary>
         /// <para>
@@ -1943,6 +2036,9 @@ namespace W3C.XSD {
         public virtual System.Uri schemaLocation {
             get {
                 XAttribute x = this.Attribute(schemaLocationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
@@ -1952,7 +2048,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -1962,6 +2058,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -2066,7 +2165,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -2079,6 +2178,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -2088,7 +2190,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName xpathXName = System.Xml.Linq.XName.Get("xpath", "");
+        protected internal static readonly System.Xml.Linq.XName xpathXName = System.Xml.Linq.XName.Get("xpath", "");
         
         /// <summary>
         /// <para>
@@ -2107,7 +2209,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -2117,6 +2219,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -2221,7 +2326,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -2234,6 +2339,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -2243,7 +2351,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName xpathXName = System.Xml.Linq.XName.Get("xpath", "");
+        protected internal static readonly System.Xml.Linq.XName xpathXName = System.Xml.Linq.XName.Get("xpath", "");
         
         /// <summary>
         /// <para>
@@ -2262,7 +2370,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -2272,6 +2380,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -2376,7 +2487,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -2389,6 +2500,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -2398,7 +2512,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName selectorXName = System.Xml.Linq.XName.Get("selector", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName selectorXName = System.Xml.Linq.XName.Get("selector", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -2420,7 +2534,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fieldXName = System.Xml.Linq.XName.Get("field", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName fieldXName = System.Xml.Linq.XName.Get("field", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<field> fieldField;
@@ -2457,7 +2571,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName referXName = System.Xml.Linq.XName.Get("refer", "");
+        protected internal static readonly System.Xml.Linq.XName referXName = System.Xml.Linq.XName.Get("refer", "");
         
         /// <summary>
         /// <para>
@@ -2476,7 +2590,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -2495,7 +2609,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -2505,6 +2619,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -2611,7 +2728,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -2624,6 +2741,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -2633,7 +2753,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -2652,7 +2772,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @publicXName = System.Xml.Linq.XName.Get("public", "");
+        protected internal static readonly System.Xml.Linq.XName @publicXName = System.Xml.Linq.XName.Get("public", "");
         
         /// <summary>
         /// <para>
@@ -2662,6 +2782,9 @@ namespace W3C.XSD {
         public virtual string @public {
             get {
                 XAttribute x = this.Attribute(@publicXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
             }
             set {
@@ -2671,7 +2794,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName systemXName = System.Xml.Linq.XName.Get("system", "");
+        protected internal static readonly System.Xml.Linq.XName systemXName = System.Xml.Linq.XName.Get("system", "");
         
         /// <summary>
         /// <para>
@@ -2681,6 +2804,9 @@ namespace W3C.XSD {
         public virtual System.Uri system {
             get {
                 XAttribute x = this.Attribute(systemXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
@@ -2690,7 +2816,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -2700,6 +2826,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -2815,7 +2944,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sourceXName = System.Xml.Linq.XName.Get("source", "");
+        protected internal static readonly System.Xml.Linq.XName sourceXName = System.Xml.Linq.XName.Get("source", "");
         
         /// <summary>
         /// <para>
@@ -2825,6 +2954,9 @@ namespace W3C.XSD {
         public virtual System.Uri source {
             get {
                 XAttribute x = this.Attribute(sourceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
@@ -2931,7 +3063,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sourceXName = System.Xml.Linq.XName.Get("source", "");
+        protected internal static readonly System.Xml.Linq.XName sourceXName = System.Xml.Linq.XName.Get("source", "");
         
         /// <summary>
         /// <para>
@@ -2941,6 +3073,9 @@ namespace W3C.XSD {
         public virtual System.Uri source {
             get {
                 XAttribute x = this.Attribute(sourceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
@@ -2950,7 +3085,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -2960,6 +3095,9 @@ namespace W3C.XSD {
         public virtual object lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.lang.TypeDefinition);
             }
             set {
@@ -3055,7 +3193,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName appinfoXName = System.Xml.Linq.XName.Get("appinfo", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName appinfoXName = System.Xml.Linq.XName.Get("appinfo", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<appinfo> appinfoField;
@@ -3092,7 +3230,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName documentationXName = System.Xml.Linq.XName.Get("documentation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName documentationXName = System.Xml.Linq.XName.Get("documentation", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<documentation> documentationField;
@@ -3129,7 +3267,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -3139,6 +3277,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -3256,7 +3397,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -3269,6 +3410,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -3278,7 +3422,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -3291,6 +3435,9 @@ namespace W3C.XSD {
         public virtual localSimpleType simpleType {
             get {
                 XElement x = this.GetElement(simpleTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((localSimpleType)(x));
             }
             set {
@@ -3300,7 +3447,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minExclusiveXName = System.Xml.Linq.XName.Get("minExclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName minExclusiveXName = System.Xml.Linq.XName.Get("minExclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<minExclusive> minExclusiveField;
@@ -3340,7 +3487,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minInclusiveXName = System.Xml.Linq.XName.Get("minInclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName minInclusiveXName = System.Xml.Linq.XName.Get("minInclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<minInclusive> minInclusiveField;
@@ -3380,7 +3527,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxExclusiveXName = System.Xml.Linq.XName.Get("maxExclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName maxExclusiveXName = System.Xml.Linq.XName.Get("maxExclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<maxExclusive> maxExclusiveField;
@@ -3420,7 +3567,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxInclusiveXName = System.Xml.Linq.XName.Get("maxInclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName maxInclusiveXName = System.Xml.Linq.XName.Get("maxInclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<maxInclusive> maxInclusiveField;
@@ -3460,7 +3607,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName totalDigitsXName = System.Xml.Linq.XName.Get("totalDigits", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName totalDigitsXName = System.Xml.Linq.XName.Get("totalDigits", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<totalDigits> totalDigitsField;
@@ -3500,7 +3647,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fractionDigitsXName = System.Xml.Linq.XName.Get("fractionDigits", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName fractionDigitsXName = System.Xml.Linq.XName.Get("fractionDigits", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<fractionDigits> fractionDigitsField;
@@ -3540,7 +3687,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<length> lengthField;
@@ -3580,7 +3727,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minLengthXName = System.Xml.Linq.XName.Get("minLength", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName minLengthXName = System.Xml.Linq.XName.Get("minLength", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<minLength> minLengthField;
@@ -3620,7 +3767,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxLengthXName = System.Xml.Linq.XName.Get("maxLength", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName maxLengthXName = System.Xml.Linq.XName.Get("maxLength", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<maxLength> maxLengthField;
@@ -3660,7 +3807,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName enumerationXName = System.Xml.Linq.XName.Get("enumeration", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName enumerationXName = System.Xml.Linq.XName.Get("enumeration", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<enumeration> enumerationField;
@@ -3700,7 +3847,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName whiteSpaceXName = System.Xml.Linq.XName.Get("whiteSpace", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName whiteSpaceXName = System.Xml.Linq.XName.Get("whiteSpace", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<whiteSpace> whiteSpaceField;
@@ -3740,7 +3887,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName patternXName = System.Xml.Linq.XName.Get("pattern", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName patternXName = System.Xml.Linq.XName.Get("pattern", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<pattern> patternField;
@@ -3780,7 +3927,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "");
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "");
         
         /// <summary>
         /// <para>
@@ -3790,6 +3937,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -3799,7 +3949,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -3809,6 +3959,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -3938,7 +4091,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -3951,6 +4104,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -3960,7 +4116,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -3973,6 +4129,9 @@ namespace W3C.XSD {
         public virtual localSimpleType simpleType {
             get {
                 XElement x = this.GetElement(simpleTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((localSimpleType)(x));
             }
             set {
@@ -3982,7 +4141,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName itemTypeXName = System.Xml.Linq.XName.Get("itemType", "");
+        protected internal static readonly System.Xml.Linq.XName itemTypeXName = System.Xml.Linq.XName.Get("itemType", "");
         
         /// <summary>
         /// <para>
@@ -3992,6 +4151,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName itemType {
             get {
                 XAttribute x = this.Attribute(itemTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -4001,7 +4163,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -4011,6 +4173,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -4128,7 +4293,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -4141,6 +4306,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -4150,7 +4318,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<localSimpleType> simpleTypeField;
@@ -4187,7 +4355,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName memberTypesXName = System.Xml.Linq.XName.Get("memberTypes", "");
+        protected internal static readonly System.Xml.Linq.XName memberTypesXName = System.Xml.Linq.XName.Get("memberTypes", "");
         
         /// <summary>
         /// <para>
@@ -4197,6 +4365,9 @@ namespace W3C.XSD {
         public virtual IList<System.Xml.XmlQualifiedName> memberTypes {
             get {
                 XAttribute x = this.Attribute(memberTypesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -4206,7 +4377,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -4216,6 +4387,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -4555,7 +4729,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName annotationXName = System.Xml.Linq.XName.Get("annotation", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -4568,6 +4742,9 @@ namespace W3C.XSD {
         public virtual annotation annotation {
             get {
                 XElement x = this.GetElement(annotationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((annotation)(x));
             }
             set {
@@ -4577,7 +4754,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -4587,6 +4764,9 @@ namespace W3C.XSD {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -4718,7 +4898,7 @@ namespace W3C.XSD {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "#all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
+                                    "#all:_all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
                     new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), null))});
     }
     
@@ -4772,7 +4952,7 @@ namespace W3C.XSD {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "#all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
+                                    "#all:_all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
                     new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), null))});
     }
     
@@ -4817,7 +4997,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -4830,6 +5010,9 @@ namespace W3C.XSD {
         public virtual localSimpleType simpleType {
             get {
                 XElement x = this.GetElement(simpleTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((localSimpleType)(x));
             }
             set {
@@ -4839,7 +5022,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -4849,6 +5032,9 @@ namespace W3C.XSD {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype);
             }
             set {
@@ -4858,7 +5044,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
+        protected internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
         
         /// <summary>
         /// <para>
@@ -4868,6 +5054,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName @ref {
             get {
                 XAttribute x = this.Attribute(@refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -4877,7 +5066,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
         
         /// <summary>
         /// <para>
@@ -4887,6 +5076,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -4903,12 +5095,24 @@ namespace W3C.XSD {
             required,
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName useXName = System.Xml.Linq.XName.Get("use", "");
+        public sealed class UseEnumValidator {
+            
+            private UseEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "prohibited",
+                            "optional",
+                            "required"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string useDefaultValue = "optional";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName useXName = System.Xml.Linq.XName.Get("use", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static W3C.XSD.attributeType.UseEnum useDefaultValue = W3C.XSD.attributeType.UseEnum.optional;
         
         /// <summary>
         /// <para>
@@ -4918,16 +5122,19 @@ namespace W3C.XSD {
         public virtual W3C.XSD.attributeType.UseEnum use {
             get {
                 XAttribute x = this.Attribute(useXName);
-                return ((W3C.XSD.attributeType.UseEnum)(Enum.Parse(typeof(W3C.XSD.attributeType.UseEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, useDefaultValue))));
+                if ((x == null)) {
+                    return useDefaultValue;
+                }
+                return ((W3C.XSD.attributeType.UseEnum)(Enum.Parse(typeof(W3C.XSD.attributeType.UseEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, UseEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(useXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(useXName, value.ToString(), "use", UseEnumValidator.TypeDefinition);
             }
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @defaultXName = System.Xml.Linq.XName.Get("default", "");
+        protected internal static readonly System.Xml.Linq.XName @defaultXName = System.Xml.Linq.XName.Get("default", "");
         
         /// <summary>
         /// <para>
@@ -4937,6 +5144,9 @@ namespace W3C.XSD {
         public virtual string @default {
             get {
                 XAttribute x = this.Attribute(@defaultXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -4946,7 +5156,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @fixedXName = System.Xml.Linq.XName.Get("fixed", "");
+        protected internal static readonly System.Xml.Linq.XName @fixedXName = System.Xml.Linq.XName.Get("fixed", "");
         
         /// <summary>
         /// <para>
@@ -4956,6 +5166,9 @@ namespace W3C.XSD {
         public virtual string @fixed {
             get {
                 XAttribute x = this.Attribute(@fixedXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -4965,7 +5178,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName formXName = System.Xml.Linq.XName.Get("form", "");
+        protected internal static readonly System.Xml.Linq.XName formXName = System.Xml.Linq.XName.Get("form", "");
         
         /// <summary>
         /// <para>
@@ -4978,10 +5191,15 @@ namespace W3C.XSD {
                 if ((x == null)) {
                     return null;
                 }
-                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::W3C.XSD.formChoiceValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(formXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                if (value == null) {
+                    this.SetAttribute(formXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(formXName, value.ToString(), "form", global::W3C.XSD.formChoiceValidator.TypeDefinition);
+                }
             }
         }
         
@@ -5090,7 +5308,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleContentXName = System.Xml.Linq.XName.Get("simpleContent", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleContentXName = System.Xml.Linq.XName.Get("simpleContent", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5106,6 +5324,9 @@ namespace W3C.XSD {
         public virtual simpleContent simpleContent {
             get {
                 XElement x = this.GetElement(simpleContentXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((simpleContent)(x));
             }
             set {
@@ -5115,7 +5336,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName complexContentXName = System.Xml.Linq.XName.Get("complexContent", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName complexContentXName = System.Xml.Linq.XName.Get("complexContent", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5131,6 +5352,9 @@ namespace W3C.XSD {
         public virtual complexContent complexContent {
             get {
                 XElement x = this.GetElement(complexContentXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((complexContent)(x));
             }
             set {
@@ -5140,7 +5364,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5156,6 +5380,9 @@ namespace W3C.XSD {
         public virtual groupRef group {
             get {
                 XElement x = this.GetElement(groupXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((groupRef)(x));
             }
             set {
@@ -5165,7 +5392,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5181,6 +5408,9 @@ namespace W3C.XSD {
         public virtual all all {
             get {
                 XElement x = this.GetElement(allXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((all)(x));
             }
             set {
@@ -5190,7 +5420,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5206,6 +5436,9 @@ namespace W3C.XSD {
         public virtual choice choice {
             get {
                 XElement x = this.GetElement(choiceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((choice)(x));
             }
             set {
@@ -5215,7 +5448,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5231,6 +5464,9 @@ namespace W3C.XSD {
         public virtual sequence sequence {
             get {
                 XElement x = this.GetElement(sequenceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((sequence)(x));
             }
             set {
@@ -5240,7 +5476,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeType> attributeField;
@@ -5280,7 +5516,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeGroupRef> attributeGroupField;
@@ -5320,7 +5556,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5336,6 +5572,9 @@ namespace W3C.XSD {
         public virtual anyAttribute anyAttribute {
             get {
                 XElement x = this.GetElement(anyAttributeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((anyAttribute)(x));
             }
             set {
@@ -5345,7 +5584,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -5359,6 +5598,9 @@ namespace W3C.XSD {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype);
             }
             set {
@@ -5368,10 +5610,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName mixedXName = System.Xml.Linq.XName.Get("mixed", "");
+        protected internal static readonly System.Xml.Linq.XName mixedXName = System.Xml.Linq.XName.Get("mixed", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool mixedDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool mixedDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -5386,7 +5628,10 @@ namespace W3C.XSD {
         public virtual bool mixed {
             get {
                 XAttribute x = this.Attribute(mixedXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, mixedDefaultValue);
+                if ((x == null)) {
+                    return mixedDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(mixedXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
@@ -5395,10 +5640,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @abstractXName = System.Xml.Linq.XName.Get("abstract", "");
+        protected internal static readonly System.Xml.Linq.XName @abstractXName = System.Xml.Linq.XName.Get("abstract", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool @abstractDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool @abstractDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -5408,7 +5653,10 @@ namespace W3C.XSD {
         public virtual bool @abstract {
             get {
                 XAttribute x = this.Attribute(@abstractXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, @abstractDefaultValue);
+                if ((x == null)) {
+                    return @abstractDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(@abstractXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
@@ -5417,7 +5665,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName finalXName = System.Xml.Linq.XName.Get("final", "");
+        protected internal static readonly System.Xml.Linq.XName finalXName = System.Xml.Linq.XName.Get("final", "");
         
         /// <summary>
         /// <para>
@@ -5427,6 +5675,9 @@ namespace W3C.XSD {
         public virtual object final {
             get {
                 XAttribute x = this.Attribute(finalXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.derivationSet.TypeDefinition);
             }
             set {
@@ -5436,7 +5687,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName blockXName = System.Xml.Linq.XName.Get("block", "");
+        protected internal static readonly System.Xml.Linq.XName blockXName = System.Xml.Linq.XName.Get("block", "");
         
         /// <summary>
         /// <para>
@@ -5446,6 +5697,9 @@ namespace W3C.XSD {
         public virtual object block {
             get {
                 XAttribute x = this.Attribute(blockXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.derivationSet.TypeDefinition);
             }
             set {
@@ -5605,7 +5859,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5621,6 +5875,9 @@ namespace W3C.XSD {
         public virtual groupRef group {
             get {
                 XElement x = this.GetElement(groupXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((groupRef)(x));
             }
             set {
@@ -5630,7 +5887,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5646,6 +5903,9 @@ namespace W3C.XSD {
         public virtual all all {
             get {
                 XElement x = this.GetElement(allXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((all)(x));
             }
             set {
@@ -5655,7 +5915,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5671,6 +5931,9 @@ namespace W3C.XSD {
         public virtual choice choice {
             get {
                 XElement x = this.GetElement(choiceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((choice)(x));
             }
             set {
@@ -5680,7 +5943,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5696,6 +5959,9 @@ namespace W3C.XSD {
         public virtual sequence sequence {
             get {
                 XElement x = this.GetElement(sequenceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((sequence)(x));
             }
             set {
@@ -5705,7 +5971,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -5721,6 +5987,9 @@ namespace W3C.XSD {
         public virtual localSimpleType simpleType {
             get {
                 XElement x = this.GetElement(simpleTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((localSimpleType)(x));
             }
             set {
@@ -5730,7 +5999,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minExclusiveXName = System.Xml.Linq.XName.Get("minExclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName minExclusiveXName = System.Xml.Linq.XName.Get("minExclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<minExclusive> minExclusiveField;
@@ -5770,7 +6039,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minInclusiveXName = System.Xml.Linq.XName.Get("minInclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName minInclusiveXName = System.Xml.Linq.XName.Get("minInclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<minInclusive> minInclusiveField;
@@ -5810,7 +6079,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxExclusiveXName = System.Xml.Linq.XName.Get("maxExclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName maxExclusiveXName = System.Xml.Linq.XName.Get("maxExclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<maxExclusive> maxExclusiveField;
@@ -5850,7 +6119,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxInclusiveXName = System.Xml.Linq.XName.Get("maxInclusive", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName maxInclusiveXName = System.Xml.Linq.XName.Get("maxInclusive", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<maxInclusive> maxInclusiveField;
@@ -5890,7 +6159,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName totalDigitsXName = System.Xml.Linq.XName.Get("totalDigits", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName totalDigitsXName = System.Xml.Linq.XName.Get("totalDigits", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<totalDigits> totalDigitsField;
@@ -5930,7 +6199,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fractionDigitsXName = System.Xml.Linq.XName.Get("fractionDigits", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName fractionDigitsXName = System.Xml.Linq.XName.Get("fractionDigits", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<fractionDigits> fractionDigitsField;
@@ -5970,7 +6239,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<length> lengthField;
@@ -6010,7 +6279,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minLengthXName = System.Xml.Linq.XName.Get("minLength", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName minLengthXName = System.Xml.Linq.XName.Get("minLength", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<minLength> minLengthField;
@@ -6050,7 +6319,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxLengthXName = System.Xml.Linq.XName.Get("maxLength", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName maxLengthXName = System.Xml.Linq.XName.Get("maxLength", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<maxLength> maxLengthField;
@@ -6090,7 +6359,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName enumerationXName = System.Xml.Linq.XName.Get("enumeration", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName enumerationXName = System.Xml.Linq.XName.Get("enumeration", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<enumeration> enumerationField;
@@ -6130,7 +6399,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName whiteSpaceXName = System.Xml.Linq.XName.Get("whiteSpace", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName whiteSpaceXName = System.Xml.Linq.XName.Get("whiteSpace", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<whiteSpace> whiteSpaceField;
@@ -6170,7 +6439,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName patternXName = System.Xml.Linq.XName.Get("pattern", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName patternXName = System.Xml.Linq.XName.Get("pattern", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<pattern> patternField;
@@ -6210,7 +6479,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeType> attributeField;
@@ -6250,7 +6519,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeGroupRef> attributeGroupField;
@@ -6290,7 +6559,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6303,6 +6572,9 @@ namespace W3C.XSD {
         public virtual anyAttribute anyAttribute {
             get {
                 XElement x = this.GetElement(anyAttributeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((anyAttribute)(x));
             }
             set {
@@ -6312,7 +6584,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "");
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "");
         
         /// <summary>
         /// <para>
@@ -6457,7 +6729,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6473,6 +6745,9 @@ namespace W3C.XSD {
         public virtual groupRef group {
             get {
                 XElement x = this.GetElement(groupXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((groupRef)(x));
             }
             set {
@@ -6482,7 +6757,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6498,6 +6773,9 @@ namespace W3C.XSD {
         public virtual all all {
             get {
                 XElement x = this.GetElement(allXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((all)(x));
             }
             set {
@@ -6507,7 +6785,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6523,6 +6801,9 @@ namespace W3C.XSD {
         public virtual choice choice {
             get {
                 XElement x = this.GetElement(choiceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((choice)(x));
             }
             set {
@@ -6532,7 +6813,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6548,6 +6829,9 @@ namespace W3C.XSD {
         public virtual sequence sequence {
             get {
                 XElement x = this.GetElement(sequenceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((sequence)(x));
             }
             set {
@@ -6557,7 +6841,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeType> attributeField;
@@ -6597,7 +6881,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeGroupRef> attributeGroupField;
@@ -6637,7 +6921,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6650,6 +6934,9 @@ namespace W3C.XSD {
         public virtual anyAttribute anyAttribute {
             get {
                 XElement x = this.GetElement(anyAttributeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((anyAttribute)(x));
             }
             set {
@@ -6659,7 +6946,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "");
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "");
         
         /// <summary>
         /// <para>
@@ -6822,7 +7109,7 @@ namespace W3C.XSD {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "#all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
+                                    "#all:_all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
                     new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                                         "extension",
                                         "restriction",
@@ -6864,7 +7151,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName simpleTypeXName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6880,6 +7167,9 @@ namespace W3C.XSD {
         public virtual localSimpleType simpleType {
             get {
                 XElement x = this.GetElement(simpleTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((localSimpleType)(x));
             }
             set {
@@ -6889,7 +7179,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName complexTypeXName = System.Xml.Linq.XName.Get("complexType", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName complexTypeXName = System.Xml.Linq.XName.Get("complexType", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -6905,6 +7195,9 @@ namespace W3C.XSD {
         public virtual localComplexType complexType {
             get {
                 XElement x = this.GetElement(complexTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((localComplexType)(x));
             }
             set {
@@ -6914,7 +7207,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName uniqueXName = System.Xml.Linq.XName.Get("unique", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName uniqueXName = System.Xml.Linq.XName.Get("unique", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<unique> uniqueField;
@@ -6954,7 +7247,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName keyXName = System.Xml.Linq.XName.Get("key", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName keyXName = System.Xml.Linq.XName.Get("key", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<key> keyField;
@@ -6994,7 +7287,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName keyrefXName = System.Xml.Linq.XName.Get("keyref", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName keyrefXName = System.Xml.Linq.XName.Get("keyref", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<keyref> keyrefField;
@@ -7034,7 +7327,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -7044,6 +7337,9 @@ namespace W3C.XSD {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype);
             }
             set {
@@ -7053,7 +7349,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
+        protected internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
         
         /// <summary>
         /// <para>
@@ -7063,6 +7359,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName @ref {
             get {
                 XAttribute x = this.Attribute(@refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -7072,7 +7371,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
         
         /// <summary>
         /// <para>
@@ -7082,6 +7381,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -7091,7 +7393,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName substitutionGroupXName = System.Xml.Linq.XName.Get("substitutionGroup", "");
+        protected internal static readonly System.Xml.Linq.XName substitutionGroupXName = System.Xml.Linq.XName.Get("substitutionGroup", "");
         
         /// <summary>
         /// <para>
@@ -7101,6 +7403,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName substitutionGroup {
             get {
                 XAttribute x = this.Attribute(substitutionGroupXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -7110,10 +7415,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minOccursXName = System.Xml.Linq.XName.Get("minOccurs", "");
+        protected internal static readonly System.Xml.Linq.XName minOccursXName = System.Xml.Linq.XName.Get("minOccurs", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static decimal minOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
+        internal static decimal minOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
         
         /// <summary>
         /// <para>
@@ -7123,7 +7428,10 @@ namespace W3C.XSD {
         public virtual decimal minOccurs {
             get {
                 XAttribute x = this.Attribute(minOccursXName);
-                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype, minOccursDefaultValue);
+                if ((x == null)) {
+                    return minOccursDefaultValue;
+                }
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype);
             }
             set {
                 this.SetAttribute(minOccursXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype);
@@ -7132,10 +7440,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxOccursXName = System.Xml.Linq.XName.Get("maxOccurs", "");
+        protected internal static readonly System.Xml.Linq.XName maxOccursXName = System.Xml.Linq.XName.Get("maxOccurs", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static decimal maxOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
+        internal static decimal maxOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
         
         /// <summary>
         /// <para>
@@ -7145,6 +7453,9 @@ namespace W3C.XSD {
         public virtual object maxOccurs {
             get {
                 XAttribute x = this.Attribute(maxOccursXName);
+                if ((x == null)) {
+                    return maxOccursDefaultValue;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.allNNI.TypeDefinition);
             }
             set {
@@ -7154,7 +7465,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @defaultXName = System.Xml.Linq.XName.Get("default", "");
+        protected internal static readonly System.Xml.Linq.XName @defaultXName = System.Xml.Linq.XName.Get("default", "");
         
         /// <summary>
         /// <para>
@@ -7164,6 +7475,9 @@ namespace W3C.XSD {
         public virtual string @default {
             get {
                 XAttribute x = this.Attribute(@defaultXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -7173,7 +7487,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @fixedXName = System.Xml.Linq.XName.Get("fixed", "");
+        protected internal static readonly System.Xml.Linq.XName @fixedXName = System.Xml.Linq.XName.Get("fixed", "");
         
         /// <summary>
         /// <para>
@@ -7183,6 +7497,9 @@ namespace W3C.XSD {
         public virtual string @fixed {
             get {
                 XAttribute x = this.Attribute(@fixedXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -7192,10 +7509,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nillableXName = System.Xml.Linq.XName.Get("nillable", "");
+        protected internal static readonly System.Xml.Linq.XName nillableXName = System.Xml.Linq.XName.Get("nillable", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool nillableDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool nillableDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -7205,7 +7522,10 @@ namespace W3C.XSD {
         public virtual bool nillable {
             get {
                 XAttribute x = this.Attribute(nillableXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, nillableDefaultValue);
+                if ((x == null)) {
+                    return nillableDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(nillableXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
@@ -7214,10 +7534,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @abstractXName = System.Xml.Linq.XName.Get("abstract", "");
+        protected internal static readonly System.Xml.Linq.XName @abstractXName = System.Xml.Linq.XName.Get("abstract", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool @abstractDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool @abstractDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -7227,7 +7547,10 @@ namespace W3C.XSD {
         public virtual bool @abstract {
             get {
                 XAttribute x = this.Attribute(@abstractXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, @abstractDefaultValue);
+                if ((x == null)) {
+                    return @abstractDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(@abstractXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
@@ -7236,7 +7559,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName finalXName = System.Xml.Linq.XName.Get("final", "");
+        protected internal static readonly System.Xml.Linq.XName finalXName = System.Xml.Linq.XName.Get("final", "");
         
         /// <summary>
         /// <para>
@@ -7246,6 +7569,9 @@ namespace W3C.XSD {
         public virtual object final {
             get {
                 XAttribute x = this.Attribute(finalXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.derivationSet.TypeDefinition);
             }
             set {
@@ -7255,7 +7581,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName blockXName = System.Xml.Linq.XName.Get("block", "");
+        protected internal static readonly System.Xml.Linq.XName blockXName = System.Xml.Linq.XName.Get("block", "");
         
         /// <summary>
         /// <para>
@@ -7265,6 +7591,9 @@ namespace W3C.XSD {
         public virtual object block {
             get {
                 XAttribute x = this.Attribute(blockXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.blockSet.TypeDefinition);
             }
             set {
@@ -7274,7 +7603,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName formXName = System.Xml.Linq.XName.Get("form", "");
+        protected internal static readonly System.Xml.Linq.XName formXName = System.Xml.Linq.XName.Get("form", "");
         
         /// <summary>
         /// <para>
@@ -7287,10 +7616,15 @@ namespace W3C.XSD {
                 if ((x == null)) {
                     return null;
                 }
-                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((W3C.XSD.formChoice)(Enum.Parse(typeof(W3C.XSD.formChoice), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::W3C.XSD.formChoiceValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(formXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                if (value == null) {
+                    this.SetAttribute(formXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(formXName, value.ToString(), "form", global::W3C.XSD.formChoiceValidator.TypeDefinition);
+                }
             }
         }
         
@@ -7448,7 +7782,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName elementXName = System.Xml.Linq.XName.Get("element", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName elementXName = System.Xml.Linq.XName.Get("element", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<localElement> elementField;
@@ -7488,7 +7822,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName groupXName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<groupRef> groupField;
@@ -7528,7 +7862,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName allXName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<all> allField;
@@ -7568,7 +7902,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName choiceXName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<choice> choiceField;
@@ -7608,7 +7942,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName sequenceXName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<sequence> sequenceField;
@@ -7648,7 +7982,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName anyXName = System.Xml.Linq.XName.Get("any", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName anyXName = System.Xml.Linq.XName.Get("any", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<any> anyField;
@@ -7688,7 +8022,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -7698,6 +8032,9 @@ namespace W3C.XSD {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype);
             }
             set {
@@ -7707,7 +8044,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
+        protected internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
         
         /// <summary>
         /// <para>
@@ -7717,6 +8054,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName @ref {
             get {
                 XAttribute x = this.Attribute(@refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -7726,10 +8066,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName minOccursXName = System.Xml.Linq.XName.Get("minOccurs", "");
+        protected internal static readonly System.Xml.Linq.XName minOccursXName = System.Xml.Linq.XName.Get("minOccurs", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static decimal minOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
+        internal static decimal minOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
         
         /// <summary>
         /// <para>
@@ -7739,7 +8079,10 @@ namespace W3C.XSD {
         public virtual decimal minOccurs {
             get {
                 XAttribute x = this.Attribute(minOccursXName);
-                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype, minOccursDefaultValue);
+                if ((x == null)) {
+                    return minOccursDefaultValue;
+                }
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype);
             }
             set {
                 this.SetAttribute(minOccursXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NonNegativeInteger).Datatype);
@@ -7748,10 +8091,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName maxOccursXName = System.Xml.Linq.XName.Get("maxOccurs", "");
+        protected internal static readonly System.Xml.Linq.XName maxOccursXName = System.Xml.Linq.XName.Get("maxOccurs", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static decimal maxOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
+        internal static decimal maxOccursDefaultValue = System.Xml.XmlConvert.ToDecimal("1");
         
         /// <summary>
         /// <para>
@@ -7761,6 +8104,9 @@ namespace W3C.XSD {
         public virtual object maxOccurs {
             get {
                 XAttribute x = this.Attribute(maxOccursXName);
+                if ((x == null)) {
+                    return maxOccursDefaultValue;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.allNNI.TypeDefinition);
             }
             set {
@@ -8126,10 +8472,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @namespaceXName = System.Xml.Linq.XName.Get("namespace", "");
+        protected internal static readonly System.Xml.Linq.XName @namespaceXName = System.Xml.Linq.XName.Get("namespace", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string @namespaceDefaultValue = "##any";
+        internal static string @namespaceDefaultValue = "##any";
         
         /// <summary>
         /// <para>
@@ -8139,6 +8485,9 @@ namespace W3C.XSD {
         public virtual object @namespace {
             get {
                 XAttribute x = this.Attribute(@namespaceXName);
+                if ((x == null)) {
+                    return @namespaceDefaultValue;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.namespaceList.TypeDefinition);
             }
             set {
@@ -8155,12 +8504,24 @@ namespace W3C.XSD {
             strict,
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName processContentsXName = System.Xml.Linq.XName.Get("processContents", "");
+        public sealed class ProcessContentsEnumValidator {
+            
+            private ProcessContentsEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "skip",
+                            "lax",
+                            "strict"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string processContentsDefaultValue = "strict";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName processContentsXName = System.Xml.Linq.XName.Get("processContents", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static W3C.XSD.wildcard.ProcessContentsEnum processContentsDefaultValue = W3C.XSD.wildcard.ProcessContentsEnum.strict;
         
         /// <summary>
         /// <para>
@@ -8170,10 +8531,13 @@ namespace W3C.XSD {
         public virtual W3C.XSD.wildcard.ProcessContentsEnum processContents {
             get {
                 XAttribute x = this.Attribute(processContentsXName);
-                return ((W3C.XSD.wildcard.ProcessContentsEnum)(Enum.Parse(typeof(W3C.XSD.wildcard.ProcessContentsEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, processContentsDefaultValue))));
+                if ((x == null)) {
+                    return processContentsDefaultValue;
+                }
+                return ((W3C.XSD.wildcard.ProcessContentsEnum)(Enum.Parse(typeof(W3C.XSD.wildcard.ProcessContentsEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ProcessContentsEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(processContentsXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(processContentsXName, value.ToString(), "processContents", ProcessContentsEnumValidator.TypeDefinition);
             }
         }
         
@@ -8241,13 +8605,13 @@ namespace W3C.XSD {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "##any",
-                                    "##other"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
+                                    "##any:___any",
+                                    "##other:___other"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
                     new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri), null),
                                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                                    "##targetNamespace",
-                                                    "##local"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse))}))});
+                                                    "##targetNamespace:___targetNamespace",
+                                                    "##local:___local"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse))}))});
     }
     
     /// <summary>
@@ -8269,7 +8633,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeXName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeType> attributeField;
@@ -8309,7 +8673,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName attributeGroupXName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<attributeGroupRef> attributeGroupField;
@@ -8349,7 +8713,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName anyAttributeXName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -8362,6 +8726,9 @@ namespace W3C.XSD {
         public virtual anyAttribute anyAttribute {
             get {
                 XElement x = this.GetElement(anyAttributeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((anyAttribute)(x));
             }
             set {
@@ -8371,7 +8738,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -8381,6 +8748,9 @@ namespace W3C.XSD {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype);
             }
             set {
@@ -8390,7 +8760,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
+        protected internal static readonly System.Xml.Linq.XName @refXName = System.Xml.Linq.XName.Get("ref", "");
         
         /// <summary>
         /// <para>
@@ -8400,6 +8770,9 @@ namespace W3C.XSD {
         public virtual System.Xml.XmlQualifiedName @ref {
             get {
                 XAttribute x = this.Attribute(@refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Xml.XmlQualifiedName>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.QName).Datatype);
             }
             set {
@@ -8553,7 +8926,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName selectorXName = System.Xml.Linq.XName.Get("selector", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName selectorXName = System.Xml.Linq.XName.Get("selector", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -8575,7 +8948,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fieldXName = System.Xml.Linq.XName.Get("field", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName fieldXName = System.Xml.Linq.XName.Get("field", "http://www.w3.org/2001/XMLSchema");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<field> fieldField;
@@ -8612,7 +8985,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -9149,7 +9522,7 @@ namespace W3C.XSD {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "#all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
+                                    "#all:_all"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse)),
                     new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                                         "list",
                                         "union",
@@ -9175,7 +9548,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName restrictionXName = System.Xml.Linq.XName.Get("restriction", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName restrictionXName = System.Xml.Linq.XName.Get("restriction", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -9191,6 +9564,9 @@ namespace W3C.XSD {
         public virtual restriction restriction {
             get {
                 XElement x = this.GetElement(restrictionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((restriction)(x));
             }
             set {
@@ -9200,7 +9576,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName listXName = System.Xml.Linq.XName.Get("list", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName listXName = System.Xml.Linq.XName.Get("list", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -9216,6 +9592,9 @@ namespace W3C.XSD {
         public virtual list list {
             get {
                 XElement x = this.GetElement(listXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((list)(x));
             }
             set {
@@ -9225,7 +9604,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unionXName = System.Xml.Linq.XName.Get("union", "http://www.w3.org/2001/XMLSchema");
+        protected internal static readonly System.Xml.Linq.XName unionXName = System.Xml.Linq.XName.Get("union", "http://www.w3.org/2001/XMLSchema");
         
         /// <summary>
         /// <para>
@@ -9241,6 +9620,9 @@ namespace W3C.XSD {
         public virtual union union {
             get {
                 XElement x = this.GetElement(unionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((union)(x));
             }
             set {
@@ -9250,7 +9632,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName finalXName = System.Xml.Linq.XName.Get("final", "");
+        protected internal static readonly System.Xml.Linq.XName finalXName = System.Xml.Linq.XName.Get("final", "");
         
         /// <summary>
         /// <para>
@@ -9260,6 +9642,9 @@ namespace W3C.XSD {
         public virtual object final {
             get {
                 XAttribute x = this.Attribute(finalXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::W3C.XSD.simpleDerivationSet.TypeDefinition);
             }
             set {
@@ -9269,7 +9654,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -9284,6 +9669,9 @@ namespace W3C.XSD {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype);
             }
             set {
@@ -9437,7 +9825,7 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
+        protected internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
         
         /// <summary>
         /// <para>
@@ -9456,10 +9844,10 @@ namespace W3C.XSD {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @fixedXName = System.Xml.Linq.XName.Get("fixed", "");
+        protected internal static readonly System.Xml.Linq.XName @fixedXName = System.Xml.Linq.XName.Get("fixed", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool @fixedDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool @fixedDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -9469,7 +9857,10 @@ namespace W3C.XSD {
         public virtual bool @fixed {
             get {
                 XAttribute x = this.Attribute(@fixedXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, @fixedDefaultValue);
+                if ((x == null)) {
+                    return @fixedDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(@fixedXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
@@ -9688,6 +10079,37 @@ namespace W3C.XSD {
             }
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("anyAttribute", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -9793,6 +10215,296 @@ namespace W3C.XSD {
             SetInnerType(content);
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual simpleContent simpleContent {
+            get {
+                return this.ContentField.simpleContent;
+            }
+            set {
+                this.ContentField.simpleContent = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual complexContent complexContent {
+            get {
+                return this.ContentField.complexContent;
+            }
+            set {
+                this.ContentField.complexContent = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual groupRef group {
+            get {
+                return this.ContentField.group;
+            }
+            set {
+                this.ContentField.group = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual all all {
+            get {
+                return this.ContentField.all;
+            }
+            set {
+                this.ContentField.all = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual choice choice {
+            get {
+                return this.ContentField.choice;
+            }
+            set {
+                this.ContentField.choice = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual sequence sequence {
+            get {
+                return this.ContentField.sequence;
+            }
+            set {
+                this.ContentField.sequence = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual IList<attributeType> attribute {
+            get {
+                return this.ContentField.attribute;
+            }
+            set {
+                this.ContentField.attribute = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual IList<attributeGroupRef> attributeGroup {
+            get {
+                return this.ContentField.attributeGroup;
+            }
+            set {
+                this.ContentField.attributeGroup = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, (attribute | attributeGroup)*, anyAttribute?)))
+        /// </para>
+        /// </summary>
+        public virtual anyAttribute anyAttribute {
+            get {
+                return this.ContentField.anyAttribute;
+            }
+            set {
+                this.ContentField.anyAttribute = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// 
+        ///      Will be restricted to required or forbidden
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// 
+        ///      Not allowed if simpleContent child is chosen.
+        ///      May be overriden by setting on complexContent child.
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool mixed {
+            get {
+                return this.ContentField.mixed;
+            }
+            set {
+                this.ContentField.mixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool @abstract {
+            get {
+                return this.ContentField.@abstract;
+            }
+            set {
+                this.ContentField.@abstract = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object final {
+            get {
+                return this.ContentField.final;
+            }
+            set {
+                this.ContentField.final = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object block {
+            get {
+                return this.ContentField.block;
+            }
+            set {
+                this.ContentField.block = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("complexType", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -9896,6 +10608,319 @@ namespace W3C.XSD {
         
         public element(topLevelElement content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleType | complexType)?, (unique | key | keyref)*)
+        /// </para>
+        /// </summary>
+        public virtual localSimpleType simpleType {
+            get {
+                return this.ContentField.simpleType;
+            }
+            set {
+                this.ContentField.simpleType = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleType | complexType)?, (unique | key | keyref)*)
+        /// </para>
+        /// </summary>
+        public virtual localComplexType complexType {
+            get {
+                return this.ContentField.complexType;
+            }
+            set {
+                this.ContentField.complexType = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleType | complexType)?, (unique | key | keyref)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<unique> unique {
+            get {
+                return this.ContentField.unique;
+            }
+            set {
+                this.ContentField.unique = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleType | complexType)?, (unique | key | keyref)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<key> key {
+            get {
+                return this.ContentField.key;
+            }
+            set {
+                this.ContentField.key = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (simpleType | complexType)?, (unique | key | keyref)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<keyref> keyref {
+            get {
+                return this.ContentField.keyref;
+            }
+            set {
+                this.ContentField.keyref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName @ref {
+            get {
+                return this.ContentField.@ref;
+            }
+            set {
+                this.ContentField.@ref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName type {
+            get {
+                return this.ContentField.type;
+            }
+            set {
+                this.ContentField.type = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName substitutionGroup {
+            get {
+                return this.ContentField.substitutionGroup;
+            }
+            set {
+                this.ContentField.substitutionGroup = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual decimal minOccurs {
+            get {
+                return this.ContentField.minOccurs;
+            }
+            set {
+                this.ContentField.minOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object maxOccurs {
+            get {
+                return this.ContentField.maxOccurs;
+            }
+            set {
+                this.ContentField.maxOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string @default {
+            get {
+                return this.ContentField.@default;
+            }
+            set {
+                this.ContentField.@default = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string @fixed {
+            get {
+                return this.ContentField.@fixed;
+            }
+            set {
+                this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool nillable {
+            get {
+                return this.ContentField.nillable;
+            }
+            set {
+                this.ContentField.nillable = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool @abstract {
+            get {
+                return this.ContentField.@abstract;
+            }
+            set {
+                this.ContentField.@abstract = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object final {
+            get {
+                return this.ContentField.final;
+            }
+            set {
+                this.ContentField.final = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object block {
+            get {
+                return this.ContentField.block;
+            }
+            set {
+                this.ContentField.block = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual W3C.XSD.formChoice? form {
+            get {
+                return this.ContentField.form;
+            }
+            set {
+                this.ContentField.form = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("element", "http://www.w3.org/2001/XMLSchema");
@@ -10021,6 +11046,213 @@ namespace W3C.XSD {
             SetInnerType(content);
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<localElement> element {
+            get {
+                return this.ContentField.element;
+            }
+            set {
+                this.ContentField.element = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<groupRef> group {
+            get {
+                return this.ContentField.group;
+            }
+            set {
+                this.ContentField.group = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<all> all1 {
+            get {
+                return this.ContentField.all;
+            }
+            set {
+                this.ContentField.all = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<choice> choice {
+            get {
+                return this.ContentField.choice;
+            }
+            set {
+                this.ContentField.choice = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<sequence> sequence {
+            get {
+                return this.ContentField.sequence;
+            }
+            set {
+                this.ContentField.sequence = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<any> any {
+            get {
+                return this.ContentField.any;
+            }
+            set {
+                this.ContentField.any = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName @ref {
+            get {
+                return this.ContentField.@ref;
+            }
+            set {
+                this.ContentField.@ref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual decimal minOccurs {
+            get {
+                return this.ContentField.minOccurs;
+            }
+            set {
+                this.ContentField.minOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object maxOccurs {
+            get {
+                return this.ContentField.maxOccurs;
+            }
+            set {
+                this.ContentField.maxOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("all", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -10142,6 +11374,213 @@ namespace W3C.XSD {
         /// </summary>
         public choice(explicitGroup content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<localElement> element {
+            get {
+                return this.ContentField.element;
+            }
+            set {
+                this.ContentField.element = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<groupRef> group {
+            get {
+                return this.ContentField.group;
+            }
+            set {
+                this.ContentField.group = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<all> all {
+            get {
+                return this.ContentField.all;
+            }
+            set {
+                this.ContentField.all = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<choice> choice1 {
+            get {
+                return this.ContentField.choice;
+            }
+            set {
+                this.ContentField.choice = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<sequence> sequence {
+            get {
+                return this.ContentField.sequence;
+            }
+            set {
+                this.ContentField.sequence = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<any> any {
+            get {
+                return this.ContentField.any;
+            }
+            set {
+                this.ContentField.any = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName @ref {
+            get {
+                return this.ContentField.@ref;
+            }
+            set {
+                this.ContentField.@ref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual decimal minOccurs {
+            get {
+                return this.ContentField.minOccurs;
+            }
+            set {
+                this.ContentField.minOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object maxOccurs {
+            get {
+                return this.ContentField.maxOccurs;
+            }
+            set {
+                this.ContentField.maxOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("choice", "http://www.w3.org/2001/XMLSchema");
@@ -10267,6 +11706,213 @@ namespace W3C.XSD {
             SetInnerType(content);
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<localElement> element {
+            get {
+                return this.ContentField.element;
+            }
+            set {
+                this.ContentField.element = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<groupRef> group {
+            get {
+                return this.ContentField.group;
+            }
+            set {
+                this.ContentField.group = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<all> all {
+            get {
+                return this.ContentField.all;
+            }
+            set {
+                this.ContentField.all = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<choice> choice {
+            get {
+                return this.ContentField.choice;
+            }
+            set {
+                this.ContentField.choice = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<sequence> sequence1 {
+            get {
+                return this.ContentField.sequence;
+            }
+            set {
+                this.ContentField.sequence = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<any> any {
+            get {
+                return this.ContentField.any;
+            }
+            set {
+                this.ContentField.any = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName @ref {
+            get {
+                return this.ContentField.@ref;
+            }
+            set {
+                this.ContentField.@ref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual decimal minOccurs {
+            get {
+                return this.ContentField.minOccurs;
+            }
+            set {
+                this.ContentField.minOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object maxOccurs {
+            get {
+                return this.ContentField.maxOccurs;
+            }
+            set {
+                this.ContentField.maxOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("sequence", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -10370,6 +12016,213 @@ namespace W3C.XSD {
         
         public group(namedGroup content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<localElement> element {
+            get {
+                return this.ContentField.element;
+            }
+            set {
+                this.ContentField.element = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<groupRef> group1 {
+            get {
+                return this.ContentField.group;
+            }
+            set {
+                this.ContentField.group = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<all> all {
+            get {
+                return this.ContentField.all;
+            }
+            set {
+                this.ContentField.all = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<choice> choice {
+            get {
+                return this.ContentField.choice;
+            }
+            set {
+                this.ContentField.choice = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<sequence> sequence {
+            get {
+                return this.ContentField.sequence;
+            }
+            set {
+                this.ContentField.sequence = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (element | group | all | choice | sequence | any)*)
+        /// </para>
+        /// </summary>
+        public virtual IList<any> any {
+            get {
+                return this.ContentField.any;
+            }
+            set {
+                this.ContentField.any = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName @ref {
+            get {
+                return this.ContentField.@ref;
+            }
+            set {
+                this.ContentField.@ref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual decimal minOccurs {
+            get {
+                return this.ContentField.minOccurs;
+            }
+            set {
+                this.ContentField.minOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object maxOccurs {
+            get {
+                return this.ContentField.maxOccurs;
+            }
+            set {
+                this.ContentField.maxOccurs = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("group", "http://www.w3.org/2001/XMLSchema");
@@ -10477,6 +12330,152 @@ namespace W3C.XSD {
             SetInnerType(content);
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, simpleType?)
+        /// </para>
+        /// </summary>
+        public virtual localSimpleType simpleType {
+            get {
+                return this.ContentField.simpleType;
+            }
+            set {
+                this.ContentField.simpleType = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName @ref {
+            get {
+                return this.ContentField.@ref;
+            }
+            set {
+                this.ContentField.@ref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName type {
+            get {
+                return this.ContentField.type;
+            }
+            set {
+                this.ContentField.type = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual W3C.XSD.attributeType.UseEnum use {
+            get {
+                return this.ContentField.use;
+            }
+            set {
+                this.ContentField.use = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string @default {
+            get {
+                return this.ContentField.@default;
+            }
+            set {
+                this.ContentField.@default = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string @fixed {
+            get {
+                return this.ContentField.@fixed;
+            }
+            set {
+                this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual W3C.XSD.formChoice? form {
+            get {
+                return this.ContentField.form;
+            }
+            set {
+                this.ContentField.form = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("attribute", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -10580,6 +12579,122 @@ namespace W3C.XSD {
         
         public attributeGroup(namedAttributeGroup content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (attribute | attributeGroup)*, anyAttribute?)
+        /// </para>
+        /// </summary>
+        public virtual IList<attributeType> attribute {
+            get {
+                return this.ContentField.attribute;
+            }
+            set {
+                this.ContentField.attribute = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (attribute | attributeGroup)*, anyAttribute?)
+        /// </para>
+        /// </summary>
+        public virtual IList<attributeGroupRef> attributeGroup1 {
+            get {
+                return this.ContentField.attributeGroup;
+            }
+            set {
+                this.ContentField.attributeGroup = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (attribute | attributeGroup)*, anyAttribute?)
+        /// </para>
+        /// </summary>
+        public virtual anyAttribute anyAttribute {
+            get {
+                return this.ContentField.anyAttribute;
+            }
+            set {
+                this.ContentField.anyAttribute = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Xml.XmlQualifiedName @ref {
+            get {
+                return this.ContentField.@ref;
+            }
+            set {
+                this.ContentField.@ref = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("attributeGroup", "http://www.w3.org/2001/XMLSchema");
@@ -10732,6 +12847,37 @@ namespace W3C.XSD {
             }
             set {
                 this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
             }
         }
         
@@ -10888,6 +13034,37 @@ namespace W3C.XSD {
             }
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("key", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -10991,6 +13168,130 @@ namespace W3C.XSD {
         
         public simpleType(topLevelSimpleType content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (restriction | list | union))
+        /// </para>
+        /// </summary>
+        public virtual restriction restriction {
+            get {
+                return this.ContentField.restriction;
+            }
+            set {
+                this.ContentField.restriction = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (restriction | list | union))
+        /// </para>
+        /// </summary>
+        public virtual list list {
+            get {
+                return this.ContentField.list;
+            }
+            set {
+                this.ContentField.list = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?, (restriction | list | union))
+        /// </para>
+        /// </summary>
+        public virtual union union {
+            get {
+                return this.ContentField.union;
+            }
+            set {
+                this.ContentField.union = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual object final {
+            get {
+                return this.ContentField.final;
+            }
+            set {
+                this.ContentField.final = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// 
+        ///              Can be restricted to required or forbidden
+        ///            
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string name {
+            get {
+                return this.ContentField.name;
+            }
+            set {
+                this.ContentField.name = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("simpleType", "http://www.w3.org/2001/XMLSchema");
@@ -11123,6 +13424,37 @@ namespace W3C.XSD {
             }
             set {
                 this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
             }
         }
         
@@ -11259,6 +13591,37 @@ namespace W3C.XSD {
             }
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("minInclusive", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -11389,6 +13752,37 @@ namespace W3C.XSD {
             }
             set {
                 this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
             }
         }
         
@@ -11525,6 +13919,37 @@ namespace W3C.XSD {
             }
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("maxInclusive", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -11628,6 +14053,65 @@ namespace W3C.XSD {
         
         public fractionDigits(numFacet content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string value {
+            get {
+                return this.ContentField.value;
+            }
+            set {
+                this.ContentField.value = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool @fixed {
+            get {
+                return this.ContentField.@fixed;
+            }
+            set {
+                this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("fractionDigits", "http://www.w3.org/2001/XMLSchema");
@@ -11735,6 +14219,65 @@ namespace W3C.XSD {
             SetInnerType(content);
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string value {
+            get {
+                return this.ContentField.value;
+            }
+            set {
+                this.ContentField.value = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool @fixed {
+            get {
+                return this.ContentField.@fixed;
+            }
+            set {
+                this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("length", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -11838,6 +14381,65 @@ namespace W3C.XSD {
         
         public minLength(numFacet content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string value {
+            get {
+                return this.ContentField.value;
+            }
+            set {
+                this.ContentField.value = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool @fixed {
+            get {
+                return this.ContentField.@fixed;
+            }
+            set {
+                this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("minLength", "http://www.w3.org/2001/XMLSchema");
@@ -11945,6 +14547,65 @@ namespace W3C.XSD {
             SetInnerType(content);
         }
         
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string value {
+            get {
+                return this.ContentField.value;
+            }
+            set {
+                this.ContentField.value = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool @fixed {
+            get {
+                return this.ContentField.@fixed;
+            }
+            set {
+                this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("maxLength", "http://www.w3.org/2001/XMLSchema");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
@@ -12048,6 +14709,65 @@ namespace W3C.XSD {
         
         public enumeration(noFixedFacet content) {
             SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string value {
+            get {
+                return this.ContentField.value;
+            }
+            set {
+                this.ContentField.value = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual bool @fixed {
+            get {
+                return this.ContentField.@fixed;
+            }
+            set {
+                this.ContentField.@fixed = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (annotation?)
+        /// </para>
+        /// </summary>
+        public virtual annotation annotation {
+            get {
+                return this.ContentField.annotation;
+            }
+            set {
+                this.ContentField.annotation = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string id {
+            get {
+                return this.ContentField.id;
+            }
+            set {
+                this.ContentField.id = value;
+            }
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("enumeration", "http://www.w3.org/2001/XMLSchema");

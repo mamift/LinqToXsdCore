@@ -28,39 +28,34 @@ namespace Xml.Schema.Linq {
     /// </summary>
     public partial class Configuration : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CodeGenerationXName = System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NamespacesXName = System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NullableReferencesXName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValidationXName = System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq");
+        public static Configuration Load(string xmlFile) {
+            return XTypedServices.Load<Configuration>(xmlFile);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TransformationXName = System.Xml.Linq.XName.Get("Transformation", "http://www.microsoft.com/xml/schema/linq");
+        public static Configuration Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Configuration>(xmlFile);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Configuration", "http://www.microsoft.com/xml/schema/linq");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
+        public static Configuration Parse(string xml) {
+            return XTypedServices.Parse<Configuration>(xml);
+        }
         
 		public static explicit operator Configuration(XElement xe) { return XTypedServices.ToXTypedElement<Configuration>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Configuration() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CodeGenerationXName), new NamedContentModelEntity(NamespacesXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(ValidationXName), new NamedContentModelEntity(TransformationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Configuration>(this);
         }
         
         /// <summary>
@@ -68,8 +63,12 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
-        internal Configuration() {
+        public Configuration() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CodeGenerationXName = System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq");
         
         /// <summary>
         /// <para>
@@ -79,7 +78,7 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
-        internal virtual CodeGeneration CodeGeneration {
+        public virtual CodeGeneration CodeGeneration {
             get {
                 XElement x = this.GetElement(CodeGenerationXName);
                 return ((CodeGeneration)(x));
@@ -89,6 +88,10 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NamespacesXName = System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -97,7 +100,7 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
-        internal virtual Namespaces Namespaces {
+        public virtual Namespaces Namespaces {
             get {
                 XElement x = this.GetElement(NamespacesXName);
                 return ((Namespaces)(x));
@@ -107,6 +110,10 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NullableReferencesXName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -115,7 +122,7 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
-        internal virtual NullableReferences NullableReferences {
+        public virtual NullableReferences NullableReferences {
             get {
                 XElement x = this.GetElement(NullableReferencesXName);
                 if ((x == null)) {
@@ -128,6 +135,10 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValidationXName = System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -136,9 +147,12 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
-        internal virtual Validation Validation {
+        public virtual Validation Validation {
             get {
                 XElement x = this.GetElement(ValidationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Validation)(x));
             }
             set {
@@ -146,6 +160,10 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TransformationXName = System.Xml.Linq.XName.Get("Transformation", "http://www.microsoft.com/xml/schema/linq");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -154,9 +172,12 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
-        internal virtual Transformation Transformation {
+        public virtual Transformation Transformation {
             get {
                 XElement x = this.GetElement(TransformationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Transformation)(x));
             }
             set {
@@ -164,11 +185,36 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Configuration", "http://www.microsoft.com/xml/schema/linq");
+        
+        static Configuration() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CodeGenerationXName), new NamedContentModelEntity(NamespacesXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(ValidationXName), new NamedContentModelEntity(TransformationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(CodeGenerationXName, typeof(CodeGeneration));
+            localElementDictionary.Add(NamespacesXName, typeof(Namespaces));
+            localElementDictionary.Add(NullableReferencesXName, typeof(NullableReferences));
+            localElementDictionary.Add(ValidationXName, typeof(Validation));
+            localElementDictionary.Add(TransformationXName, typeof(Transformation));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -191,46 +237,6 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        internal void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        internal void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        internal static Configuration Load(string xmlFile) {
-            return XTypedServices.Load<Configuration>(xmlFile);
-        }
-        
-        internal static Configuration Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Configuration>(xmlFile);
-        }
-        
-        internal static Configuration Parse(string xml) {
-            return XTypedServices.Parse<Configuration>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Configuration>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(CodeGenerationXName, typeof(CodeGeneration));
-            localElementDictionary.Add(NamespacesXName, typeof(Namespaces));
-            localElementDictionary.Add(NullableReferencesXName, typeof(NullableReferences));
-            localElementDictionary.Add(ValidationXName, typeof(Validation));
-            localElementDictionary.Add(TransformationXName, typeof(Transformation));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -238,41 +244,36 @@ namespace Xml.Schema.Linq {
     /// Regular expression: (UseDateOnly, UseTimeOnly, UseDateTimeOffset, NullableReferences, SplitCodeFiles)
     /// </para>
     /// </summary>
-    internal partial class CodeGeneration : XTypedElement, IXMetaData {
+    public partial class CodeGeneration : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName UseDateOnlyXName = System.Xml.Linq.XName.Get("UseDateOnly", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName UseTimeOnlyXName = System.Xml.Linq.XName.Get("UseTimeOnly", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName UseDateTimeOffsetXName = System.Xml.Linq.XName.Get("UseDateTimeOffset", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NullableReferencesXName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
+        public static CodeGeneration Load(string xmlFile) {
+            return XTypedServices.Load<CodeGeneration>(xmlFile);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SplitCodeFilesXName = System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq");
+        public static CodeGeneration Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<CodeGeneration>(xmlFile);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
+        public static CodeGeneration Parse(string xml) {
+            return XTypedServices.Parse<CodeGeneration>(xml);
+        }
         
 		public static explicit operator CodeGeneration(XElement xe) { return XTypedServices.ToXTypedElement<CodeGeneration>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static CodeGeneration() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(UseDateOnlyXName), new NamedContentModelEntity(UseTimeOnlyXName), new NamedContentModelEntity(UseDateTimeOffsetXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(SplitCodeFilesXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CodeGeneration>(this);
         }
         
         /// <summary>
@@ -280,8 +281,15 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (UseDateOnly, UseTimeOnly, UseDateTimeOffset, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
-        internal CodeGeneration() {
+        public CodeGeneration() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName UseDateOnlyXName = System.Xml.Linq.XName.Get("UseDateOnly", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static bool UseDateOnlyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -294,15 +302,26 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (UseDateOnly, UseTimeOnly, UseDateTimeOffset, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
-        internal virtual bool UseDateOnly {
+        public virtual bool UseDateOnly {
             get {
                 XElement x = this.GetElement(UseDateOnlyXName);
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return UseDateOnlyDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(UseDateOnlyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName UseTimeOnlyXName = System.Xml.Linq.XName.Get("UseTimeOnly", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static bool UseTimeOnlyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -315,15 +334,26 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (UseDateOnly, UseTimeOnly, UseDateTimeOffset, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
-        internal virtual bool UseTimeOnly {
+        public virtual bool UseTimeOnly {
             get {
                 XElement x = this.GetElement(UseTimeOnlyXName);
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return UseTimeOnlyDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(UseTimeOnlyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName UseDateTimeOffsetXName = System.Xml.Linq.XName.Get("UseDateTimeOffset", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static bool UseDateTimeOffsetDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -336,15 +366,26 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (UseDateOnly, UseTimeOnly, UseDateTimeOffset, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
-        internal virtual bool UseDateTimeOffset {
+        public virtual bool UseDateTimeOffset {
             get {
                 XElement x = this.GetElement(UseDateTimeOffsetXName);
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return UseDateTimeOffsetDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(UseDateTimeOffsetXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NullableReferencesXName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static bool NullableReferencesDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -357,15 +398,23 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (UseDateOnly, UseTimeOnly, UseDateTimeOffset, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
-        internal virtual bool NullableReferences {
+        public virtual bool NullableReferences {
             get {
                 XElement x = this.GetElement(NullableReferencesXName);
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return NullableReferencesDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(NullableReferencesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SplitCodeFilesXName = System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq");
         
         /// <summary>
         /// <para>
@@ -375,7 +424,7 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (UseDateOnly, UseTimeOnly, UseDateTimeOffset, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
-        internal virtual SplitCodeFiles SplitCodeFiles {
+        public virtual SplitCodeFiles SplitCodeFiles {
             get {
                 XElement x = this.GetElement(SplitCodeFilesXName);
                 return ((SplitCodeFiles)(x));
@@ -385,11 +434,36 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq");
+        
+        static CodeGeneration() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(UseDateOnlyXName), new NamedContentModelEntity(UseTimeOnlyXName), new NamedContentModelEntity(UseDateTimeOffsetXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(SplitCodeFilesXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(UseDateOnlyXName, typeof(bool));
+            localElementDictionary.Add(UseTimeOnlyXName, typeof(bool));
+            localElementDictionary.Add(UseDateTimeOffsetXName, typeof(bool));
+            localElementDictionary.Add(NullableReferencesXName, typeof(bool));
+            localElementDictionary.Add(SplitCodeFilesXName, typeof(SplitCodeFiles));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -412,46 +486,6 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        internal void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        internal void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        internal static CodeGeneration Load(string xmlFile) {
-            return XTypedServices.Load<CodeGeneration>(xmlFile);
-        }
-        
-        internal static CodeGeneration Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<CodeGeneration>(xmlFile);
-        }
-        
-        internal static CodeGeneration Parse(string xml) {
-            return XTypedServices.Parse<CodeGeneration>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CodeGeneration>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(UseDateOnlyXName, typeof(bool));
-            localElementDictionary.Add(UseTimeOnlyXName, typeof(bool));
-            localElementDictionary.Add(UseDateTimeOffsetXName, typeof(bool));
-            localElementDictionary.Add(NullableReferencesXName, typeof(bool));
-            localElementDictionary.Add(SplitCodeFilesXName, typeof(SplitCodeFiles));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -459,28 +493,36 @@ namespace Xml.Schema.Linq {
     /// Regular expression: (Namespace+)
     /// </para>
     /// </summary>
-    internal partial class Namespaces : XTypedElement, IXMetaData {
+    public partial class Namespaces : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NamespaceXName = System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<Namespace> NamespaceField;
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        public static Namespaces Load(string xmlFile) {
+            return XTypedServices.Load<Namespaces>(xmlFile);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
+        public static Namespaces Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Namespaces>(xmlFile);
+        }
+        
+        public static Namespaces Parse(string xml) {
+            return XTypedServices.Parse<Namespaces>(xml);
+        }
         
 		public static explicit operator Namespaces(XElement xe) { return XTypedServices.ToXTypedElement<Namespaces>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Namespaces() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(NamespaceXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Namespaces>(this);
         }
         
         /// <summary>
@@ -488,8 +530,15 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (Namespace+)
         /// </para>
         /// </summary>
-        internal Namespaces() {
+        public Namespaces() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NamespaceXName = System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<Namespace> NamespaceField;
         
         /// <summary>
         /// <para>
@@ -499,7 +548,7 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (Namespace+)
         /// </para>
         /// </summary>
-        internal virtual IList<Namespace> Namespace {
+        public virtual IList<Namespace> Namespace {
             get {
                 if ((this.NamespaceField == null)) {
                     this.NamespaceField = new XTypedList<Namespace>(this, LinqToXsdTypeManager.Instance, NamespaceXName);
@@ -521,11 +570,32 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq");
+        
+        static Namespaces() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(NamespaceXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(NamespaceXName, typeof(Namespace));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -548,68 +618,46 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Namespace : XTypedElement, IXMetaData {
         
-        internal void Save(string xmlFile) {
+        public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
         
-        internal void Save(System.IO.TextWriter tw) {
+        public void Save(System.IO.TextWriter tw) {
             XTypedServices.Save(tw, Untyped);
         }
         
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
+        public void Save(System.Xml.XmlWriter xmlWriter) {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        internal static Namespaces Load(string xmlFile) {
-            return XTypedServices.Load<Namespaces>(xmlFile);
+        public static Namespace Load(string xmlFile) {
+            return XTypedServices.Load<Namespace>(xmlFile);
         }
         
-        internal static Namespaces Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Namespaces>(xmlFile);
+        public static Namespace Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Namespace>(xmlFile);
         }
         
-        internal static Namespaces Parse(string xml) {
-            return XTypedServices.Parse<Namespaces>(xml);
+        public static Namespace Parse(string xml) {
+            return XTypedServices.Parse<Namespace>(xml);
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Namespaces>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(NamespaceXName, typeof(Namespace));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-    }
-    
-    internal partial class Namespace : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ClrXName = System.Xml.Linq.XName.Get("Clr", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DefaultVisibilityXName = System.Xml.Linq.XName.Get("DefaultVisibility", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FileXName = System.Xml.Linq.XName.Get("File", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq");
         
 		public static explicit operator Namespace(XElement xe) { return XTypedServices.ToXTypedElement<Namespace>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        internal Namespace() {
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Namespace>(this);
         }
+        
+        public Namespace() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ClrXName = System.Xml.Linq.XName.Get("Clr", "");
         
         /// <summary>
         /// <para>
@@ -619,7 +667,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        internal virtual string Clr {
+        public virtual string Clr {
             get {
                 XAttribute x = this.Attribute(ClrXName);
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype);
@@ -629,6 +677,10 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "");
+        
         /// <summary>
         /// <para>
         /// The XML namespaces to map to CLR namepsace.
@@ -637,7 +689,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        internal virtual System.Uri Schema {
+        public virtual System.Uri Schema {
             get {
                 XAttribute x = this.Attribute(SchemaXName);
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
@@ -647,6 +699,28 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        public enum DefaultVisibilityEnum {
+            
+            @public,
+            
+            @internal,
+        }
+        
+        public sealed class DefaultVisibilityEnumValidator {
+            
+            private DefaultVisibilityEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "public:@public",
+                            "internal:@internal"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DefaultVisibilityXName = System.Xml.Linq.XName.Get("DefaultVisibility", "");
+        
         /// <summary>
         /// <para>
         /// This changes the default visibility of the generated types. No value for this implies a default value of 'public'. The only other acceptable value is 'internal'.
@@ -655,15 +729,27 @@ namespace Xml.Schema.Linq {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        internal virtual string DefaultVisibility {
+        public virtual Xml.Schema.Linq.Namespace.DefaultVisibilityEnum? DefaultVisibility {
             get {
                 XAttribute x = this.Attribute(DefaultVisibilityXName);
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((Xml.Schema.Linq.Namespace.DefaultVisibilityEnum)(Enum.Parse(typeof(Xml.Schema.Linq.Namespace.DefaultVisibilityEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, DefaultVisibilityEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(DefaultVisibilityXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                if (value == null) {
+                    this.SetAttribute(DefaultVisibilityXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(DefaultVisibilityXName, value.ToString(), "DefaultVisibility", DefaultVisibilityEnumValidator.TypeDefinition);
+                }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FileXName = System.Xml.Linq.XName.Get("File", "");
         
         /// <summary>
         /// <para>
@@ -673,14 +759,23 @@ namespace Xml.Schema.Linq {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        internal virtual string File {
+        public virtual string File {
             get {
                 XAttribute x = this.Attribute(FileXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(FileXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -703,38 +798,6 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        internal void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        internal void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        internal static Namespace Load(string xmlFile) {
-            return XTypedServices.Load<Namespace>(xmlFile);
-        }
-        
-        internal static Namespace Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Namespace>(xmlFile);
-        }
-        
-        internal static Namespace Parse(string xml) {
-            return XTypedServices.Parse<Namespace>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Namespace>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -742,25 +805,36 @@ namespace Xml.Schema.Linq {
     /// Regular expression: (VerifyRequired)
     /// </para>
     /// </summary>
-    internal partial class Validation : XTypedElement, IXMetaData {
+    public partial class Validation : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName VerifyRequiredXName = System.Xml.Linq.XName.Get("VerifyRequired", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
+        public static Validation Load(string xmlFile) {
+            return XTypedServices.Load<Validation>(xmlFile);
+        }
+        
+        public static Validation Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Validation>(xmlFile);
+        }
+        
+        public static Validation Parse(string xml) {
+            return XTypedServices.Parse<Validation>(xml);
+        }
         
 		public static explicit operator Validation(XElement xe) { return XTypedServices.ToXTypedElement<Validation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Validation() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(VerifyRequiredXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Validation>(this);
         }
         
         /// <summary>
@@ -768,8 +842,12 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (VerifyRequired)
         /// </para>
         /// </summary>
-        internal Validation() {
+        public Validation() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName VerifyRequiredXName = System.Xml.Linq.XName.Get("VerifyRequired", "http://www.microsoft.com/xml/schema/linq");
         
         /// <summary>
         /// <para>
@@ -779,7 +857,7 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (VerifyRequired)
         /// </para>
         /// </summary>
-        internal virtual VerifyRequired VerifyRequired {
+        public virtual VerifyRequired VerifyRequired {
             get {
                 XElement x = this.GetElement(VerifyRequiredXName);
                 return ((VerifyRequired)(x));
@@ -789,11 +867,32 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq");
+        
+        static Validation() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(VerifyRequiredXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(VerifyRequiredXName, typeof(VerifyRequired));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -816,42 +915,6 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        internal void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        internal void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        internal static Validation Load(string xmlFile) {
-            return XTypedServices.Load<Validation>(xmlFile);
-        }
-        
-        internal static Validation Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Validation>(xmlFile);
-        }
-        
-        internal static Validation Parse(string xml) {
-            return XTypedServices.Parse<Validation>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Validation>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(VerifyRequiredXName, typeof(VerifyRequired));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -859,25 +922,36 @@ namespace Xml.Schema.Linq {
     /// Regular expression: (Deanonymize)
     /// </para>
     /// </summary>
-    internal partial class Transformation : XTypedElement, IXMetaData {
+    public partial class Transformation : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DeanonymizeXName = System.Xml.Linq.XName.Get("Deanonymize", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Transformation", "http://www.microsoft.com/xml/schema/linq");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
+        public static Transformation Load(string xmlFile) {
+            return XTypedServices.Load<Transformation>(xmlFile);
+        }
+        
+        public static Transformation Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Transformation>(xmlFile);
+        }
+        
+        public static Transformation Parse(string xml) {
+            return XTypedServices.Parse<Transformation>(xml);
+        }
         
 		public static explicit operator Transformation(XElement xe) { return XTypedServices.ToXTypedElement<Transformation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Transformation() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DeanonymizeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Transformation>(this);
         }
         
         /// <summary>
@@ -885,8 +959,12 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (Deanonymize)
         /// </para>
         /// </summary>
-        internal Transformation() {
+        public Transformation() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DeanonymizeXName = System.Xml.Linq.XName.Get("Deanonymize", "http://www.microsoft.com/xml/schema/linq");
         
         /// <summary>
         /// <para>
@@ -896,7 +974,7 @@ namespace Xml.Schema.Linq {
         /// Regular expression: (Deanonymize)
         /// </para>
         /// </summary>
-        internal virtual Deanonymize Deanonymize {
+        public virtual Deanonymize Deanonymize {
             get {
                 XElement x = this.GetElement(DeanonymizeXName);
                 return ((Deanonymize)(x));
@@ -906,11 +984,32 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Transformation", "http://www.microsoft.com/xml/schema/linq");
+        
+        static Transformation() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DeanonymizeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DeanonymizeXName, typeof(Deanonymize));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -933,63 +1032,53 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Deanonymize : XTypedElement, IXMetaData {
         
-        internal void Save(string xmlFile) {
+        public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
         
-        internal void Save(System.IO.TextWriter tw) {
+        public void Save(System.IO.TextWriter tw) {
             XTypedServices.Save(tw, Untyped);
         }
         
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
+        public void Save(System.Xml.XmlWriter xmlWriter) {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        internal static Transformation Load(string xmlFile) {
-            return XTypedServices.Load<Transformation>(xmlFile);
+        public static Deanonymize Load(string xmlFile) {
+            return XTypedServices.Load<Deanonymize>(xmlFile);
         }
         
-        internal static Transformation Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Transformation>(xmlFile);
+        public static Deanonymize Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Deanonymize>(xmlFile);
         }
         
-        internal static Transformation Parse(string xml) {
-            return XTypedServices.Parse<Transformation>(xml);
+        public static Deanonymize Parse(string xml) {
+            return XTypedServices.Parse<Deanonymize>(xml);
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Transformation>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DeanonymizeXName, typeof(Deanonymize));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-    }
-    
-    internal partial class Deanonymize : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName strictXName = System.Xml.Linq.XName.Get("strict", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Deanonymize", "http://www.microsoft.com/xml/schema/linq");
         
 		public static explicit operator Deanonymize(XElement xe) { return XTypedServices.ToXTypedElement<Deanonymize>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        internal Deanonymize() {
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Deanonymize>(this);
         }
+        
+        public Deanonymize() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName strictXName = System.Xml.Linq.XName.Get("strict", "");
         
         /// <summary>
         /// <para>
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        internal virtual System.Boolean? strict {
+        public virtual System.Boolean? strict {
             get {
                 XAttribute x = this.Attribute(strictXName);
                 if ((x == null)) {
@@ -1002,6 +1091,12 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Deanonymize", "http://www.microsoft.com/xml/schema/linq");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -1022,69 +1117,68 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        internal void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        internal void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        internal static Deanonymize Load(string xmlFile) {
-            return XTypedServices.Load<Deanonymize>(xmlFile);
-        }
-        
-        internal static Deanonymize Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Deanonymize>(xmlFile);
-        }
-        
-        internal static Deanonymize Parse(string xml) {
-            return XTypedServices.Parse<Deanonymize>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Deanonymize>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
-    internal partial class SplitCodeFiles : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ByXName = System.Xml.Linq.XName.Get("By", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq");
+    public partial class SplitCodeFiles : XTypedElement, IXMetaData {
         
 		public static explicit operator SplitCodeFiles(XElement xe) { return XTypedServices.ToXTypedElement<SplitCodeFiles>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        internal SplitCodeFiles() {
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SplitCodeFiles>(this);
         }
+        
+        public SplitCodeFiles() {
+        }
+        
+        public enum ByEnum {
+            
+            Class,
+            
+            Namespace,
+        }
+        
+        public sealed class ByEnumValidator {
+            
+            private ByEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Class",
+                            "Namespace"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ByXName = System.Xml.Linq.XName.Get("By", "");
         
         /// <summary>
         /// <para>
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        internal virtual Xml.Schema.Linq.SplitCodeFiles.ByEnum? By {
+        public virtual Xml.Schema.Linq.SplitCodeFiles.ByEnum? By {
             get {
                 XAttribute x = this.Attribute(ByXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((Xml.Schema.Linq.SplitCodeFiles.ByEnum)(Enum.Parse(typeof(Xml.Schema.Linq.SplitCodeFiles.ByEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                return ((Xml.Schema.Linq.SplitCodeFiles.ByEnum)(Enum.Parse(typeof(Xml.Schema.Linq.SplitCodeFiles.ByEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, ByEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(ByXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                if (value == null) {
+                    this.SetAttribute(ByXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(ByXName, value.ToString(), "By", ByEnumValidator.TypeDefinition);
+                }
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1107,122 +1201,52 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SplitCodeFiles>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
-        public enum ByEnum {
-            
-            Class,
-            
-            Namespace,
-        }
     }
     
-    internal partial class NullableReferences : XTypedElement, IXMetaData {
+    public partial class NullableReferences : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
-        
-		public static explicit operator NullableReferences(XElement xe) { return XTypedServices.ToXTypedElement<NullableReferences>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        internal NullableReferences() {
-        }
-        
-        internal NullableReferences(bool content) {
-            this.TypedValue = content;
-        }
-        
-        internal virtual bool TypedValue {
-            get {
-                XElement x = this.Untyped;
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
-            }
-            set {
-                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        internal void Save(string xmlFile) {
+        public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
         
-        internal void Save(System.IO.TextWriter tw) {
+        public void Save(System.IO.TextWriter tw) {
             XTypedServices.Save(tw, Untyped);
         }
         
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
+        public void Save(System.Xml.XmlWriter xmlWriter) {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        internal static NullableReferences Load(string xmlFile) {
+        public static NullableReferences Load(string xmlFile) {
             return XTypedServices.Load<NullableReferences>(xmlFile);
         }
         
-        internal static NullableReferences Load(System.IO.TextReader xmlFile) {
+        public static NullableReferences Load(System.IO.TextReader xmlFile) {
             return XTypedServices.Load<NullableReferences>(xmlFile);
         }
         
-        internal static NullableReferences Parse(string xml) {
+        public static NullableReferences Parse(string xml) {
             return XTypedServices.Parse<NullableReferences>(xml);
         }
+        
+		public static explicit operator NullableReferences(XElement xe) { return XTypedServices.ToXTypedElement<NullableReferences>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<NullableReferences>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
-    internal partial class VerifyRequired : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("VerifyRequired", "http://www.microsoft.com/xml/schema/linq");
-        
-		public static explicit operator VerifyRequired(XElement xe) { return XTypedServices.ToXTypedElement<VerifyRequired>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        internal VerifyRequired() {
+        public NullableReferences() {
         }
         
-        internal VerifyRequired(bool content) {
+        public NullableReferences(bool content) {
             this.TypedValue = content;
         }
         
-        internal virtual bool TypedValue {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
+        public virtual bool TypedValue {
             get {
                 XElement x = this.Untyped;
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
@@ -1230,6 +1254,12 @@ namespace Xml.Schema.Linq {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1252,58 +1282,115 @@ namespace Xml.Schema.Linq {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class VerifyRequired : XTypedElement, IXMetaData {
         
-        internal void Save(string xmlFile) {
+        public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
         
-        internal void Save(System.IO.TextWriter tw) {
+        public void Save(System.IO.TextWriter tw) {
             XTypedServices.Save(tw, Untyped);
         }
         
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
+        public void Save(System.Xml.XmlWriter xmlWriter) {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        internal static VerifyRequired Load(string xmlFile) {
+        public static VerifyRequired Load(string xmlFile) {
             return XTypedServices.Load<VerifyRequired>(xmlFile);
         }
         
-        internal static VerifyRequired Load(System.IO.TextReader xmlFile) {
+        public static VerifyRequired Load(System.IO.TextReader xmlFile) {
             return XTypedServices.Load<VerifyRequired>(xmlFile);
         }
         
-        internal static VerifyRequired Parse(string xml) {
+        public static VerifyRequired Parse(string xml) {
             return XTypedServices.Parse<VerifyRequired>(xml);
         }
+        
+		public static explicit operator VerifyRequired(XElement xe) { return XTypedServices.ToXTypedElement<VerifyRequired>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<VerifyRequired>(this);
         }
         
+        public VerifyRequired() {
+        }
+        
+        public VerifyRequired(bool content) {
+            this.TypedValue = content;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
+        public virtual bool TypedValue {
+            get {
+                XElement x = this.Untyped;
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("VerifyRequired", "http://www.microsoft.com/xml/schema/linq");
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
-    }
-    
-    internal class LinqToXsdTypeManager : ILinqToXsdTypeManager {
-        
-        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static XmlSchemaSet schemaSet;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+    }
+    
+    public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
         private LinqToXsdTypeManager() {
         }
+        
+        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildTypeDictionary() {
+            typeDictionary.Add(System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.SplitCodeFiles));
+        }
+        
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Configuration", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Configuration));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.CodeGeneration));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Namespaces));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Namespace));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Validation));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Transformation", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Transformation));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Deanonymize", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Deanonymize));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.NullableReferences));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("VerifyRequired", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.VerifyRequired));
+        }
+        
+        private static XmlSchemaSet schemaSet;
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
@@ -1316,6 +1403,10 @@ namespace Xml.Schema.Linq {
             set {
                 schemaSet = value;
             }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
         }
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
@@ -1336,125 +1427,37 @@ namespace Xml.Schema.Linq {
             }
         }
         
-        internal static LinqToXsdTypeManager Instance {
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+        }
+        
+        public static System.Type GetRootType() {
+            return elementDictionary[System.Xml.Linq.XName.Get("Configuration", "http://www.microsoft.com/xml/schema/linq")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
             get {
                 return typeManagerSingleton;
             }
         }
-        
-        private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.SplitCodeFiles));
-        }
-        
-        private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Configuration", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Configuration));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.CodeGeneration));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Namespaces));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Namespace));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Validation));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Transformation", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Transformation));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Deanonymize", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Deanonymize));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.NullableReferences));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("VerifyRequired", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.VerifyRequired));
-        }
-        
-        protected internal static void AddSchemas(XmlSchemaSet schemas) {
-            schemas.Add(schemaSet);
-        }
-        
-        internal static System.Type GetRootType() {
-            return elementDictionary[System.Xml.Linq.XName.Get("Configuration", "http://www.microsoft.com/xml/schema/linq")];
-        }
     }
     
-    internal partial class XRootNamespace {
+    public partial class XRootNamespace {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XDocument doc;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
-        
-
-		internal Configuration Configuration {  get {return rootObject as Configuration; } }
-
-		internal CodeGeneration CodeGeneration {  get {return rootObject as CodeGeneration; } }
-
-		internal Namespaces Namespaces {  get {return rootObject as Namespaces; } }
-
-		internal Namespace Namespace {  get {return rootObject as Namespace; } }
-
-		internal Validation Validation {  get {return rootObject as Validation; } }
-
-		internal Transformation Transformation {  get {return rootObject as Transformation; } }
-
-		internal Deanonymize Deanonymize {  get {return rootObject as Deanonymize; } }
-
-		internal NullableReferences NullableReferences {  get {return rootObject as NullableReferences; } }
-
-		internal VerifyRequired VerifyRequired {  get {return rootObject as VerifyRequired; } }
         
         private XRootNamespace() {
         }
         
-        internal XRootNamespace(Configuration root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(CodeGeneration root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(Namespaces root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(Namespace root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(Validation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(Transformation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(Deanonymize root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(NullableReferences root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(VerifyRequired root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        internal virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
-        }
-        
-        internal static XRootNamespace Load(string xmlFile) {
+        public static XRootNamespace Load(string xmlFile) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Load(xmlFile);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1465,7 +1468,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRootNamespace Load(string xmlFile, LoadOptions options) {
+        public static XRootNamespace Load(string xmlFile, LoadOptions options) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Load(xmlFile, options);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1476,7 +1479,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRootNamespace Load(TextReader textReader) {
+        public static XRootNamespace Load(TextReader textReader) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Load(textReader);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1487,7 +1490,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRootNamespace Load(TextReader textReader, LoadOptions options) {
+        public static XRootNamespace Load(TextReader textReader, LoadOptions options) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Load(textReader, options);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1498,7 +1501,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRootNamespace Load(XmlReader xmlReader) {
+        public static XRootNamespace Load(XmlReader xmlReader) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Load(xmlReader);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1509,7 +1512,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRootNamespace Parse(string text) {
+        public static XRootNamespace Parse(string text) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Parse(text);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1520,7 +1523,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRootNamespace Parse(string text, LoadOptions options) {
+        public static XRootNamespace Parse(string text, LoadOptions options) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Parse(text, options);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1531,28 +1534,112 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal virtual void Save(string fileName) {
+        public virtual void Save(string fileName) {
             doc.Save(fileName);
         }
         
-        internal virtual void Save(TextWriter textWriter) {
+        public virtual void Save(TextWriter textWriter) {
             doc.Save(textWriter);
         }
         
-        internal virtual void Save(XmlWriter writer) {
+        public virtual void Save(XmlWriter writer) {
             doc.Save(writer);
         }
         
-        internal virtual void Save(TextWriter textWriter, SaveOptions options) {
+        public virtual void Save(TextWriter textWriter, SaveOptions options) {
             doc.Save(textWriter, options);
         }
         
-        internal virtual void Save(string fileName, SaveOptions options) {
+        public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRootNamespace(Configuration root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Configuration Configuration {  get {return rootObject as Configuration; } }
+        
+        public XRootNamespace(CodeGeneration root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public CodeGeneration CodeGeneration {  get {return rootObject as CodeGeneration; } }
+        
+        public XRootNamespace(Namespaces root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Namespaces Namespaces {  get {return rootObject as Namespaces; } }
+        
+        public XRootNamespace(Namespace root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Namespace Namespace {  get {return rootObject as Namespace; } }
+        
+        public XRootNamespace(Validation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Validation Validation {  get {return rootObject as Validation; } }
+        
+        public XRootNamespace(Transformation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Transformation Transformation {  get {return rootObject as Transformation; } }
+        
+        public XRootNamespace(Deanonymize root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Deanonymize Deanonymize {  get {return rootObject as Deanonymize; } }
+        
+        public XRootNamespace(NullableReferences root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public NullableReferences NullableReferences {  get {return rootObject as NullableReferences; } }
+        
+        public XRootNamespace(VerifyRequired root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public VerifyRequired VerifyRequired {  get {return rootObject as VerifyRequired; } }
     }
     
-    internal partial class XRoot {
+    public partial class XRoot {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XDocument doc;
@@ -1560,86 +1647,10 @@ namespace Xml.Schema.Linq {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		internal global::Xml.Schema.Linq.Configuration Configuration {  get {return rootObject as global::Xml.Schema.Linq.Configuration; } }
-
-		internal global::Xml.Schema.Linq.CodeGeneration CodeGeneration {  get {return rootObject as global::Xml.Schema.Linq.CodeGeneration; } }
-
-		internal global::Xml.Schema.Linq.Namespaces Namespaces {  get {return rootObject as global::Xml.Schema.Linq.Namespaces; } }
-
-		internal global::Xml.Schema.Linq.Namespace Namespace {  get {return rootObject as global::Xml.Schema.Linq.Namespace; } }
-
-		internal global::Xml.Schema.Linq.Validation Validation {  get {return rootObject as global::Xml.Schema.Linq.Validation; } }
-
-		internal global::Xml.Schema.Linq.Transformation Transformation {  get {return rootObject as global::Xml.Schema.Linq.Transformation; } }
-
-		internal global::Xml.Schema.Linq.Deanonymize Deanonymize {  get {return rootObject as global::Xml.Schema.Linq.Deanonymize; } }
-
-		internal global::Xml.Schema.Linq.NullableReferences NullableReferences {  get {return rootObject as global::Xml.Schema.Linq.NullableReferences; } }
-
-		internal global::Xml.Schema.Linq.VerifyRequired VerifyRequired {  get {return rootObject as global::Xml.Schema.Linq.VerifyRequired; } }
-        
         private XRoot() {
         }
         
-        internal XRoot(global::Xml.Schema.Linq.Configuration root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.CodeGeneration root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.Namespaces root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.Namespace root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.Validation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.Transformation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.Deanonymize root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.NullableReferences root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.VerifyRequired root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        internal virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
-        }
-        
-        internal static XRoot Load(string xmlFile) {
+        public static XRoot Load(string xmlFile) {
             XRoot root = new XRoot();
             root.doc = XDocument.Load(xmlFile);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1650,7 +1661,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRoot Load(string xmlFile, LoadOptions options) {
+        public static XRoot Load(string xmlFile, LoadOptions options) {
             XRoot root = new XRoot();
             root.doc = XDocument.Load(xmlFile, options);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1661,7 +1672,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRoot Load(TextReader textReader) {
+        public static XRoot Load(TextReader textReader) {
             XRoot root = new XRoot();
             root.doc = XDocument.Load(textReader);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1672,7 +1683,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRoot Load(TextReader textReader, LoadOptions options) {
+        public static XRoot Load(TextReader textReader, LoadOptions options) {
             XRoot root = new XRoot();
             root.doc = XDocument.Load(textReader, options);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1683,7 +1694,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRoot Load(XmlReader xmlReader) {
+        public static XRoot Load(XmlReader xmlReader) {
             XRoot root = new XRoot();
             root.doc = XDocument.Load(xmlReader);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1694,7 +1705,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRoot Parse(string text) {
+        public static XRoot Parse(string text) {
             XRoot root = new XRoot();
             root.doc = XDocument.Parse(text);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1705,7 +1716,7 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal static XRoot Parse(string text, LoadOptions options) {
+        public static XRoot Parse(string text, LoadOptions options) {
             XRoot root = new XRoot();
             root.doc = XDocument.Parse(text, options);
             XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
@@ -1716,24 +1727,108 @@ namespace Xml.Schema.Linq {
             return root;
         }
         
-        internal virtual void Save(string fileName) {
+        public virtual void Save(string fileName) {
             doc.Save(fileName);
         }
         
-        internal virtual void Save(TextWriter textWriter) {
+        public virtual void Save(TextWriter textWriter) {
             doc.Save(textWriter);
         }
         
-        internal virtual void Save(XmlWriter writer) {
+        public virtual void Save(XmlWriter writer) {
             doc.Save(writer);
         }
         
-        internal virtual void Save(TextWriter textWriter, SaveOptions options) {
+        public virtual void Save(TextWriter textWriter, SaveOptions options) {
             doc.Save(textWriter, options);
         }
         
-        internal virtual void Save(string fileName, SaveOptions options) {
+        public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::Xml.Schema.Linq.Configuration root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.Configuration Configuration {  get {return rootObject as global::Xml.Schema.Linq.Configuration; } }
+        
+        public XRoot(global::Xml.Schema.Linq.CodeGeneration root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.CodeGeneration CodeGeneration {  get {return rootObject as global::Xml.Schema.Linq.CodeGeneration; } }
+        
+        public XRoot(global::Xml.Schema.Linq.Namespaces root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.Namespaces Namespaces {  get {return rootObject as global::Xml.Schema.Linq.Namespaces; } }
+        
+        public XRoot(global::Xml.Schema.Linq.Namespace root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.Namespace Namespace {  get {return rootObject as global::Xml.Schema.Linq.Namespace; } }
+        
+        public XRoot(global::Xml.Schema.Linq.Validation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.Validation Validation {  get {return rootObject as global::Xml.Schema.Linq.Validation; } }
+        
+        public XRoot(global::Xml.Schema.Linq.Transformation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.Transformation Transformation {  get {return rootObject as global::Xml.Schema.Linq.Transformation; } }
+        
+        public XRoot(global::Xml.Schema.Linq.Deanonymize root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.Deanonymize Deanonymize {  get {return rootObject as global::Xml.Schema.Linq.Deanonymize; } }
+        
+        public XRoot(global::Xml.Schema.Linq.NullableReferences root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.NullableReferences NullableReferences {  get {return rootObject as global::Xml.Schema.Linq.NullableReferences; } }
+        
+        public XRoot(global::Xml.Schema.Linq.VerifyRequired root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Xml.Schema.Linq.VerifyRequired VerifyRequired {  get {return rootObject as global::Xml.Schema.Linq.VerifyRequired; } }
     }
 }
