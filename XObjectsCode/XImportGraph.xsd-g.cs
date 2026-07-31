@@ -68,7 +68,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+        protected internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "https://github.com/mamift/LinqToXsdCore");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<Schema> SchemaField;
@@ -125,7 +125,7 @@ namespace Xml.Schema.Linq.CodeGen {
             }
         }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Graph", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Graph", "https://github.com/mamift/LinqToXsdCore");
         
         static Graph() {
             BuildElementDictionary();
@@ -222,7 +222,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName IncludesXName = System.Xml.Linq.XName.Get("Includes", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+        protected internal static readonly System.Xml.Linq.XName IncludesXName = System.Xml.Linq.XName.Get("Includes", "https://github.com/mamift/LinqToXsdCore");
         
         /// <summary>
         /// <para>
@@ -244,7 +244,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName ImportsXName = System.Xml.Linq.XName.Get("Imports", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+        protected internal static readonly System.Xml.Linq.XName ImportsXName = System.Xml.Linq.XName.Get("Imports", "https://github.com/mamift/LinqToXsdCore");
         
         /// <summary>
         /// <para>
@@ -270,7 +270,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         /// <summary>
         /// <para>
-        /// If the schema is in a subfolder, this is the path relative to the Graph's @Folder attribute.
+        /// If the schema is in a subfolder, this is the path relative to the Graph's @Folder attribute. The base dir should be set on the Graph element.
         /// </para>
         /// <para>
         /// Occurrence: required
@@ -292,6 +292,9 @@ namespace Xml.Schema.Linq.CodeGen {
         
         /// <summary>
         /// <para>
+        /// The name of the Schema (should include file extension, which should almost always be 'xsd').
+        /// </para>
+        /// <para>
         /// Occurrence: required
         /// </para>
         /// </summary>
@@ -305,7 +308,34 @@ namespace Xml.Schema.Linq.CodeGen {
             }
         }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Schema", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DependencyTypeXName = System.Xml.Linq.XName.Get("DependencyType", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual Xml.Schema.Linq.CodeGen.dependencyType? DependencyType {
+            get {
+                XAttribute x = this.Attribute(DependencyTypeXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((Xml.Schema.Linq.CodeGen.dependencyType)(Enum.Parse(typeof(Xml.Schema.Linq.CodeGen.dependencyType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::Xml.Schema.Linq.CodeGen.dependencyTypeValidator.TypeDefinition))));
+            }
+            set {
+                if (value == null) {
+                    this.SetAttribute(DependencyTypeXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(DependencyTypeXName, value.ToString(), "DependencyType", global::Xml.Schema.Linq.CodeGen.dependencyTypeValidator.TypeDefinition);
+                }
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Schema", "https://github.com/mamift/LinqToXsdCore");
         
         static Schema() {
             BuildElementDictionary();
@@ -378,7 +408,7 @@ namespace Xml.Schema.Linq.CodeGen {
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            protected internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+            protected internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "https://github.com/mamift/LinqToXsdCore");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             private XTypedList<Schema> SchemaField;
@@ -413,7 +443,7 @@ namespace Xml.Schema.Linq.CodeGen {
                 }
             }
             
-            private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Includes", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+            private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Includes", "https://github.com/mamift/LinqToXsdCore");
             
             static IncludesLocalType() {
                 BuildElementDictionary();
@@ -486,7 +516,7 @@ namespace Xml.Schema.Linq.CodeGen {
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            protected internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+            protected internal static readonly System.Xml.Linq.XName SchemaXName = System.Xml.Linq.XName.Get("Schema", "https://github.com/mamift/LinqToXsdCore");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             private XTypedList<Schema> SchemaField;
@@ -521,7 +551,7 @@ namespace Xml.Schema.Linq.CodeGen {
                 }
             }
             
-            private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Imports", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
+            private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Imports", "https://github.com/mamift/LinqToXsdCore");
             
             static ImportsLocalType() {
                 BuildElementDictionary();
@@ -572,6 +602,37 @@ namespace Xml.Schema.Linq.CodeGen {
         }
     }
     
+    /// <summary>
+    /// <para>
+    /// For use in the Schema element; indicates the type of Schema - a root (no dependencies and standalone), direct or indirect.
+    /// </para>
+    /// </summary>
+    public enum dependencyType {
+        
+        direct,
+        
+        indirect,
+        
+        root,
+    }
+    
+    /// <summary>
+    /// <para>
+    /// For use in the Schema element; indicates the type of Schema - a root (no dependencies and standalone), direct or indirect.
+    /// </para>
+    /// </summary>
+    public sealed class dependencyTypeValidator {
+        
+        private dependencyTypeValidator() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new global::Xml.Schema.Linq.RestrictionFacets(((global::Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                        "direct",
+                        "indirect",
+                        "root"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+    }
+    
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
         private LinqToXsdTypeManager() {
@@ -580,8 +641,8 @@ namespace Xml.Schema.Linq.CodeGen {
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Graph", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen"), typeof(global::Xml.Schema.Linq.CodeGen.Graph));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Schema", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen"), typeof(global::Xml.Schema.Linq.CodeGen.Schema));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Graph", "https://github.com/mamift/LinqToXsdCore"), typeof(global::Xml.Schema.Linq.CodeGen.Graph));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Schema", "https://github.com/mamift/LinqToXsdCore"), typeof(global::Xml.Schema.Linq.CodeGen.Schema));
         }
         
         private static XmlSchemaSet schemaSet;
@@ -626,7 +687,7 @@ namespace Xml.Schema.Linq.CodeGen {
         }
         
         public static System.Type GetRootType() {
-            return elementDictionary[System.Xml.Linq.XName.Get("Graph", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen")];
+            return elementDictionary[System.Xml.Linq.XName.Get("Graph", "https://github.com/mamift/LinqToXsdCore")];
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

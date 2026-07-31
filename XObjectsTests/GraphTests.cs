@@ -96,10 +96,37 @@ public class GraphTests
         var allSchemaNames = graph.GetAllSchemaNames();
         
         Assert.IsNotEmpty(allSchemaNames);
+        Assert.True(allSchemaNames.Count == dir.GetFiles("*.xsd", SearchOption.AllDirectories).Length);
 
         var linked = entryPoints.Single().GetDependencies().ToList();
 
         Assert.NotNull(linked);
+    }
+
+    [Test]
+    public void TestSchemaEntryPointDependenciesRecursivelyForSharePoint2010()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var entryPoints = graph.FindEntryPointSchemas();
+
+        Assert.NotNull(entryPoints);
+        Assert.AreEqual(1, entryPoints.Count);
+        
+        Linq.CodeGen.Schema theEntryPointSchema = entryPoints.Single();
+        
+        Assert.That(theEntryPointSchema.Name, Is.EqualTo("wss.xsd").IgnoreCase);
+
+        var allSchemaNames = graph.GetAllSchemaNames();
+        
+        Assert.IsNotEmpty(allSchemaNames);
+        Assert.True(allSchemaNames.Count == dir.GetFiles("*.xsd", SearchOption.AllDirectories).Length);
+
+        var linkedRecursively = theEntryPointSchema.GetDependenciesRecursively().ToList();
+        Assert.NotNull(linkedRecursively);
+        
+        Assert.True(linkedRecursively.Count == allSchemaNames.Count);
     }
 
     [Test]
