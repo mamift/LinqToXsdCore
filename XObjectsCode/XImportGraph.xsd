@@ -36,6 +36,11 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
+            <xs:attribute name="RelativePath" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>If the schema is in a subfolder, this is the path relative to the Graph's @Folder attribute. The base dir should be set on the Graph element.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
             <xs:attribute name="Name" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>

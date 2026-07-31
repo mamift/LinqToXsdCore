@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.CodeGen;
@@ -21,7 +22,9 @@ public partial class Graph
     {
         DirectoryInfo dir = new DirectoryInfo(directory);
         FileInfo[] files = dir.GetFiles("*.xsd", searchOption);
-        var graph = new Graph();
+        var graph = new Graph() {
+            Folder = dir.FullName
+        };
         
         foreach (FileInfo file in files)
         {
@@ -29,11 +32,12 @@ public partial class Graph
             XDocument xDocument = XDocument.Load(fileStream);
             if (!xDocument.IsAnXmlSchema()) continue;
 
-            List<XElement> includes = xDocument.GetIncludeElements().ToList();
-            List<XElement> imports = xDocument.GetImportElements().ToList();
+            List<XElement> includes = xDocument.GetXsdIncludeElements().ToList();
+            List<XElement> imports = xDocument.GetXsdImportElements().ToList();
 
             var schemaEl = new Schema() {
                 Name = file.Name,
+                RelativePath = file.FullName.Replace(dir.FullName, "."),
             };
 
             if (includes.Any())
@@ -57,6 +61,20 @@ public partial class Graph
         }
 
         return graph;
+    }
+
+    /// <summary>
+    /// Returns all unique schema names in the graph.
+    /// </summary>
+    /// <returns>A list of distinct schema names.</returns>
+    public List<string> GetAllSchemaNames()
+    {
+        return Schema.Select(s => {
+            if (string.IsNullOrWhiteSpace(s.Name)) 
+                throw new InvalidOperationException("Graph is in an invalid state: a schema name was null or empty!");
+            
+            return s.Name;
+        }).ToList();
     }
 
     public List<Schema> GetSchemasThatImportsOrIncludeOthers()
@@ -87,6 +105,20 @@ public partial class Graph
             select i.Name).Distinct();
 
         return SchemaField.Where(sc => named.Contains(sc.Name)).ToList();
+    }
+
+    /// <summary>
+    /// Using the output from <see cref="FindEntryPointSchemas"/>, loads them all into their own <see cref="XmlSchemaSet"/> or sets.
+    /// <para>Each entrypoint schema represents it's own <see cref="XmlSchemaSet"/>; this means some schemas in a graph that are 'standalone' (not included/imported by others and not including/importing others),
+    /// will be loaded into their own <see cref="XmlSchemaSet"/>.</para>
+    /// <para>Any schema linked (i.e. imported/included) will be loaded into the <see cref="XmlSchemaSet"/> of the schema that imports/includes it.</para>
+    /// </summary>
+    /// <returns></returns>
+    public List<XmlSchemaSet> GetXmlSchemaSetFromEntryPointSchemas()
+    {
+        var entryPointSchemas = FindEntryPointSchemas();
+
+        throw new NotImplementedException();
     }
 
     public List<Schema> FindEntryPointSchemas()
@@ -237,6 +269,32 @@ public partial class Graph
             string normalized = Path.GetFileName(import.Name);
             if (!string.IsNullOrWhiteSpace(normalized))
                 yield return normalized;
+        }
+    }
+}
+
+public partial class Schema
+{
+    /// <summary>
+    /// If this Schema links or imports others (has dependencies), this will return a flat list of those linked Schema objects.
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerable<Schema> GetDependencies() 
+    {
+        if (Includes?.Schema != null)
+        {
+            foreach (Schema include in Includes.Schema)
+            {
+                yield return include;
+            }
+        }
+
+        if (Imports?.Schema != null)
+        {
+            foreach (Schema import in Imports.Schema)
+            {
+                yield return import;
+            }
         }
     }
 }

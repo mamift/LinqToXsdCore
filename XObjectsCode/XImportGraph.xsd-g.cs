@@ -266,6 +266,28 @@ namespace Xml.Schema.Linq.CodeGen {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RelativePathXName = System.Xml.Linq.XName.Get("RelativePath", "");
+        
+        /// <summary>
+        /// <para>
+        /// If the schema is in a subfolder, this is the path relative to the Graph's @Folder attribute.
+        /// </para>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string RelativePath {
+            get {
+                XAttribute x = this.Attribute(RelativePathXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetAttribute(RelativePathXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName NameXName = System.Xml.Linq.XName.Get("Name", "");
         
         /// <summary>

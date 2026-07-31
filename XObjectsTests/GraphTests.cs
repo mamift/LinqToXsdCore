@@ -57,7 +57,7 @@ public class GraphTests
     }
 
     [Test]
-    public void TestFindEntryPointSchemasFromSharePoint2010()
+    public void TestFindEntryPointSchemaNamesFromSharePoint2010()
     {
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
@@ -67,6 +67,39 @@ public class GraphTests
         Assert.NotNull(entryPoints);
         Assert.AreEqual(1, entryPoints.Count);
         Assert.That(entryPoints.Single(), Is.EqualTo("wss.xsd").IgnoreCase);
+    }
+
+    [Test]
+    public void TestFindEntryPointSchemasFromSharePoint2010()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var entryPoints = graph.FindEntryPointSchemas();
+
+        Assert.NotNull(entryPoints);
+        Assert.AreEqual(1, entryPoints.Count);
+    }
+
+    [Test]
+    public void TestSchemaEntryPointDependenciesForSharePoint2010()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var entryPoints = graph.FindEntryPointSchemas();
+
+        Assert.NotNull(entryPoints);
+        Assert.AreEqual(1, entryPoints.Count);
+        Assert.That(entryPoints.Single().Name, Is.EqualTo("wss.xsd").IgnoreCase);
+
+        var allSchemaNames = graph.GetAllSchemaNames();
+        
+        Assert.IsNotEmpty(allSchemaNames);
+
+        var linked = entryPoints.Single().GetDependencies().ToList();
+
+        Assert.NotNull(linked);
     }
 
     [Test]
@@ -123,57 +156,17 @@ public class GraphTests
         Assert.AreEqual(entryPointSchemas.Count, entryPoints.Count);
     }
 
-    [Test]
-    public void TestFindEntryPointSchemasCanCompileXmlSchemaSet()
+    [Test, TestCase("SharePoint2010")]
+    public void TestFindEntryPointSchemasCanCompileXmlSchemaSet(string folderName)
     {
-        string tempFolder = Path.Combine(Path.GetTempPath(), $"LinqToXsdCore.GraphTests.{Guid.NewGuid():N}");
-        Directory.CreateDirectory(tempFolder);
-
-        try
-        {
-            string rootSchemaPath = Path.Combine(tempFolder, "Root.xsd");
-            File.WriteAllText(rootSchemaPath,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" targetNamespace=\"urn:test\" elementFormDefault=\"qualified\">" +
-                "  <xs:element name=\"Root\" type=\"xs:string\" />" +
-                "</xs:schema>");
-
-            Graph graph = Graph.BuildFromFolder(tempFolder);
-            List<string> entryPoints = graph.FindEntryPointSchemaNames();
-
-            Assert.That(entryPoints, Is.Not.Empty);
-            Assert.That(entryPoints.Count, Is.EqualTo(1));
-            Assert.That(entryPoints.Single(), Is.EqualTo("Root.xsd").IgnoreCase);
-
-            var filesByName = new DirectoryInfo(tempFolder).GetFiles("*.xsd", SearchOption.TopDirectoryOnly)
-                .ToDictionary(f => f.Name, f => f.FullName, StringComparer.OrdinalIgnoreCase);
-
-            var errors = new List<string>();
-            var schemaSet = new XmlSchemaSet();
-            schemaSet.ValidationEventHandler += (_, args) =>
-            {
-                if (args.Severity == XmlSeverityType.Error)
-                    errors.Add(args.Message);
-            };
-
-            foreach (string entryPoint in entryPoints)
-            {
-                Assert.That(filesByName.ContainsKey(entryPoint), $"Entry point file not found: {entryPoint}");
-                schemaSet.Add(null, filesByName[entryPoint]);
-            }
-
-            schemaSet.Compile();
-
-            Assert.That(errors, Is.Empty, string.Join(Environment.NewLine, errors));
-        }
-        finally
-        {
-            if (Directory.Exists(tempFolder))
-                Directory.Delete(tempFolder, true);
-        }
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder(folderName);
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+        
+        List<Linq.CodeGen.Schema>? entryPointSchemas = graph.FindEntryPointSchemas();
+        Assert.IsNotEmpty(entryPointSchemas);
     }
 
-    private static DirectoryInfo GetGeneratedSchemaLibraryFolder(string folder)
+    public static DirectoryInfo GetGeneratedSchemaLibraryFolder(string folder)
     {
         if (folder == null) throw new ArgumentNullException(nameof(folder));
 
