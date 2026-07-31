@@ -16,9 +16,7 @@ public class GraphTests
     [Test]
     public void TestBuildFromFolderSharePoint2010_XmlCompared()
     {
-        DirectoryInfo dir = new DirectoryInfo(Environment.CurrentDirectory)
-            .AscendToFolder("XObjectsTests")
-            .AscendByLevel(1).DescendToFolder("SharePoint2010");
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
