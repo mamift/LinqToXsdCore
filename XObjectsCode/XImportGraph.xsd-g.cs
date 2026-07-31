@@ -103,6 +103,28 @@ namespace Xml.Schema.Linq.CodeGen {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FolderXName = System.Xml.Linq.XName.Get("Folder", "");
+        
+        /// <summary>
+        /// <para>
+        /// The full folder path this Graph was built from.
+        /// </para>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string Folder {
+            get {
+                XAttribute x = this.Attribute(FolderXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetAttribute(FolderXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Graph", "urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen");
         
         static Graph() {

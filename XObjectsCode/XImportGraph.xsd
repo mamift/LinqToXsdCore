@@ -4,10 +4,18 @@
     vc:minVersion="1.0" targetNamespace="urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen"
     xmlns="urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen">
     <xs:element name="Graph">
+        <xs:annotation>
+            <xs:documentation>This Graph class is meant to enable programmatically determining which schema or schemas can serve as 'entry points' for code generation in LinqToXdsCore. Some schemas are imported/included by others, while otheres are standalone. Determining which XSD files to run the CLI for code generation commands on can be quite burdensome, so an exhaustive way to determine this automatically would save users lots of time. There's already a 'linqtoxsd gen -a path\to\folder' command, but it executes a very naive written algorithm.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="Schema"/>
             </xs:sequence>
+            <xs:attribute name="Folder" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>The full folder path this Graph was built from.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Schema">
