@@ -1,10 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Xml.Schema.Linq.Extensions
 {
     public static class StringExtensionMethods
     {
+        public static bool EqualsIgnoreCase(this string str, string other)
+        {
+            return string.Equals(str, other, StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        public static bool EqualsIgnoreCaseInvariant(this string str, string other)
+        {
+            return string.Equals(str, other, StringComparison.InvariantCultureIgnoreCase);
+        }
+        
         /// <summary>
         /// Determines if a string is <c>null</c>, empty or all whitespace.
         /// </summary>

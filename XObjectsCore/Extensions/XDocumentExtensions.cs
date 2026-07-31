@@ -12,8 +12,10 @@ namespace Xml.Schema.Linq.Extensions
         public static readonly XName IncludeXName = XName.Get("include", W3CXmlSchemaNamespaceUri);
         public static readonly XName ImportXName = XName.Get("import", W3CXmlSchemaNamespaceUri);
 
-        public static IEnumerable<XElement> GetIncludeElements(this XDocument xDocument)
+        public static IEnumerable<XElement> GetXsdIncludeElements(this XDocument xDocument)
         {
+            if (!xDocument.IsAnXmlSchema()) return Enumerable.Empty<XElement>();
+            
             if (xDocument.Root != null)
             {
                 return xDocument.Root.Descendants().Where(e => e.Name.LocalName == "include");
@@ -22,8 +24,10 @@ namespace Xml.Schema.Linq.Extensions
             return Enumerable.Empty<XElement>();
         }
 
-        public static IEnumerable<XElement> GetImportElements(this XDocument xDocument)
+        public static IEnumerable<XElement> GetXsdImportElements(this XDocument xDocument)
         {
+            if (!xDocument.IsAnXmlSchema()) return Enumerable.Empty<XElement>();
+            
             if (xDocument.Root != null)
             {
                 return xDocument.Root.Descendants().Where(e => e.Name.LocalName == "import");
