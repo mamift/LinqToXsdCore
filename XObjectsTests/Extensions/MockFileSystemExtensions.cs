@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
 using NUnit.Framework;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests.Extensions;
@@ -65,6 +66,11 @@ public static class MockFileSystemExtensions
             var resolvedSchemaFiles = resolvedSchemaFilePaths.Select(fn => mfs.FileInfo.New(fn.Key)).ToList();
 
             return resolvedSchemaFiles;
+        }
+
+        public Graph BuildGraph(IEnumerable<string> filesOrFolders)
+        {
+            return Graph.BuildFromFiles(filesOrFolders, mfs as IFileSystem);
         }
 
         /// <summary>

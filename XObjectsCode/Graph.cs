@@ -1,6 +1,8 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -21,6 +23,11 @@ public partial class Graph
     public static Graph BuildFromFolder(string directory, SearchOption searchOption = SearchOption.TopDirectoryOnly, bool skipSchemasWithNoImportsOrIncludes = false)
     {
         DirectoryInfo dir = new DirectoryInfo(directory);
+        return BuildFromFolder(dir, searchOption, skipSchemasWithNoImportsOrIncludes);
+    }
+
+    public static Graph BuildFromFolder(DirectoryInfo dir, SearchOption searchOption = SearchOption.TopDirectoryOnly, bool skipSchemasWithNoImportsOrIncludes = false)
+    {
         FileInfo[] files = dir.GetFiles("*.xsd", searchOption);
         var graph = new Graph() {
             Folder = dir.FullName
@@ -61,6 +68,11 @@ public partial class Graph
         }
 
         return graph;
+    }
+
+    public static Graph BuildFromFiles(IEnumerable<string> filePaths, IFileSystem? fs = null)
+    {
+        return default!;
     }
 
     /// <summary>
