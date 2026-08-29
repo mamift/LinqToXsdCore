@@ -20,8 +20,16 @@ public class GraphTests
         
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
+        // just for comparison purposes, we don't care about the folder path or relative paths
+        graph.Folder = null;
+        foreach (var element in graph.Untyped.Descendants().Where(a => a.Attributes("RelativePath").Any()))
+        {
+            var attr = element.Attribute("RelativePath");
+            if (attr != null) attr.Remove();
+        }
+
         var xmlString = """
-                        <Graph xmlns="urn:LinqToXsdCore:Xml.Schema.Linq.CodeGen">
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
                          <Schema Name="CamlQuery.xsd">
                            <Includes>
                              <Schema Name="coredefinitions.xsd" />
@@ -109,7 +117,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
-        var entryPoints = graph.FindEntryPointSchemas();
+        List<Linq.CodeGen.Schema> entryPoints = graph.FindEntryPointSchemas();
 
         Assert.NotNull(entryPoints);
         Assert.AreEqual(1, entryPoints.Count);
@@ -118,15 +126,17 @@ public class GraphTests
         
         Assert.That(theEntryPointSchema.Name, Is.EqualTo("wss.xsd").IgnoreCase);
 
-        var allSchemaNames = graph.GetAllSchemaNames();
+        List<string> allSchemaNames = graph.GetAllSchemaNames();
         
         Assert.IsNotEmpty(allSchemaNames);
         Assert.True(allSchemaNames.Count == dir.GetFiles("*.xsd", SearchOption.AllDirectories).Length);
 
-        var linkedRecursively = theEntryPointSchema.GetDependenciesRecursively().ToList();
+        List<Linq.CodeGen.Schema> linkedRecursively = theEntryPointSchema.GetDependenciesRecursively().ToList();
         Assert.NotNull(linkedRecursively);
-        
-        Assert.True(linkedRecursively.Count == allSchemaNames.Count);
+        Assert.IsNotEmpty(linkedRecursively);
+
+        Assert.True(linkedRecursively.All(s => allSchemaNames.Contains(s.Name)));
+        Assert.True(linkedRecursively.Count == allSchemaNames.Count-1);
     }
 
     [Test]
