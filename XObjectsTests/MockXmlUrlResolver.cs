@@ -26,11 +26,13 @@ public class MockXmlUrlResolver : XmlResolver
         this.fs = fs;
     }
 
-    public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
+    public override object GetEntity(Uri absoluteUri, string? role, Type? ofObjectToReturn)
     {
         if (absoluteUri == null) throw new ArgumentNullException(nameof (absoluteUri));
 
-        var mapping = mappings.ValueForKey(absoluteUri);
+        string uriAsString = absoluteUri.ToString();
+        var fileNameOnly = new Uri(Path.GetFileName(uriAsString), UriKind.Relative);
+        var mapping = mappings.ValueForPossibleKeys([ absoluteUri, fileNameOnly ]);
 
         if (mapping == null) {
             var mockFileInfo = new MockFileInfo(this.fs, absoluteUri.OriginalString);
@@ -48,9 +50,13 @@ public class MockXmlUrlResolver : XmlResolver
 
     public override Uri ResolveUri(Uri? baseUri, string? relativeUri)
     {
+        if (baseUri is null && relativeUri is null) {
+            throw new ArgumentNullException("Both baseUri and relativeUri are null.");
+        }
+
         var justTheFileName = Path.GetFileName(relativeUri) ?? throw new InvalidOperationException("Unable to find file name for relativeUri: " + relativeUri);
         var fsSearch = fs.AllFiles.Where(f => f.EndsWith(justTheFileName, StringComparison.CurrentCultureIgnoreCase));
-        var mappingsSearch = mappings.Where(k => k.Key.OriginalString.EndsWith(relativeUri));
+        var mappingsSearch = mappings.Where(k => k.Key.OriginalString.EndsWith(relativeUri, StringComparison.CurrentCultureIgnoreCase));
         var possibleMappingResult = mappingsSearch.FirstOrDefault();
         var theFile = EqualityComparer<KeyValuePair<Uri, IFileInfo>>.Default.Equals(possibleMappingResult, default) 
             ? null : possibleMappingResult.Key;

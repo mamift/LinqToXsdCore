@@ -181,5 +181,22 @@ namespace Xml.Schema.Linq.Extensions
 
             return forKey;
         }
+
+        public static TValue ValueForPossibleKeys<TKey, TValue>(this IDictionary<TKey, TValue> tsDictionary, TKey[] keys)
+        {
+            if (keys == null) throw new ArgumentNullException(nameof(keys));
+            if (keys.Length == 0) return default(TValue);
+
+            TValue theValue = default(TValue);
+            foreach (var key in keys) {
+                var value = tsDictionary.ValueForKey(key);
+                if (!EqualityComparer<TValue>.Default.Equals(default(TValue), value)) {
+                    theValue = value;
+                    break;
+                }
+            }
+
+            return theValue;
+        }
     }
 }
