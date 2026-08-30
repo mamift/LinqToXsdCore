@@ -36,3 +36,14 @@ Fall back to Grep/Glob/Read **only** when the graph doesn't cover what you need.
 2. Use `detect_changes` for code review.
 3. Use `get_affected_flows` to understand impact.
 4. Use `query_graph` pattern="tests_for" to check coverage.
+
+<!-- fuse:begin v4.4 -->
+For repository code tasks:
+1. Call fuse_workspace with action=status before broad discovery.
+2. Call fuse_find before broad file search when the task names a symbol, route, service, request, or configuration key.
+3. Call fuse_find with kind=task for open-ended localization.
+4. Call fuse_impact before changing a public signature.
+5. Call fuse_check after a proposed single-file edit.
+6. Call fuse_review before handoff.
+If Fuse reports unavailable or insufficient signal, follow its fallback and continue with native repository tools. Do not repeat a refused query.
+<!-- fuse:end -->

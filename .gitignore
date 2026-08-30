@@ -262,3 +262,4 @@ __pycache__/
 Samples/
 *.diff
 LinqToXsd.Schemas/_temp/
+.fuse/
