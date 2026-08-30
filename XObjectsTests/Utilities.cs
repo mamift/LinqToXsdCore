@@ -126,7 +126,7 @@ namespace Xml.Schema.Linq.Tests
             
             var xsdFile = new MockFileInfo(fs, xsdFileName);
             var possibleSettings = new MockFileInfo(fs, possibleSettingsFilePath);
-            var schemaSet = GetXmlSchemaSet(xsdFile, fs);
+            var schemaSet = GetXmlSchemaSetAndPreload(xsdFile, fs);
 
             IEnumerable<(string filename, TextWriter writer)> codeWriters;
             if (possibleSettings.Exists) {
@@ -228,7 +228,84 @@ namespace Xml.Schema.Linq.Tests
         {
             return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs);
         }
-        
+
+        public static XmlSchemaSet GetXmlSchemaSetAndPreload(IFileInfo xsdFile, IMockFileDataAccessor fs)
+        {
+            if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
+            if (fs == null) throw new ArgumentNullException(nameof(fs));
+
+            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
+            MockDirectoryInfo directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
+            var allXsds = directoryInfo.GetFiles("*.xsd").ToArray();
+
+            var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
+            var xmlReaderSettings = new XmlReaderSettings() {
+                DtdProcessing = DtdProcessing.Ignore,
+                CloseInput = true
+            };
+
+            var schemaSet = new XmlSchemaSet { XmlResolver = xmlPreloadedResolver };
+
+            // Track which schema files we've processed
+            var processedSchemas = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            // Add all schemas to the resolver
+            foreach (var xsd in allXsds)
+            {
+                var uri = new Uri($"{xsd.Name}", UriKind.Relative);
+                xmlPreloadedResolver.Add(uri, xsd);
+            }
+
+            // Add main schema first
+            using (var stream = xsdFile.OpenRead())
+            using (var reader = XmlReader.Create(stream, xmlReaderSettings))
+            {
+                var schema = XmlSchema.Read(reader, null);
+                schemaSet.Add(schema);
+                processedSchemas.Add(xsdFile.Name);
+            }
+
+            // Compile to process includes/imports
+            try
+            {
+                schemaSet.Compile();
+            }
+            catch (XmlSchemaException ex) when (ex.Message.Contains("is not declared"))
+            {
+                // Update processedSchemas with all schemas loaded via includes/imports
+                var currentlyLoadedSchemas = schemaSet.Schemas()
+                    .Cast<XmlSchema>()
+                    .Select(s => Path.GetFileName(s.SourceUri ?? string.Empty))
+                    .Where(name => !string.IsNullOrEmpty(name));
+
+                foreach (var name in currentlyLoadedSchemas)
+                {
+                    processedSchemas.Add(name);
+                }
+
+                // Add remaining schemas that aren't already loaded
+                foreach (var xsd in allXsds)
+                {
+                    if (!processedSchemas.Contains(xsd.Name))
+                    {
+                        using var stream = xsd.OpenRead();
+                        using var reader = XmlReader.Create(stream, xmlReaderSettings);
+                        var schema = XmlSchema.Read(reader, null);
+                        schemaSet.Add(schema);
+                        processedSchemas.Add(xsd.Name);
+                    }
+                }
+
+                schemaSet.Compile();
+            }
+            catch (XmlSchemaException ex) when
+                (ex.Message.Contains("The 'http://www.w3.org/XML/1998/namespace:base' attribute is not declared."))
+            {
+                throw new LinqToXsdException($"Error compiling schema: {xsdFile.FullName}", ex);
+            }
+
+            return schemaSet;
+        }
         public static XmlSchemaSet GetXmlSchemaSet(IFileInfo xsdFile, IMockFileDataAccessor fs)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
@@ -262,7 +339,7 @@ namespace Xml.Schema.Linq.Tests
         /// </summary>
         public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs)
         {
-            var schemaSet = GetXmlSchemaSet(xsdFile, mfs);
+            var schemaSet = GetXmlSchemaSetAndPreload(xsdFile, mfs);
 
             var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName, mfs);
             var stringBuilder = new StringBuilder();
