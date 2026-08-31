@@ -12,6 +12,8 @@ namespace Xml.Schema.Linq.CodeGen;
 
 public partial class Graph
 {
+    public IFileSystem? FileSystem { get; set; }
+
     /// <summary>
     /// Given a folder path, build a <see cref="Graph"/> from all XSD files in the folder and subfolder.
     /// This graph tracks which XSD files import/include each other in the folder and can be used to determine dependencies between XSD files.
@@ -72,7 +74,96 @@ public partial class Graph
 
     public static Graph BuildFromFiles(IEnumerable<string> filePaths, IFileSystem? fs = null)
     {
-        return default!;
+        if (filePaths == null) throw new ArgumentNullException(nameof(filePaths));
+
+        var paths = filePaths.ToList();
+        if (!paths.Any()) return new Graph();
+
+        var graph = new Graph();
+
+        // Gather file infos either from the provided IFileSystem or the real System.IO
+        var fileInfos = new List<(string FullName, string Name, Func<Stream> OpenStream)>();
+
+        if (fs == null)
+        {
+            foreach (var p in paths)
+            {
+                if (Directory.Exists(p))
+                {
+                    var dir = new DirectoryInfo(p);
+                    foreach (var f in dir.GetFiles("*.xsd", SearchOption.AllDirectories))
+                    {
+                        fileInfos.Add((f.FullName, f.Name, () => f.OpenRead()));
+                    }
+                }
+                else if (File.Exists(p))
+                {
+                    var f = new FileInfo(p);
+                    fileInfos.Add((f.FullName, f.Name, () => f.OpenRead()));
+                }
+            }
+        }
+        else
+        {
+            foreach (var p in paths)
+            {
+                var dirInfo = fs.DirectoryInfo.New(p);
+                if (dirInfo.Exists)
+                {
+                    foreach (var f in dirInfo.GetFiles("*.xsd", SearchOption.AllDirectories))
+                    {
+                        // Capture local variable for closure
+                        var fLocal = f;
+                        fileInfos.Add((fLocal.FullName, fLocal.Name, () => fLocal.OpenRead()));
+                    }
+                }
+                else
+                {
+                    var fileInfo = fs.FileInfo.New(p);
+                    if (fileInfo.Exists)
+                    {
+                        var fiLocal = fileInfo;
+                        fileInfos.Add((fiLocal.FullName, fiLocal.Name, () => fiLocal.OpenRead()));
+                    }
+                }
+            }
+        }
+
+        foreach (var fi in fileInfos)
+        {
+            using var stream = fi.OpenStream();
+            XDocument xDocument = XDocument.Load(stream);
+            if (!xDocument.IsAnXmlSchema()) continue;
+
+            List<XElement> includes = xDocument.GetXsdIncludeElements().ToList();
+            List<XElement> imports = xDocument.GetXsdImportElements().ToList();
+
+            var schemaEl = new Schema()
+            {
+                Name = fi.Name,
+                RelativePath = fi.FullName
+            };
+
+            if (includes.Any())
+            {
+                schemaEl.Includes = new Schema.IncludesLocalType()
+                {
+                    Schema = includes.Select(i => new Schema() { Name = i.Attribute("schemaLocation")?.Value }).ToList()
+                };
+            }
+
+            if (imports.Any())
+            {
+                schemaEl.Imports = new Schema.ImportsLocalType()
+                {
+                    Schema = imports.Select(i => new Schema() { Name = i.Attribute("schemaLocation")?.Value }).ToList()
+                };
+            }
+
+            graph.Schema.Add(schemaEl);
+        }
+
+        return graph;
     }
 
     /// <summary>
@@ -282,6 +373,40 @@ public partial class Graph
             if (!string.IsNullOrWhiteSpace(normalized))
                 yield return normalized;
         }
+    }
+
+    /// <summary>
+    /// After a <see cref="Graph"/> instance has been built , this method will return a list of <see cref="IFileInfo"/> objects representing the XSD files in the graph.
+    /// <para>If <see cref="FileSystem"/> is not null, it will use paths provided by that instead.</para>
+    /// </summary>
+    /// <returns></returns>
+    public List<IFileInfo>? ToFileInfos()
+    {
+        if (!Schema.Any())
+            return null;
+
+        var fs = FileSystem ?? new FileSystem();
+
+        var result = new List<IFileInfo>();
+
+        foreach (Schema schema in Schema)
+        {
+            if (string.IsNullOrWhiteSpace(schema.RelativePath))
+                continue;
+
+            string path = schema.RelativePath;
+
+            // RelativePath from BuildFromFolder starts with '.' (e.g. "./foo.xsd")
+            // Resolve against Folder when available
+            if (!string.IsNullOrWhiteSpace(Folder) && path.StartsWith("."))
+            {
+                path = Path.GetFullPath(Path.Combine(Folder, path.Substring(1).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)));
+            }
+
+            result.Add(fs.FileInfo.New(path));
+        }
+
+        return result;
     }
 }
 

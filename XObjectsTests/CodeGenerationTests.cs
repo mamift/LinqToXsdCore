@@ -16,6 +16,7 @@ using MoreLinq;
 using NUnit.Framework;
 using ObjectsComparer;
 using OneOf;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 using Xml.Schema.Linq.Tests.Extensions;
 
@@ -117,6 +118,62 @@ namespace Xml.Schema.Linq.Tests
             var xsdsToProcess = GetFileSystemForAssemblyName(assemblyName).AllFiles.Where(f => f.EndsWith(".xsd"));
 
             CheckTypeOfVoidExpressionsInGeneratedCode(xsdsToProcess);
+        }
+
+        private void CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(IEnumerable<string> xsdsToProcess, int randomSubset = -1)
+        {
+            Graph graph = AllTestFiles.BuildGraph(xsdsToProcess);
+
+            List<IFileInfo>? allProcessableXsds = graph.ToFileInfos();
+            
+            Assert.NotNull(allProcessableXsds);
+            Assert.IsNotEmpty(allProcessableXsds);
+
+            var failingXsds = new List<(IFileInfo file, ExceptionDispatchInfo exception)>(allProcessableXsds.Capacity);
+
+            var toProcess = randomSubset > 0 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
+
+            foreach (var xsd in toProcess) {
+                OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
+
+                if (generateResult.IsT1) {
+                    failingXsds.Add((xsd, generateResult.AsT1));
+                    continue;
+                }
+
+                var generatedCodeTree = generateResult.AsT0;
+                var root = generatedCodeTree.GetRoot();
+
+                var allDescendents = root.DescendantNodes().SelectMany(d => d.DescendantNodes()).ToList();
+
+                if (!allDescendents.Any()) continue;
+
+                var allStatements = allDescendents.OfType<StatementSyntax>();
+                var allExpressions = allStatements.SelectMany(s => s.DescendantNodes()).OfType<ExpressionSyntax>();
+                var typeOfExpressions = allExpressions.OfType<TypeOfExpressionSyntax>().Distinct().ToArray();
+
+                Assert.IsNotEmpty(typeOfExpressions);
+
+                var typeOfVoid = SF.ParseExpression("typeof(void)");
+                var nonVoidTypeOfExpressions = typeOfExpressions.Where(toe => !toe.IsEquivalentTo(typeOfVoid)).ToArray();
+                var voidTypeOfExpressions = typeOfExpressions.Where(toe => toe.IsEquivalentTo(typeOfVoid)).ToArray();
+
+                Assert.IsNotEmpty(nonVoidTypeOfExpressions);
+
+                if (voidTypeOfExpressions.Any()) {
+                    Assert.Warn($"Some typeof(void) expressions found! Warning generated for XSD: " + xsd.FullName);
+                }
+            }
+
+            if (failingXsds.Any()) {
+                foreach (var pair in failingXsds) {
+                    var file = pair.file.FullName;
+                    var message = $"{file} failed to generated code.";
+                    TestContext.Out.WriteLine(message);
+
+                    throw new LinqToXsdException(message, pair.exception.SourceException);
+                }
+            }
         }
 
         private void CheckTypeOfVoidExpressionsInGeneratedCode(IEnumerable<string> xsdsToProcess, int randomSubset = -1)

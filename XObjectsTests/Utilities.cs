@@ -260,9 +260,7 @@ namespace Xml.Schema.Linq.Tests
             using (var stream = xsdFile.OpenRead())
             using (var reader = XmlReader.Create(stream, xmlReaderSettings))
             {
-                var schema = XmlSchema.Read(reader, null);
-                schemaSet.Add(schema);
-                processedSchemas.Add(xsdFile.Name);
+                schemaSet.Add(null, reader);
             }
 
             // Compile to process includes/imports
@@ -272,27 +270,27 @@ namespace Xml.Schema.Linq.Tests
             }
             catch (XmlSchemaException ex) when (ex.Message.Contains("is not declared"))
             {
-                // Update processedSchemas with all schemas loaded via includes/imports
-                var currentlyLoadedSchemas = schemaSet.Schemas()
+                // Get all schemas currently in the set (including those loaded via includes/imports)
+                var loadedSchemaTargetNamespaces = schemaSet.Schemas()
                     .Cast<XmlSchema>()
-                    .Select(s => Path.GetFileName(s.SourceUri ?? string.Empty))
-                    .Where(name => !string.IsNullOrEmpty(name));
+                    .SelectMany(s => s.Items.OfType<XmlSchemaType>())
+                    .Select(t => new { t.QualifiedName.Namespace, t.QualifiedName.Name })
+                    .ToHashSet();
 
-                foreach (var name in currentlyLoadedSchemas)
-                {
-                    processedSchemas.Add(name);
-                }
-
-                // Add remaining schemas that aren't already loaded
+                // Add remaining schemas one by one
                 foreach (var xsd in allXsds)
                 {
-                    if (!processedSchemas.Contains(xsd.Name))
+                    if (xsd.FullName == xsdFile.FullName) continue; // Skip main file
+
+                    try
                     {
                         using var stream = xsd.OpenRead();
                         using var reader = XmlReader.Create(stream, xmlReaderSettings);
-                        var schema = XmlSchema.Read(reader, null);
-                        schemaSet.Add(schema);
-                        processedSchemas.Add(xsd.Name);
+                        schemaSet.Add(null, reader);
+                    }
+                    catch (XmlSchemaException)
+                    {
+                        // Schema already loaded or has conflicting declarations - skip it
                     }
                 }
 
