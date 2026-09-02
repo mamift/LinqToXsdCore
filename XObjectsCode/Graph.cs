@@ -202,15 +202,17 @@ public partial class Graph
             select i).Distinct().ToList();
     }
 
-    public List<Schema> GetSchemasThatAreImportedByOthers()
-    {
-        IEnumerable<string> named = (from s in Schema
-            where s.Imports?.Schema is not null && s.Imports.Schema.Any()
-            from i in s.Imports.Schema
-            select i.Name).Distinct();
+public List<Schema> GetSchemasThatAreImportedByOthers()
+{
+    var importedNames = Schema
+        .Where(s => s.Imports?.Schema is { Count: > 0 })
+        .SelectMany(s => s.Imports.Schema)
+        .Select(i => Path.GetFileName(i.Name))
+        .Where(n => !string.IsNullOrWhiteSpace(n))
+        .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        return SchemaField.Where(sc => named.Contains(sc.Name)).ToList();
-    }
+    return Schema.Where(sc => importedNames.Contains(sc.Name)).ToList();
+}
 
     /// <summary>
     /// Using the output from <see cref="FindEntryPointSchemas"/>, loads them all into their own <see cref="XmlSchemaSet"/> or sets.
