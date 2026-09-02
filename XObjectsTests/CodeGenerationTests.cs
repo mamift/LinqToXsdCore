@@ -531,5 +531,11 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotEmpty(existingSubtypes);
             Assert.IsNotNull(existingSubtypes.SingleOrDefault());
         }
+
+        [Test]
+        public void ValidateGlobalAttributeEnumGenerated()
+        {
+
+        }
     }
 }
