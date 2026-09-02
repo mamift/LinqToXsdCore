@@ -117,7 +117,7 @@ namespace Xml.Schema.Linq.Tests
         {
             var xsdsToProcess = GetFileSystemForAssemblyName(assemblyName).AllFiles.Where(f => f.EndsWith(".xsd"));
 
-            CheckTypeOfVoidExpressionsInGeneratedCode(xsdsToProcess);
+            CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(xsdsToProcess);
         }
 
         private void CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(IEnumerable<string> xsdsToProcess, int randomSubset = -1)

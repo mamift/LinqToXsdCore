@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
@@ -105,6 +106,7 @@ public partial class Graph
         }
         else
         {
+            graph.FileSystem = fs;
             foreach (var p in paths)
             {
                 var dirInfo = fs.DirectoryInfo.New(p);
@@ -380,7 +382,7 @@ public partial class Graph
     /// <para>If <see cref="FileSystem"/> is not null, it will use paths provided by that instead.</para>
     /// </summary>
     /// <returns></returns>
-    public List<IFileInfo>? ToFileInfos()
+    internal List<IFileInfo>? ToFileInfos()
     {
         if (!Schema.Any())
             return null;
@@ -400,7 +402,10 @@ public partial class Graph
             // Resolve against Folder when available
             if (!string.IsNullOrWhiteSpace(Folder) && path.StartsWith("."))
             {
-                path = Path.GetFullPath(Path.Combine(Folder, path.Substring(1).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)));
+                
+                string pathStr = path.Substring(1).TrimStart(fs.Path.DirectorySeparatorChar, fs.Path.AltDirectorySeparatorChar);
+                string combinedPath = fs.Path.Combine(Folder, pathStr);
+                path = fs.Path.GetFullPath(combinedPath);
             }
 
             result.Add(fs.FileInfo.New(path));
