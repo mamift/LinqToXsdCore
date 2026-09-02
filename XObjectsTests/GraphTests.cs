@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using NUnit.Framework;
 using Xml.Schema.Linq.CodeGen;
+using Xml.Schema.Linq.Extensions;
 using Xml.Schema.Linq.Tests.Extensions;
 
 namespace Xml.Schema.Linq.Tests;
@@ -201,6 +202,84 @@ public class GraphTests
         
         List<Linq.CodeGen.Schema>? entryPointSchemas = graph.FindEntryPointSchemas();
         Assert.IsNotEmpty(entryPointSchemas);
+    }
+
+    [Test]
+    public void TestTraverseSchemasSharePoint2010()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var entryPoints = graph.FindEntryPointSchemas();
+        var traversed = entryPoints.TraverseSchemas(graph);
+
+        Assert.IsNotNull(traversed);
+        Assert.AreEqual(graph.Schema.Count, traversed.Count);
+        Assert.That(traversed.First().Name, Is.EqualTo("wss.xsd").IgnoreCase);
+
+        // Traversing all schemas in graph filters to valid entry points and traverses them
+        var traversedAll = graph.Schema.TraverseSchemas(graph);
+        Assert.IsNotNull(traversedAll);
+        Assert.AreEqual(graph.Schema.Count, traversedAll.Count);
+
+        // Passing non-entrypoint schemas results in empty reachable list because none are entry points
+        var nonEntryPoints = graph.Schema.Where(s => !s.Name.EqualsIgnoreCase("wss.xsd")).ToList();
+        var traversedNonEntry = nonEntryPoints.TraverseSchemas(graph);
+        Assert.IsNotNull(traversedNonEntry);
+        Assert.IsEmpty(traversedNonEntry);
+    }
+
+    [Test]
+    public void TestTraverseSchemasOfficeOpenXMLStrict()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("OfficeOpenXML-XMLSchema-Strict");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var entryPoints = graph.FindEntryPointSchemas();
+        var traversed = entryPoints.TraverseSchemas(graph);
+
+        Assert.IsNotNull(traversed);
+        Assert.IsNotEmpty(traversed);
+        Assert.IsTrue(traversed.Count >= entryPoints.Count);
+    }
+
+    [Test]
+    public void TestTraverseSchemasWithCycles()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="a.xsd">
+                           <Includes>
+                             <Schema Name="b.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="b.xsd">
+                           <Includes>
+                             <Schema Name="a.xsd" />
+                           </Includes>
+                         </Schema>
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+        var entryPoints = graph.FindEntryPointSchemas();
+        Assert.AreEqual(1, entryPoints.Count);
+
+        var traversed = entryPoints.TraverseSchemas(graph);
+        Assert.IsNotNull(traversed);
+        Assert.AreEqual(2, traversed.Count);
+    }
+
+    [Test]
+    public void TestTraverseSchemasNullAndEmpty()
+    {
+        var graph = new Graph();
+        Assert.Throws<ArgumentNullException>(() => ((List<Linq.CodeGen.Schema>)null!).TraverseSchemas(graph));
+        Assert.Throws<ArgumentNullException>(() => new List<Linq.CodeGen.Schema>().TraverseSchemas(null!));
+
+        var result = new List<Linq.CodeGen.Schema>().TraverseSchemas(graph);
+        Assert.IsNotNull(result);
+        Assert.IsEmpty(result);
     }
 
     public static DirectoryInfo GetGeneratedSchemaLibraryFolder(string folder)
