@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen;
 
@@ -23,19 +23,21 @@ public partial class Graph
     /// <param name="searchOption"></param>
     /// <param name="skipSchemasWithNoImportsOrIncludes"></param>
     /// <returns></returns>
-    public static Graph BuildFromFolder(string directory, SearchOption searchOption = SearchOption.TopDirectoryOnly, bool skipSchemasWithNoImportsOrIncludes = false)
+    public static Graph BuildFromFolder(string directory, SearchOption searchOption = SearchOption.TopDirectoryOnly,
+        bool skipSchemasWithNoImportsOrIncludes = false)
     {
         DirectoryInfo dir = new DirectoryInfo(directory);
         return BuildFromFolder(dir, searchOption, skipSchemasWithNoImportsOrIncludes);
     }
 
-    public static Graph BuildFromFolder(DirectoryInfo dir, SearchOption searchOption = SearchOption.TopDirectoryOnly, bool skipSchemasWithNoImportsOrIncludes = false)
+    public static Graph BuildFromFolder(DirectoryInfo dir, SearchOption searchOption = SearchOption.TopDirectoryOnly,
+        bool skipSchemasWithNoImportsOrIncludes = false)
     {
         FileInfo[] files = dir.GetFiles("*.xsd", searchOption);
         var graph = new Graph() {
             Folder = dir.FullName
         };
-        
+
         foreach (FileInfo file in files)
         {
             using FileStream fileStream = file.OpenRead();
@@ -66,7 +68,7 @@ public partial class Graph
 
             if (skipSchemasWithNoImportsOrIncludes && schemaEl.Includes is null && schemaEl.Imports is null)
                 continue;
-            
+
             graph.Schema.Add(schemaEl);
         }
 
@@ -140,24 +142,21 @@ public partial class Graph
             List<XElement> includes = xDocument.GetXsdIncludeElements().ToList();
             List<XElement> imports = xDocument.GetXsdImportElements().ToList();
 
-            var schemaEl = new Schema()
-            {
+            var schemaEl = new Schema() {
                 Name = fi.Name,
                 RelativePath = fi.FullName
             };
 
             if (includes.Any())
             {
-                schemaEl.Includes = new Schema.IncludesLocalType()
-                {
+                schemaEl.Includes = new Schema.IncludesLocalType() {
                     Schema = includes.Select(i => new Schema() { Name = i.Attribute("schemaLocation")?.Value }).ToList()
                 };
             }
 
             if (imports.Any())
             {
-                schemaEl.Imports = new Schema.ImportsLocalType()
-                {
+                schemaEl.Imports = new Schema.ImportsLocalType() {
                     Schema = imports.Select(i => new Schema() { Name = i.Attribute("schemaLocation")?.Value }).ToList()
                 };
             }
@@ -175,9 +174,9 @@ public partial class Graph
     public List<string> GetAllSchemaNames()
     {
         return Schema.Select(s => {
-            if (string.IsNullOrWhiteSpace(s.Name)) 
+            if (string.IsNullOrWhiteSpace(s.Name))
                 throw new InvalidOperationException("Graph is in an invalid state: a schema name was null or empty!");
-            
+
             return s.Name;
         }).ToList();
     }
@@ -202,17 +201,17 @@ public partial class Graph
             select i).Distinct().ToList();
     }
 
-public List<Schema> GetSchemasThatAreImportedByOthers()
-{
-    var importedNames = Schema
-        .Where(s => s.Imports?.Schema is { Count: > 0 })
-        .SelectMany(s => s.Imports.Schema)
-        .Select(i => Path.GetFileName(i.Name))
-        .Where(n => !string.IsNullOrWhiteSpace(n))
-        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+    public List<Schema> GetSchemasThatAreImportedByOthers()
+    {
+        var importedNames = Schema
+            .Where(s => s.Imports?.Schema is { Count: > 0 })
+            .SelectMany(s => s.Imports.Schema)
+            .Select(i => Path.GetFileName(i.Name))
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-    return Schema.Where(sc => importedNames.Contains(sc.Name)).ToList();
-}
+        return Schema.Where(sc => importedNames.Contains(sc.Name)).ToList();
+    }
 
     /// <summary>
     /// Using the output from <see cref="FindEntryPointSchemas"/>, loads them all into their own <see cref="XmlSchemaSet"/> or sets.
@@ -346,7 +345,7 @@ public List<Schema> GetSchemasThatAreImportedByOthers()
         var entryPoints = new List<string>();
         for (int i = 0; i < sccs.Count; i++)
         {
-            if (sccInDegree[i] == 0) 
+            if (sccInDegree[i] == 0)
                 entryPoints.Add(sccs[i][0]);
         }
 
@@ -404,8 +403,8 @@ public List<Schema> GetSchemasThatAreImportedByOthers()
             // Resolve against Folder when available
             if (!string.IsNullOrWhiteSpace(Folder) && path.StartsWith("."))
             {
-                
-                string pathStr = path.Substring(1).TrimStart(fs.Path.DirectorySeparatorChar, fs.Path.AltDirectorySeparatorChar);
+                string pathStr = path.Substring(1)
+                    .TrimStart(fs.Path.DirectorySeparatorChar, fs.Path.AltDirectorySeparatorChar);
                 string combinedPath = fs.Path.Combine(Folder, pathStr);
                 path = fs.Path.GetFullPath(combinedPath);
             }
@@ -428,7 +427,7 @@ public partial class Schema
         // since this Schema represents a <Schema> XML element under the <Graph> XML element,
         // we can conveniently navigate to the parent by casting to the right type!
         Graph graph = (Graph)this.Untyped.Parent;
-        
+
         if (Includes?.Schema != null && Includes.Schema.Any())
         {
             foreach (Schema include in Includes.Schema)
@@ -458,7 +457,7 @@ public partial class Schema
         Graph graph = (Graph)this.Untyped.Parent;
 
         var dependencies = GetDependencies();
-        
+
         var returnList = new List<Schema>();
         foreach (Schema dependency in dependencies)
         {
@@ -466,7 +465,7 @@ public partial class Schema
             {
                 continue;
             }
-            
+
             returnList.Add(dependency);
 
             var countOfSkips = 0;
@@ -477,6 +476,7 @@ public partial class Schema
                     countOfSkips++;
                     continue;
                 }
+
                 returnList.Add(recursiveDependency);
             }
         }
