@@ -15,25 +15,13 @@ namespace Xml.Schema.Linq.Extensions
         public static IEnumerable<XElement> GetXsdIncludeElements(this XDocument xDocument)
         {
             if (!xDocument.IsAnXmlSchema()) return Enumerable.Empty<XElement>();
-            
-            if (xDocument.Root != null)
-            {
-                return xDocument.Root.Descendants().Where(e => e.Name.LocalName == "include");
-            }
-            
-            return Enumerable.Empty<XElement>();
+            return xDocument.Descendants(IncludeXName);
         }
 
         public static IEnumerable<XElement> GetXsdImportElements(this XDocument xDocument)
         {
             if (!xDocument.IsAnXmlSchema()) return Enumerable.Empty<XElement>();
-            
-            if (xDocument.Root != null)
-            {
-                return xDocument.Root.Descendants().Where(e => e.Name.LocalName == "import");
-            }
-            
-            return Enumerable.Empty<XElement>();
+            return xDocument.Descendants(ImportXName);
         }
 
         /// <summary>
