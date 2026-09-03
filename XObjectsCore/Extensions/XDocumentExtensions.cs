@@ -94,11 +94,12 @@ namespace Xml.Schema.Linq.Extensions
                         continue;
 
                     // Resolve the schemaLocation to a full path by matching against the known file names
-                    var referencedFileName = schemaLocationAttr.Value;
-                    var match = xDocs.Keys.FirstOrDefault(k =>
-                        string.Equals(Path.GetFileName(k), referencedFileName, StringComparison.InvariantCultureIgnoreCase));
-                    if (match != null)
-                        imports.Add(match);
+                    var referencedFileName = Path.GetFileName(schemaLocationAttr.Value);
+                    if (string.IsNullOrEmpty(referencedFileName))
+                        continue;
+                    var match = xDocs.Keys.FirstOrDefault(k => string.Equals(Path.GetFileName(k), referencedFileName, StringComparison.OrdinalIgnoreCase));
+                    
+                    imports.Add(match);
                 }
 
                 graph[kvp.Key] = imports;
