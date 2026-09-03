@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://github.com/mamift/minsk/" xmlns="https://github.com/mamift/minsk/"
+           elementFormDefault="qualified">
+
+  <xs:element name="Grammar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Imports" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Import" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="path" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Trivia" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TriviaRule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="pattern" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="xs:string" use="optional" default="Whitespace" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Keywords" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Keyword" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="text" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Tokens" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Token" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="text" type="xs:string" use="optional" />
+                  <xs:attribute name="pattern" type="xs:string" use="optional" />
+                  <xs:attribute name="valueType" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PrecedenceLevels" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Level" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Operator" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="token" type="xs:string" use="required" />
+                        <xs:attribute name="kind" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="Unary" />
+                              <xs:enumeration value="Binary" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="compoundBinaryEquivalent" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="value" type="xs:int" use="required" />
+                  <xs:attribute name="associativity" default="Left">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="Left" />
+                        <xs:enumeration value="Right" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Rules">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+              <xs:element name="NodeRule" type="NodeRuleType" />
+              <xs:element name="ChoiceRule" type="ChoiceRuleType" />
+              <xs:element name="ExpressionRule" type="ExpressionRuleType" />
+              <xs:element name="Extend" type="ExtendRuleType" />
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+      <xs:attribute name="startSymbol" type="xs:string" use="required" />
+      <xs:attribute name="namespace" type="xs:string" use="optional" default="Minsk.Parsing" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="NodeRuleType">
+    <xs:group ref="ProductionElementGroup" maxOccurs="unbounded" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="base" type="xs:string" use="optional" default="SyntaxNode" />
+  </xs:complexType>
+
+  <xs:complexType name="ChoiceRuleType">
+    <xs:sequence>
+      <xs:element name="Option" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="rule" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="base" type="xs:string" use="optional" default="SyntaxNode" />
+  </xs:complexType>
+
+  <xs:complexType name="ExpressionRuleType">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="base" type="xs:string" use="optional" default="ExpressionSyntax" />
+    <xs:attribute name="primaryRule" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="ExtendRuleType">
+    <xs:sequence>
+      <xs:element name="Option" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="rule" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="target" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:group name="ProductionElementGroup">
+    <xs:choice>
+      <xs:element name="TokenRef">
+        <xs:complexType>
+          <xs:attribute name="name" type="xs:string" use="required" />
+          <xs:attribute name="token" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RuleRef">
+        <xs:complexType>
+          <xs:attribute name="name" type="xs:string" use="required" />
+          <xs:attribute name="rule" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Optional">
+        <xs:complexType>
+          <xs:group ref="ProductionElementGroup" />
+          <xs:attribute name="name" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ZeroOrMore">
+        <xs:complexType>
+          <xs:group ref="ProductionElementGroup" />
+          <xs:attribute name="name" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SeparatedList">
+        <xs:complexType>
+          <xs:attribute name="name" type="xs:string" use="required" />
+          <xs:attribute name="element" type="xs:string" use="required" />
+          <xs:attribute name="separator" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:group>
+</xs:schema>

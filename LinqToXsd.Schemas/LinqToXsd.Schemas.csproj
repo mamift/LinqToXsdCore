@@ -20,6 +20,8 @@
     <EmbeddedResource Remove="_temp\**" />
     <None Remove="NHS CDS\**" />
     <None Remove="_temp\**" />
+    <None Remove="RecursiveGroupStackoverflowBug\schema.xsd" />
+    <EmbeddedResource Include="RecursiveGroupStackoverflowBug\schema.xsd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />

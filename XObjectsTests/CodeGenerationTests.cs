@@ -25,7 +25,7 @@ namespace Xml.Schema.Linq.Tests
 {
     using SF = SyntaxFactory;
 
-    public class CodeGenerationTests: BaseTester
+    public partial class CodeGenerationTests: BaseTester
     {
         private const string AtomXsdFilePath = @"Atom\atom.xsd";
 
