@@ -536,7 +536,21 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void ValidateGlobalAttributeEnumGenerated()
         {
+            MockFileSystem fs = GetFileSystemForAssemblyName("LinqToXsd.Schemas");
+            
+            Assert.NotNull(fs);
 
+            var file1Name = "ImportsXmlAttributes.xsd";
+            var file2Name = "xml.xsd";
+            
+            IFileInfo file1 = fs.FileInfo.New(fs.AllFiles.Single(f => f.EndsWith(file1Name)));
+            IFileInfo file2 = fs.FileInfo.New(fs.AllFiles.Single(f => f.EndsWith(file2Name)));
+
+            OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> file1St = Utilities.GenerateSyntaxTreeOrError(file1, fs);
+            OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> file2St = Utilities.GenerateSyntaxTreeOrError(file2, fs);
+
+            Assert.True(file1St.IsT0);
+            Assert.True(file2St.IsT0);
         }
     }
 }
