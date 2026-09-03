@@ -8,7 +8,6 @@
     <EmbeddedResource Include="xml.xsd" />
     <EmbeddedResource Include="xmlspec.xsd" />
     <EmbeddedResource Include="xmlspec.xsd.config" />
-    <EmbeddedResource Include="xmlspec.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="xlink.xsd" />

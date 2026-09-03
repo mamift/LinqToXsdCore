@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="mzIdentML1.2.0.xsd" />
-    <EmbeddedResource Include="mzIdentML1.2.0.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="mzIdentML1.2.0.xsd" />

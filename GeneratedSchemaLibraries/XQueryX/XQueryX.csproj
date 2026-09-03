@@ -6,7 +6,6 @@
   <ItemGroup>
     <EmbeddedResource Include="XQueryX.xsd" />
     <EmbeddedResource Include="XQueryX.xsd.config" />
-    <EmbeddedResource Include="XQueryX.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="XQueryX.xsd" />

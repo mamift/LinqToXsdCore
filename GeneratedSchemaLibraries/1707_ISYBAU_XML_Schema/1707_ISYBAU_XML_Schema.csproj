@@ -8,7 +8,6 @@
     <EmbeddedResource Include="1707-hydraulikdaten.xsd" />
     <EmbeddedResource Include="1707-metadaten.xsd" />
     <EmbeddedResource Include="1707-metadaten.xsd.config" />
-    <EmbeddedResource Include="1707-metadaten.xsd.cs" />
     <EmbeddedResource Include="1707-praesentationsdaten.xsd" />
     <EmbeddedResource Include="1707-referenzlisten.xsd" />
     <EmbeddedResource Include="1707-stammdaten.xsd" />

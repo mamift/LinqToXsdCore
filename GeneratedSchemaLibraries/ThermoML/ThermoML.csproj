@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="je100999j_si_001.xsd" />
-    <EmbeddedResource Include="je100999j_si_001.xsd.cs" />
     <EmbeddedResource Include="je100999j_si_002.xml" />
     <EmbeddedResource Include="je100999j_si_003.xml" />
     <EmbeddedResource Include="je100999j_si_004.xml" />

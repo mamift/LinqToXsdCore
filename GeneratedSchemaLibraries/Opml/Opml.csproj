@@ -6,7 +6,6 @@
   <ItemGroup>
     <EmbeddedResource Include="opml2.xsd" />
     <EmbeddedResource Include="opml2.xsd.config" />
-    <EmbeddedResource Include="opml2.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="opml2.xsd" />

@@ -8,7 +8,6 @@
     <EmbeddedResource Include="Microsoft.Build.Core.xsd" />
     <EmbeddedResource Include="Microsoft.Build.xsd" />
     <EmbeddedResource Include="Microsoft.Build.xsd.config" />
-    <EmbeddedResource Include="Microsoft.Build.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.Build.Commontypes.xsd" />
