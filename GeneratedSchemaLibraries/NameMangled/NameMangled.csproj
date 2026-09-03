@@ -6,7 +6,6 @@
   <ItemGroup>
     <EmbeddedResource Include="nameMangledSchemaStaticKeywords.xsd" />
     <EmbeddedResource Include="nameMangledSchemaStaticKeywords.xsd.config" />
-    <EmbeddedResource Include="nameMangledSchemaStaticKeywords.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="nameMangledSchemaStaticKeywords.xsd" />
