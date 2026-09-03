@@ -88,7 +88,7 @@ public class FileSystemUtilitiesTests
     public static IEnumerable<object[]> GetPhysicalFolderPathsForGeneratedSchemaLibraries()
     {
         var cwd = new DirectoryInfo(Environment.CurrentDirectory);
-        DirectoryInfo linqToXsdSlnFolder = cwd.AscendToFolder("LinqToXsdCore");
+        DirectoryInfo linqToXsdSlnFolder = cwd.AscendToFolder("XObjectsTests").AscendByLevel(1);
         FileInfo testingSuiteFilter = linqToXsdSlnFolder.GetFiles("LinqToXsd-TestingSuite.slnf").Single();
         using FileStream fileStream = testingSuiteFilter.OpenRead();
         var generatedSchemaLibProjectsInSlnFilter = JsonDocument.Parse(fileStream).RootElement
