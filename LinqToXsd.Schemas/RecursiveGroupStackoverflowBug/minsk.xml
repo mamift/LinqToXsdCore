@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Grammar name="Minsk" startSymbol="CompilationUnit" namespace="Minsk.Parsing"
+         xmlns="https://github.com/mamift/minsk/">
+
+  <Trivia>
+    <TriviaRule name="WhitespaceTrivia" pattern="[ \t]+" type="Whitespace" />
+    <TriviaRule name="LineBreakTrivia" pattern="\r\n|\r|\n" type="LineBreak" />
+    <TriviaRule name="SingleLineCommentTrivia" pattern="//[^\r\n]*" type="Comment" />
+    <TriviaRule name="MultiLineCommentTrivia" pattern="/\*[\s\S]*?\*/" type="Comment" />
+  </Trivia>
+
+  <Keywords>
+    <Keyword name="BreakKeyword" text="break" />
+    <Keyword name="ContinueKeyword" text="continue" />
+    <Keyword name="DoKeyword" text="do" />
+    <Keyword name="ElseKeyword" text="else" />
+    <Keyword name="FalseKeyword" text="false" />
+    <Keyword name="ForKeyword" text="for" />
+    <Keyword name="FunctionKeyword" text="function" />
+    <Keyword name="IfKeyword" text="if" />
+    <Keyword name="LetKeyword" text="let" />
+    <Keyword name="ReturnKeyword" text="return" />
+    <Keyword name="ToKeyword" text="to" />
+    <Keyword name="TrueKeyword" text="true" />
+    <Keyword name="VarKeyword" text="var" />
+    <Keyword name="WhileKeyword" text="while" />
+  </Keywords>
+
+  <Tokens>
+    <!-- Fixed Punctuation & Operators -->
+    <Token name="PlusToken" text="+" />
+    <Token name="PlusEqualsToken" text="+=" />
+    <Token name="MinusToken" text="-" />
+    <Token name="MinusEqualsToken" text="-=" />
+    <Token name="StarToken" text="*" />
+    <Token name="StarEqualsToken" text="*=" />
+    <Token name="SlashToken" text="/" />
+    <Token name="SlashEqualsToken" text="/=" />
+    <Token name="BangToken" text="!" />
+    <Token name="EqualsToken" text="=" />
+    <Token name="TildeToken" text="~" />
+    <Token name="HatToken" text="^" />
+    <Token name="HatEqualsToken" text="^=" />
+    <Token name="AmpersandToken" text="&amp;" />
+    <Token name="AmpersandAmpersandToken" text="&amp;&amp;" />
+    <Token name="AmpersandEqualsToken" text="&amp;=" />
+    <Token name="PipeToken" text="|" />
+    <Token name="PipePipeToken" text="||" />
+    <Token name="PipeEqualsToken" text="|=" />
+    <Token name="EqualsEqualsToken" text="==" />
+    <Token name="BangEqualsToken" text="!=" />
+    <Token name="LessToken" text="&lt;" />
+    <Token name="LessOrEqualsToken" text="&lt;=" />
+    <Token name="GreaterToken" text="&gt;" />
+    <Token name="GreaterOrEqualsToken" text="&gt;=" />
+    <Token name="OpenParenthesisToken" text="(" />
+    <Token name="CloseParenthesisToken" text=")" />
+    <Token name="OpenBraceToken" text="{" />
+    <Token name="CloseBraceToken" text="}" />
+    <Token name="ColonToken" text=":" />
+    <Token name="CommaToken" text="," />
+
+    <!-- Dynamic Literals and Identifiers -->
+    <Token name="NumberToken" pattern="[0-9]+" valueType="System.Int32" />
+    <Token name="StringToken" pattern="&quot;([^&quot;]|&quot;&quot;)*&quot;" valueType="System.String" />
+    <Token name="IdentifierToken" pattern="[a-zA-Z_][a-zA-Z0-9_]*" />
+    <Token name="EndOfFileToken" text="\0" />
+  </Tokens>
+
+  <PrecedenceLevels>
+    <Level value="6" associativity="Right">
+      <Operator token="PlusToken" kind="Unary" />
+      <Operator token="MinusToken" kind="Unary" />
+      <Operator token="BangToken" kind="Unary" />
+      <Operator token="TildeToken" kind="Unary" />
+    </Level>
+    <Level value="5" associativity="Left">
+      <Operator token="StarToken" kind="Binary" />
+      <Operator token="SlashToken" kind="Binary" />
+    </Level>
+    <Level value="4" associativity="Left">
+      <Operator token="PlusToken" kind="Binary" />
+      <Operator token="MinusToken" kind="Binary" />
+    </Level>
+    <Level value="3" associativity="Left">
+      <Operator token="EqualsEqualsToken" kind="Binary" />
+      <Operator token="BangEqualsToken" kind="Binary" />
+      <Operator token="LessToken" kind="Binary" />
+      <Operator token="LessOrEqualsToken" kind="Binary" />
+      <Operator token="GreaterToken" kind="Binary" />
+      <Operator token="GreaterOrEqualsToken" kind="Binary" />
+    </Level>
+    <Level value="2" associativity="Left">
+      <Operator token="AmpersandToken" kind="Binary" />
+      <Operator token="AmpersandAmpersandToken" kind="Binary" />
+    </Level>
+    <Level value="1" associativity="Left">
+      <Operator token="PipeToken" kind="Binary" />
+      <Operator token="PipePipeToken" kind="Binary" />
+      <Operator token="HatToken" kind="Binary" />
+    </Level>
+  </PrecedenceLevels>
+
+  <Rules>
+    <!-- Top Level -->
+    <NodeRule name="CompilationUnit" base="SyntaxNode">
+      <ZeroOrMore name="Members">
+        <RuleRef name="Member" rule="Member" />
+      </ZeroOrMore>
+      <TokenRef name="EndOfFileToken" token="EndOfFileToken" />
+    </NodeRule>
+
+    <!-- Members -->
+    <ChoiceRule name="Member" base="MemberSyntax">
+      <Option rule="FunctionDeclaration" />
+      <Option rule="GlobalStatement" />
+    </ChoiceRule>
+
+    <NodeRule name="GlobalStatement" base="MemberSyntax">
+      <RuleRef name="Statement" rule="Statement" />
+    </NodeRule>
+
+    <NodeRule name="FunctionDeclaration" base="MemberSyntax">
+      <TokenRef name="FunctionKeyword" token="FunctionKeyword" />
+      <TokenRef name="Identifier" token="IdentifierToken" />
+      <TokenRef name="OpenParenthesisToken" token="OpenParenthesisToken" />
+      <SeparatedList name="Parameters" element="Parameter" separator="CommaToken" />
+      <TokenRef name="CloseParenthesisToken" token="CloseParenthesisToken" />
+      <Optional name="Type">
+        <RuleRef name="TypeClause" rule="TypeClause" />
+      </Optional>
+      <RuleRef name="Body" rule="BlockStatement" />
+    </NodeRule>
+
+    <NodeRule name="Parameter" base="SyntaxNode">
+      <TokenRef name="Identifier" token="IdentifierToken" />
+      <RuleRef name="Type" rule="TypeClause" />
+    </NodeRule>
+
+    <NodeRule name="TypeClause" base="SyntaxNode">
+      <TokenRef name="ColonToken" token="ColonToken" />
+      <TokenRef name="Identifier" token="IdentifierToken" />
+    </NodeRule>
+
+    <!-- Statements -->
+    <ChoiceRule name="Statement" base="StatementSyntax">
+      <Option rule="BlockStatement" />
+      <Option rule="VariableDeclaration" />
+      <Option rule="IfStatement" />
+      <Option rule="WhileStatement" />
+      <Option rule="DoWhileStatement" />
+      <Option rule="ForStatement" />
+      <Option rule="BreakStatement" />
+      <Option rule="ContinueStatement" />
+      <Option rule="ReturnStatement" />
+      <Option rule="ExpressionStatement" />
+    </ChoiceRule>
+
+    <NodeRule name="BlockStatement" base="StatementSyntax">
+      <TokenRef name="OpenBraceToken" token="OpenBraceToken" />
+      <ZeroOrMore name="Statements">
+        <RuleRef name="Statement" rule="Statement" />
+      </ZeroOrMore>
+      <TokenRef name="CloseBraceToken" token="CloseBraceToken" />
+    </NodeRule>
+
+    <NodeRule name="VariableDeclaration" base="StatementSyntax">
+      <!-- Keyword is either LetKeyword or VarKeyword -->
+      <TokenRef name="Keyword" token="IdentifierToken" /> 
+      <TokenRef name="Identifier" token="IdentifierToken" />
+      <Optional name="TypeClause">
+        <RuleRef name="TypeClause" rule="TypeClause" />
+      </Optional>
+      <TokenRef name="EqualsToken" token="EqualsToken" />
+      <RuleRef name="Initializer" rule="Expression" />
+    </NodeRule>
+
+    <NodeRule name="IfStatement" base="StatementSyntax">
+      <TokenRef name="IfKeyword" token="IfKeyword" />
+      <RuleRef name="Condition" rule="Expression" />
+      <RuleRef name="Statement" rule="Statement" />
+      <Optional name="ElseClause">
+        <RuleRef name="ElseClause" rule="ElseClause" />
+      </Optional>
+    </NodeRule>
+
+    <NodeRule name="ElseClause" base="SyntaxNode">
+      <TokenRef name="ElseKeyword" token="ElseKeyword" />
+      <RuleRef name="Statement" rule="Statement" />
+    </NodeRule>
+
+    <NodeRule name="WhileStatement" base="StatementSyntax">
+      <TokenRef name="WhileKeyword" token="WhileKeyword" />
+      <RuleRef name="Condition" rule="Expression" />
+      <RuleRef name="Body" rule="Statement" />
+    </NodeRule>
+
+    <NodeRule name="DoWhileStatement" base="StatementSyntax">
+      <TokenRef name="DoKeyword" token="DoKeyword" />
+      <RuleRef name="Body" rule="Statement" />
+      <TokenRef name="WhileKeyword" token="WhileKeyword" />
+      <RuleRef name="Condition" rule="Expression" />
+    </NodeRule>
+
+    <NodeRule name="ForStatement" base="StatementSyntax">
+      <TokenRef name="Keyword" token="ForKeyword" />
+      <TokenRef name="Identifier" token="IdentifierToken" />
+      <TokenRef name="EqualsToken" token="EqualsToken" />
+      <RuleRef name="LowerBound" rule="Expression" />
+      <TokenRef name="ToKeyword" token="ToKeyword" />
+      <RuleRef name="UpperBound" rule="Expression" />
+      <RuleRef name="Body" rule="Statement" />
+    </NodeRule>
+
+    <NodeRule name="BreakStatement" base="StatementSyntax">
+      <TokenRef name="Keyword" token="BreakKeyword" />
+    </NodeRule>
+
+    <NodeRule name="ContinueStatement" base="StatementSyntax">
+      <TokenRef name="Keyword" token="ContinueKeyword" />
+    </NodeRule>
+
+    <NodeRule name="ReturnStatement" base="StatementSyntax">
+      <TokenRef name="ReturnKeyword" token="ReturnKeyword" />
+      <Optional name="Expression">
+        <RuleRef name="Expression" rule="Expression" />
+      </Optional>
+    </NodeRule>
+
+    <NodeRule name="ExpressionStatement" base="StatementSyntax">
+      <RuleRef name="Expression" rule="Expression" />
+    </NodeRule>
+
+    <!-- Expressions & Precedence Climbing -->
+    <ExpressionRule name="Expression" base="ExpressionSyntax" primaryRule="PrimaryExpression" />
+
+    <ChoiceRule name="PrimaryExpression" base="ExpressionSyntax">
+      <Option rule="ParenthesizedExpression" />
+      <Option rule="LiteralExpression" />
+      <Option rule="CallExpression" />
+      <Option rule="NameExpression" />
+      <Option rule="AssignmentExpression" />
+    </ChoiceRule>
+
+    <NodeRule name="ParenthesizedExpression" base="ExpressionSyntax">
+      <TokenRef name="OpenParenthesisToken" token="OpenParenthesisToken" />
+      <RuleRef name="Expression" rule="Expression" />
+      <TokenRef name="CloseParenthesisToken" token="CloseParenthesisToken" />
+    </NodeRule>
+
+    <NodeRule name="LiteralExpression" base="ExpressionSyntax">
+      <!-- Literal token (NumberToken, StringToken, TrueKeyword, FalseKeyword) -->
+      <TokenRef name="LiteralToken" token="IdentifierToken" />
+    </NodeRule>
+
+    <NodeRule name="NameExpression" base="ExpressionSyntax">
+      <TokenRef name="IdentifierToken" token="IdentifierToken" />
+    </NodeRule>
+
+    <NodeRule name="CallExpression" base="ExpressionSyntax">
+      <TokenRef name="Identifier" token="IdentifierToken" />
+      <TokenRef name="OpenParenthesisToken" token="OpenParenthesisToken" />
+      <SeparatedList name="Arguments" element="Expression" separator="CommaToken" />
+      <TokenRef name="CloseParenthesisToken" token="CloseParenthesisToken" />
+    </NodeRule>
+
+    <NodeRule name="AssignmentExpression" base="ExpressionSyntax">
+      <TokenRef name="IdentifierToken" token="IdentifierToken" />
+      <TokenRef name="EqualsToken" token="EqualsToken" />
+      <RuleRef name="Expression" rule="Expression" />
+    </NodeRule>
+  </Rules>
+</Grammar>

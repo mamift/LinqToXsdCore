@@ -20,7 +20,10 @@
     <EmbeddedResource Remove="_temp\**" />
     <None Remove="NHS CDS\**" />
     <None Remove="_temp\**" />
+    <None Remove="RecursiveGroupStackoverflowBug\minsk.xml" />
     <None Remove="RecursiveGroupStackoverflowBug\schema.xsd" />
+    <None Remove="RecursiveGroupStackoverflowBug\unless.xml" />
+    <EmbeddedResource Include="RecursiveGroupStackoverflowBug\minsk.xml" />
     <EmbeddedResource Include="RecursiveGroupStackoverflowBug\schema.xsd" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +50,7 @@
     <None Remove="XsdFeatureTests\SimpleTypeUnion\StuDateAndTime.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="RecursiveGroupStackoverflowBug\unless.xml" />
     <EmbeddedResource Include="XInclude\xinclude.xsd" />
     <EmbeddedResource Include="XInclude\xinclude.xsd.config" />
     <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsTests.xsd" />

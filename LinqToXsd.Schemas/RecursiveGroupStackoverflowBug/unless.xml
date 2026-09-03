@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Grammar name="MinskSqlExtension" startSymbol="CompilationUnit"
+         xmlns="https://github.com/mamift/minsk/">
+  <Imports>
+    <Import path="Minsk.xml" />
+  </Imports>
+
+  <Keywords>
+    <Keyword name="SelectKeyword" text="select" />
+    <Keyword name="FromKeyword" text="from" />
+    <Keyword name="WhereKeyword" text="where" />
+  </Keywords>
+
+  <Rules>
+    <NodeRule name="SqlSelectExpression" base="ExpressionSyntax">
+      <TokenRef name="SelectKeyword" token="SelectKeyword" />
+      <RuleRef name="Projection" rule="Expression" />
+      <TokenRef name="FromKeyword" token="FromKeyword" />
+      <RuleRef name="Source" rule="Expression" />
+      <Optional name="WhereClause">
+        <RuleRef name="WhereClause" rule="SqlWhereClause" />
+      </Optional>
+    </NodeRule>
+
+    <NodeRule name="SqlWhereClause" base="SyntaxNode">
+      <TokenRef name="WhereKeyword" token="WhereKeyword" />
+      <RuleRef name="Filter" rule="Expression" />
+    </NodeRule>
+
+    <!-- Injects SqlSelectExpression into Minsk's PrimaryExpression choice rule -->
+    <Extend target="PrimaryExpression">
+      <Option rule="SqlSelectExpression" />
+    </Extend>
+  </Rules>
+</Grammar>

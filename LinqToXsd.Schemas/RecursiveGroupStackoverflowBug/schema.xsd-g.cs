@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace https.github.com.mamift.minsk {
+namespace Mamift.Minsk {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -356,7 +356,7 @@ namespace https.github.com.mamift.minsk {
             protected internal static readonly System.Xml.Linq.XName ImportXName = System.Xml.Linq.XName.Get("Import", "https://github.com/mamift/minsk/");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            private XTypedList<https.github.com.mamift.minsk.Grammar.ImportsLocalType.ImportLocalType> ImportField;
+            private XTypedList<Mamift.Minsk.Grammar.ImportsLocalType.ImportLocalType> ImportField;
             
             /// <summary>
             /// <para>
@@ -366,10 +366,10 @@ namespace https.github.com.mamift.minsk {
             /// Regular expression: (Import+)
             /// </para>
             /// </summary>
-            public virtual IList<https.github.com.mamift.minsk.Grammar.ImportsLocalType.ImportLocalType> Import {
+            public virtual IList<Mamift.Minsk.Grammar.ImportsLocalType.ImportLocalType> Import {
                 get {
                     if ((this.ImportField == null)) {
-                        this.ImportField = new XTypedList<https.github.com.mamift.minsk.Grammar.ImportsLocalType.ImportLocalType>(this, LinqToXsdTypeManager.Instance, ImportXName);
+                        this.ImportField = new XTypedList<Mamift.Minsk.Grammar.ImportsLocalType.ImportLocalType>(this, LinqToXsdTypeManager.Instance, ImportXName);
                     }
                     return this.ImportField;
                 }
@@ -379,10 +379,10 @@ namespace https.github.com.mamift.minsk {
                     }
                     else {
                         if ((this.ImportField == null)) {
-                            this.ImportField = XTypedList<https.github.com.mamift.minsk.Grammar.ImportsLocalType.ImportLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, ImportXName);
+                            this.ImportField = XTypedList<Mamift.Minsk.Grammar.ImportsLocalType.ImportLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, ImportXName);
                         }
                         else {
-                            XTypedServices.SetList<https.github.com.mamift.minsk.Grammar.ImportsLocalType.ImportLocalType>(this.ImportField, value);
+                            XTypedServices.SetList<Mamift.Minsk.Grammar.ImportsLocalType.ImportLocalType>(this.ImportField, value);
                         }
                     }
                 }
@@ -522,7 +522,7 @@ namespace https.github.com.mamift.minsk {
             protected internal static readonly System.Xml.Linq.XName TriviaRuleXName = System.Xml.Linq.XName.Get("TriviaRule", "https://github.com/mamift/minsk/");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            private XTypedList<https.github.com.mamift.minsk.Grammar.TriviaLocalType.TriviaRuleLocalType> TriviaRuleField;
+            private XTypedList<Mamift.Minsk.Grammar.TriviaLocalType.TriviaRuleLocalType> TriviaRuleField;
             
             /// <summary>
             /// <para>
@@ -532,10 +532,10 @@ namespace https.github.com.mamift.minsk {
             /// Regular expression: (TriviaRule+)
             /// </para>
             /// </summary>
-            public virtual IList<https.github.com.mamift.minsk.Grammar.TriviaLocalType.TriviaRuleLocalType> TriviaRule {
+            public virtual IList<Mamift.Minsk.Grammar.TriviaLocalType.TriviaRuleLocalType> TriviaRule {
                 get {
                     if ((this.TriviaRuleField == null)) {
-                        this.TriviaRuleField = new XTypedList<https.github.com.mamift.minsk.Grammar.TriviaLocalType.TriviaRuleLocalType>(this, LinqToXsdTypeManager.Instance, TriviaRuleXName);
+                        this.TriviaRuleField = new XTypedList<Mamift.Minsk.Grammar.TriviaLocalType.TriviaRuleLocalType>(this, LinqToXsdTypeManager.Instance, TriviaRuleXName);
                     }
                     return this.TriviaRuleField;
                 }
@@ -545,10 +545,10 @@ namespace https.github.com.mamift.minsk {
                     }
                     else {
                         if ((this.TriviaRuleField == null)) {
-                            this.TriviaRuleField = XTypedList<https.github.com.mamift.minsk.Grammar.TriviaLocalType.TriviaRuleLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, TriviaRuleXName);
+                            this.TriviaRuleField = XTypedList<Mamift.Minsk.Grammar.TriviaLocalType.TriviaRuleLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, TriviaRuleXName);
                         }
                         else {
-                            XTypedServices.SetList<https.github.com.mamift.minsk.Grammar.TriviaLocalType.TriviaRuleLocalType>(this.TriviaRuleField, value);
+                            XTypedServices.SetList<Mamift.Minsk.Grammar.TriviaLocalType.TriviaRuleLocalType>(this.TriviaRuleField, value);
                         }
                     }
                 }
@@ -732,7 +732,7 @@ namespace https.github.com.mamift.minsk {
             protected internal static readonly System.Xml.Linq.XName KeywordXName = System.Xml.Linq.XName.Get("Keyword", "https://github.com/mamift/minsk/");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            private XTypedList<https.github.com.mamift.minsk.Grammar.KeywordsLocalType.KeywordLocalType> KeywordField;
+            private XTypedList<Mamift.Minsk.Grammar.KeywordsLocalType.KeywordLocalType> KeywordField;
             
             /// <summary>
             /// <para>
@@ -742,10 +742,10 @@ namespace https.github.com.mamift.minsk {
             /// Regular expression: (Keyword+)
             /// </para>
             /// </summary>
-            public virtual IList<https.github.com.mamift.minsk.Grammar.KeywordsLocalType.KeywordLocalType> Keyword {
+            public virtual IList<Mamift.Minsk.Grammar.KeywordsLocalType.KeywordLocalType> Keyword {
                 get {
                     if ((this.KeywordField == null)) {
-                        this.KeywordField = new XTypedList<https.github.com.mamift.minsk.Grammar.KeywordsLocalType.KeywordLocalType>(this, LinqToXsdTypeManager.Instance, KeywordXName);
+                        this.KeywordField = new XTypedList<Mamift.Minsk.Grammar.KeywordsLocalType.KeywordLocalType>(this, LinqToXsdTypeManager.Instance, KeywordXName);
                     }
                     return this.KeywordField;
                 }
@@ -755,10 +755,10 @@ namespace https.github.com.mamift.minsk {
                     }
                     else {
                         if ((this.KeywordField == null)) {
-                            this.KeywordField = XTypedList<https.github.com.mamift.minsk.Grammar.KeywordsLocalType.KeywordLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, KeywordXName);
+                            this.KeywordField = XTypedList<Mamift.Minsk.Grammar.KeywordsLocalType.KeywordLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, KeywordXName);
                         }
                         else {
-                            XTypedServices.SetList<https.github.com.mamift.minsk.Grammar.KeywordsLocalType.KeywordLocalType>(this.KeywordField, value);
+                            XTypedServices.SetList<Mamift.Minsk.Grammar.KeywordsLocalType.KeywordLocalType>(this.KeywordField, value);
                         }
                     }
                 }
@@ -917,7 +917,7 @@ namespace https.github.com.mamift.minsk {
             protected internal static readonly System.Xml.Linq.XName TokenXName = System.Xml.Linq.XName.Get("Token", "https://github.com/mamift/minsk/");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            private XTypedList<https.github.com.mamift.minsk.Grammar.TokensLocalType.TokenLocalType> TokenField;
+            private XTypedList<Mamift.Minsk.Grammar.TokensLocalType.TokenLocalType> TokenField;
             
             /// <summary>
             /// <para>
@@ -927,10 +927,10 @@ namespace https.github.com.mamift.minsk {
             /// Regular expression: (Token+)
             /// </para>
             /// </summary>
-            public virtual IList<https.github.com.mamift.minsk.Grammar.TokensLocalType.TokenLocalType> Token {
+            public virtual IList<Mamift.Minsk.Grammar.TokensLocalType.TokenLocalType> Token {
                 get {
                     if ((this.TokenField == null)) {
-                        this.TokenField = new XTypedList<https.github.com.mamift.minsk.Grammar.TokensLocalType.TokenLocalType>(this, LinqToXsdTypeManager.Instance, TokenXName);
+                        this.TokenField = new XTypedList<Mamift.Minsk.Grammar.TokensLocalType.TokenLocalType>(this, LinqToXsdTypeManager.Instance, TokenXName);
                     }
                     return this.TokenField;
                 }
@@ -940,10 +940,10 @@ namespace https.github.com.mamift.minsk {
                     }
                     else {
                         if ((this.TokenField == null)) {
-                            this.TokenField = XTypedList<https.github.com.mamift.minsk.Grammar.TokensLocalType.TokenLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, TokenXName);
+                            this.TokenField = XTypedList<Mamift.Minsk.Grammar.TokensLocalType.TokenLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, TokenXName);
                         }
                         else {
-                            XTypedServices.SetList<https.github.com.mamift.minsk.Grammar.TokensLocalType.TokenLocalType>(this.TokenField, value);
+                            XTypedServices.SetList<Mamift.Minsk.Grammar.TokensLocalType.TokenLocalType>(this.TokenField, value);
                         }
                     }
                 }
@@ -1149,7 +1149,7 @@ namespace https.github.com.mamift.minsk {
             protected internal static readonly System.Xml.Linq.XName LevelXName = System.Xml.Linq.XName.Get("Level", "https://github.com/mamift/minsk/");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            private XTypedList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType> LevelField;
+            private XTypedList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType> LevelField;
             
             /// <summary>
             /// <para>
@@ -1159,10 +1159,10 @@ namespace https.github.com.mamift.minsk {
             /// Regular expression: (Level+)
             /// </para>
             /// </summary>
-            public virtual IList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType> Level {
+            public virtual IList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType> Level {
                 get {
                     if ((this.LevelField == null)) {
-                        this.LevelField = new XTypedList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType>(this, LinqToXsdTypeManager.Instance, LevelXName);
+                        this.LevelField = new XTypedList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType>(this, LinqToXsdTypeManager.Instance, LevelXName);
                     }
                     return this.LevelField;
                 }
@@ -1172,10 +1172,10 @@ namespace https.github.com.mamift.minsk {
                     }
                     else {
                         if ((this.LevelField == null)) {
-                            this.LevelField = XTypedList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, LevelXName);
+                            this.LevelField = XTypedList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, LevelXName);
                         }
                         else {
-                            XTypedServices.SetList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType>(this.LevelField, value);
+                            XTypedServices.SetList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType>(this.LevelField, value);
                         }
                     }
                 }
@@ -1256,7 +1256,7 @@ namespace https.github.com.mamift.minsk {
                 protected internal static readonly System.Xml.Linq.XName OperatorXName = System.Xml.Linq.XName.Get("Operator", "https://github.com/mamift/minsk/");
                 
                 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                private XTypedList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType> OperatorField;
+                private XTypedList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType> OperatorField;
                 
                 /// <summary>
                 /// <para>
@@ -1266,10 +1266,10 @@ namespace https.github.com.mamift.minsk {
                 /// Regular expression: (Operator+)
                 /// </para>
                 /// </summary>
-                public virtual IList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType> Operator {
+                public virtual IList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType> Operator {
                     get {
                         if ((this.OperatorField == null)) {
-                            this.OperatorField = new XTypedList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType>(this, LinqToXsdTypeManager.Instance, OperatorXName);
+                            this.OperatorField = new XTypedList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType>(this, LinqToXsdTypeManager.Instance, OperatorXName);
                         }
                         return this.OperatorField;
                     }
@@ -1279,10 +1279,10 @@ namespace https.github.com.mamift.minsk {
                         }
                         else {
                             if ((this.OperatorField == null)) {
-                                this.OperatorField = XTypedList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OperatorXName);
+                                this.OperatorField = XTypedList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OperatorXName);
                             }
                             else {
-                                XTypedServices.SetList<https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType>(this.OperatorField, value);
+                                XTypedServices.SetList<Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType>(this.OperatorField, value);
                             }
                         }
                     }
@@ -1330,20 +1330,20 @@ namespace https.github.com.mamift.minsk {
                 protected internal static readonly System.Xml.Linq.XName associativityXName = System.Xml.Linq.XName.Get("associativity", "");
                 
                 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                internal static https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum associativityDefaultValue = https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum.Left;
+                internal static Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum associativityDefaultValue = Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum.Left;
                 
                 /// <summary>
                 /// <para>
                 /// Occurrence: optional
                 /// </para>
                 /// </summary>
-                public virtual https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum associativity {
+                public virtual Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum associativity {
                     get {
                         XAttribute x = this.Attribute(associativityXName);
                         if ((x == null)) {
                             return associativityDefaultValue;
                         }
-                        return ((https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum)(Enum.Parse(typeof(https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, AssociativityEnumValidator.TypeDefinition))));
+                        return ((Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum)(Enum.Parse(typeof(Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.AssociativityEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, AssociativityEnumValidator.TypeDefinition))));
                     }
                     set {
                         this.SetAttributeWithValidation(associativityXName, value.ToString(), "associativity", AssociativityEnumValidator.TypeDefinition);
@@ -1456,10 +1456,10 @@ namespace https.github.com.mamift.minsk {
                     /// Occurrence: required
                     /// </para>
                     /// </summary>
-                    public virtual https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType.KindEnum kind {
+                    public virtual Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType.KindEnum kind {
                         get {
                             XAttribute x = this.Attribute(kindXName);
-                            return ((https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType.KindEnum)(Enum.Parse(typeof(https.github.com.mamift.minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType.KindEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, KindEnumValidator.TypeDefinition))));
+                            return ((Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType.KindEnum)(Enum.Parse(typeof(Mamift.Minsk.Grammar.PrecedenceLevelsLocalType.LevelLocalType.OperatorLocalType.KindEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, KindEnumValidator.TypeDefinition))));
                         }
                         set {
                             this.SetAttributeWithValidation(kindXName, value.ToString(), "kind", KindEnumValidator.TypeDefinition);
@@ -1767,7 +1767,7 @@ namespace https.github.com.mamift.minsk {
         protected internal static readonly System.Xml.Linq.XName TokenRefXName = System.Xml.Linq.XName.Get("TokenRef", "https://github.com/mamift/minsk/");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<https.github.com.mamift.minsk.NodeRuleType.TokenRefLocalType> TokenRefField;
+        private XTypedList<Mamift.Minsk.NodeRuleType.TokenRefLocalType> TokenRefField;
         
         /// <summary>
         /// <para>
@@ -1777,10 +1777,10 @@ namespace https.github.com.mamift.minsk {
         /// Regular expression: (TokenRef | RuleRef | Optional | ZeroOrMore | SeparatedList)+
         /// </para>
         /// </summary>
-        public virtual IList<https.github.com.mamift.minsk.NodeRuleType.TokenRefLocalType> TokenRef {
+        public virtual IList<Mamift.Minsk.NodeRuleType.TokenRefLocalType> TokenRef {
             get {
                 if ((this.TokenRefField == null)) {
-                    this.TokenRefField = new XTypedList<https.github.com.mamift.minsk.NodeRuleType.TokenRefLocalType>(this, LinqToXsdTypeManager.Instance, TokenRefXName);
+                    this.TokenRefField = new XTypedList<Mamift.Minsk.NodeRuleType.TokenRefLocalType>(this, LinqToXsdTypeManager.Instance, TokenRefXName);
                 }
                 return this.TokenRefField;
             }
@@ -1790,10 +1790,10 @@ namespace https.github.com.mamift.minsk {
                 }
                 else {
                     if ((this.TokenRefField == null)) {
-                        this.TokenRefField = XTypedList<https.github.com.mamift.minsk.NodeRuleType.TokenRefLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, TokenRefXName);
+                        this.TokenRefField = XTypedList<Mamift.Minsk.NodeRuleType.TokenRefLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, TokenRefXName);
                     }
                     else {
-                        XTypedServices.SetList<https.github.com.mamift.minsk.NodeRuleType.TokenRefLocalType>(this.TokenRefField, value);
+                        XTypedServices.SetList<Mamift.Minsk.NodeRuleType.TokenRefLocalType>(this.TokenRefField, value);
                     }
                 }
             }
@@ -1804,7 +1804,7 @@ namespace https.github.com.mamift.minsk {
         protected internal static readonly System.Xml.Linq.XName RuleRefXName = System.Xml.Linq.XName.Get("RuleRef", "https://github.com/mamift/minsk/");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<https.github.com.mamift.minsk.NodeRuleType.RuleRefLocalType> RuleRefField;
+        private XTypedList<Mamift.Minsk.NodeRuleType.RuleRefLocalType> RuleRefField;
         
         /// <summary>
         /// <para>
@@ -1814,10 +1814,10 @@ namespace https.github.com.mamift.minsk {
         /// Regular expression: (TokenRef | RuleRef | Optional | ZeroOrMore | SeparatedList)+
         /// </para>
         /// </summary>
-        public virtual IList<https.github.com.mamift.minsk.NodeRuleType.RuleRefLocalType> RuleRef {
+        public virtual IList<Mamift.Minsk.NodeRuleType.RuleRefLocalType> RuleRef {
             get {
                 if ((this.RuleRefField == null)) {
-                    this.RuleRefField = new XTypedList<https.github.com.mamift.minsk.NodeRuleType.RuleRefLocalType>(this, LinqToXsdTypeManager.Instance, RuleRefXName);
+                    this.RuleRefField = new XTypedList<Mamift.Minsk.NodeRuleType.RuleRefLocalType>(this, LinqToXsdTypeManager.Instance, RuleRefXName);
                 }
                 return this.RuleRefField;
             }
@@ -1827,10 +1827,10 @@ namespace https.github.com.mamift.minsk {
                 }
                 else {
                     if ((this.RuleRefField == null)) {
-                        this.RuleRefField = XTypedList<https.github.com.mamift.minsk.NodeRuleType.RuleRefLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, RuleRefXName);
+                        this.RuleRefField = XTypedList<Mamift.Minsk.NodeRuleType.RuleRefLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, RuleRefXName);
                     }
                     else {
-                        XTypedServices.SetList<https.github.com.mamift.minsk.NodeRuleType.RuleRefLocalType>(this.RuleRefField, value);
+                        XTypedServices.SetList<Mamift.Minsk.NodeRuleType.RuleRefLocalType>(this.RuleRefField, value);
                     }
                 }
             }
@@ -1841,7 +1841,7 @@ namespace https.github.com.mamift.minsk {
         protected internal static readonly System.Xml.Linq.XName OptionalXName = System.Xml.Linq.XName.Get("Optional", "https://github.com/mamift/minsk/");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<https.github.com.mamift.minsk.NodeRuleType.OptionalLocalType> OptionalField;
+        private XTypedList<Mamift.Minsk.NodeRuleType.OptionalLocalType> OptionalField;
         
         /// <summary>
         /// <para>
@@ -1851,10 +1851,10 @@ namespace https.github.com.mamift.minsk {
         /// Regular expression: (TokenRef | RuleRef | Optional | ZeroOrMore | SeparatedList)+
         /// </para>
         /// </summary>
-        public virtual IList<https.github.com.mamift.minsk.NodeRuleType.OptionalLocalType> Optional {
+        public virtual IList<Mamift.Minsk.NodeRuleType.OptionalLocalType> Optional {
             get {
                 if ((this.OptionalField == null)) {
-                    this.OptionalField = new XTypedList<https.github.com.mamift.minsk.NodeRuleType.OptionalLocalType>(this, LinqToXsdTypeManager.Instance, OptionalXName);
+                    this.OptionalField = new XTypedList<Mamift.Minsk.NodeRuleType.OptionalLocalType>(this, LinqToXsdTypeManager.Instance, OptionalXName);
                 }
                 return this.OptionalField;
             }
@@ -1864,10 +1864,10 @@ namespace https.github.com.mamift.minsk {
                 }
                 else {
                     if ((this.OptionalField == null)) {
-                        this.OptionalField = XTypedList<https.github.com.mamift.minsk.NodeRuleType.OptionalLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OptionalXName);
+                        this.OptionalField = XTypedList<Mamift.Minsk.NodeRuleType.OptionalLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OptionalXName);
                     }
                     else {
-                        XTypedServices.SetList<https.github.com.mamift.minsk.NodeRuleType.OptionalLocalType>(this.OptionalField, value);
+                        XTypedServices.SetList<Mamift.Minsk.NodeRuleType.OptionalLocalType>(this.OptionalField, value);
                     }
                 }
             }
@@ -1878,7 +1878,7 @@ namespace https.github.com.mamift.minsk {
         protected internal static readonly System.Xml.Linq.XName ZeroOrMoreXName = System.Xml.Linq.XName.Get("ZeroOrMore", "https://github.com/mamift/minsk/");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<https.github.com.mamift.minsk.NodeRuleType.ZeroOrMoreLocalType> ZeroOrMoreField;
+        private XTypedList<Mamift.Minsk.NodeRuleType.ZeroOrMoreLocalType> ZeroOrMoreField;
         
         /// <summary>
         /// <para>
@@ -1888,10 +1888,10 @@ namespace https.github.com.mamift.minsk {
         /// Regular expression: (TokenRef | RuleRef | Optional | ZeroOrMore | SeparatedList)+
         /// </para>
         /// </summary>
-        public virtual IList<https.github.com.mamift.minsk.NodeRuleType.ZeroOrMoreLocalType> ZeroOrMore {
+        public virtual IList<Mamift.Minsk.NodeRuleType.ZeroOrMoreLocalType> ZeroOrMore {
             get {
                 if ((this.ZeroOrMoreField == null)) {
-                    this.ZeroOrMoreField = new XTypedList<https.github.com.mamift.minsk.NodeRuleType.ZeroOrMoreLocalType>(this, LinqToXsdTypeManager.Instance, ZeroOrMoreXName);
+                    this.ZeroOrMoreField = new XTypedList<Mamift.Minsk.NodeRuleType.ZeroOrMoreLocalType>(this, LinqToXsdTypeManager.Instance, ZeroOrMoreXName);
                 }
                 return this.ZeroOrMoreField;
             }
@@ -1901,10 +1901,10 @@ namespace https.github.com.mamift.minsk {
                 }
                 else {
                     if ((this.ZeroOrMoreField == null)) {
-                        this.ZeroOrMoreField = XTypedList<https.github.com.mamift.minsk.NodeRuleType.ZeroOrMoreLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, ZeroOrMoreXName);
+                        this.ZeroOrMoreField = XTypedList<Mamift.Minsk.NodeRuleType.ZeroOrMoreLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, ZeroOrMoreXName);
                     }
                     else {
-                        XTypedServices.SetList<https.github.com.mamift.minsk.NodeRuleType.ZeroOrMoreLocalType>(this.ZeroOrMoreField, value);
+                        XTypedServices.SetList<Mamift.Minsk.NodeRuleType.ZeroOrMoreLocalType>(this.ZeroOrMoreField, value);
                     }
                 }
             }
@@ -1915,7 +1915,7 @@ namespace https.github.com.mamift.minsk {
         protected internal static readonly System.Xml.Linq.XName SeparatedListXName = System.Xml.Linq.XName.Get("SeparatedList", "https://github.com/mamift/minsk/");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<https.github.com.mamift.minsk.NodeRuleType.SeparatedListLocalType> SeparatedListField;
+        private XTypedList<Mamift.Minsk.NodeRuleType.SeparatedListLocalType> SeparatedListField;
         
         /// <summary>
         /// <para>
@@ -1925,10 +1925,10 @@ namespace https.github.com.mamift.minsk {
         /// Regular expression: (TokenRef | RuleRef | Optional | ZeroOrMore | SeparatedList)+
         /// </para>
         /// </summary>
-        public virtual IList<https.github.com.mamift.minsk.NodeRuleType.SeparatedListLocalType> SeparatedList {
+        public virtual IList<Mamift.Minsk.NodeRuleType.SeparatedListLocalType> SeparatedList {
             get {
                 if ((this.SeparatedListField == null)) {
-                    this.SeparatedListField = new XTypedList<https.github.com.mamift.minsk.NodeRuleType.SeparatedListLocalType>(this, LinqToXsdTypeManager.Instance, SeparatedListXName);
+                    this.SeparatedListField = new XTypedList<Mamift.Minsk.NodeRuleType.SeparatedListLocalType>(this, LinqToXsdTypeManager.Instance, SeparatedListXName);
                 }
                 return this.SeparatedListField;
             }
@@ -1938,10 +1938,10 @@ namespace https.github.com.mamift.minsk {
                 }
                 else {
                     if ((this.SeparatedListField == null)) {
-                        this.SeparatedListField = XTypedList<https.github.com.mamift.minsk.NodeRuleType.SeparatedListLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, SeparatedListXName);
+                        this.SeparatedListField = XTypedList<Mamift.Minsk.NodeRuleType.SeparatedListLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, SeparatedListXName);
                     }
                     else {
-                        XTypedServices.SetList<https.github.com.mamift.minsk.NodeRuleType.SeparatedListLocalType>(this.SeparatedListField, value);
+                        XTypedServices.SetList<Mamift.Minsk.NodeRuleType.SeparatedListLocalType>(this.SeparatedListField, value);
                     }
                 }
             }
@@ -2799,7 +2799,7 @@ namespace https.github.com.mamift.minsk {
         protected internal static readonly System.Xml.Linq.XName OptionXName = System.Xml.Linq.XName.Get("Option", "https://github.com/mamift/minsk/");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<https.github.com.mamift.minsk.ChoiceRuleType.OptionLocalType> OptionField;
+        private XTypedList<Mamift.Minsk.ChoiceRuleType.OptionLocalType> OptionField;
         
         /// <summary>
         /// <para>
@@ -2809,10 +2809,10 @@ namespace https.github.com.mamift.minsk {
         /// Regular expression: (Option+)
         /// </para>
         /// </summary>
-        public virtual IList<https.github.com.mamift.minsk.ChoiceRuleType.OptionLocalType> Option {
+        public virtual IList<Mamift.Minsk.ChoiceRuleType.OptionLocalType> Option {
             get {
                 if ((this.OptionField == null)) {
-                    this.OptionField = new XTypedList<https.github.com.mamift.minsk.ChoiceRuleType.OptionLocalType>(this, LinqToXsdTypeManager.Instance, OptionXName);
+                    this.OptionField = new XTypedList<Mamift.Minsk.ChoiceRuleType.OptionLocalType>(this, LinqToXsdTypeManager.Instance, OptionXName);
                 }
                 return this.OptionField;
             }
@@ -2822,10 +2822,10 @@ namespace https.github.com.mamift.minsk {
                 }
                 else {
                     if ((this.OptionField == null)) {
-                        this.OptionField = XTypedList<https.github.com.mamift.minsk.ChoiceRuleType.OptionLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OptionXName);
+                        this.OptionField = XTypedList<Mamift.Minsk.ChoiceRuleType.OptionLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OptionXName);
                     }
                     else {
-                        XTypedServices.SetList<https.github.com.mamift.minsk.ChoiceRuleType.OptionLocalType>(this.OptionField, value);
+                        XTypedServices.SetList<Mamift.Minsk.ChoiceRuleType.OptionLocalType>(this.OptionField, value);
                     }
                 }
             }
@@ -3111,7 +3111,7 @@ namespace https.github.com.mamift.minsk {
         protected internal static readonly System.Xml.Linq.XName OptionXName = System.Xml.Linq.XName.Get("Option", "https://github.com/mamift/minsk/");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<https.github.com.mamift.minsk.ExtendRuleType.OptionLocalType> OptionField;
+        private XTypedList<Mamift.Minsk.ExtendRuleType.OptionLocalType> OptionField;
         
         /// <summary>
         /// <para>
@@ -3121,10 +3121,10 @@ namespace https.github.com.mamift.minsk {
         /// Regular expression: (Option+)
         /// </para>
         /// </summary>
-        public virtual IList<https.github.com.mamift.minsk.ExtendRuleType.OptionLocalType> Option {
+        public virtual IList<Mamift.Minsk.ExtendRuleType.OptionLocalType> Option {
             get {
                 if ((this.OptionField == null)) {
-                    this.OptionField = new XTypedList<https.github.com.mamift.minsk.ExtendRuleType.OptionLocalType>(this, LinqToXsdTypeManager.Instance, OptionXName);
+                    this.OptionField = new XTypedList<Mamift.Minsk.ExtendRuleType.OptionLocalType>(this, LinqToXsdTypeManager.Instance, OptionXName);
                 }
                 return this.OptionField;
             }
@@ -3134,10 +3134,10 @@ namespace https.github.com.mamift.minsk {
                 }
                 else {
                     if ((this.OptionField == null)) {
-                        this.OptionField = XTypedList<https.github.com.mamift.minsk.ExtendRuleType.OptionLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OptionXName);
+                        this.OptionField = XTypedList<Mamift.Minsk.ExtendRuleType.OptionLocalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, OptionXName);
                     }
                     else {
-                        XTypedServices.SetList<https.github.com.mamift.minsk.ExtendRuleType.OptionLocalType>(this.OptionField, value);
+                        XTypedServices.SetList<Mamift.Minsk.ExtendRuleType.OptionLocalType>(this.OptionField, value);
                     }
                 }
             }
@@ -3278,16 +3278,16 @@ namespace https.github.com.mamift.minsk {
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("NodeRuleType", "https://github.com/mamift/minsk/"), typeof(global::https.github.com.mamift.minsk.NodeRuleType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceRuleType", "https://github.com/mamift/minsk/"), typeof(global::https.github.com.mamift.minsk.ChoiceRuleType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("ExpressionRuleType", "https://github.com/mamift/minsk/"), typeof(global::https.github.com.mamift.minsk.ExpressionRuleType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("ExtendRuleType", "https://github.com/mamift/minsk/"), typeof(global::https.github.com.mamift.minsk.ExtendRuleType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("NodeRuleType", "https://github.com/mamift/minsk/"), typeof(global::Mamift.Minsk.NodeRuleType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceRuleType", "https://github.com/mamift/minsk/"), typeof(global::Mamift.Minsk.ChoiceRuleType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ExpressionRuleType", "https://github.com/mamift/minsk/"), typeof(global::Mamift.Minsk.ExpressionRuleType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ExtendRuleType", "https://github.com/mamift/minsk/"), typeof(global::Mamift.Minsk.ExtendRuleType));
         }
         
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Grammar", "https://github.com/mamift/minsk/"), typeof(global::https.github.com.mamift.minsk.Grammar));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Grammar", "https://github.com/mamift/minsk/"), typeof(global::Mamift.Minsk.Grammar));
         }
         
         private static XmlSchemaSet schemaSet;
@@ -3595,12 +3595,12 @@ namespace https.github.com.mamift.minsk {
             }
         }
         
-        public XRoot(global::https.github.com.mamift.minsk.Grammar root) {
+        public XRoot(global::Mamift.Minsk.Grammar root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::https.github.com.mamift.minsk.Grammar Grammar {  get {return rootObject as global::https.github.com.mamift.minsk.Grammar; } }
+		public global::Mamift.Minsk.Grammar Grammar {  get {return rootObject as global::Mamift.Minsk.Grammar; } }
     }
 }
