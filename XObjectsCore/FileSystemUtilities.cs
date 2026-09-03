@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Xml.Schema.Linq
         /// <exception cref="T:System.IO.PathTooLongException">The fully qualified path and file name is 260 or more characters.</exception>
         public static List<string> ResolveFileAndFolderPathsToJustFiles(IEnumerable<string> sequenceOfFileAndOrFolderPaths,
             string subdirFileFilter = "*.*",
-            Func<IEnumerable<string>, IEnumerable<string>> exclusionFilter = null)
+            Func<IEnumerable<string>, IEnumerable<string>?>? exclusionFilter = null)
         {
             if (sequenceOfFileAndOrFolderPaths == null) throw new ArgumentNullException(nameof(sequenceOfFileAndOrFolderPaths));
 
@@ -40,8 +41,9 @@ namespace Xml.Schema.Linq
             files.AddRange(filteredFiles.Select(fi => fi.FullName));
             if (exclusionFilter == null) return files;
             // whatever is in this result will be filtered out of the return value
-            IEnumerable<string> filteredOut = exclusionFilter(enumeratedFileAndOrFolderPaths);
-            return files.Except(filteredOut).Distinct().ToList();
+            IEnumerable<string>? filteredOut = exclusionFilter(enumeratedFileAndOrFolderPaths);
+            if (filteredOut != null) return files.Except(filteredOut).Distinct().ToList();
+            return files.Distinct().ToList();
         }
 
         public static bool HasFolderPaths(IEnumerable<string> sequenceOfFileAndOrFolderPaths) => 
