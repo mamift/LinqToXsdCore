@@ -241,8 +241,21 @@ namespace XObjects
         {
             // the attr.AttributeSchemaType is the compiled type, which is always non-null,
             // but the attr.SchemaType is the original local/anonymous type as defined in the schema,
-            // which is null if the type is referenced by name (a name means it's a global type)
-            return attr.SchemaType.IsAnonymous();
+            // which is null if the type is referenced by name (a name means it's a global type).
+            if (attr.SchemaType != null)
+            {
+                return attr.SchemaType.IsAnonymous();
+            }
+
+            // attr.SchemaType is also null for an attribute *reference* (ref="..."), even when the
+            // referenced global attribute's own type is anonymous (e.g. xml:space in xml.xsd). In that
+            // case fall back to the resolved AttributeSchemaType so anonymous enums/unions declared on
+            // an imported/referenced global attribute are still recognised as anonymous and generated
+            // as nested types, rather than being silently dropped from the generated code.
+            // Note: use QualifiedName.IsEmpty (not IsAnonymous()) here, since IsAnonymous() also
+            // returns true for named, non-built-in global types, which would wrongly flag references
+            // to ordinary named global attribute types (e.g. a global attribute of a named enum type).
+            return attr.RefName is { IsEmpty: false } && attr.AttributeSchemaType.QualifiedName.IsEmpty;
         }
 
         public static bool IsAnonymous(this XmlSchemaType? type)

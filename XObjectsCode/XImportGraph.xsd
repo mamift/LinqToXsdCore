@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.0" targetNamespace="https://github.com/mamift/LinqToXsdCore"
+    xmlns="https://github.com/mamift/LinqToXsdCore">
+    <xs:element name="Graph">
+        <xs:annotation>
+            <xs:documentation>This Graph class is meant to enable programmatically determining which schema or schemas can serve as 'entry points' for code generation in LinqToXdsCore. Some schemas are imported/included by others, while otheres are standalone. Determining which XSD files to run the CLI for code generation commands on can be quite burdensome, so an exhaustive way to determine this automatically would save users lots of time. There's already a 'linqtoxsd gen -a path\to\folder' command, but it executes a very naive written algorithm.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Schema"/>
+            </xs:sequence>
+            <xs:attribute name="Folder" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>The full folder path this Graph was built from.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Schema">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Includes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" ref="Schema"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Imports">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" ref="Schema"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="RelativePath" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>If the schema is in a subfolder, this is the path relative to the Graph's @Folder attribute. The base dir should be set on the Graph element.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Name" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>The name of the Schema (should include file extension, which should almost always be 'xsd').</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="DependencyType" type="dependencyType"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="dependencyType">
+        <xs:annotation>
+            <xs:documentation>For use in the Schema element; indicates the type of Schema - a root (no dependencies and standalone), direct or indirect.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="direct"/>
+            <xs:enumeration value="indirect"/>
+            <xs:enumeration value="root"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

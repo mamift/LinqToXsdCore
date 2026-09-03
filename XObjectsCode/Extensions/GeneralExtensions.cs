@@ -10,6 +10,15 @@ namespace XObjects
 {
     public static class GeneralExtensionMethods
     {
+        #if NETSTANDARD
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source, IEqualityComparer<T>? comparer = null)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            
+            return new HashSet<T>(source, comparer);
+        }
+        #endif
+
         /// <summary>
         /// Converts <see cref="GeneratedTypesVisibility"/> to an appropriate <see cref="TypeAttributes"/> instance.
         /// </summary>

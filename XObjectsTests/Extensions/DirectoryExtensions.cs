@@ -50,6 +50,45 @@ public static class DirectoryExtensions
         var startingDirectory = new DirectoryInfo(startingDirPath);
         return startingDirectory.AscendToFolder(ancestorFolderName);
     }
+
+    /// <summary>
+    /// Traverses upward from the starting directory by the specified number of levels.
+    /// Returns a new DirectoryInfo for that ancestor. Throws if the specified level goes above the root.
+    /// </summary>
+    /// <example>
+    /// var start = new DirectoryInfo(@"C:\Projects\GitHub\LinqToXsdCore\GeneratedSchemaLibraries\Atom\bin\Debug\netstandard2.0");
+    /// var ancestor = DirectoryExtensions.AscendByLevel(start, 3); // Goes up 3 levels
+    /// </example>
+    /// <param name="startingDirectory">The directory to start from.</param>
+    /// <param name="levelCount">The number of levels to ascend. Must be greater than 0.</param>
+    /// <returns>DirectoryInfo of the ancestor directory.</returns>
+    /// <exception cref="ArgumentNullException"/>
+    /// <exception cref="ArgumentException"/>
+    /// <exception cref="DirectoryNotFoundException"/>
+    public static DirectoryInfo AscendByLevel(this DirectoryInfo startingDirectory, int levelCount)
+    {
+        if (startingDirectory == null) throw new ArgumentNullException(nameof(startingDirectory));
+        if (levelCount <= 0) throw new ArgumentException("Level count must be greater than 0.", nameof(levelCount));
+
+        var current = startingDirectory;
+        for (int i = 0; i < levelCount; i++) {
+            current = current.Parent;
+            if (current == null) {
+                throw new DirectoryNotFoundException(
+                    $"Cannot ascend {levelCount} levels from '{startingDirectory.FullName}'. Root directory reached.");
+            }
+        }
+
+        return new DirectoryInfo(current.FullName);
+    }
+
+    public static DirectoryInfo AscendByLevel(this string startingDirPath, int levelCount)
+    {
+        if (string.IsNullOrEmpty(startingDirPath)) throw new ArgumentNullException(nameof(startingDirPath));
+        
+        var startingDirectory = new DirectoryInfo(startingDirPath);
+        return startingDirectory.AscendByLevel(levelCount);
+    }
     
     /// <summary>
     /// Traverses downward (depth-first) from startingDirectory looking for a descendant folder

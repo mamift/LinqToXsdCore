@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
 using NUnit.Framework;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests.Extensions;
@@ -50,27 +51,26 @@ public static class MockFileSystemExtensions
         public List<IFileInfo> ResolvePossibleFileAndFolderPathsToProcessableSchemas(IEnumerable<string> filesOrFolders)
         {
             var files = mfs.ResolveFileAndFolderPathsToMockFileInfos(filesOrFolders, "*.xsd");
-            var filesComparisonList = files.Select(f => f.FullName);
+            var filesComparisonList = files.Select(f => f.FullName).ToList();
 
             // convert files to XDocuments and check if they are proper W3C schemas
             var pairs = files.Select(f => (file: f, schema: XDocument.Parse(mfs.GetFile(f).TextContents)));
             var xDocs = pairs.Where(kvp => kvp.schema.IsAnXmlSchema())
-                .ToDictionary(kvp => kvp.file, kvp => kvp.schema);
+                .ToDictionary(kvp => kvp.file.FullName, kvp => kvp.schema);
 
-            var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key).ToList();
-            var filteredIncludeAndImportRefsComparisonList = filteredIncludeAndImportRefs.Select(f => f.FullName);
+            if (xDocs.Count == 0)
+                return new List<IFileInfo>();
 
-            var resolvedSchemaFilesFilteredList = filesComparisonList.Except(filteredIncludeAndImportRefsComparisonList).Distinct().ToList();
-            var resolvedSchemaFiles = resolvedSchemaFilesFilteredList.Select(fn => mfs.FileInfo.New(fn)).ToList();
-
-            if (filteredIncludeAndImportRefs.Count == files.Count && !resolvedSchemaFilesFilteredList.Any()) {
-                throw new LinqToXsdException("Cannot decide which XSD files to process as the specified " +
-                                             "XSD files or folder of XSD files recursively import and/or " +
-                                             "include each other! In this case you must explicitly provide" +
-                                             "a file path and not a folder path.");
-            }
+            // Use SCC-based entry point detection to correctly handle cycles in the import graph
+            var resolvedSchemaFilePaths = xDocs.FilterOutSchemasThatAreIncludedOrImported();
+            var resolvedSchemaFiles = resolvedSchemaFilePaths.Select(fn => mfs.FileInfo.New(fn.Key)).ToList();
 
             return resolvedSchemaFiles;
+        }
+
+        public Graph BuildGraph(IEnumerable<string> filesOrFolders)
+        {
+            return Graph.BuildFromFiles(filesOrFolders, mfs as IFileSystem);
         }
 
         /// <summary>

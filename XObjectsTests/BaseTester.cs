@@ -44,7 +44,7 @@ public class BaseTester
         MockXmlFileResolver = new MockXmlUrlResolver(AllTestFiles);
     }
 
-    public CSharpSyntaxTree GenerateSyntaxTree(MockFileInfo mfi)
+    public CSharpSyntaxTree GenerateSyntaxTree(IFileInfo mfi)
     {
         return Utilities.GenerateSyntaxTree(mfi, AllTestFiles);
     }

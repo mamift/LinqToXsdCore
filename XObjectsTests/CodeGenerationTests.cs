@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -14,8 +15,11 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MoreLinq;
 using NUnit.Framework;
 using ObjectsComparer;
+using OneOf;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 using Xml.Schema.Linq.Tests.Extensions;
+using tr = W3C.XMLSpec.tr;
 
 namespace Xml.Schema.Linq.Tests
 {
@@ -97,7 +101,9 @@ namespace Xml.Schema.Linq.Tests
         /// <para>See commit bc75ea0 which introduced this incorrect behaviour.</para>
         /// </summary>
         [Test]
-        [TestCase("1707_ISYBAU_XML_Schema"), TestCase("AbstractTypeTest"), TestCase("AkomaNtoso"), TestCase("AkomaNtoso30-CSD13-D2f"), TestCase("AspNetSiteMaps"), TestCase("Atom"), TestCase("ContentModelTest"), TestCase("EnumsTest"), TestCase("EnzymeML"), TestCase("MetaLEX"), TestCase("Microsoft Search"), TestCase("Multi-namespaces"), TestCase("mzIdentML"), TestCase("mzML"), TestCase("mzQuantML"), TestCase("NameMangled"), TestCase("NHS CDS"), TestCase("OcmContracts"), TestCase("OfficeOpenXML-XMLSchema-Strict"), TestCase("OfficeOpenXML-XMLSchema-Transitional"), TestCase("OFMX"), TestCase("Opml"), TestCase("Pubmed"), TestCase("Rss"), TestCase("SharePoint2010"), TestCase("ThermoML"), TestCase("Toy schemas"), TestCase("TraML"), TestCase("Windows"), TestCase("W3C.XML"), TestCase("XMLSpec"), TestCase("XQueryX")]
+        [TestCase("1707_ISYBAU_XML_Schema"), TestCase("AbstractTypeTest"), TestCase("AkomaNtoso"), TestCase("AkomaNtoso30-CSD13-D2f"), TestCase("AspNetSiteMaps"), TestCase("Atom"), TestCase("ContentModelTest"), TestCase("EnumsTest"), TestCase("EnzymeML"), TestCase("MetaLEX"), TestCase("Microsoft Search"), TestCase("Multi-namespaces"), TestCase("mzIdentML"), TestCase("mzML"), TestCase("mzQuantML"), TestCase("NameMangled"), TestCase("NHS CDS"), TestCase("OcmContracts"), 
+         TestCase("OfficeOpenXML-XMLSchema-Strict"), TestCase("OfficeOpenXML-XMLSchema-Transitional"),
+         TestCase("OFMX"), TestCase("Opml"), TestCase("Pubmed"), TestCase("Rss"), TestCase("SharePoint2010"), TestCase("ThermoML"), TestCase("Toy schemas"), TestCase("TraML"), TestCase("Windows"), TestCase("W3C.XML"), TestCase("XMLSpec"), TestCase("XQueryX")]
         // these are failing tests due reasons besides typeof(void)
         /* [TestCase("CityGML"), TestCase("GelML"), TestCase("GS1"), TestCase("HL-7"), TestCase("HR-XML"), TestCase("LegalRuleML"), TestCase("Office 2003 Reference schemas"), TestCase("OPC"),
         TestCase("SWRL"), TestCase("UK CabinetOffice"), TestCase("OpenPackagingConventions-XMLSchema"), TestCase("XSD"), TestCase("OGC-misc"), TestCase("SBML")] */
@@ -112,20 +118,24 @@ namespace Xml.Schema.Linq.Tests
         {
             var xsdsToProcess = GetFileSystemForAssemblyName(assemblyName).AllFiles.Where(f => f.EndsWith(".xsd"));
 
-            CheckTypeOfVoidExpressionsInGeneratedCode(xsdsToProcess);
+            CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(xsdsToProcess);
         }
 
-        private void CheckTypeOfVoidExpressionsInGeneratedCode(IEnumerable<string> xsdsToProcess, int randomSubset = -1)
+        private void CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(IEnumerable<string> xsdsToProcess, bool takeRandomSubsetWhenBigFilesCount = true)
         {
-            var allProcessableXsds =
-                AllTestFiles.ResolvePossibleFileAndFolderPathsToProcessableSchemas(xsdsToProcess);
+            Graph graph = AllTestFiles.BuildGraph(xsdsToProcess);
 
-            var failingXsds = new List<(IFileInfo file, Exception exception)>(allProcessableXsds.Capacity);
+            List<IFileInfo>? allProcessableXsds = graph.ToFileInfos();
+            
+            Assert.NotNull(allProcessableXsds);
+            Assert.IsNotEmpty(allProcessableXsds!);
 
-            var toProcess = randomSubset > 0 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
+            var failingXsds = new List<(IFileInfo file, ExceptionDispatchInfo exception)>(allProcessableXsds!.Capacity);
+
+            IEnumerable<IFileInfo>? toProcess = takeRandomSubsetWhenBigFilesCount && allProcessableXsds.Count > 100 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
 
             foreach (var xsd in toProcess) {
-                var generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
+                OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
 
                 if (generateResult.IsT1) {
                     failingXsds.Add((xsd, generateResult.AsT1));
@@ -162,7 +172,61 @@ namespace Xml.Schema.Linq.Tests
                     var message = $"{file} failed to generated code.";
                     TestContext.Out.WriteLine(message);
 
-                    throw new LinqToXsdException(message, pair.exception);
+                    throw new LinqToXsdException(message, pair.exception.SourceException);
+                }
+            }
+        }
+
+        private void CheckTypeOfVoidExpressionsInGeneratedCode(IEnumerable<string> xsdsToProcess, int randomSubset = -1)
+        {
+            List<IFileInfo> allProcessableXsds =
+                AllTestFiles.ResolvePossibleFileAndFolderPathsToProcessableSchemas(xsdsToProcess);
+            
+            Assert.IsNotEmpty(allProcessableXsds);
+
+            var failingXsds = new List<(IFileInfo file, ExceptionDispatchInfo exception)>(allProcessableXsds.Capacity);
+
+            var toProcess = randomSubset > 0 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
+
+            foreach (var xsd in toProcess) {
+                OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
+
+                if (generateResult.IsT1) {
+                    failingXsds.Add((xsd, generateResult.AsT1));
+                    continue;
+                }
+
+                var generatedCodeTree = generateResult.AsT0;
+                var root = generatedCodeTree.GetRoot();
+
+                var allDescendents = root.DescendantNodes().SelectMany(d => d.DescendantNodes()).ToList();
+
+                if (!allDescendents.Any()) continue;
+
+                var allStatements = allDescendents.OfType<StatementSyntax>();
+                var allExpressions = allStatements.SelectMany(s => s.DescendantNodes()).OfType<ExpressionSyntax>();
+                var typeOfExpressions = allExpressions.OfType<TypeOfExpressionSyntax>().Distinct().ToArray();
+
+                Assert.IsNotEmpty(typeOfExpressions);
+
+                var typeOfVoid = SF.ParseExpression("typeof(void)");
+                var nonVoidTypeOfExpressions = typeOfExpressions.Where(toe => !toe.IsEquivalentTo(typeOfVoid)).ToArray();
+                var voidTypeOfExpressions = typeOfExpressions.Where(toe => toe.IsEquivalentTo(typeOfVoid)).ToArray();
+
+                Assert.IsNotEmpty(nonVoidTypeOfExpressions);
+
+                if (voidTypeOfExpressions.Any()) {
+                    Assert.Warn($"Some typeof(void) expressions found! Warning generated for XSD: " + xsd.FullName);
+                }
+            }
+
+            if (failingXsds.Any()) {
+                foreach (var pair in failingXsds) {
+                    var file = pair.file.FullName;
+                    var message = $"{file} failed to generated code.";
+                    TestContext.Out.WriteLine(message);
+
+                    throw new LinqToXsdException(message, pair.exception.SourceException);
                 }
             }
         }
@@ -467,6 +531,26 @@ namespace Xml.Schema.Linq.Tests
 
             Assert.IsNotEmpty(existingSubtypes);
             Assert.IsNotNull(existingSubtypes.SingleOrDefault());
+        }
+
+        [Test]
+        public void ValidateGlobalAttributeEnumGenerated()
+        {
+            MockFileSystem fs = GetFileSystemForAssemblyName("LinqToXsd.Schemas");
+            
+            Assert.NotNull(fs);
+
+            var file1Name = "ImportsXmlAttributes.xsd";
+            var file2Name = "xml.xsd";
+            
+            IFileInfo file1 = fs.FileInfo.New(fs.AllFiles.Single(f => f.EndsWith(file1Name)));
+            IFileInfo file2 = fs.FileInfo.New(fs.AllFiles.Single(f => f.EndsWith(file2Name)));
+
+            OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> file1St = Utilities.GenerateSyntaxTreeOrError(file1, fs);
+            OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> file2St = Utilities.GenerateSyntaxTreeOrError(file2, fs);
+
+            Assert.True(file1St.IsT0);
+            Assert.True(file2St.IsT0);
         }
     }
 }
