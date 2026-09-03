@@ -7,7 +7,6 @@
     <EmbeddedResource Include="FuGElightv1.0.0.xsd" />
     <EmbeddedResource Include="GelML-v1_1candidate.xsd" />
     <EmbeddedResource Include="GelML-v1_1candidate.xsd.config" />
-    <EmbeddedResource Include="GelML-v1_1candidate.xsd.cs" />
     <EmbeddedResource Include="ExampleFiles\Aberdeen_gel2d_v4.xml" />
     <EmbeddedResource Include="ExampleFiles\Gel1D_Indirect_Newcastle_v4.xml" />
     <EmbeddedResource Include="ExampleFiles\MIAPE_In_GelML.xml" />

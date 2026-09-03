@@ -10,6 +10,11 @@ namespace LinqToXsd
     public static partial class Program
     {
         /// <summary>
+        /// The extension to insert into the file name for generated code files. Should result in "filename.xsd-g.cs".
+        /// </summary>
+        internal static readonly string GenerateCodeExtension = "-g.cs";
+        
+        /// <summary>
         /// Handles the logic for generating code.
         /// </summary>
         internal static class GenerateCodeDispatcher
@@ -28,7 +33,7 @@ namespace LinqToXsd
                     var legacyOutputFileName = Path.GetFileName(kvp.Key) + ".cs";
                     if (!outputFilename.EndsWith(".cs"))
                     {
-                        outputFilename += "-g.cs";
+                        outputFilename += GenerateCodeExtension;
                     }
 
                     string outputFilePath;

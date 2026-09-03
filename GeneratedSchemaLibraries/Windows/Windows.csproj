@@ -6,7 +6,6 @@
   <ItemGroup>
     <EmbeddedResource Include="windowsTaskSched.xsd" />
     <EmbeddedResource Include="windowsTaskSched.xsd.config" />
-    <EmbeddedResource Include="windowsTaskSched.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="windowsTaskSched.xsd" />

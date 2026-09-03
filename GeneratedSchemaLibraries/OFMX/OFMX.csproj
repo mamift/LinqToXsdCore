@@ -8,7 +8,6 @@
     <EmbeddedResource Include="OFMX-Features.xsd" />
     <EmbeddedResource Include="OFMX-Snapshot.xsd" />
     <EmbeddedResource Include="OFMX-Snapshot.xsd.config" />
-    <EmbeddedResource Include="OFMX-Snapshot.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="OFMX-DataTypes.xsd" />

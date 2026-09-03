@@ -7,7 +7,6 @@
   <ItemGroup>
     <EmbeddedResource Include="TestNs1.xsd" />
     <EmbeddedResource Include="TestNs1.xsd.config" />
-    <EmbeddedResource Include="TestNs1.xsd.cs" />
     <EmbeddedResource Include="TestNs2.xsd" />
     <EmbeddedResource Include="TestNs3ToBeIncluded.xsd" />
   </ItemGroup>

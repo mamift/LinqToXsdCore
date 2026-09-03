@@ -9,6 +9,7 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
+using LinqToXsd;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -25,7 +26,7 @@ namespace Xml.Schema.Linq.Tests
 {
     using SF = SyntaxFactory;
 
-    public class CodeGenerationTests: BaseTester
+    public partial class CodeGenerationTests: BaseTester
     {
         private const string AtomXsdFilePath = @"Atom\atom.xsd";
 
@@ -379,7 +380,7 @@ namespace Xml.Schema.Linq.Tests
             CSharpSyntaxTree tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
             NamespaceDeclarationSyntax ns1 = tree1.GetNamespaceRoot().CleanForComparison();
 
-            CSharpSyntaxTree tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
+            CSharpSyntaxTree tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd" + Program.GenerateCodeExtension).ToSyntaxTree();
             NamespaceDeclarationSyntax ns2 = tree2.GetNamespaceRoot().CleanForComparison();
             
             Assert.IsEmpty(ns1.CompareProperties(ns2));
@@ -407,7 +408,7 @@ namespace Xml.Schema.Linq.Tests
             var ns1 = tree1.GetNamespaceRoot();
             ns1 = ns1.CleanForComparison();
 
-            var existingCodeFile = "atom.xsd.cs";
+            var existingCodeFile = "atom.xsd" + Program.GenerateCodeExtension;
             var existingAtomCode = Environment.CurrentDirectory
                 .AscendToFolder("GeneratedSchemaLibraries").DescendToFolder("Atom").FindFileRecursively(existingCodeFile);
 
@@ -503,7 +504,7 @@ namespace Xml.Schema.Linq.Tests
             var newNs = newTree.GetNamespaceRoot();
             newNs = newNs.CleanForComparison();
 
-            var existingCodeFile = "atom.xsd.cs";
+            var existingCodeFile = "atom.xsd" + Program.GenerateCodeExtension;
             var existingAtomCsFilePath = new DirectoryInfo(Environment.CurrentDirectory)
                 .AscendToFolder("GeneratedSchemaLibraries").DescendToFolder("Atom").FindFileRecursively(existingCodeFile);
 

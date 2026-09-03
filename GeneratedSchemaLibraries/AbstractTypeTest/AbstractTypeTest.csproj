@@ -6,7 +6,6 @@
   <ItemGroup>
     <EmbeddedResource Include="abstracttest.xsd" />
     <EmbeddedResource Include="abstracttest.xsd.config" />
-    <EmbeddedResource Include="abstracttest.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="abstracttest.xsd" />

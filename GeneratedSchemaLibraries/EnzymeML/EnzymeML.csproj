@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="enzymeML.xsd" />
-    <EmbeddedResource Include="enzymeML.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="enzymeML.xsd" />

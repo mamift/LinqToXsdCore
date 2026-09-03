@@ -296,6 +296,12 @@
       "commandLineArgs": "config -e .",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\1707_ISYBAU_XML_Schema",
       "hotReloadEnabled": false
+    },
+    "RecursiveGroupStackoverflowBug_schema": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\RecursiveGroupStackoverflowBug",
+      "hotReloadEnabled": false
     }
   }
 }

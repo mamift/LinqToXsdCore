@@ -9,7 +9,6 @@
     <EmbeddedResource Include="AssnEntCF.xsd" />
     <EmbeddedResource Include="mspdi_pj12.xsd" />
     <EmbeddedResource Include="mspdi_pj12.xsd.config" />
-    <EmbeddedResource Include="mspdi_pj12.xsd.cs" />
     <EmbeddedResource Include="ProjEntCF.xsd" />
     <EmbeddedResource Include="ResEntCF.xsd" />
     <EmbeddedResource Include="TaskEntCF.xsd" />

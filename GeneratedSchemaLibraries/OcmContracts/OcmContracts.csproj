@@ -6,10 +6,8 @@
   <ItemGroup>
     <EmbeddedResource Include="OcmContracts.xsd" />
     <EmbeddedResource Include="OcmContracts.xsd.config" />
-    <EmbeddedResource Include="OcmContracts.xsd.cs" />
     <EmbeddedResource Include="v2\OcmContracts.xsd" />
     <EmbeddedResource Include="v2\OcmContracts.xsd.config" />
-    <EmbeddedResource Include="v2\OcmContracts.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="OcmContracts.xsd" />
