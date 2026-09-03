@@ -6,11 +6,13 @@ namespace Xml.Schema.Linq.Extensions
 {
     public static class StringExtensionMethods
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool EqualsIgnoreCase(this string str, string other)
         {
-            return string.Equals(str, other, StringComparison.CurrentCultureIgnoreCase);
+            return string.Equals(str, other, StringComparison.OrdinalIgnoreCase);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool EqualsIgnoreCaseInvariant(this string str, string other)
         {
             return string.Equals(str, other, StringComparison.InvariantCultureIgnoreCase);
