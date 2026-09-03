@@ -61,6 +61,7 @@ namespace Xml.Schema.Linq.CodeGen
         public string baseTypeClrNs;
 
         public ClrTypeInfo Parent { get; set; }
+        public XmlSchemaObject SchemaObject { get; set; }
 
         //Type properties 
         protected ClrTypeFlags clrTypeFlags;
@@ -117,6 +118,7 @@ namespace Xml.Schema.Linq.CodeGen
             schemaName = null;
             schemaNs = null;
             baseType = null;
+            SchemaObject = null;
 
             clrTypeFlags = ClrTypeFlags.None;
             typeOrigin = SchemaOrigin.None;

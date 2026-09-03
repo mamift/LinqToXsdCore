@@ -154,6 +154,7 @@ namespace Xml.Schema.Linq.CodeGen
                     typeInfo = wtypeInfo;
                     typeInfo.baseType =
                         headElement; //If element is member of substitutionGroup, add derivation step
+                    typeInfo.SchemaObject = elem;
                 }
                 else
                 {
@@ -161,6 +162,7 @@ namespace Xml.Schema.Linq.CodeGen
                     localSymbolTable.Init(symbol.identifierName);
                     ctypeInfo.baseType =
                         headElement; //If element is member of substitutionGroup, add derivation step
+                    ctypeInfo.SchemaObject = (XmlSchemaObject)schemaType ?? elem;
                     BuildProperties(elem, schemaType, ctypeInfo);
                     BuildNestedTypes(ctypeInfo);
                     typeInfo = ctypeInfo;
@@ -214,6 +216,7 @@ namespace Xml.Schema.Linq.CodeGen
             typeInfo.schemaName = symbol.symbolName;
             typeInfo.schemaNs = xsdNamespace;
             typeInfo.typeOrigin = SchemaOrigin.Fragment;
+            typeInfo.SchemaObject = simpleType;
             BuildAnnotationInformation(typeInfo, simpleType);
             binding.Types.Add(typeInfo);
         }
@@ -245,6 +248,7 @@ namespace Xml.Schema.Linq.CodeGen
 
                     typeInfo.typeOrigin = SchemaOrigin.Fragment;
                     typeInfo.baseType = BaseType(ct);
+                    typeInfo.SchemaObject = ct;
                     BuildProperties(null, ct, typeInfo);
                     BuildNestedTypes(typeInfo);
                     BuildAnnotationInformation(typeInfo, ct);
@@ -323,6 +327,8 @@ namespace Xml.Schema.Linq.CodeGen
         private void BuildNestedTypes(ClrContentTypeInfo typeInfo)
         {
             List<AnonymousType> anonymousTypes = localSymbolTable.GetAnonymousTypes();
+            var complexTypesToProcess = new List<(ClrContentTypeInfo nestedTypeInfo, XmlSchemaElement elem, XmlSchemaComplexType complexType)>();
+
             foreach (AnonymousType at in anonymousTypes)
             {
                 XmlQualifiedName qname = null;
@@ -342,6 +348,21 @@ namespace Xml.Schema.Linq.CodeGen
                     complexType = elem.ElementSchemaType as XmlSchemaComplexType;
                 }
 
+                XmlSchemaSimpleType simpleType = null;
+                if (elem != null) simpleType = elem.ElementSchemaType as XmlSchemaSimpleType;
+
+                XmlSchemaObject targetSchemaObject = (XmlSchemaObject)complexType ?? (XmlSchemaObject)simpleType ?? (XmlSchemaObject)elem;
+
+                ClrTypeInfo existingType = FindExistingAncestorType(typeInfo, targetSchemaObject, elem);
+                if (existingType != null)
+                {
+                    if (at.typeRefence != null)
+                    {
+                        at.typeRefence.Name = existingType.clrtypeName;
+                    }
+                    continue;
+                }
+
                 if (complexType != null)
                 {
                     if (complexType.GetContentType() == XmlSchemaContentType.TextOnly
@@ -359,6 +380,7 @@ namespace Xml.Schema.Linq.CodeGen
                         nestedTypeInfo.schemaNs = qname.Namespace;
                         nestedTypeInfo.typeOrigin = SchemaOrigin.Fragment;
                         nestedTypeInfo.IsNested = true;
+                        nestedTypeInfo.SchemaObject = targetSchemaObject;
                         BuildAnnotationInformation(nestedTypeInfo, complexType);
                         typeInfo.NestedTypes.Add(nestedTypeInfo);
                     }
@@ -367,7 +389,6 @@ namespace Xml.Schema.Linq.CodeGen
                         ClrContentTypeInfo nestedTypeInfo = new ClrContentTypeInfo() {
                             Parent = typeInfo
                         };
-                        localSymbolTable.Init(at.identifier);
                         nestedTypeInfo.clrtypeName = at.identifier;
                         nestedTypeInfo.clrtypeNs = configSettings.GetClrNamespace(qname.Namespace);
                         nestedTypeInfo.schemaName = qname.Name;
@@ -375,18 +396,12 @@ namespace Xml.Schema.Linq.CodeGen
                         nestedTypeInfo.typeOrigin = SchemaOrigin.Fragment;
                         nestedTypeInfo.IsNested = true;
                         nestedTypeInfo.baseType = BaseType(complexType);
-                        BuildProperties(elem, complexType, nestedTypeInfo);
-                        BuildNestedTypes(nestedTypeInfo);
-                        BuildAnnotationInformation(nestedTypeInfo, complexType);
+                        nestedTypeInfo.SchemaObject = targetSchemaObject;
                         typeInfo.NestedTypes.Add(nestedTypeInfo);
+                        complexTypesToProcess.Add((nestedTypeInfo, elem, complexType));
                     }
                 }
-
-                //Also handle simple types
-                XmlSchemaSimpleType simpleType = null;
-                if (elem != null) simpleType = elem.ElementSchemaType as XmlSchemaSimpleType;
-
-                if (simpleType != null)
+                else if (simpleType != null)
                 {
                     ClrSimpleTypeInfo nestedTypeInfo = ClrSimpleTypeInfo.CreateSimpleTypeInfo(simpleType);
                     nestedTypeInfo.clrtypeName = at.identifier;
@@ -395,10 +410,48 @@ namespace Xml.Schema.Linq.CodeGen
                     nestedTypeInfo.schemaNs = qname.Namespace;
                     nestedTypeInfo.typeOrigin = SchemaOrigin.Fragment;
                     nestedTypeInfo.IsNested = true;
+                    nestedTypeInfo.SchemaObject = targetSchemaObject;
                     BuildAnnotationInformation(nestedTypeInfo, simpleType);
                     typeInfo.NestedTypes.Add(nestedTypeInfo);
                 }
             }
+
+            foreach (var (nestedTypeInfo, elem, complexType) in complexTypesToProcess)
+            {
+                localSymbolTable.Init(nestedTypeInfo.clrtypeName);
+                BuildProperties(elem, complexType, nestedTypeInfo);
+                BuildNestedTypes(nestedTypeInfo);
+                BuildAnnotationInformation(nestedTypeInfo, complexType);
+            }
+        }
+
+        private static ClrTypeInfo FindExistingAncestorType(ClrTypeInfo typeInfo, XmlSchemaObject targetSchemaObject, XmlSchemaElement elem)
+        {
+            ClrTypeInfo current = typeInfo;
+            while (current != null)
+            {
+                if (current.SchemaObject != null)
+                {
+                    if (targetSchemaObject != null && current.SchemaObject == targetSchemaObject)
+                        return current;
+                    if (elem != null && current.SchemaObject == elem)
+                        return current;
+                }
+
+                if (current is ClrContentTypeInfo contentCurrent && contentCurrent.nestedTypes != null)
+                {
+                    var found = contentCurrent.nestedTypes.FirstOrDefault(nt =>
+                        nt.SchemaObject != null && (
+                            (targetSchemaObject != null && nt.SchemaObject == targetSchemaObject) ||
+                            (elem != null && nt.SchemaObject == elem)
+                        ));
+                    if (found != null)
+                        return found;
+                }
+
+                current = current.Parent;
+            }
+            return null;
         }
 
 

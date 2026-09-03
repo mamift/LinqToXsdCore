@@ -22,5 +22,8 @@ public partial class CodeGenerationTests: BaseTester
 
         OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> genResult = Utilities.GenerateSyntaxTreeOrError(buggySchema, AllTestFiles);
         Assert.IsInstanceOf<CSharpSyntaxTree>(genResult.AsT0);
+
+        var diags = Utilities.GetSyntaxAndCompilationDiagnostics(genResult.AsT0);
+        Assert.IsEmpty(diags);
     }
 }
