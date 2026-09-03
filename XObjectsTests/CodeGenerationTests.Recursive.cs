@@ -9,7 +9,7 @@ namespace Xml.Schema.Linq.Tests;
 public partial class CodeGenerationTests: BaseTester
 {
     /// <summary>
-    /// As of 3.4.20 this causses a stack overflow, and I have no idea why.
+    /// Regression test for an XSD with recursively nested group definitions that previously caused a StackOverflowException during code generation.
     /// </summary>
     [Test]
     public void RecursiveStackOverflowBugTest()
