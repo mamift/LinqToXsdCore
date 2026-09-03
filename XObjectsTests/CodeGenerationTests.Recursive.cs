@@ -21,9 +21,13 @@ public partial class CodeGenerationTests: BaseTester
         Assert.True(buggySchema.Length > 0);
 
         OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> genResult = Utilities.GenerateSyntaxTreeOrError(buggySchema, AllTestFiles);
-        Assert.IsInstanceOf<CSharpSyntaxTree>(genResult.AsT0);
+        if (genResult.IsT1)
+        {
+            genResult.AsT1.Throw();
+        }
 
-        var diags = Utilities.GetSyntaxAndCompilationDiagnostics(genResult.AsT0);
+        var tree = genResult.AsT0;
+        var diags = Utilities.GetSyntaxAndCompilationDiagnostics(tree);
         Assert.IsEmpty(diags);
     }
 }
