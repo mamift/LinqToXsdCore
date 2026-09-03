@@ -97,7 +97,7 @@ namespace Xml.Schema.Linq.Extensions
                     var referencedFileName = Path.GetFileName(schemaLocationAttr.Value);
                     if (string.IsNullOrEmpty(referencedFileName))
                         continue;
-                    var match = xDocs.Keys.FirstOrDefault(k => string.Equals(Path.GetFileName(k), referencedFileName, StringComparison.OrdinalIgnoreCase));
+                    var match = xDocs.Keys.FirstOrDefault(k => string.Equals(Path.GetFileName(k), referencedFileName, StringComparison.CurrentCultureIgnoreCase));
                     
                     imports.Add(match);
                 }
