@@ -98,8 +98,8 @@ namespace Xml.Schema.Linq.Extensions
                     if (string.IsNullOrEmpty(referencedFileName))
                         continue;
                     var match = xDocs.Keys.FirstOrDefault(k => string.Equals(Path.GetFileName(k), referencedFileName, StringComparison.CurrentCultureIgnoreCase));
-                    
-                    imports.Add(match);
+                    if (match != null)
+                        imports.Add(match);
                 }
 
                 graph[kvp.Key] = imports;
