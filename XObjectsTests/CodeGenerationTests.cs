@@ -19,6 +19,7 @@ using OneOf;
 using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 using Xml.Schema.Linq.Tests.Extensions;
+using tr = W3C.XMLSpec.tr;
 
 namespace Xml.Schema.Linq.Tests
 {
@@ -120,18 +121,18 @@ namespace Xml.Schema.Linq.Tests
             CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(xsdsToProcess);
         }
 
-        private void CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(IEnumerable<string> xsdsToProcess, int randomSubset = -1)
+        private void CheckTypeOfVoidExpressionsInGeneratedCodeWithGraph(IEnumerable<string> xsdsToProcess, bool takeRandomSubsetWhenBigFilesCount = true)
         {
             Graph graph = AllTestFiles.BuildGraph(xsdsToProcess);
 
             List<IFileInfo>? allProcessableXsds = graph.ToFileInfos();
             
             Assert.NotNull(allProcessableXsds);
-            Assert.IsNotEmpty(allProcessableXsds);
+            Assert.IsNotEmpty(allProcessableXsds!);
 
-            var failingXsds = new List<(IFileInfo file, ExceptionDispatchInfo exception)>(allProcessableXsds.Capacity);
+            var failingXsds = new List<(IFileInfo file, ExceptionDispatchInfo exception)>(allProcessableXsds!.Capacity);
 
-            var toProcess = randomSubset > 0 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
+            IEnumerable<IFileInfo>? toProcess = takeRandomSubsetWhenBigFilesCount && allProcessableXsds.Count > 100 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
 
             foreach (var xsd in toProcess) {
                 OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
