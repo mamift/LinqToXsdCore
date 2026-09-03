@@ -1,5 +1,16 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.20
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.20
+* https://www.nuget.org/packages/XObjectsCore/3.4.20
+  * [#96](https://github.com/mamift/LinqToXsdCore/pull/96).
+    * Fixes a code gen bug: when a schema imports another schema that contains a global attribute whose schema type was anonymous and had enums, LinqToXsd will now properly generate the C# enum definition.
+    * added powershell for regenerating code in test libraries under (GeneratedSchemaLibraries)
+    * fixes bug with `ResolveFileAndFolderPathsToJustFiles`, added tests for `ResolvePossibleFileAndFolderPathsToProcessableSchemas`
+    * Fixes false positives with `NoVoidTypeOfExpressionsInGeneratedCode` test
+    * Added a new type `Graph` that can more easily model the connections between a bunch of XSDs that include or import each other. Usable only in unit tests for now.
+
 ## Version 3.4.19
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.19
