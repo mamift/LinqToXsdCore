@@ -47,11 +47,11 @@ foreach ($proj in $projects) {
     $absProjDir = Join-Path $repoRoot $projDir    # full absolute path
 
     Write-Host "`n[$($succeeded + $failed.Count + 1)/$($projects.Count)] $projDir" -ForegroundColor Yellow
-    Write-Host "  Running: dotnet run --project LinqToXsd -- gen -a ."
+    Write-Host "  Running: dotnet run --project LinqToXsd -- gen -a . -c release"
 
     Push-Location $absProjDir
     try {
-        $output = & dotnet run -v q --framework netframework472 --project $linqToXsdProject -- gen -a . 2>&1
+        $output = & dotnet run -v q --framework netframework472 --project $linqToXsdProject -- gen -a . -c release 2>&1
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  OK" -ForegroundColor Green
             $succeeded++
