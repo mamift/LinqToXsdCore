@@ -52,6 +52,7 @@
     <xs:attribute name="protected" />
     <xs:attribute name="public" />
     <xs:attribute name="readonly" />
+    <xs:attribute name="record" />
     <xs:attribute name="ref" />
     <xs:attribute name="return" />
     <xs:attribute name="sbyte" />
@@ -272,6 +273,9 @@
     <xs:attributeGroup ref="keywordAttrs" />
   </xs:complexType>
   <xs:complexType name="readonly">
+    <xs:attributeGroup ref="keywordAttrs" />
+  </xs:complexType>
+  <xs:complexType name="record">
     <xs:attributeGroup ref="keywordAttrs" />
   </xs:complexType>
   <xs:complexType name="ref">
@@ -529,6 +533,7 @@
   <xs:element name="protected" type="protected" />
   <xs:element name="public" type="public" />
   <xs:element name="readonly" type="readonly" />
+  <xs:element name="record" type="record" />
   <xs:element name="ref" type="ref" />
   <xs:element name="return" type="return" />
   <xs:element name="sbyte" type="sbyte" />
