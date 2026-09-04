@@ -2616,7 +2616,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -2660,7 +2660,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -5295,7 +5295,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -5339,7 +5339,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -7974,7 +7974,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -8018,7 +8018,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -10653,7 +10653,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -10697,7 +10697,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -13332,7 +13332,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -13376,7 +13376,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -16011,7 +16011,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -16055,7 +16055,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -18690,7 +18690,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -18734,7 +18734,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -21369,7 +21369,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -21413,7 +21413,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -24048,7 +24048,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -24092,7 +24092,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -26727,7 +26727,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -26771,7 +26771,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -29406,7 +29406,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -29450,7 +29450,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -32085,7 +32085,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -32129,7 +32129,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -34764,7 +34764,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -34808,7 +34808,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -37443,7 +37443,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -37487,7 +37487,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -40122,7 +40122,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -40166,7 +40166,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -42801,7 +42801,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -42845,7 +42845,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -45480,7 +45480,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -45524,7 +45524,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -48159,7 +48159,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -48203,7 +48203,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -50838,7 +50838,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -50882,7 +50882,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -53517,7 +53517,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -53561,7 +53561,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -56196,7 +56196,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -56240,7 +56240,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -58875,7 +58875,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -58919,7 +58919,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -61554,7 +61554,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -61598,7 +61598,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -64233,7 +64233,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -64277,7 +64277,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -66912,7 +66912,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -66956,7 +66956,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -69591,7 +69591,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -69635,7 +69635,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -72270,7 +72270,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -72314,7 +72314,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -74949,7 +74949,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -74993,7 +74993,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -77628,7 +77628,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -77672,7 +77672,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -80307,7 +80307,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -80351,7 +80351,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -82986,7 +82986,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -83030,7 +83030,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -85665,7 +85665,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -85709,7 +85709,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -88344,7 +88344,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -88388,7 +88388,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -91023,7 +91023,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -91067,7 +91067,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -93702,7 +93702,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -93746,7 +93746,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -96381,7 +96381,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -96425,7 +96425,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -99060,7 +99060,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -99104,7 +99104,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -101739,7 +101739,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -101783,7 +101783,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -104418,7 +104418,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -104462,7 +104462,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -107097,7 +107097,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -107141,7 +107141,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -109776,7 +109776,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -109820,7 +109820,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -112455,7 +112455,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -112499,7 +112499,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -115134,7 +115134,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -115178,7 +115178,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -117813,7 +117813,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -117857,7 +117857,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -120492,7 +120492,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -120536,7 +120536,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -123171,7 +123171,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -123215,7 +123215,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -125850,7 +125850,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -125894,7 +125894,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -128529,7 +128529,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -128573,7 +128573,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -131208,7 +131208,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -131252,7 +131252,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -133887,7 +133887,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -133931,7 +133931,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -136566,7 +136566,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -136610,7 +136610,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -139245,7 +139245,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -139289,7 +139289,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -141924,7 +141924,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -141968,7 +141968,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -144603,7 +144603,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -144647,7 +144647,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -147282,7 +147282,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -147326,7 +147326,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -149961,7 +149961,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -150005,7 +150005,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -152640,7 +152640,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -152684,7 +152684,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -155319,7 +155319,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -155363,7 +155363,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -157998,7 +157998,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -158042,7 +158042,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -160677,7 +160677,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -160721,7 +160721,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -163356,7 +163356,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -163400,7 +163400,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -166035,7 +166035,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -166079,7 +166079,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -168714,7 +168714,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -168758,7 +168758,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -171393,7 +171393,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -171437,7 +171437,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -174072,7 +174072,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -174116,7 +174116,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -176751,7 +176751,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -176795,7 +176795,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -179430,7 +179430,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -179474,7 +179474,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -182109,7 +182109,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -182153,7 +182153,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -184788,7 +184788,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -184832,7 +184832,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -187467,7 +187467,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -187511,7 +187511,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -190146,7 +190146,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -190190,7 +190190,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -192825,7 +192825,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -192869,7 +192869,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -195504,7 +195504,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -195548,7 +195548,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -198183,7 +198183,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -198227,7 +198227,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -200862,7 +200862,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -200906,7 +200906,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -203541,7 +203541,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -203585,7 +203585,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -206220,7 +206220,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -206264,7 +206264,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -208899,7 +208899,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -208943,7 +208943,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -211578,7 +211578,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -211622,7 +211622,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -214257,7 +214257,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -214301,7 +214301,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -216936,7 +216936,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -216980,7 +216980,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -219615,7 +219615,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -219659,7 +219659,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -222294,7 +222294,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -222338,7 +222338,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -224973,7 +224973,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -225017,7 +225017,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -227652,7 +227652,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -227696,7 +227696,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -230331,7 +230331,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -230375,7 +230375,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -233010,7 +233010,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -233054,7 +233054,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -235689,7 +235689,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -235733,7 +235733,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -238368,7 +238368,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -238412,7 +238412,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -241047,7 +241047,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -241091,7 +241091,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -243726,7 +243726,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -243770,7 +243770,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -246405,7 +246405,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -246449,7 +246449,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -249084,7 +249084,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -249128,7 +249128,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -251763,7 +251763,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -251807,7 +251807,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -254442,7 +254442,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -254486,7 +254486,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -257121,7 +257121,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -257165,7 +257165,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -259800,7 +259800,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -259844,7 +259844,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -262479,7 +262479,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -262523,7 +262523,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -265158,7 +265158,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -265202,7 +265202,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -267837,7 +267837,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -267881,7 +267881,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -270516,7 +270516,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -270560,7 +270560,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -273195,7 +273195,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -273239,7 +273239,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -275874,7 +275874,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -275918,7 +275918,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -278553,7 +278553,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -278597,7 +278597,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -281232,7 +281232,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -281276,7 +281276,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -283911,7 +283911,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -283955,7 +283955,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -286590,7 +286590,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -286634,7 +286634,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -289269,7 +289269,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -289313,7 +289313,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -291948,7 +291948,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -291992,7 +291992,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -294627,7 +294627,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -294671,7 +294671,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -297306,7 +297306,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -297350,7 +297350,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -299985,7 +299985,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -300029,7 +300029,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -302664,7 +302664,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -302708,7 +302708,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -305343,7 +305343,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -305387,7 +305387,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -308022,7 +308022,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -308066,7 +308066,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -310701,7 +310701,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -310745,7 +310745,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -313380,7 +313380,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -313424,7 +313424,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -316059,7 +316059,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -316103,7 +316103,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -318738,7 +318738,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -318782,7 +318782,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -321417,7 +321417,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
                 XAttribute x = this.Attribute(whereXName);
                 if ((x == null)) {
@@ -321461,7 +321461,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
                 XAttribute x = this.Attribute(yieldXName);
                 if ((x == null)) {
@@ -323209,12 +323209,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -323237,12 +323237,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -324994,12 +324994,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -325022,12 +325022,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -326779,12 +326779,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -326807,12 +326807,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -328564,12 +328564,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -328592,12 +328592,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -330349,12 +330349,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -330377,12 +330377,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -332134,12 +332134,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -332162,12 +332162,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -333919,12 +333919,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -333947,12 +333947,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -335704,12 +335704,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -335732,12 +335732,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -337489,12 +337489,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -337517,12 +337517,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -339274,12 +339274,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -339302,12 +339302,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -341059,12 +341059,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -341087,12 +341087,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -342844,12 +342844,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -342872,12 +342872,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -344629,12 +344629,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -344657,12 +344657,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -346414,12 +346414,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -346442,12 +346442,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -348199,12 +348199,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -348227,12 +348227,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -349984,12 +349984,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -350012,12 +350012,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -351769,12 +351769,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -351797,12 +351797,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -353554,12 +353554,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -353582,12 +353582,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -355339,12 +355339,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -355367,12 +355367,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -357124,12 +357124,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -357152,12 +357152,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -358909,12 +358909,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -358937,12 +358937,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -360694,12 +360694,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -360722,12 +360722,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -362479,12 +362479,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -362507,12 +362507,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -364264,12 +364264,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -364292,12 +364292,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -366049,12 +366049,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -366077,12 +366077,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -367834,12 +367834,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -367862,12 +367862,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -369619,12 +369619,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -369647,12 +369647,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -371404,12 +371404,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -371432,12 +371432,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -373189,12 +373189,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -373217,12 +373217,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -374974,12 +374974,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -375002,12 +375002,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -376759,12 +376759,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -376787,12 +376787,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -378544,12 +378544,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -378572,12 +378572,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -380329,12 +380329,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -380357,12 +380357,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -382114,12 +382114,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -382142,12 +382142,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -383899,12 +383899,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -383927,12 +383927,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -385684,12 +385684,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -385712,12 +385712,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -387469,12 +387469,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -387497,12 +387497,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -389254,12 +389254,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -389282,12 +389282,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -391039,12 +391039,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -391067,12 +391067,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -392824,12 +392824,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -392852,12 +392852,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -394609,12 +394609,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -394637,12 +394637,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -396394,12 +396394,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -396422,12 +396422,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -398179,12 +398179,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -398207,12 +398207,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -399964,12 +399964,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -399992,12 +399992,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -401749,12 +401749,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -401777,12 +401777,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -403534,12 +403534,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -403562,12 +403562,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -405319,12 +405319,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -405347,12 +405347,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -407104,12 +407104,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -407132,12 +407132,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -408889,12 +408889,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -408917,12 +408917,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -410674,12 +410674,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -410702,12 +410702,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -412459,12 +412459,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -412487,12 +412487,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -414244,12 +414244,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -414272,12 +414272,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -416029,12 +416029,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -416057,12 +416057,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -417814,12 +417814,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -417842,12 +417842,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -419599,12 +419599,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -419627,12 +419627,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -421384,12 +421384,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -421412,12 +421412,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -423169,12 +423169,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -423197,12 +423197,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -424954,12 +424954,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -424982,12 +424982,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -426739,12 +426739,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -426767,12 +426767,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -428524,12 +428524,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -428552,12 +428552,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -430309,12 +430309,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -430337,12 +430337,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -432094,12 +432094,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -432122,12 +432122,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -433879,12 +433879,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -433907,12 +433907,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -435664,12 +435664,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -435692,12 +435692,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -437449,12 +437449,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -437477,12 +437477,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -439234,12 +439234,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -439262,12 +439262,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -441019,12 +441019,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -441047,12 +441047,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -442804,12 +442804,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -442832,12 +442832,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -444589,12 +444589,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -444617,12 +444617,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -446374,12 +446374,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -446402,12 +446402,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -448159,12 +448159,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -448187,12 +448187,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -449944,12 +449944,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -449972,12 +449972,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -451729,12 +451729,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -451757,12 +451757,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -453514,12 +453514,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -453542,12 +453542,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -455299,12 +455299,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -455327,12 +455327,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -457084,12 +457084,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -457112,12 +457112,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -458869,12 +458869,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -458897,12 +458897,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -460654,12 +460654,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -460682,12 +460682,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -462439,12 +462439,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -462467,12 +462467,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -464224,12 +464224,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -464252,12 +464252,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -466009,12 +466009,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -466037,12 +466037,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -467794,12 +467794,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -467822,12 +467822,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -469579,12 +469579,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -469607,12 +469607,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -471364,12 +471364,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -471392,12 +471392,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -473149,12 +473149,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -473177,12 +473177,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -474934,12 +474934,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -474962,12 +474962,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -476719,12 +476719,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -476747,12 +476747,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -478504,12 +478504,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -478532,12 +478532,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -480289,12 +480289,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -480317,12 +480317,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -482074,12 +482074,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -482102,12 +482102,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -483859,12 +483859,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -483887,12 +483887,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -485644,12 +485644,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -485672,12 +485672,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -487429,12 +487429,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -487457,12 +487457,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -489214,12 +489214,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -489242,12 +489242,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -490999,12 +490999,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -491027,12 +491027,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -492784,12 +492784,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -492812,12 +492812,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -494569,12 +494569,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -494597,12 +494597,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -496354,12 +496354,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -496382,12 +496382,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -498139,12 +498139,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -498167,12 +498167,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -499924,12 +499924,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -499952,12 +499952,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -501709,12 +501709,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -501737,12 +501737,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -503494,12 +503494,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -503522,12 +503522,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -505279,12 +505279,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -505307,12 +505307,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -507064,12 +507064,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -507092,12 +507092,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -508849,12 +508849,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -508877,12 +508877,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -510634,12 +510634,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -510662,12 +510662,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -512419,12 +512419,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -512447,12 +512447,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -514204,12 +514204,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -514232,12 +514232,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -515989,12 +515989,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -516017,12 +516017,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -517774,12 +517774,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -517802,12 +517802,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -519559,12 +519559,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -519587,12 +519587,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -521344,12 +521344,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -521372,12 +521372,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -523129,12 +523129,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -523157,12 +523157,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -524914,12 +524914,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -524942,12 +524942,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -526699,12 +526699,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -526727,12 +526727,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -528484,12 +528484,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -528512,12 +528512,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -530269,12 +530269,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -530297,12 +530297,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -530347,7 +530347,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         }
     }
     
-    public partial class where : XTypedElement, IXMetaData {
+    public partial class @where : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -530361,28 +530361,28 @@ namespace LinqToXsd.Schemas.NameMangledTest {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        public static where Load(string xmlFile) {
+        public static @where Load(string xmlFile) {
             return XTypedServices.Load<where, whereType>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
-        public static where Load(System.IO.TextReader xmlFile) {
+        public static @where Load(System.IO.TextReader xmlFile) {
             return XTypedServices.Load<where, whereType>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
-        public static where Parse(string xml) {
+        public static @where Parse(string xml) {
             return XTypedServices.Parse<where, whereType>(xml, LinqToXsdTypeManager.Instance);
         }
         
 		public static explicit operator where(XElement xe) { return XTypedServices.ToXTypedElement<where, whereType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
-            return new where(((whereType)(this.Content.Clone())));
+            return new @where(((whereType)(this.Content.Clone())));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private whereType ContentField;
         
-        public where() {
+        public @where() {
             SetInnerType(new whereType());
         }
         
@@ -530407,7 +530407,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
             XTypedServices.SetName(this, this.ContentField);
         }
         
-        public where(whereType content) {
+        public @where(whereType content) {
             SetInnerType(content);
         }
         
@@ -532056,10 +532056,10 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// </summary>
         public virtual string where1 {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -532082,12 +532082,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -533839,12 +533839,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -533867,12 +533867,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string yield {
+        public virtual string @yield {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -533917,7 +533917,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         }
     }
     
-    public partial class yield : XTypedElement, IXMetaData {
+    public partial class @yield : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -533931,28 +533931,28 @@ namespace LinqToXsd.Schemas.NameMangledTest {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        public static yield Load(string xmlFile) {
+        public static @yield Load(string xmlFile) {
             return XTypedServices.Load<yield, yieldType>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
-        public static yield Load(System.IO.TextReader xmlFile) {
+        public static @yield Load(System.IO.TextReader xmlFile) {
             return XTypedServices.Load<yield, yieldType>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
-        public static yield Parse(string xml) {
+        public static @yield Parse(string xml) {
             return XTypedServices.Parse<yield, yieldType>(xml, LinqToXsdTypeManager.Instance);
         }
         
 		public static explicit operator yield(XElement xe) { return XTypedServices.ToXTypedElement<yield, yieldType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
-            return new yield(((yieldType)(this.Content.Clone())));
+            return new @yield(((yieldType)(this.Content.Clone())));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private yieldType ContentField;
         
-        public yield() {
+        public @yield() {
             SetInnerType(new yieldType());
         }
         
@@ -533977,7 +533977,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
             XTypedServices.SetName(this, this.ContentField);
         }
         
-        public yield(yieldType content) {
+        public @yield(yieldType content) {
             SetInnerType(content);
         }
         
@@ -535624,12 +535624,12 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string where {
+        public virtual string @where {
             get {
-                return this.ContentField.where;
+                return this.ContentField.@where;
             }
             set {
-                this.ContentField.where = value;
+                this.ContentField.@where = value;
             }
         }
         
@@ -535654,10 +535654,10 @@ namespace LinqToXsd.Schemas.NameMangledTest {
         /// </summary>
         public virtual string yield1 {
             get {
-                return this.ContentField.yield;
+                return this.ContentField.@yield;
             }
             set {
-                this.ContentField.yield = value;
+                this.ContentField.@yield = value;
             }
         }
         
@@ -535952,9 +535952,9 @@ namespace LinqToXsd.Schemas.NameMangledTest {
             elementDictionary.Add(System.Xml.Linq.XName.Get("value", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.value));
             elementDictionary.Add(System.Xml.Linq.XName.Get("var", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.@var));
             elementDictionary.Add(System.Xml.Linq.XName.Get("when", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.when));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("where", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.where));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("where", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.@where));
             elementDictionary.Add(System.Xml.Linq.XName.Get("with", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.with));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("yield", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.yield));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("yield", ""), typeof(global::LinqToXsd.Schemas.NameMangledTest.@yield));
         }
         
         private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
@@ -536077,9 +536077,9 @@ namespace LinqToXsd.Schemas.NameMangledTest {
             wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.value), typeof(global::LinqToXsd.Schemas.NameMangledTest.valueType));
             wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.@var), typeof(global::LinqToXsd.Schemas.NameMangledTest.@varType));
             wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.when), typeof(global::LinqToXsd.Schemas.NameMangledTest.whenType));
-            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.where), typeof(global::LinqToXsd.Schemas.NameMangledTest.whereType));
+            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.@where), typeof(global::LinqToXsd.Schemas.NameMangledTest.whereType));
             wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.with), typeof(global::LinqToXsd.Schemas.NameMangledTest.withType));
-            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.yield), typeof(global::LinqToXsd.Schemas.NameMangledTest.yieldType));
+            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.NameMangledTest.@yield), typeof(global::LinqToXsd.Schemas.NameMangledTest.yieldType));
         }
         
         private static XmlSchemaSet schemaSet;
@@ -537195,7 +537195,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
 
 		public when when {  get {return rootObject as when; } }
         
-        public XRootNamespace(where root) {
+        public XRootNamespace(@where root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
@@ -537211,7 +537211,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
 
 		public with with {  get {return rootObject as with; } }
         
-        public XRootNamespace(yield root) {
+        public XRootNamespace(@yield root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
@@ -538276,7 +538276,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
 
 		public global::LinqToXsd.Schemas.NameMangledTest.when when {  get {return rootObject as global::LinqToXsd.Schemas.NameMangledTest.when; } }
         
-        public XRoot(global::LinqToXsd.Schemas.NameMangledTest.where root) {
+        public XRoot(global::LinqToXsd.Schemas.NameMangledTest.@where root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
@@ -538292,7 +538292,7 @@ namespace LinqToXsd.Schemas.NameMangledTest {
 
 		public global::LinqToXsd.Schemas.NameMangledTest.with with {  get {return rootObject as global::LinqToXsd.Schemas.NameMangledTest.with; } }
         
-        public XRoot(global::LinqToXsd.Schemas.NameMangledTest.yield root) {
+        public XRoot(global::LinqToXsd.Schemas.NameMangledTest.@yield root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
