@@ -31,7 +31,8 @@ namespace Xml.Schema.Linq.CodeGen
                 "in", "return", "using", "decimal", "int", "sbyte", "virtual", "default",
                 "interface", "sealed", "volatile", "delegate", "internal", "short", "void",
                 "do", "is", "sizeof", "while", "double", "lock", "stackalloc", "else", "long",
-                "static", "enum", "namespace", "string", "var"
+                "static", "enum", "namespace", "string", "var",
+                "file", "record", "required", "scoped"
             };
         }
 
