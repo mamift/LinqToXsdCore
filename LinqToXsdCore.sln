@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RELEASENOTES.md = RELEASENOTES.md
 		Version.props = Version.props
 		_config.yml = _config.yml
+		Regenerate-TestingSuite.ps1 = Regenerate-TestingSuite.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCodeGen", "XObjectsCode\XObjectsCodeGen.csproj", "{26B49F5C-4459-4B14-B25B-057469144039}"
