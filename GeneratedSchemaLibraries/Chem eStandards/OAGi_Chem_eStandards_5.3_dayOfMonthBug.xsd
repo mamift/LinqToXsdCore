@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:cidx:names:specification:ces:schema:all:5:3:dayofmonthbug"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:cidx:names:specification:ces:schema:all:5:3:dayofmonthbug">
+  <xs:element name="DayOfMonth">
+    <xs:simpleType>
+      <xs:restriction base="xs:int">
+        <xs:maxInclusive value="31"/>
+        <xs:minInclusive value="1"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:complexType name="RelativeDueDateType">
+    <xs:sequence>
+      <xs:element ref="DayOfMonth"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="DueDate" type="DueDateType"/>
+  <xs:complexType name="DueDateType">
+    <xs:sequence>
+      <xs:element ref="DateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="DateTime" type="DateTimeType"/>
+  <xs:complexType name="DateTimeType">
+    <xs:simpleContent>
+      <xs:extension base="cidxDateTime">
+        <xs:attribute name="DateTimeQualifier" type="cidxListDateQualifier" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  
+  <xs:simpleType name="cidxDateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  
+  <xs:simpleType name="cidxListDateQualifier">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="After"/>
+      <xs:enumeration value="Before"/>
+      <xs:enumeration value="On"/>
+      <xs:enumeration value="OnOrAfter"/>
+      <xs:enumeration value="OnOrBefore"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:element name="RelativeDueDate" type="RelativeDueDateType"/>
+  <xs:complexType name="TermsOfSaleType">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element ref="DueDate"/>
+        <xs:element ref="RelativeDueDate"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TermsOfSale" type="TermsOfSaleType"/>
+  
+  <xs:element name="PaymentTermsGroup" type="PaymentTermsGroupType"/>
+  <xs:complexType name="PaymentTermsGroupType">
+    <xs:sequence>
+      <xs:element ref="TermsOfSale" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <xs:element name="PaymentTermsList" type="PaymentTermsListType"/>
+  <xs:complexType name="PaymentTermsListType">
+    <xs:sequence>
+      <xs:element ref="PaymentTermsGroup" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <xs:element name="PriceSheetDetails" type="PriceSheetDetailsType"/>
+  <xs:complexType name="PriceSheetDetailsType">
+    <xs:sequence>
+      <xs:element ref="PaymentTermsList" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="PriceSheetBody" type="PriceSheetBodyType"/>
+  <xs:complexType name="PriceSheetBodyType">
+    <xs:sequence>
+      <xs:element ref="PriceSheetDetails"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="PriceSheet" type="PriceSheetType">
+    <xs:annotation>
+      <xs:appinfo>may_be_message_element</xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:complexType name="PriceSheetType">
+    <xs:sequence>
+      <xs:element ref="PriceSheetBody"/>
+    </xs:sequence>
+    <xs:attribute name="Version" type="cidxToken" fixed="5.3"/>
+  </xs:complexType>
+  
+  <xs:simpleType name="cidxToken">
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
