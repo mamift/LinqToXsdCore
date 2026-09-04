@@ -1,10 +1,34 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.CodeGen;
 
 public static class StringExtensions
 {
+    public static int IndexOf(this StringBuilder builder, string value)
+    {
+        if (builder == null) throw new ArgumentNullException(nameof(builder));
+        if (value == null) throw new ArgumentNullException(nameof(value));
+
+        if (builder.Length < value.Length) return -1;
+        int maxSearchLength = Math.Min(builder.Length - value.Length, 4096);
+
+        for (int i = 0; i <= maxSearchLength; i++) {
+            bool match = true;
+            for (int j = 0; j < value.Length; j++) {
+                if (builder[i + j] != value[j]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) return i;
+        }
+
+        return -1;
+    }
+
     public static string PrefixIf(this string str, bool condition, string prefix)
     {
         return condition ? prefix + str : str;
