@@ -9,13 +9,14 @@
 #>
 
 param(
-    [string]$Configuration = 'release'
+    [string]$Configuration = 'release',
+    [string]$SolutionFile = 'LinqToXsd-TestingSuite.slnf'
 )
 
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = $PSScriptRoot
-$slnfPath = Join-Path $repoRoot 'LinqToXsd-TestingSuite.slnf'
+$slnfPath = Join-Path $repoRoot $SolutionFile
 $linqToXsdProject = Join-Path $repoRoot 'LinqToXsd' 'LinqToXsd.csproj'
 $timestamp = '{0:yyyyMMdd_HHmmss}' -f (Get-Date)
 $logPath = Join-Path $repoRoot "RegenerateLog_$timestamp.log"
