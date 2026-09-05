@@ -13,8 +13,7 @@ public static class StringExtensions
         if (value == null) throw new ArgumentNullException(nameof(value));
 
         if (builder.Length < value.Length) return -1;
-        int maxSearchLength = Math.Min(builder.Length - value.Length, 4096);
-
+        int maxSearchLength = builder.Length - value.Length;
         for (int i = 0; i <= maxSearchLength; i++) {
             bool match = true;
             for (int j = 0; j < value.Length; j++) {
