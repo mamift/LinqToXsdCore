@@ -351,18 +351,6 @@ namespace Xml.Schema.Linq.CodeGen
                 XmlSchemaSimpleType simpleType = null;
                 if (elem != null) simpleType = elem.ElementSchemaType as XmlSchemaSimpleType;
 
-                XmlSchemaObject targetSchemaObject = (XmlSchemaObject)complexType ?? (XmlSchemaObject)simpleType ?? (XmlSchemaObject)elem;
-
-                ClrTypeInfo existingType = FindExistingAncestorType(typeInfo, targetSchemaObject, elem);
-                if (existingType != null)
-                {
-                    if (at.typeRefence != null)
-                    {
-                        at.typeRefence.Name = existingType.clrtypeName;
-                    }
-                    continue;
-                }
-
                 if (complexType != null)
                 {
                     if (complexType.GetContentType() == XmlSchemaContentType.TextOnly
@@ -380,12 +368,28 @@ namespace Xml.Schema.Linq.CodeGen
                         nestedTypeInfo.schemaNs = qname.Namespace;
                         nestedTypeInfo.typeOrigin = SchemaOrigin.Fragment;
                         nestedTypeInfo.IsNested = true;
-                        nestedTypeInfo.SchemaObject = targetSchemaObject;
+                        nestedTypeInfo.SchemaObject = complexType;
                         BuildAnnotationInformation(nestedTypeInfo, complexType);
                         typeInfo.NestedTypes.Add(nestedTypeInfo);
                     }
                     else
                     {
+                        //Guard against infinite recursion when a group references itself: only a type with a
+                        //content model can refer back to itself through group references, so only this branch
+                        //can recurse. Simple types and text-only restriction types never can, and they still
+                        //need their validator classes generated (the current type is not a validator).
+                        XmlSchemaObject targetSchemaObject = (XmlSchemaObject)complexType ?? (XmlSchemaObject)elem;
+
+                        ClrTypeInfo existingType = FindExistingAncestorType(typeInfo, targetSchemaObject, elem);
+                        if (existingType != null)
+                        {
+                            if (at.typeRefence != null)
+                            {
+                                at.typeRefence.Name = existingType.clrtypeName;
+                            }
+                            continue;
+                        }
+
                         ClrContentTypeInfo nestedTypeInfo = new ClrContentTypeInfo() {
                             Parent = typeInfo
                         };
@@ -410,7 +414,7 @@ namespace Xml.Schema.Linq.CodeGen
                     nestedTypeInfo.schemaNs = qname.Namespace;
                     nestedTypeInfo.typeOrigin = SchemaOrigin.Fragment;
                     nestedTypeInfo.IsNested = true;
-                    nestedTypeInfo.SchemaObject = targetSchemaObject;
+                    nestedTypeInfo.SchemaObject = simpleType;
                     BuildAnnotationInformation(nestedTypeInfo, simpleType);
                     typeInfo.NestedTypes.Add(nestedTypeInfo);
                 }

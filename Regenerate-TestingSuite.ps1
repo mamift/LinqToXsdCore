@@ -106,9 +106,7 @@ function Start-AssertDialogWatcher {
         [int]$PollMilliseconds = 400
     )
 
-    $state = [hashtable]::Synchronized(@{ Stop = $false; Count = 0 })Login failed
-  PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid             certification path to requested target
-
+    $state = [hashtable]::Synchronized(@{ Stop = $false; Count = 0 })
     $runspace = [runspacefactory]::CreateRunspace()
     $runspace.Open()
     $runspace.SessionStateProxy.SetVariable('state', $state)
@@ -179,7 +177,7 @@ Write-Host "Found $($projects.Count) projects in GeneratedSchemaLibraries." -For
 
 $failed = @()
 $succeeded = 0
-
+try {
 foreach ($proj in $projects) {
     # Path looks like: GeneratedSchemaLibraries\ProjectName\ProjectName.csproj
     $projDir = Split-Path $proj -Parent           # e.g. GeneratedSchemaLibraries\ProjectName
