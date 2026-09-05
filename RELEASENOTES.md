@@ -1,5 +1,15 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.22
+
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.22
+* https://www.nuget.org/packages/XObjectsCore/3.4.22
+  * [#100](https://github.com/mamift/LinqToXsdCore/pull/100)
+    * The auto-generated topmost comment now emits the LinqToXsd version instead of the CLR version.
+    * Adds C# 8 keywords (file record required scope) to name mangling logic so generated source code can prefix them with @ when required
+    * Fixed a regression wiht v3.4.21 which resulted in the omission of private classes for element definitions with an inline-defined anonymous type (i.e. no named complex or simple type). Evidence: `OAGi_Chem_eStandards_5.3_dayOfMonthBug.xsd-g.cs`
+    
 ## Version 3.4.21
 NOTE: If you are upgrading from 3.4.19, please note the version number skip is intentional. This release (3.4.21) was published publicly to nuget.org, while 3.4.20 was an internal only release. Please read over the release notes for 3.4.20 to see the full scope of changes if you are upgrading from 3.4.19.
 
