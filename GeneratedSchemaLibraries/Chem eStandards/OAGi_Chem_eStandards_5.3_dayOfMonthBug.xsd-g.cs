@@ -67,7 +67,7 @@ namespace urn.cidx.names.specification.ces.schema.all.dayofmonthbug {
                 return XTypedServices.ParseValue<int>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
             set {
-                this.SetValueWithValidation(value, "TypedValue", TypeDefinition);
+                this.SetValueWithValidation(value, "TypedValue", DayOfMonth1LocalType.TypeDefinition);
             }
         }
         
@@ -96,6 +96,15 @@ namespace urn.cidx.names.specification.ces.schema.all.dayofmonthbug {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
+        }
+        
+        private class DayOfMonth1LocalType {
+            
+            private DayOfMonth1LocalType() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int), new global::Xml.Schema.Linq.RestrictionFacets(((global::Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 31, 0, null, 1, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
     }
     

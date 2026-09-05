@@ -7,6 +7,8 @@
     <EmbeddedResource Include="Chem_eStandards_Data_Dictionary_2013-10-30.xml" />
     <EmbeddedResource Include="OAGi_Chem_eStandards_5.3.xsd" />
     <EmbeddedResource Include="OAGi_Chem_eStandards_5.3.xsd.config" />
+    <EmbeddedResource Include="OAGi_Chem_eStandards_5.3_dayOfMonthBug.xsd" />
+    <EmbeddedResource Include="OAGi_Chem_eStandards_5.3_dayOfMonthBug.xsd.config" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Chem_eStandards_Data_Dictionary_2013-10-30.xml" />

@@ -516,16 +516,16 @@ namespace PubMed.MyCollections {
         public Type() {
         }
         
-        public enum TypedValueEnum {
+        public enum Type1Enum {
             
             citation,
             
             article,
         }
         
-        public sealed class TypedValueEnumValidator {
+        public sealed class Type1EnumValidator {
             
-            private TypedValueEnumValidator() {
+            private Type1EnumValidator() {
             }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -538,13 +538,13 @@ namespace PubMed.MyCollections {
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
-        public virtual PubMed.MyCollections.Type.TypedValueEnum TypedValue {
+        public virtual PubMed.MyCollections.Type.Type1Enum TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((PubMed.MyCollections.Type.TypedValueEnum)(Enum.Parse(typeof(PubMed.MyCollections.Type.TypedValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype, TypedValueEnumValidator.TypeDefinition))));
+                return ((PubMed.MyCollections.Type.Type1Enum)(Enum.Parse(typeof(PubMed.MyCollections.Type.Type1Enum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype, Type1EnumValidator.TypeDefinition))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", TypedValueEnumValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", Type1EnumValidator.TypeDefinition);
             }
         }
         

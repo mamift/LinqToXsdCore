@@ -2669,7 +2669,7 @@ namespace LandXml.v1_2 {
                 return XTypedServices.ParseListValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
             }
             set {
-                this.SetListValueWithValidation(value, "TypedValue", TypeDefinition);
+                this.SetListValueWithValidation(value, "TypedValue", PntList2D1LocalType.TypeDefinition);
             }
         }
         
@@ -2698,6 +2698,15 @@ namespace LandXml.v1_2 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
+        }
+        
+        private class PntList2D1LocalType {
+            
+            private PntList2D1LocalType() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(2)), null, 0, 0, null, null, 0, null, null, 2, null, 0, XmlSchemaWhiteSpace.Collapse), new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), null));
         }
     }
     
@@ -2746,7 +2755,7 @@ namespace LandXml.v1_2 {
                 return XTypedServices.ParseListValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
             }
             set {
-                this.SetListValueWithValidation(value, "TypedValue", TypeDefinition);
+                this.SetListValueWithValidation(value, "TypedValue", PntList3D1LocalType.TypeDefinition);
             }
         }
         
@@ -2775,6 +2784,15 @@ namespace LandXml.v1_2 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
+        }
+        
+        private class PntList3D1LocalType {
+            
+            private PntList3D1LocalType() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(2)), null, 0, 0, null, null, 0, null, null, 3, null, 0, XmlSchemaWhiteSpace.Collapse), new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), null));
         }
     }
     

@@ -30558,16 +30558,16 @@ namespace Microsoft.Schemas.Developer.MsBuild {
         public WsdlXsdCodeGenReuseTypesMode() {
         }
         
-        public enum TypedValueEnum {
+        public enum WsdlXsdCodeGenReuseTypesMode1Enum {
             
             All,
             
             Partial,
         }
         
-        public sealed class TypedValueEnumValidator {
+        public sealed class WsdlXsdCodeGenReuseTypesMode1EnumValidator {
             
-            private TypedValueEnumValidator() {
+            private WsdlXsdCodeGenReuseTypesMode1EnumValidator() {
             }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -30580,13 +30580,13 @@ namespace Microsoft.Schemas.Developer.MsBuild {
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
-        public virtual Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenReuseTypesMode.TypedValueEnum TypedValue {
+        public virtual Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenReuseTypesMode.WsdlXsdCodeGenReuseTypesMode1Enum TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenReuseTypesMode.TypedValueEnum)(Enum.Parse(typeof(Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenReuseTypesMode.TypedValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TypedValueEnumValidator.TypeDefinition))));
+                return ((Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenReuseTypesMode.WsdlXsdCodeGenReuseTypesMode1Enum)(Enum.Parse(typeof(Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenReuseTypesMode.WsdlXsdCodeGenReuseTypesMode1Enum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, WsdlXsdCodeGenReuseTypesMode1EnumValidator.TypeDefinition))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", TypedValueEnumValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", WsdlXsdCodeGenReuseTypesMode1EnumValidator.TypeDefinition);
             }
         }
         
@@ -30637,16 +30637,16 @@ namespace Microsoft.Schemas.Developer.MsBuild {
         public WsdlXsdCodeGenSerializerMode() {
         }
         
-        public enum TypedValueEnum {
+        public enum WsdlXsdCodeGenSerializerMode1Enum {
             
             XmlSerializer,
             
             DataContractSerializer,
         }
         
-        public sealed class TypedValueEnumValidator {
+        public sealed class WsdlXsdCodeGenSerializerMode1EnumValidator {
             
-            private TypedValueEnumValidator() {
+            private WsdlXsdCodeGenSerializerMode1EnumValidator() {
             }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -30659,13 +30659,13 @@ namespace Microsoft.Schemas.Developer.MsBuild {
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
-        public virtual Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenSerializerMode.TypedValueEnum TypedValue {
+        public virtual Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenSerializerMode.WsdlXsdCodeGenSerializerMode1Enum TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenSerializerMode.TypedValueEnum)(Enum.Parse(typeof(Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenSerializerMode.TypedValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TypedValueEnumValidator.TypeDefinition))));
+                return ((Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenSerializerMode.WsdlXsdCodeGenSerializerMode1Enum)(Enum.Parse(typeof(Microsoft.Schemas.Developer.MsBuild.WsdlXsdCodeGenSerializerMode.WsdlXsdCodeGenSerializerMode1Enum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, WsdlXsdCodeGenSerializerMode1EnumValidator.TypeDefinition))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", TypedValueEnumValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", WsdlXsdCodeGenSerializerMode1EnumValidator.TypeDefinition);
             }
         }
         
