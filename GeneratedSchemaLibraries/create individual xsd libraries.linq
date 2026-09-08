@@ -65,6 +65,7 @@ async Task Main()
 		
 		InsertProjectRefToSchemasProj(LinqToXsdSchemasCsProjFilePath, relativePath, LinqToXsdSchemasCsProjFilePath); 
 		await AddProjectToSln(thisFileDir, csProjInsideTheDir);
+		await AddProjectToSln(thisFileDir, csProjInsideTheDir, "LinqToXsd-TestingSuite.slnf");
 	}
 	
 	if (skipCount == schemaDirs.Count()) {
@@ -72,9 +73,9 @@ async Task Main()
 	}
 }
 
-async Task AddProjectToSln(string cwd, string relativePathOfCsProj) 
+async Task AddProjectToSln(string cwd, string relativePathOfCsProj, string slnFileName = "LinqToXsdCore.sln") 
 {
-	var solutionFile = @"..\LinqToXsdCore.sln";
+	var solutionFile = @$"..\{slnFileName}";
 	var args = $"sln \"{solutionFile}\" add \"{relativePathOfCsProj}\"";
 	var psi = new ProcessStartInfo("dotnet", args) {
 		RedirectStandardOutput = true,

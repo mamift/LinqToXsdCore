@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  attributeFormDefault="qualified" targetNamespace="https://github.com/jamiew/gml-spec"
+  xmlns="https://github.com/jamiew/gml-spec">
+
+  <!--
+    Reverse-engineered from sample in index.html (spec last updated Dec. 30, 2009).
+    ASSUMPTION: no XML namespace is defined in sample, so schema is no-namespace.
+  -->
+
+  <!-- Root -->
+  <xs:element name="gml">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="tag" type="TagType"/>
+      </xs:sequence>
+      <!-- Sample shows: <gml spec='0.1c'> -->
+      <xs:attribute name="spec" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- tag -->
+  <xs:complexType name="TagType">
+    <xs:sequence>
+      <xs:element name="header" type="HeaderType"/>
+      <xs:element name="drawing" type="DrawingType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- header -->
+  <xs:complexType name="HeaderType">
+    <xs:sequence>
+      <xs:element name="client" type="ClientType"/>
+      <xs:element name="environment" type="EnvironmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- client -->
+  <xs:complexType name="ClientType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="version" type="xs:string"/>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="permalink" type="xs:anyURI" minOccurs="0"/>
+      <!-- Spec comment says comma-separated; keep as string -->
+      <xs:element name="keywords" type="xs:string" minOccurs="0"/>
+      <xs:element name="uniqueKey" type="xs:string" minOccurs="0"/>
+      <!-- ASSUMPTION: ip kept as free string to support IPv4/IPv6/host forms -->
+      <xs:element name="ip" type="xs:string" minOccurs="0"/>
+      <!-- Spec says unixtime -->
+      <xs:element name="time" type="xs:long" minOccurs="0"/>
+      <xs:element name="location" type="LonLatType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- drawing -->
+  <xs:complexType name="DrawingType">
+    <xs:sequence>
+      <xs:element name="stroke" type="StrokeType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- stroke -->
+  <xs:complexType name="StrokeType">
+    <xs:sequence>
+      <!-- Optional per-stroke metadata -->
+      <xs:element name="info" type="InfoType" minOccurs="0"/>
+      <!-- Optional brush; spec says inherit previous if missing -->
+      <xs:element name="brush" type="BrushType" minOccurs="0"/>
+      <!-- ASSUMPTION: at least one point per stroke -->
+      <xs:element name="pt" type="PointType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <!-- Sample uses isDrawing='false', default true if omitted -->
+    <xs:attribute name="isDrawing" type="xs:boolean" use="optional" default="true"/>
+  </xs:complexType>
+
+  <xs:complexType name="InfoType">
+    <xs:sequence>
+      <!-- Only "curved" shown in sample; extensibility point added -->
+      <xs:element name="curved" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- brush -->
+  <xs:complexType name="BrushType">
+    <xs:sequence>
+      <xs:element name="mode" type="xs:int" minOccurs="0"/>
+      <xs:element name="uniqueStyleID" type="xs:string" minOccurs="0"/>
+      <xs:element name="spec" type="xs:anyURI" minOccurs="0"/>
+      <xs:element name="width" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="speedToWidthRatio" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="dripAmnt" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="dripSpeed" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="layerAbsolute" type="xs:int" minOccurs="0"/>
+      <xs:element name="color" type="ColorType" minOccurs="0"/>
+      <xs:element name="dripVecRelativeToUp" type="Vector3Type" minOccurs="0"/>
+      <xs:element name="layerRelative" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- environment -->
+  <xs:complexType name="EnvironmentType">
+    <xs:sequence>
+      <xs:element name="offset" type="Vector3Type"/>
+      <xs:element name="rotation" type="Vector3Type"/>
+      <xs:element name="up" type="Vector3Type"/>
+      <xs:element name="screenBounds" type="Vector3Type"/>
+      <xs:element name="origin" type="Vector3Type"/>
+      <xs:element name="realScale" type="RealScaleType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Point / vector primitives -->
+  <xs:complexType name="PointType">
+    <xs:sequence>
+      <!-- Spec text suggests normalized 0.0..1.0 coordinates -->
+      <xs:element name="x" type="NormalizedDecimalType"/>
+      <xs:element name="y" type="NormalizedDecimalType"/>
+      <!-- z and t explicitly called optional in sample -->
+      <xs:element name="z" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="t" type="xs:decimal" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Vector3Type">
+    <xs:sequence>
+      <xs:element name="x" type="xs:decimal"/>
+      <xs:element name="y" type="xs:decimal"/>
+      <xs:element name="z" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LonLatType">
+    <xs:sequence>
+      <xs:element name="lon" type="xs:decimal"/>
+      <xs:element name="lat" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ColorType">
+    <xs:sequence>
+      <!-- ASSUMPTION: 0..255 channel range -->
+      <xs:element name="r" type="ColorChannelType"/>
+      <xs:element name="g" type="ColorChannelType"/>
+      <xs:element name="b" type="ColorChannelType"/>
+      <xs:element name="a" type="ColorChannelType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RealScaleType">
+    <xs:sequence>
+      <xs:element name="x" type="xs:decimal"/>
+      <xs:element name="y" type="xs:decimal"/>
+      <xs:element name="z" type="xs:decimal"/>
+      <!-- Sample gives "cm"; allow any token for forward compatibility -->
+      <xs:element name="unit" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Scalar restrictions -->
+  <xs:simpleType name="ColorChannelType">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="NormalizedDecimalType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0.0"/>
+      <xs:maxInclusive value="1.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
