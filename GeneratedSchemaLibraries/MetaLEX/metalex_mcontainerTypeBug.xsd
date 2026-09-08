@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.metalex.eu/metalex/1.0" xmlns:xml="http://www.w3.org/XML/1998/namespace" 
+  xmlns:e="http://www.metalex.eu/metalex/1.0" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+  <xsd:complexType name="absMcontainerType">
+    <xsd:complexContent>
+      <xsd:restriction base="e:urType">
+        <xsd:choice >
+          <xsd:element ref="e:absMeta" minOccurs="1" maxOccurs="unbounded" />
+          <xsd:element ref="e:absMcontainer" minOccurs="1" maxOccurs="unbounded" />
+        </xsd:choice>
+        <xsd:attributeGroup ref="e:typemcontainer"/>
+        <xsd:attributeGroup ref="e:anyattr"/>
+      </xsd:restriction>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:attributeGroup name="typemcontainer">
+    <xsd:attribute name="type" type="e:CMtype" fixed="mcontainer" />
+  </xsd:attributeGroup>
+  <xsd:simpleType name="CMtype"  >
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:attributeGroup name="anyattr">
+    <xsd:anyAttribute namespace="##any" processContents="lax"/>
+  </xsd:attributeGroup>
+  <xsd:complexType name="urType" abstract="true" >
+    <xsd:complexContent>
+      <xsd:extension base="xsd:anyType">
+        <xsd:attributeGroup ref="e:nameopt"/>
+        <xsd:attributeGroup ref="e:typeopt"/>
+        <xsd:attributeGroup ref="e:langopt"/>
+        <xsd:attributeGroup ref="e:anyattr"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="absMeta" abstract="true" type="e:absMetaType" />
+  <xsd:complexType name="absMetaType"  >
+    <xsd:complexContent>
+      <xsd:restriction base="e:urMetaType">
+        <xsd:attributeGroup ref="e:typemeta"/>
+        <xsd:attributeGroup ref="e:anyattr"/>
+      </xsd:restriction>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="absMcontainer" abstract="true" type="e:absMcontainerType" />
+  <xsd:attributeGroup name="nameopt">
+    <xsd:attribute name="name" type="xsd:NMTOKEN"/>
+  </xsd:attributeGroup>
+  <xsd:attributeGroup name="typeopt">
+    <xsd:attribute name="type" type="e:CMtype"/>
+  </xsd:attributeGroup>
+  <xsd:attributeGroup name="langopt">
+    <xsd:attribute ref="xml:lang" />
+  </xsd:attributeGroup>
+  <xsd:attributeGroup name="typemeta">
+    <xsd:attribute name="type" type="e:CMtype" fixed="meta" />
+  </xsd:attributeGroup>
+  <xsd:complexType name="urMetaType" abstract="true" >
+    <xsd:complexContent>
+      <xsd:extension base="e:urType">
+        <xsd:attributeGroup ref="e:idreq"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:attributeGroup name="idreq">
+    <xsd:attribute name="id" type="xsd:NMTOKEN" use="required"/>
+  </xsd:attributeGroup>
+  <xsd:complexType name="mcontainerType"  >
+    <xsd:complexContent>
+      <xsd:extension base="e:absMcontainerType">
+        <xsd:attributeGroup ref="e:anyattr"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>
