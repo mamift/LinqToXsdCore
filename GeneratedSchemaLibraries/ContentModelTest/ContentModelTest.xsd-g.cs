@@ -1223,6 +1223,345 @@ namespace LinqToXsd.Schemas.Test.ContentModelTypes {
         }
     }
     
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Tic+ | Tac+)
+    /// </para>
+    /// </summary>
+    public abstract partial class ChoiceBaseType : XTypedElement, IXMetaData {
+        
+		public static explicit operator ChoiceBaseType(XElement xe) {  return (ChoiceBaseType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Tic+ | Tac+)
+        /// </para>
+        /// </summary>
+        public ChoiceBaseType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> TicField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (Tic+ | Tac+)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> Tic {
+            get {
+                if ((this.TicField == null)) {
+                    this.TicField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TicXName);
+                }
+                return this.TicField;
+            }
+            set {
+                if ((value == null)) {
+                    this.TicField = null;
+                }
+                else {
+                    if ((this.TicField == null)) {
+                        this.TicField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, TicXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.TicField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<int> TacField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (Tic+ | Tac+)
+        /// </para>
+        /// </summary>
+        public virtual IList<int> Tac {
+            get {
+                if ((this.TacField == null)) {
+                    this.TacField = new XSimpleList<int>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, TacXName);
+                }
+                return this.TacField;
+            }
+            set {
+                if ((value == null)) {
+                    this.TacField = null;
+                }
+                else {
+                    if ((this.TacField == null)) {
+                        this.TacField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, value, TacXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.Int32>(this.TacField, value);
+                    }
+                }
+            }
+        }
+        
+        public ChoiceBaseType(IEnumerable<string> Tic) {
+            this.TicField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, Tic, TicXName);
+        }
+        
+        public ChoiceBaseType(IEnumerable<int> Tac) {
+            this.TacField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, Tac, TacXName);
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChoiceBaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        static ChoiceBaseType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(TicXName), new NamedContentModelEntity(TacXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TicXName, typeof(string));
+            localElementDictionary.Add(TacXName, typeof(int));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+    }
+    
+    public partial class RestrictedChoiceBaseType : global::LinqToXsd.Schemas.Test.ContentModelTypes.ChoiceBaseType, IXMetaData {
+        
+		public static explicit operator RestrictedChoiceBaseType(XElement xe) { return XTypedServices.ToXTypedElement<RestrictedChoiceBaseType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RestrictedChoiceBaseType>(this);
+        }
+        
+        public RestrictedChoiceBaseType() {
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RestrictedChoiceBaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Tic+ | Tac+)
+    /// </para>
+    /// </summary>
+    public partial class ExtensionOfRestrictedChoiceType : global::LinqToXsd.Schemas.Test.ContentModelTypes.RestrictedChoiceBaseType, IXMetaData {
+        
+		public static explicit operator ExtensionOfRestrictedChoiceType(XElement xe) { return XTypedServices.ToXTypedElement<ExtensionOfRestrictedChoiceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ExtensionOfRestrictedChoiceType>(this);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Tic+ | Tac+)
+        /// </para>
+        /// </summary>
+        public ExtensionOfRestrictedChoiceType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> TicField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (Tic+ | Tac+)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> Tic {
+            get {
+                if ((this.TicField == null)) {
+                    this.TicField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TicXName);
+                }
+                return this.TicField;
+            }
+            set {
+                if ((value == null)) {
+                    this.TicField = null;
+                }
+                else {
+                    if ((this.TicField == null)) {
+                        this.TicField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, TicXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.TicField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<int> TacField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (Tic+ | Tac+)
+        /// </para>
+        /// </summary>
+        public virtual IList<int> Tac {
+            get {
+                if ((this.TacField == null)) {
+                    this.TacField = new XSimpleList<int>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, TacXName);
+                }
+                return this.TacField;
+            }
+            set {
+                if ((value == null)) {
+                    this.TacField = null;
+                }
+                else {
+                    if ((this.TacField == null)) {
+                        this.TacField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, value, TacXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.Int32>(this.TacField, value);
+                    }
+                }
+            }
+        }
+        
+        public ExtensionOfRestrictedChoiceType(IEnumerable<string> Tic) {
+            this.TicField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, Tic, TicXName);
+        }
+        
+        public ExtensionOfRestrictedChoiceType(IEnumerable<int> Tac) {
+            this.TacField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, Tac, TacXName);
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ExtensionOfRestrictedChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        static ExtensionOfRestrictedChoiceType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(TicXName), new NamedContentModelEntity(TacXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TicXName, typeof(string));
+            localElementDictionary.Add(TacXName, typeof(int));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+    }
+    
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
         private LinqToXsdTypeManager() {
@@ -1239,6 +1578,9 @@ namespace LinqToXsd.Schemas.Test.ContentModelTypes {
             typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceWithSequemceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.ChoiceWithSequemceType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("DeepChoiceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.DeepChoiceTreeType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("DeepSequenceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.DeepSequenceTreeType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceBaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.ChoiceBaseType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("RestrictedChoiceBaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.RestrictedChoiceBaseType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ExtensionOfRestrictedChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.ExtensionOfRestrictedChoiceType));
         }
         
         private static XmlSchemaSet schemaSet;

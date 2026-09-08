@@ -62,5 +62,39 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual("contentModel", (assignment.Left as IdentifierNameSyntax)?.Identifier.Text);
             Assert.AreEqual("SequenceContentModelEntity", ((assignment.Right as ObjectCreationExpressionSyntax)?.Type as IdentifierNameSyntax)?.Identifier.Text);
         }
+
+        [Test]
+        public void T3_ExtensionOfRestrictionBaseShouldGenerateContentMembersItself()
+        {
+            // The restriction base (RestrictedChoiceBaseType) contributes no generated
+            // members, so the extension type must declare the content properties itself.
+            var type    = GeneratedTypes.Single(type => type.Identifier.Text == "ExtensionOfRestrictedChoiceType");
+            var ticProp = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Tic");
+            var tacProp = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Tac");
+            Assert.IsNotNull(ticProp);
+            Assert.IsNotNull(tacProp);
+        }
+
+        [Test]
+        public void T4_ExtensionOfRestrictionBaseConstructorsShouldNotForwardToBase()
+        {
+            // The restriction base has no functional constructors, so the extension type's
+            // choice constructors must initialize their own fields rather than forward to
+            // base constructors that were never generated (CS1729 regression).
+            var type = GeneratedTypes.Single(type => type.Identifier.Text == "ExtensionOfRestrictedChoiceType");
+            var functionalCtors = type.Members.OfType<ConstructorDeclarationSyntax>()
+                .Where(ctor => !ctor.Modifiers.Any(mod => mod.IsKind(SyntaxKind.StaticKeyword))
+                    && ctor.ParameterList.Parameters.Count > 0)
+                .ToList();
+
+            Assert.AreEqual(2, functionalCtors.Count);
+
+            foreach (var ctor in functionalCtors)
+            {
+                Assert.IsNull(ctor.Initializer, $"Constructor {ctor.Identifier.Text}(...) must not call base(...)");
+                Assert.IsTrue(ctor.Body != null && ctor.Body.Statements.Count > 0,
+                    $"Constructor {ctor.Identifier.Text}(...) must initialize its own fields");
+            }
+        }
     }
 }

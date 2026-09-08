@@ -384,15 +384,81 @@ namespace MetalEx_mcontainerBug {
         protected internal static readonly System.Xml.Linq.XName absMetaXName = System.Xml.Linq.XName.Get("absMeta", "http://www.metalex.eu/metalex/1.0");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<absMeta> absMetaField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (absMeta+ | absMcontainer+)
+        /// </para>
+        /// </summary>
+        public virtual IList<absMeta> absMeta {
+            get {
+                if ((this.absMetaField == null)) {
+                    this.absMetaField = new XTypedList<absMeta>(this, LinqToXsdTypeManager.Instance, absMetaXName);
+                }
+                return this.absMetaField;
+            }
+            set {
+                if ((value == null)) {
+                    this.absMetaField = null;
+                }
+                else {
+                    if ((this.absMetaField == null)) {
+                        this.absMetaField = XTypedList<absMeta>.Initialize(this, LinqToXsdTypeManager.Instance, value, absMetaXName);
+                    }
+                    else {
+                        XTypedServices.SetList<absMeta>(this.absMetaField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName absMcontainerXName = System.Xml.Linq.XName.Get("absMcontainer", "http://www.metalex.eu/metalex/1.0");
         
-        public mcontainerType(IEnumerable<absMeta> absMeta) : 
-                base(absMeta) {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<absMcontainer> absMcontainerField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (absMeta+ | absMcontainer+)
+        /// </para>
+        /// </summary>
+        public virtual IList<absMcontainer> absMcontainer {
+            get {
+                if ((this.absMcontainerField == null)) {
+                    this.absMcontainerField = new XTypedList<absMcontainer>(this, LinqToXsdTypeManager.Instance, absMcontainerXName);
+                }
+                return this.absMcontainerField;
+            }
+            set {
+                if ((value == null)) {
+                    this.absMcontainerField = null;
+                }
+                else {
+                    if ((this.absMcontainerField == null)) {
+                        this.absMcontainerField = XTypedList<absMcontainer>.Initialize(this, LinqToXsdTypeManager.Instance, value, absMcontainerXName);
+                    }
+                    else {
+                        XTypedServices.SetList<absMcontainer>(this.absMcontainerField, value);
+                    }
+                }
+            }
         }
         
-        public mcontainerType(IEnumerable<absMcontainer> absMcontainer) : 
-                base(absMcontainer) {
+        public mcontainerType(IEnumerable<absMeta> absMeta) {
+            this.absMetaField = XTypedList<absMeta>.Initialize(this, LinqToXsdTypeManager.Instance, absMeta, absMetaXName);
+        }
+        
+        public mcontainerType(IEnumerable<absMcontainer> absMcontainer) {
+            this.absMcontainerField = XTypedList<absMcontainer>.Initialize(this, LinqToXsdTypeManager.Instance, absMcontainer, absMcontainerXName);
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("mcontainerType", "http://www.metalex.eu/metalex/1.0");
