@@ -3,8 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <ItemGroup />
-  <ItemGroup />
+  <ItemGroup>
+    <None Remove="soap.xsd" />
+    <None Remove="soap.xsd.config" />
+    <None Remove="wsdl20.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="soap.xsd" />
+    <EmbeddedResource Include="soap.xsd.config" />
+    <EmbeddedResource Include="wsdl20.xsd" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
