@@ -158,7 +158,7 @@ namespace Xml.Schema.Linq.CodeGen
                     }
                     return false;
                 case XmlSchemaDatatypeVariety.List:
-                    return type.GetListItemType().IsEnum();
+                    return false;
                 case XmlSchemaDatatypeVariety.Union:
                     return false;
 

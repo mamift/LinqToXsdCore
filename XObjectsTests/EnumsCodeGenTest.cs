@@ -164,5 +164,53 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual("rm",    element5.Untyped.FirstAttribute.NextAttribute.NextAttribute.Value);
             Assert.AreEqual("it-rm", element5.Untyped.FirstAttribute.NextAttribute.NextAttribute.NextAttribute.Value);
         }
+
+        [Test]
+        public void T7_ListOfEnumsSimpleType_GeneratesCorrectValidatorAndProperties()
+        {
+            const string xsd = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<xs:schema xmlns:xs=""http://www.w3.org/2001/XMLSchema"" targetNamespace=""http://example.com/test"" xmlns=""http://example.com/test"" elementFormDefault=""qualified"">
+    <xs:simpleType name=""fontStylesType"">
+        <xs:restriction>
+            <xs:simpleType>
+                <xs:list>
+                    <xs:simpleType>
+                        <xs:restriction base=""xs:string"">
+                            <xs:enumeration value=""bold""/>
+                            <xs:enumeration value=""italics""/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:list>
+            </xs:simpleType>
+            <xs:minLength value=""1""/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name=""Root"">
+        <xs:complexType>
+            <xs:attribute name=""STYLE"" type=""fontStylesType""/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>";
+
+            var mfs = new MockFileSystem(new Dictionary<string, MockFileData> {
+                { @"C:\schema.xsd", new MockFileData(xsd) }
+            });
+
+            var tree = Utilities.GenerateSyntaxTree(@"C:\schema.xsd", mfs);
+            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(tree);
+            Assert.AreEqual(0, diags.Length);
+
+            var nodes = tree.GetNamespaceRoot().DescendantNodes();
+            var classes = nodes.OfType<ClassDeclarationSyntax>().ToList();
+            var validatorClass = classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesType");
+            Assert.IsNotNull(validatorClass);
+            Assert.IsNull(classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesTypeValidator"));
+
+            var rootClass = classes.FirstOrDefault(c => c.Identifier.Text == "Root");
+            Assert.IsNotNull(rootClass);
+            var styleProp = rootClass.Members.OfType<PropertyDeclarationSyntax>().FirstOrDefault(p => p.Identifier.Text == "STYLE");
+            Assert.IsNotNull(styleProp);
+            Assert.AreEqual("IList<string>", styleProp.Type.ToString());
+        }
     }
 }
