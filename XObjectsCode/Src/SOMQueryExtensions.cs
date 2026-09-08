@@ -182,6 +182,11 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        public static bool IsListOfEnums(this XmlSchemaSimpleType type)
+        {
+            return type?.Datatype?.Variety == XmlSchemaDatatypeVariety.List && type.GetListItemType().IsEnum();
+        }
+
         public static IEnumerable<EnumFacet> GetEnumFacets(this XmlSchemaType type)
         {
             return type is XmlSchemaSimpleType simpleType

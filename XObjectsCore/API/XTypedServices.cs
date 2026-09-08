@@ -569,6 +569,21 @@ namespace Xml.Schema.Linq
                 case XmlTypeCode.NCName:
                     return (T) datatype.ParseValue(value, NameTable, new XNamespaceResolver(element));
                 default:
+                    if (typeof(T).IsEnum)
+                    {
+                        if (value.Length > 0 && value[0] == '@')
+                        {
+                            value = value.Substring(1);
+                        }
+                        try
+                        {
+                            return (T) Enum.Parse(typeof(T), value);
+                        }
+                        catch
+                        {
+                            return (T) Enum.Parse(typeof(T), value.Replace('-', '_'));
+                        }
+                    }
                     return (T) datatype.ChangeType(value, typeof(T));
             }
         }
@@ -655,6 +670,11 @@ namespace Xml.Schema.Linq
 
         internal static void TryConvert(object value, XmlSchemaDatatype datatype, XNamespaceResolver resolver)
         {
+            if (value != null && value.GetType().IsEnum)
+            {
+                return;
+            }
+
             // XmlSchemaDatatype doesn't support new .net types such as DateOnly and TimeOnly,
             // we need to special-case them.
             switch (datatype.TypeCode)
@@ -671,6 +691,11 @@ namespace Xml.Schema.Linq
 
         internal static object Convert(object value, XmlSchemaDatatype datatype)
         {
+            if (value != null && value.GetType().IsEnum)
+            {
+                return value;
+            }
+
             return value switch
             {
                 // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType)
@@ -686,6 +711,24 @@ namespace Xml.Schema.Linq
 
         internal static T Convert<T>(object value, XmlSchemaDatatype datatype)
         {
+            if (typeof(T).IsEnum)
+            {
+                if (value is T t) return t;
+                var str = value?.ToString();
+                if (str != null)
+                {
+                    if (str.Length > 0 && str[0] == '@') str = str.Substring(1);
+                    try
+                    {
+                        return (T) Enum.Parse(typeof(T), str);
+                    }
+                    catch
+                    {
+                        return (T) Enum.Parse(typeof(T), str.Replace('-', '_'));
+                    }
+                }
+            }
+
             // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType)
             // does not support DateOnly or TimeOnly as source types (introduced later, in .NET 6.0).
             return value switch

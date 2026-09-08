@@ -289,7 +289,8 @@ namespace Xml.Schema.Linq
                 var enumFacets = RestrictionFacets?.EnumFacets;
                 if (enumFacets != null)
                 {
-                    var enumFacet = RestrictionFacets.GetEnumFacet(value as string);
+                    var str = value is string s ? s : value?.ToString();
+                    var enumFacet = RestrictionFacets.GetEnumFacet(str);
                     if (enumFacet != null)
                     {
                         value = enumFacet.Value;

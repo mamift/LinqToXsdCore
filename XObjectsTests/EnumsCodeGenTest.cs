@@ -201,16 +201,37 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual(0, diags.Length);
 
             var nodes = tree.GetNamespaceRoot().DescendantNodes();
+            var enums = nodes.OfType<EnumDeclarationSyntax>().ToList();
+            var fontStylesEnum = enums.FirstOrDefault(e => e.Identifier.Text == "fontStylesType");
+            Assert.IsNotNull(fontStylesEnum);
+            Assert.IsTrue(fontStylesEnum.Members.Any(m => m.Identifier.Text == "bold"));
+            Assert.IsTrue(fontStylesEnum.Members.Any(m => m.Identifier.Text == "italics"));
+
             var classes = nodes.OfType<ClassDeclarationSyntax>().ToList();
-            var validatorClass = classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesType");
+            var validatorClass = classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesTypeValidator");
             Assert.IsNotNull(validatorClass);
-            Assert.IsNull(classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesTypeValidator"));
 
             var rootClass = classes.FirstOrDefault(c => c.Identifier.Text == "Root");
             Assert.IsNotNull(rootClass);
             var styleProp = rootClass.Members.OfType<PropertyDeclarationSyntax>().FirstOrDefault(p => p.Identifier.Text == "STYLE");
             Assert.IsNotNull(styleProp);
-            Assert.AreEqual("IList<string>", styleProp.Type.ToString());
+            Assert.AreEqual("IList<fontStylesType>", styleProp.Type.ToString());
+        }
+
+        [Test]
+        public void T8_ListOfEnumsRuntime_GetSetValues()
+        {
+            var textStyle = new LibraryOfCongress.ALTO.TextStyleType();
+            textStyle.FONTSTYLE = new List<LibraryOfCongress.ALTO.fontStylesType>
+            {
+                LibraryOfCongress.ALTO.fontStylesType.bold,
+                LibraryOfCongress.ALTO.fontStylesType.italics
+            };
+
+            Assert.AreEqual(2, textStyle.FONTSTYLE.Count);
+            Assert.AreEqual(LibraryOfCongress.ALTO.fontStylesType.bold, textStyle.FONTSTYLE[0]);
+            Assert.AreEqual(LibraryOfCongress.ALTO.fontStylesType.italics, textStyle.FONTSTYLE[1]);
+            Assert.AreEqual("bold italics", textStyle.Untyped.Attribute("FONTSTYLE")?.Value);
         }
     }
 }
