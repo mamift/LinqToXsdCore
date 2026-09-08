@@ -642,7 +642,7 @@ namespace LibraryOfCongress.ALTO {
             private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
             
             private static void BuildElementDictionary() {
-                localElementDictionary.Add(processingCategoryXName, typeof(string));
+                localElementDictionary.Add(processingCategoryXName, typeof(processingCategoryType));
                 localElementDictionary.Add(processingDateTimeXName, typeof(object));
                 localElementDictionary.Add(processingAgencyXName, typeof(string));
                 localElementDictionary.Add(processingStepDescriptionXName, typeof(string));
@@ -3037,13 +3037,13 @@ namespace LibraryOfCongress.ALTO {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual IList<string> FONTSTYLE {
+        public virtual IList<fontStylesType> FONTSTYLE {
             get {
                 XAttribute x = this.Attribute(FONTSTYLEXName);
                 if ((x == null)) {
                     return null;
                 }
-                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return XTypedServices.ParseListValue<fontStylesType>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetListAttribute(FONTSTYLEXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -4575,13 +4575,13 @@ namespace LibraryOfCongress.ALTO {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual IList<string> STYLE {
+        public virtual IList<fontStylesType> STYLE {
             get {
                 XAttribute x = this.Attribute(STYLEXName);
                 if ((x == null)) {
                     return null;
                 }
-                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return XTypedServices.ParseListValue<fontStylesType>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetListAttribute(STYLEXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -6550,20 +6550,20 @@ namespace LibraryOfCongress.ALTO {
         /// Regular expression: (processingCategory?, processingDateTime?, processingAgency?, processingStepDescription*, processingStepSettings?, processingSoftware?)
         /// </para>
         /// </summary>
-        public virtual IList<string> processingCategory {
+        public virtual IList<processingCategoryType> processingCategory {
             get {
                 XElement x = this.GetElement(processingCategoryXName);
                 if ((x == null)) {
                     return null;
                 }
-                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return XTypedServices.ParseListValue<processingCategoryType>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 if (value == null) {
                     this.SetListElement(processingCategoryXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
                 }
                 else {
-                    this.SetListElementWithValidation(processingCategoryXName, value, "processingCategory", global::LibraryOfCongress.ALTO.processingCategoryType.TypeDefinition);
+                    this.SetListElementWithValidation(processingCategoryXName, value, "processingCategory", global::LibraryOfCongress.ALTO.processingCategoryTypeValidator.TypeDefinition);
                 }
             }
         }
@@ -6728,7 +6728,7 @@ namespace LibraryOfCongress.ALTO {
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            localElementDictionary.Add(processingCategoryXName, typeof(string));
+            localElementDictionary.Add(processingCategoryXName, typeof(processingCategoryType));
             localElementDictionary.Add(processingDateTimeXName, typeof(object));
             localElementDictionary.Add(processingAgencyXName, typeof(string));
             localElementDictionary.Add(processingStepDescriptionXName, typeof(string));
@@ -6772,9 +6772,22 @@ namespace LibraryOfCongress.ALTO {
         }
     }
     
-    public sealed class processingCategoryType {
+    public enum processingCategoryType {
         
-        private processingCategoryType() {
+        contentGeneration,
+        
+        contentModification,
+        
+        preOperation,
+        
+        postOperation,
+        
+        other,
+    }
+    
+    public sealed class processingCategoryTypeValidator {
+        
+        private processingCategoryTypeValidator() {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6991,14 +7004,31 @@ namespace LibraryOfCongress.ALTO {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.GYearMonth), null)});
     }
     
+    public enum fontStylesType {
+        
+        bold,
+        
+        italics,
+        
+        smallcaps,
+        
+        strikethrough,
+        
+        subscript,
+        
+        superscript,
+        
+        underline,
+    }
+    
     /// <summary>
     /// <para>
     /// List of any combination of font styles
     /// </para>
     /// </summary>
-    public sealed class fontStylesType {
+    public sealed class fontStylesTypeValidator {
         
-        private fontStylesType() {
+        private fontStylesTypeValidator() {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
