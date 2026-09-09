@@ -1225,7 +1225,7 @@ namespace LinqToXsd.Schemas.Test.ContentModelTypes {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Tic+ | Tac+)
+    /// Regular expression: (any)
     /// </para>
     /// </summary>
     public abstract partial class ChoiceBaseType : XTypedElement, IXMetaData {
@@ -1234,121 +1234,41 @@ namespace LinqToXsd.Schemas.Test.ContentModelTypes {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Tic+ | Tac+)
+        /// Regular expression: (any)
         /// </para>
         /// </summary>
         public ChoiceBaseType() {
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> TicField;
-        
         /// <summary>
         /// <para>
-        /// Occurrence: required, repeating, choice
-        /// </para>
-        /// <para>
-        /// Regular expression: (Tic+ | Tac+)
+        /// Regular expression: (any)
         /// </para>
         /// </summary>
-        public virtual IList<string> Tic {
+        public virtual IEnumerable<XElement> Any {
             get {
-                if ((this.TicField == null)) {
-                    this.TicField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TicXName);
-                }
-                return this.TicField;
+                return this.GetWildCards(WildCard.DefaultWildCard);
             }
-            set {
-                if ((value == null)) {
-                    this.TicField = null;
-                }
-                else {
-                    if ((this.TicField == null)) {
-                        this.TicField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, TicXName);
-                    }
-                    else {
-                        XTypedServices.SetList<System.String>(this.TicField, value);
-                    }
-                }
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<int> TacField;
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required, repeating, choice
-        /// </para>
-        /// <para>
-        /// Regular expression: (Tic+ | Tac+)
-        /// </para>
-        /// </summary>
-        public virtual IList<int> Tac {
-            get {
-                if ((this.TacField == null)) {
-                    this.TacField = new XSimpleList<int>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, TacXName);
-                }
-                return this.TacField;
-            }
-            set {
-                if ((value == null)) {
-                    this.TacField = null;
-                }
-                else {
-                    if ((this.TacField == null)) {
-                        this.TacField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, value, TacXName);
-                    }
-                    else {
-                        XTypedServices.SetList<System.Int32>(this.TacField, value);
-                    }
-                }
-            }
-        }
-        
-        public ChoiceBaseType(IEnumerable<string> Tic) {
-            this.TicField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, Tic, TicXName);
-        }
-        
-        public ChoiceBaseType(IEnumerable<int> Tac) {
-            this.TacField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, Tac, TacXName);
         }
         
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChoiceBaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
+        
+        FSM IXMetaData.GetValidationStates() {
+            return validationStates;
+        }
+        
+        private static void InitFSM() {
+            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
+            transitions.Add(1, new Transitions(new SingleTransition(new WildCard("##any", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), 2)));
+            transitions.Add(2, new Transitions(new SingleTransition(new WildCard("##any", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), 2)));
+            validationStates = new FSM(1, new Set<int>(2), transitions);
+        }
+        
         static ChoiceBaseType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(TicXName), new NamedContentModelEntity(TacXName));
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(TicXName, typeof(string));
-            localElementDictionary.Add(TacXName, typeof(int));
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
+            InitFSM();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
