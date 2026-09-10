@@ -11,8 +11,6 @@
     <EmbeddedResource Include="ExampleFiles\Gel1D_Indirect_Newcastle_v4.xml" />
     <EmbeddedResource Include="ExampleFiles\MIAPE_In_GelML.xml" />
     <EmbeddedResource Include="ExampleFiles\ProteoRed_GE528_53320586_output.xml" />
-    <EmbeddedResource Include="libvirt\domain.xsd" />
-    <EmbeddedResource Include="libvirt\libosinfo.xsd" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="FuGElightv1.0.0.xsd" />
@@ -22,8 +20,6 @@
     <None Remove="ExampleFiles\Gel1D_Indirect_Newcastle_v4.xml" />
     <None Remove="ExampleFiles\MIAPE_In_GelML.xml" />
     <None Remove="ExampleFiles\ProteoRed_GE528_53320586_output.xml" />
-    <None Remove="libvirt\domain.xsd" />
-    <None Remove="libvirt\libosinfo.xsd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
