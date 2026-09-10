@@ -1,0 +1,1 @@
+﻿This schema was reverse-engineered from an existing instance of an Expression Media Catalog file.
