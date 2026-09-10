@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Schema: Response.xsd                                        -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Response"
+            xmlns="urn:Microsoft.Search.Response"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines a Response Packet from a service provider, which
+			can in turn contain several individual responses
+			corresponding to each of the provider's services.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<xsd:import
+		schemaLocation="Microsoft.Search.Response.Document.xsd"
+		namespace="urn:Microsoft.Search.Response.Document" />
+	<xsd:import schemaLocation="Microsoft.Search.Response.Form.xsd"
+	            namespace="urn:Microsoft.Search.Response.Form" />
+	<xsd:import
+		schemaLocation="Microsoft.Search.Response.Content.xsd"
+		namespace="urn:Microsoft.Search.Response.Content" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: ResponsePacket                      -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="ResponsePacket">
+		<xsd:annotation>
+			<xsd:documentation>
+				A response from a service provider to a query.  It
+				may contain several individual responses
+				corresponding to the services offered by
+				the provider.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Response"
+				             type="ResponseType" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>
+							An individual response from a
+							service to a query.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:any namespace="##other" minOccurs="0"
+				         maxOccurs="unbounded" processContents="skip">
+					<xsd:annotation>
+						<xsd:documentation>
+							Any element in another namespace.  Can be
+							used for extensibility in the future.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:any>
+			</xsd:sequence>
+			<xsd:attribute name="revision"
+			               type="xsd:unsignedInt" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unsigned integer indicating the revision of
+						the schema used in the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="build"
+			               type="t:String255" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						The build of the component used
+						to generate the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="providerRevision"
+			               type="xsd:unsignedInt" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Current revision of the provider.  If the
+						revision is different from the one the
+						client has stored, the Office client will
+						prompt the user to update the service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ResponseType                                -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ResponseType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines an individual response from a service
+				to a query.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="QueryId"
+			             type="t:String255" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unique string that identifies the query for
+						tracking purposes.  Office always
+						uses a GUID.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Copyright"
+			             type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The result can contain a copyright notice if
+						the provider is concerned about misuse of
+						the results.  This is not displayed to the
+						user in Office.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OriginatorContext"
+			             type="OriginatorContextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Client data being round-tripped through the
+						service.  The data is passed up by the client
+						inside the
+						QueryPacket\Query\Context\OriginatorContext
+						element.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RequeryContext"
+			             type="RequeryContextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Service data being round-tripped
+						through the client.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Range"
+			             type="RangeType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						The same number of ranges are returned as
+						were queried for, no more, no less.  Office
+						will never request more than one range.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Status" type="StatusType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Status of the query; indicates if the
+						query was successful or not.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DebugErrorMessage"
+			             type="t:String2048" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						If Status != SUCCESS the error message in
+						English is returned here for debug purposes.
+						This is not displayed to the user in Office.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="domain"
+		               type="t:String255" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					A unique domain identifier for the service
+					handling the query.  The value should match
+					the domain of one of the Query elements in
+					the QueryPacket corresponding to this
+					ResponsePacket.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: OriginatorContextType                       -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="OriginatorContextType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines context data from the client to be
+				round-tripped through the service.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:any namespace="##other"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  This is an
+						XML island the client passed to the service
+						for round-tripping.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: RequeryContextType                          -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="RequeryContextType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the Requery Context that a service can have
+				the client pass back, during a requery only.  It is
+				an arbitrary XML data island.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:any namespace="##other"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  This is an
+						XML island the service is passing to the
+						client for round-tripping.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: RangeType                                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="RangeType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the Range element containing the results and
+				information about them.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ResultType" type="t:String2048"
+			             minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						Optional string describing the type of
+						result.  Office will not use the value
+						of this element.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StartAt" type="t:StartAtType"
+			             default="1" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The index of the initial result based
+						on '1' as the lowest result index.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Count"
+			             type="xsd:unsignedInt" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Total results of this type returned.
+						Note that less than this number may be
+						returned if there aren't enough and more
+						than this number may be returned due to
+						policy restrictions.  If more are returned,
+						the client should display them all.
+						Absence of count implies provider
+						discretion.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MustDisplayCount"
+			             type="xsd:unsignedInt" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Minimum number of results that should be
+						displayed.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TotalAvailable"
+			             type="xsd:unsignedInt" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The total number available.  This number
+						may not be 100% accurate and all these
+						results may not be accessible.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Results"
+			             type="ResultCollectionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Results can come back in all formats
+						specified as supported and are returned
+						in the server's preferred order to display.
+						This is nonexistent if no results are
+						returned.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					A unique ID for the Range.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ResultCollectionType                        -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ResultCollectionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a set of results, in any format supported.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:any namespace="##other">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Elements
+						here will be in any results format supported
+						by the client.  Office will support the Form,
+						Document, and Content results types.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:choice>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: StatusType                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="StatusType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the status of the search.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SUCCESS">
+				<xsd:annotation>
+					<xsd:documentation>
+						The search was successful,
+						results were found.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR">
+				<xsd:annotation>
+					<xsd:documentation>
+						An unspecified error occurred.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_SERVER_TRANSIENT">
+				<xsd:annotation>
+					<xsd:documentation>
+						The server is not available due to an error.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_SERVER">
+				<xsd:annotation>
+					<xsd:documentation>
+						A server error occurred.  This is treated as
+						if no results were found.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_NO_RESPONSE">
+				<xsd:annotation>
+					<xsd:documentation>
+						The service did not respond.  This error is
+						generated internally by Office when the
+						server fails to respond and should not be
+						used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_BAD_RESULTS">
+				<xsd:annotation>
+					<xsd:documentation>
+						The results returned are improperly formed.
+						This error is generated internally by Office
+						when the XML returned is bad and should not
+						be used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_NO_RESULTS_FOUND">
+				<xsd:annotation>
+					<xsd:documentation>
+						No results were found.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_OUT_OF_ORDER">
+				<xsd:annotation>
+					<xsd:documentation>
+						The service is out of order.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_NO_CONNECTION">
+				<xsd:annotation>
+					<xsd:documentation>
+						The user is not connected to the Internet
+						and needs to be.  This error is generated
+						internally by Office if the user is not
+						connected to the Internet and should not
+						be used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_NO_AUTHENTICATION">
+				<xsd:annotation>
+					<xsd:documentation>
+						The user could not be authenticated.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_NO_AUTHORIZATION">
+				<xsd:annotation>
+					<xsd:documentation>
+						The user is not authorized to
+						use the service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

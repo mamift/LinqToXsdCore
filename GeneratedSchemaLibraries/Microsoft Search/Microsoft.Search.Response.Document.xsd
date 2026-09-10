@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Schema: Response.Document.xsd                               -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Response.Document"
+            xmlns="urn:Microsoft.Search.Response.Document"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines a document, which typically consists of a title,
+			description, and link.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: Document                            -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="Document">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a document, which typically consists of a
+				title, description, and link.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Title"
+				             type="TitleType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							Title of the document.  If not specified,
+							a default will be provided.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Action"
+				             type="ActionType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							The URL to be launched.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DisplayUrl"
+				             type="xsd:string" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							The friendly name for the link that will
+							display in the results.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DestinationUrl"
+				             type="xsd:anyURI" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							This is the URL where the user will
+							finally end up after all the possible
+							redirections.  Used for removal of
+							duplications.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Description"
+				             type="DescriptionType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							Document description
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Date"
+				             type="xsd:dateTime" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							This date could have a different
+							connotation depending on the context.
+							It could mean last crawled date, last
+							updated date, or expiration date (for
+							news).  It's up to the server and client
+							to decide its usage.  Office does not
+							currently use this.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Media" type="MediaType"
+				             minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>
+							Collection of media elements related to
+							the result.  The type attribute defines
+							whether it's an image, audio, or video
+							link.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:any namespace="##other" minOccurs="0"
+				         maxOccurs="unbounded" processContents="skip">
+					<xsd:annotation>
+						<xsd:documentation>
+							Any element in another namespace.  Can be
+							used for extensibility in the future.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:any>
+			</xsd:sequence>
+			<xsd:attribute name="type"
+			               type="t:String255" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Arbitrary type that defines the kind of
+						document.  Not currently used by Office.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="relevance"
+			               type="xsd:double" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Relevance information, with 1 being the
+						highest.  Not currently used by Office.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="revision"
+			               type="xsd:unsignedInt" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unsigned integer indicating the revision of
+						the schema used in the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="build"
+			               type="t:String255" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						The build of the component used to generate
+						the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="rtl"
+			               type="xsd:boolean" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						If set to 'true' then the document is
+						right-to-left.  If set to 'false' then
+						the document is left-to-right.  If
+						unspecified, the system will choose.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: TitleType                                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="TitleType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the title of a document.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="t:String2048">
+				<xsd:attribute name="rtl"
+				               type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' then the text is
+							right-to-left.  If set to 'false'
+							then the text is left-to-right.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ActionType                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ActionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the URL to be launched and requery context
+				to be sent up.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="LinkUrl">
+				<xsd:annotation>
+					<xsd:documentation>
+						The url that the user goes to initially.
+						The user might be redirected from this url
+						to someplace else.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:anyURI">
+							<xsd:attribute name="fileExt"
+							               type="t:String255" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>
+										The file extension for the
+										file.  Used to generate an
+										icon for it.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="size"
+							               type="xsd:unsignedInt"
+							               use="optional">
+								<xsd:annotation>
+									<xsd:documentation>
+										The size of the file in
+										bytes.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="forPay"
+							               type="xsd:boolean" use="optional"
+							               default="false">
+								<xsd:annotation>
+									<xsd:documentation>
+										If set to 'true' it
+										indicates that the link
+										takes the user to paid
+										content through a special
+										currency icon.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: DescriptionType                             -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="DescriptionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a document's description.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="rtl"
+				               type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' then the text is
+							right-to-left.  If set to 'false'
+							then the text is left-to-right.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: MediaType                                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="MediaType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A media element related to the result.  The type
+				attribute defines whether it is an image, audio clip,
+				or video clip.  Office only handles images.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SrcUrl" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						This is the source of the media clip.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LinkUrl"
+			             type="xsd:anyURI" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						This is the url associated with images.
+						Office does not currently support this.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AltText"
+			             type="t:String255" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Alternative text associated with the image.
+						Used by accessibility tools.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="type" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					The type of media.  Office only understands the
+					image type.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="IMAGE" />
+					<xsd:enumeration value="AUDIO" />
+					<xsd:enumeration value="VIDEO" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>
