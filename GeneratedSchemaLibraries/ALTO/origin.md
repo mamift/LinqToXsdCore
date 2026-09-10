@@ -1,0 +1,1 @@
+﻿Copied from https://github.com/altoxml/schema/tree/master/v4 on 2026-09-08. No license at time of copy, so taken under fair use.
