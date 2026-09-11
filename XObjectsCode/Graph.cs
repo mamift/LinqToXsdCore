@@ -11,6 +11,9 @@ using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen;
 
+/// <summary>
+/// Represents a graph of XSD files in a folder (including subfolders).
+/// </summary>
 public partial class Graph
 {
     public IFileSystem? FileSystem { get; set; }
@@ -195,10 +198,15 @@ public partial class Graph
 
     public List<Schema> GetSchemasThatAreIncludedByOthers()
     {
-        return (from s in Schema
-            where s.Includes?.Schema is not null && s.Includes.Schema.Any()
-            from i in s.Includes.Schema
-            select i).Distinct().ToList();
+        var includedNames = Schema
+            .Where(s => s.Includes?.Schema is { Count: > 0 })
+            .SelectMany(s => s.Includes.Schema)
+            .Select(i => Path.GetFileName(i.Name))
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        return Schema.Where(sc => !string.IsNullOrWhiteSpace(sc.Name) &&
+                                  (includedNames.Contains(sc.Name) || includedNames.Contains(Path.GetFileName(sc.Name)))).ToList();
     }
 
     public List<Schema> GetSchemasThatAreImportedByOthers()
@@ -210,11 +218,78 @@ public partial class Graph
             .Where(n => !string.IsNullOrWhiteSpace(n))
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        return Schema.Where(sc => importedNames.Contains(sc.Name)).ToList();
+        return Schema.Where(sc => !string.IsNullOrWhiteSpace(sc.Name) &&
+                                  (importedNames.Contains(sc.Name) || importedNames.Contains(Path.GetFileName(sc.Name)))).ToList();
     }
 
     /// <summary>
-    /// Using the output from <see cref="FindEntryPointSchemas"/>, loads them all into their own <see cref="XmlSchemaSet"/> or sets.
+    /// Returns all schemas that are part of the connected graph (i.e. schemas that import/include other schemas, or are imported/included by other schemas).
+    /// </summary>
+    /// <returns>A list of schemas that have at least one incoming or outgoing dependency connection.</returns>
+    public List<Schema> GetConnectedSchemas()
+    {
+        if (Schema.Count == 0)
+            return new List<Schema>();
+
+        var allReferencedNames = Schema
+            .SelectMany(EnumerateDependencies)
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        return Schema.Where(s =>
+        {
+            if (EnumerateDependencies(s).Any())
+                return true;
+
+            if (!string.IsNullOrWhiteSpace(s.Name))
+            {
+                string fileName = Path.GetFileName(s.Name);
+                if (allReferencedNames.Contains(s.Name) || allReferencedNames.Contains(fileName))
+                    return true;
+            }
+
+            return false;
+        }).ToList();
+    }
+
+    /// <summary>
+    /// Returns the distinct names of all schemas that are part of the connected graph (i.e. schemas that import/include other schemas, or are imported/included by other schemas).
+    /// </summary>
+    /// <returns>A list of schema names that have dependency connections.</returns>
+    public List<string> GetConnectedSchemaNames()
+    {
+        return GetConnectedSchemas()
+            .Select(s => s.Name)
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    /// <summary>
+    /// Returns all schemas that are isolated/disconnected (i.e. schemas that neither import/include other schemas, nor are imported/included by other schemas).
+    /// </summary>
+    /// <returns>A list of standalone schemas with no dependency connections.</returns>
+    public List<Schema> GetDisconnectedSchemas()
+    {
+        var connected = GetConnectedSchemas().ToHashSet();
+        return Schema.Where(s => !connected.Contains(s)).ToList();
+    }
+
+    /// <summary>
+    /// Returns the distinct names of all schemas that are isolated/disconnected.
+    /// </summary>
+    /// <returns>A list of standalone schema names with no dependency connections.</returns>
+    public List<string> GetDisconnectedSchemaNames()
+    {
+        return GetDisconnectedSchemas()
+            .Select(s => s.Name)
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    /// <summary>
+    /// Using the output from <see cref="GetEntryPointSchemas"/>, loads them all into their own <see cref="XmlSchemaSet"/> or sets.
     /// <para>Each entrypoint schema represents it's own <see cref="XmlSchemaSet"/>; this means some schemas in a graph that are 'standalone' (not included/imported by others and not including/importing others),
     /// will be loaded into their own <see cref="XmlSchemaSet"/>.</para>
     /// <para>Any schema linked (i.e. imported/included) will be loaded into the <see cref="XmlSchemaSet"/> of the schema that imports/includes it.</para>
@@ -222,14 +297,14 @@ public partial class Graph
     /// <returns></returns>
     public List<XmlSchemaSet> GetXmlSchemaSetFromEntryPointSchemas()
     {
-        var entryPointSchemas = FindEntryPointSchemas();
+        var entryPointSchemas = GetEntryPointSchemas();
 
         throw new NotImplementedException();
     }
 
-    public List<Schema> FindEntryPointSchemas()
+    public List<Schema> GetEntryPointSchemas()
     {
-        List<string> entryPointNames = FindEntryPointSchemaNames();
+        List<string> entryPointNames = GetEntryPointSchemaNames();
 
         return this.SchemaField
             .Where(sc => entryPointNames.Any(e => e.EqualsIgnoreCase(sc.Name)))
@@ -241,7 +316,7 @@ public partial class Graph
     /// One schema representative is selected from each source strongly connected component in the include/import graph.
     /// </summary>
     /// <returns>Schema file names suitable as entry points.</returns>
-    public List<string> FindEntryPointSchemaNames()
+    public List<string> GetEntryPointSchemaNames()
     {
         if (Schema.Count == 0)
             return new List<string>();
@@ -424,6 +499,8 @@ public partial class Schema
     /// <returns></returns>
     public IEnumerable<Schema> GetDependencies()
     {
+        if (this.Untyped.Parent is null) throw new InvalidOperationException("This method only works when Schema is already part of a Graph.");
+        
         // since this Schema represents a <Schema> XML element under the <Graph> XML element,
         // we can conveniently navigate to the parent by casting to the right type!
         Graph graph = (Graph)this.Untyped.Parent;

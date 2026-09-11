@@ -23,7 +23,7 @@ public static class GraphExtensions
 
         if (graph.Schema == null || !graph.Schema.Any()) return new List<Schema>();
 
-        var entryPointSchemas = graph.FindEntryPointSchemas();
+        var entryPointSchemas = graph.GetEntryPointSchemas();
         if (!entryPointSchemas.Any()) return new List<Schema>();
 
         var result = new List<Schema>();

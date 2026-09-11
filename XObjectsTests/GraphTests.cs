@@ -71,7 +71,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
-        List<string> entryPoints = graph.FindEntryPointSchemaNames();
+        List<string> entryPoints = graph.GetEntryPointSchemaNames();
 
         Assert.NotNull(entryPoints);
         Assert.AreEqual(1, entryPoints.Count);
@@ -84,7 +84,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
-        var entryPoints = graph.FindEntryPointSchemas();
+        var entryPoints = graph.GetEntryPointSchemas();
 
         Assert.NotNull(entryPoints);
         Assert.AreEqual(1, entryPoints.Count);
@@ -96,7 +96,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
-        var entryPoints = graph.FindEntryPointSchemas();
+        var entryPoints = graph.GetEntryPointSchemas();
 
         Assert.NotNull(entryPoints);
         Assert.AreEqual(1, entryPoints.Count);
@@ -118,7 +118,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
-        List<Linq.CodeGen.Schema> entryPoints = graph.FindEntryPointSchemas();
+        List<Linq.CodeGen.Schema> entryPoints = graph.GetEntryPointSchemas();
 
         Assert.NotNull(entryPoints);
         Assert.AreEqual(1, entryPoints.Count);
@@ -158,8 +158,8 @@ public class GraphTests
         List<Linq.CodeGen.Schema>? importedByOthers = graph.GetSchemasThatAreImportedByOthers();
         Assert.IsNotEmpty(importedByOthers);
 
-        List<string> entryPoints = graph.FindEntryPointSchemaNames();
-        List<Linq.CodeGen.Schema>? entryPointSchemas = graph.FindEntryPointSchemas();
+        List<string> entryPoints = graph.GetEntryPointSchemaNames();
+        List<Linq.CodeGen.Schema>? entryPointSchemas = graph.GetEntryPointSchemas();
 
         Assert.NotNull(entryPoints);
         Assert.IsNotEmpty(entryPoints);
@@ -185,8 +185,8 @@ public class GraphTests
         List<Linq.CodeGen.Schema>? importedByOthers = graph.GetSchemasThatAreImportedByOthers();
         Assert.IsNotEmpty(importedByOthers);
 
-        List<string> entryPoints = graph.FindEntryPointSchemaNames();
-        List<Linq.CodeGen.Schema>? entryPointSchemas = graph.FindEntryPointSchemas();
+        List<string> entryPoints = graph.GetEntryPointSchemaNames();
+        List<Linq.CodeGen.Schema>? entryPointSchemas = graph.GetEntryPointSchemas();
 
         Assert.NotNull(entryPoints);
         Assert.IsNotEmpty(entryPoints);
@@ -200,7 +200,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder(folderName);
         Graph graph = Graph.BuildFromFolder(dir.FullName);
         
-        List<Linq.CodeGen.Schema>? entryPointSchemas = graph.FindEntryPointSchemas();
+        List<Linq.CodeGen.Schema>? entryPointSchemas = graph.GetEntryPointSchemas();
         Assert.IsNotEmpty(entryPointSchemas);
     }
 
@@ -210,7 +210,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
-        var entryPoints = graph.FindEntryPointSchemas();
+        var entryPoints = graph.GetEntryPointSchemas();
         var traversed = entryPoints.TraverseSchemas(graph);
 
         Assert.IsNotNull(traversed);
@@ -235,7 +235,7 @@ public class GraphTests
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("OfficeOpenXML-XMLSchema-Strict");
         Graph graph = Graph.BuildFromFolder(dir.FullName);
 
-        var entryPoints = graph.FindEntryPointSchemas();
+        var entryPoints = graph.GetEntryPointSchemas();
         var traversed = entryPoints.TraverseSchemas(graph);
 
         Assert.IsNotNull(traversed);
@@ -262,7 +262,7 @@ public class GraphTests
                         """;
 
         var graph = Graph.Parse(xmlString);
-        var entryPoints = graph.FindEntryPointSchemas();
+        var entryPoints = graph.GetEntryPointSchemas();
         Assert.AreEqual(1, entryPoints.Count);
 
         var traversed = entryPoints.TraverseSchemas(graph);
@@ -280,6 +280,124 @@ public class GraphTests
         var result = new List<Linq.CodeGen.Schema>().TraverseSchemas(graph);
         Assert.IsNotNull(result);
         Assert.IsEmpty(result);
+    }
+
+    [Test]
+    public void TestBuildFromMicrosoftSearchXsd()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("Microsoft Search");
+        
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+        
+        Assert.IsNotNull(graph);
+
+        var connected = graph.GetConnectedSchemaNames();
+        var standalone = graph.GetDisconnectedSchemaNames();
+        
+        Assert.IsNotEmpty(connected);
+        Assert.IsNotEmpty(standalone);
+    }
+
+    [Test]
+    public void TestGetConnectedSchemasSharePoint2010()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var connected = graph.GetConnectedSchemas();
+        var connectedNames = graph.GetConnectedSchemaNames();
+        var disconnected = graph.GetDisconnectedSchemas();
+        var disconnectedNames = graph.GetDisconnectedSchemaNames();
+
+        Assert.IsNotNull(connected);
+        Assert.AreEqual(graph.Schema.Count, connected.Count);
+        Assert.AreEqual(graph.Schema.Count, connectedNames.Count);
+        Assert.IsEmpty(disconnected);
+        Assert.IsEmpty(disconnectedNames);
+    }
+
+    [Test]
+    public void TestGetConnectedAndDisconnectedSchemasWithIsolated()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="a.xsd">
+                           <Includes>
+                             <Schema Name="b.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="b.xsd" />
+                         <Schema Name="standalone.xsd" />
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+
+        var connected = graph.GetConnectedSchemas();
+        var connectedNames = graph.GetConnectedSchemaNames();
+        var disconnected = graph.GetDisconnectedSchemas();
+        var disconnectedNames = graph.GetDisconnectedSchemaNames();
+
+        Assert.AreEqual(2, connected.Count);
+        Assert.That(connectedNames, Does.Contain("a.xsd"));
+        Assert.That(connectedNames, Does.Contain("b.xsd"));
+        Assert.That(connectedNames, Does.Not.Contain("standalone.xsd"));
+
+        Assert.AreEqual(1, disconnected.Count);
+        Assert.AreEqual("standalone.xsd", disconnected.Single().Name);
+        Assert.AreEqual("standalone.xsd", disconnectedNames.Single());
+    }
+
+    [Test]
+    public void TestGetConnectedSchemasWithImportsAndIncludes()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="importer.xsd">
+                           <Imports>
+                             <Schema Name="imported.xsd" />
+                           </Imports>
+                         </Schema>
+                         <Schema Name="imported.xsd" />
+                         <Schema Name="includer.xsd">
+                           <Includes>
+                             <Schema Name="included.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="included.xsd" />
+                         <Schema Name="isolated1.xsd" />
+                         <Schema Name="isolated2.xsd" />
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+
+        var connected = graph.GetConnectedSchemas();
+        var connectedNames = graph.GetConnectedSchemaNames();
+        var disconnected = graph.GetDisconnectedSchemas();
+        var disconnectedNames = graph.GetDisconnectedSchemaNames();
+
+        Assert.AreEqual(4, connected.Count);
+        Assert.That(connectedNames, Is.EquivalentTo(new[] { "importer.xsd", "imported.xsd", "includer.xsd", "included.xsd" }));
+
+        Assert.AreEqual(2, disconnected.Count);
+        Assert.That(disconnectedNames, Is.EquivalentTo(new[] { "isolated1.xsd", "isolated2.xsd" }));
+    }
+
+    [Test]
+    public void TestGetConnectedSchemasEmpty()
+    {
+        var graph = new Graph();
+
+        var connected = graph.GetConnectedSchemas();
+        var connectedNames = graph.GetConnectedSchemaNames();
+        var disconnected = graph.GetDisconnectedSchemas();
+        var disconnectedNames = graph.GetDisconnectedSchemaNames();
+
+        Assert.IsEmpty(connected);
+        Assert.IsEmpty(connectedNames);
+        Assert.IsEmpty(disconnected);
+        Assert.IsEmpty(disconnectedNames);
     }
 
     public static DirectoryInfo GetGeneratedSchemaLibraryFolder(string folder)
