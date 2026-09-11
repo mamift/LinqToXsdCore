@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Search.Query.Schemas {
+namespace Microsoft.Search.Query {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -1141,13 +1141,13 @@ namespace Microsoft.Search.Query.Schemas {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual Microsoft.Search.Query.Schemas.QueryText.TypeEnum? type {
+        public virtual Microsoft.Search.Query.QueryText.TypeEnum? type {
             get {
                 XAttribute x = this.Attribute(typeXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((Microsoft.Search.Query.Schemas.QueryText.TypeEnum)(Enum.Parse(typeof(Microsoft.Search.Query.Schemas.QueryText.TypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TypeEnumValidator.TypeDefinition))));
+                return ((Microsoft.Search.Query.QueryText.TypeEnum)(Enum.Parse(typeof(Microsoft.Search.Query.QueryText.TypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TypeEnumValidator.TypeDefinition))));
             }
             set {
                 if (value == null) {
@@ -1792,7 +1792,7 @@ namespace Microsoft.Search.Query.Schemas {
         protected internal static readonly System.Xml.Linq.XName directionXName = System.Xml.Linq.XName.Get("direction", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal static Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum directionDefaultValue = Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum.Descending;
+        internal static Microsoft.Search.Query.SortByProperty.DirectionEnum directionDefaultValue = Microsoft.Search.Query.SortByProperty.DirectionEnum.Descending;
         
         /// <summary>
         /// <para>
@@ -1811,13 +1811,13 @@ namespace Microsoft.Search.Query.Schemas {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum direction {
+        public virtual Microsoft.Search.Query.SortByProperty.DirectionEnum direction {
             get {
                 XAttribute x = this.Attribute(directionXName);
                 if ((x == null)) {
                     return directionDefaultValue;
                 }
-                return ((Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum)(Enum.Parse(typeof(Microsoft.Search.Query.Schemas.SortByProperty.DirectionEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, DirectionEnumValidator.TypeDefinition))));
+                return ((Microsoft.Search.Query.SortByProperty.DirectionEnum)(Enum.Parse(typeof(Microsoft.Search.Query.SortByProperty.DirectionEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, DirectionEnumValidator.TypeDefinition))));
             }
             set {
                 this.SetAttributeWithValidation(directionXName, value.ToString(), "direction", DirectionEnumValidator.TypeDefinition);
@@ -2104,7 +2104,7 @@ namespace Microsoft.Search.Query.Schemas {
         public ResultProvider() {
         }
         
-        public enum ResultProvider1Enum {
+        public enum TypedValueEnum {
             
             Default,
             
@@ -2113,9 +2113,9 @@ namespace Microsoft.Search.Query.Schemas {
             FASTSearch,
         }
         
-        public sealed class ResultProvider1EnumValidator {
+        public sealed class TypedValueEnumValidator {
             
-            private ResultProvider1EnumValidator() {
+            private TypedValueEnumValidator() {
             }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2129,13 +2129,13 @@ namespace Microsoft.Search.Query.Schemas {
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
-        public virtual Microsoft.Search.Query.Schemas.ResultProvider.ResultProvider1Enum TypedValue {
+        public virtual Microsoft.Search.Query.ResultProvider.TypedValueEnum TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((Microsoft.Search.Query.Schemas.ResultProvider.ResultProvider1Enum)(Enum.Parse(typeof(Microsoft.Search.Query.Schemas.ResultProvider.ResultProvider1Enum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, ResultProvider1EnumValidator.TypeDefinition))));
+                return ((Microsoft.Search.Query.ResultProvider.TypedValueEnum)(Enum.Parse(typeof(Microsoft.Search.Query.ResultProvider.TypedValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TypedValueEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", ResultProvider1EnumValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", TypedValueEnumValidator.TypeDefinition);
             }
         }
         
@@ -2384,13 +2384,13 @@ namespace Microsoft.Search.Query.Schemas {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual Microsoft.Search.Query.Schemas.ResubmitFlag.ValueEnum? value {
+        public virtual Microsoft.Search.Query.ResubmitFlag.ValueEnum? value {
             get {
                 XAttribute x = this.Attribute(valueXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((Microsoft.Search.Query.Schemas.ResubmitFlag.ValueEnum)(Enum.Parse(typeof(Microsoft.Search.Query.Schemas.ResubmitFlag.ValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, ValueEnumValidator.TypeDefinition))));
+                return ((Microsoft.Search.Query.ResubmitFlag.ValueEnum)(Enum.Parse(typeof(Microsoft.Search.Query.ResubmitFlag.ValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, ValueEnumValidator.TypeDefinition))));
             }
             set {
                 if (value == null) {
@@ -2479,7 +2479,7 @@ namespace Microsoft.Search.Query.Schemas {
         public EnableSpellcheck() {
         }
         
-        public enum EnableSpellcheck1Enum {
+        public enum TypedValueEnum {
             
             off,
             
@@ -2488,9 +2488,9 @@ namespace Microsoft.Search.Query.Schemas {
             on,
         }
         
-        public sealed class EnableSpellcheck1EnumValidator {
+        public sealed class TypedValueEnumValidator {
             
-            private EnableSpellcheck1EnumValidator() {
+            private TypedValueEnumValidator() {
             }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2504,13 +2504,13 @@ namespace Microsoft.Search.Query.Schemas {
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
-        public virtual Microsoft.Search.Query.Schemas.EnableSpellcheck.EnableSpellcheck1Enum TypedValue {
+        public virtual Microsoft.Search.Query.EnableSpellcheck.TypedValueEnum TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((Microsoft.Search.Query.Schemas.EnableSpellcheck.EnableSpellcheck1Enum)(Enum.Parse(typeof(Microsoft.Search.Query.Schemas.EnableSpellcheck.EnableSpellcheck1Enum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, EnableSpellcheck1EnumValidator.TypeDefinition))));
+                return ((Microsoft.Search.Query.EnableSpellcheck.TypedValueEnum)(Enum.Parse(typeof(Microsoft.Search.Query.EnableSpellcheck.TypedValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TypedValueEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", EnableSpellcheck1EnumValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", TypedValueEnumValidator.TypeDefinition);
             }
         }
         
@@ -2907,7 +2907,7 @@ namespace Microsoft.Search.Query.Schemas {
         public SimilarType() {
         }
         
-        public enum SimilarType1Enum {
+        public enum TypedValueEnum {
             
             FindSimilar,
             
@@ -2916,9 +2916,9 @@ namespace Microsoft.Search.Query.Schemas {
             ExcludeSimilar,
         }
         
-        public sealed class SimilarType1EnumValidator {
+        public sealed class TypedValueEnumValidator {
             
-            private SimilarType1EnumValidator() {
+            private TypedValueEnumValidator() {
             }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2932,13 +2932,13 @@ namespace Microsoft.Search.Query.Schemas {
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
-        public virtual Microsoft.Search.Query.Schemas.SimilarType.SimilarType1Enum TypedValue {
+        public virtual Microsoft.Search.Query.SimilarType.TypedValueEnum TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((Microsoft.Search.Query.Schemas.SimilarType.SimilarType1Enum)(Enum.Parse(typeof(Microsoft.Search.Query.Schemas.SimilarType.SimilarType1Enum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, SimilarType1EnumValidator.TypeDefinition))));
+                return ((Microsoft.Search.Query.SimilarType.TypedValueEnum)(Enum.Parse(typeof(Microsoft.Search.Query.SimilarType.TypedValueEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TypedValueEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", SimilarType1EnumValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", TypedValueEnumValidator.TypeDefinition);
             }
         }
         
@@ -4165,7 +4165,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetValueWithValidation(value, "TypedValue", global::Microsoft.Search.Query.Schemas.similarityReference.TypeDefinition);
+                this.SetValueWithValidation(value, "TypedValue", global::Microsoft.Search.Query.similarityReference.TypeDefinition);
             }
         }
         
@@ -4342,7 +4342,7 @@ namespace Microsoft.Search.Query.Schemas {
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetValueWithValidation(value, "TypedValue", global::Microsoft.Search.Query.Schemas.refinerSpecification.TypeDefinition);
+                this.SetValueWithValidation(value, "TypedValue", global::Microsoft.Search.Query.refinerSpecification.TypeDefinition);
             }
         }
         
@@ -4787,44 +4787,44 @@ namespace Microsoft.Search.Query.Schemas {
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("QueryPacket", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.QueryPacket));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("QueryId", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.QueryId));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Context", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.Context));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("QueryText", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.QueryText));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Range", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.Range));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Properties", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.Properties));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Property", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.Property));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("SortByProperties", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.SortByProperties));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("SortByProperty", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.SortByProperty));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("RelevanceModel", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.RelevanceModel));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("TrimDuplicates", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.TrimDuplicates));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("ResultProvider", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.ResultProvider));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("ResubmitFlags", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.ResubmitFlags));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("ResubmitFlag", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.ResubmitFlag));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("EnableSpellcheck", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.EnableSpellcheck));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("UserContext", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.UserContext));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("FindSimilar", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.FindSimilar));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("SimilarType", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.SimilarType));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeRefinementResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeRefinementResults));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Refiners", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.Refiners));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("RefinementFilters", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.RefinementFilters));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("StartAt", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.StartAt));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Count", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.Count));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("ImplicitAndBehavior", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("EnableStemming", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.EnableStemming));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeSpecialTermResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("PreQuerySuggestions", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.PreQuerySuggestions));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("HighlightQuerySuggestions", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("CapitalizeFirstLetters", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("UserContextData", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.UserContextData));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("SimilarTo", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.SimilarTo));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("SortSimilar", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.SortSimilar));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Refiner", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.Refiner));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("MaxShallowRefinementHits", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("RefinementFilter", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.RefinementFilter));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("IgnoreAllNoiseQuery", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeRelevantResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeRelevantResults));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeHighConfidenceResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("QueryPacket", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.QueryPacket));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("QueryId", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.QueryId));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Context", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Context));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("QueryText", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.QueryText));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Range", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Range));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Properties", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Properties));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Property", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Property));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("SortByProperties", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.SortByProperties));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("SortByProperty", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.SortByProperty));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("RelevanceModel", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.RelevanceModel));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("TrimDuplicates", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.TrimDuplicates));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("ResultProvider", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.ResultProvider));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("ResubmitFlags", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.ResubmitFlags));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("ResubmitFlag", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.ResubmitFlag));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("EnableSpellcheck", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.EnableSpellcheck));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("UserContext", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.UserContext));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("FindSimilar", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.FindSimilar));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("SimilarType", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.SimilarType));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeRefinementResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.IncludeRefinementResults));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Refiners", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Refiners));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("RefinementFilters", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.RefinementFilters));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("StartAt", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.StartAt));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Count", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Count));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("ImplicitAndBehavior", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.ImplicitAndBehavior));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("EnableStemming", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.EnableStemming));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeSpecialTermResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.IncludeSpecialTermResults));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("PreQuerySuggestions", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.PreQuerySuggestions));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("HighlightQuerySuggestions", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.HighlightQuerySuggestions));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("CapitalizeFirstLetters", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.CapitalizeFirstLetters));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("UserContextData", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.UserContextData));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("SimilarTo", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.SimilarTo));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("SortSimilar", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.SortSimilar));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Refiner", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Refiner));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("MaxShallowRefinementHits", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.MaxShallowRefinementHits));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("RefinementFilter", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.RefinementFilter));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("IgnoreAllNoiseQuery", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.IgnoreAllNoiseQuery));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeRelevantResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.IncludeRelevantResults));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeHighConfidenceResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.IncludeHighConfidenceResults));
         }
         
         private static XmlSchemaSet schemaSet;
@@ -5427,308 +5427,308 @@ namespace Microsoft.Search.Query.Schemas {
             }
         }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.QueryPacket root) {
+        public XRoot(global::Microsoft.Search.Query.QueryPacket root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.QueryPacket QueryPacket {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryPacket; } }
+		public global::Microsoft.Search.Query.QueryPacket QueryPacket {  get {return rootObject as global::Microsoft.Search.Query.QueryPacket; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.QueryId root) {
+        public XRoot(global::Microsoft.Search.Query.QueryId root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.QueryId QueryId {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryId; } }
+		public global::Microsoft.Search.Query.QueryId QueryId {  get {return rootObject as global::Microsoft.Search.Query.QueryId; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.Context root) {
+        public XRoot(global::Microsoft.Search.Query.Context root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.Context Context {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Context; } }
+		public global::Microsoft.Search.Query.Context Context {  get {return rootObject as global::Microsoft.Search.Query.Context; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.QueryText root) {
+        public XRoot(global::Microsoft.Search.Query.QueryText root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.QueryText QueryText {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryText; } }
+		public global::Microsoft.Search.Query.QueryText QueryText {  get {return rootObject as global::Microsoft.Search.Query.QueryText; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.Range root) {
+        public XRoot(global::Microsoft.Search.Query.Range root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.Range Range {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Range; } }
+		public global::Microsoft.Search.Query.Range Range {  get {return rootObject as global::Microsoft.Search.Query.Range; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.Properties root) {
+        public XRoot(global::Microsoft.Search.Query.Properties root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.Properties Properties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Properties; } }
+		public global::Microsoft.Search.Query.Properties Properties {  get {return rootObject as global::Microsoft.Search.Query.Properties; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.Property root) {
+        public XRoot(global::Microsoft.Search.Query.Property root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.Property Property {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Property; } }
+		public global::Microsoft.Search.Query.Property Property {  get {return rootObject as global::Microsoft.Search.Query.Property; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.SortByProperties root) {
+        public XRoot(global::Microsoft.Search.Query.SortByProperties root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.SortByProperties SortByProperties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperties; } }
+		public global::Microsoft.Search.Query.SortByProperties SortByProperties {  get {return rootObject as global::Microsoft.Search.Query.SortByProperties; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.SortByProperty root) {
+        public XRoot(global::Microsoft.Search.Query.SortByProperty root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.SortByProperty SortByProperty {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperty; } }
+		public global::Microsoft.Search.Query.SortByProperty SortByProperty {  get {return rootObject as global::Microsoft.Search.Query.SortByProperty; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.RelevanceModel root) {
+        public XRoot(global::Microsoft.Search.Query.RelevanceModel root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.RelevanceModel RelevanceModel {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RelevanceModel; } }
+		public global::Microsoft.Search.Query.RelevanceModel RelevanceModel {  get {return rootObject as global::Microsoft.Search.Query.RelevanceModel; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.TrimDuplicates root) {
+        public XRoot(global::Microsoft.Search.Query.TrimDuplicates root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.TrimDuplicates TrimDuplicates {  get {return rootObject as global::Microsoft.Search.Query.Schemas.TrimDuplicates; } }
+		public global::Microsoft.Search.Query.TrimDuplicates TrimDuplicates {  get {return rootObject as global::Microsoft.Search.Query.TrimDuplicates; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.ResultProvider root) {
+        public XRoot(global::Microsoft.Search.Query.ResultProvider root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.ResultProvider ResultProvider {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResultProvider; } }
+		public global::Microsoft.Search.Query.ResultProvider ResultProvider {  get {return rootObject as global::Microsoft.Search.Query.ResultProvider; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.ResubmitFlags root) {
+        public XRoot(global::Microsoft.Search.Query.ResubmitFlags root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.ResubmitFlags ResubmitFlags {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlags; } }
+		public global::Microsoft.Search.Query.ResubmitFlags ResubmitFlags {  get {return rootObject as global::Microsoft.Search.Query.ResubmitFlags; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.ResubmitFlag root) {
+        public XRoot(global::Microsoft.Search.Query.ResubmitFlag root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.ResubmitFlag ResubmitFlag {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlag; } }
+		public global::Microsoft.Search.Query.ResubmitFlag ResubmitFlag {  get {return rootObject as global::Microsoft.Search.Query.ResubmitFlag; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.EnableSpellcheck root) {
+        public XRoot(global::Microsoft.Search.Query.EnableSpellcheck root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.EnableSpellcheck EnableSpellcheck {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableSpellcheck; } }
+		public global::Microsoft.Search.Query.EnableSpellcheck EnableSpellcheck {  get {return rootObject as global::Microsoft.Search.Query.EnableSpellcheck; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.UserContext root) {
+        public XRoot(global::Microsoft.Search.Query.UserContext root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.UserContext UserContext {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContext; } }
+		public global::Microsoft.Search.Query.UserContext UserContext {  get {return rootObject as global::Microsoft.Search.Query.UserContext; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.FindSimilar root) {
+        public XRoot(global::Microsoft.Search.Query.FindSimilar root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.FindSimilar FindSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.FindSimilar; } }
+		public global::Microsoft.Search.Query.FindSimilar FindSimilar {  get {return rootObject as global::Microsoft.Search.Query.FindSimilar; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.SimilarType root) {
+        public XRoot(global::Microsoft.Search.Query.SimilarType root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.SimilarType SimilarType {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarType; } }
+		public global::Microsoft.Search.Query.SimilarType SimilarType {  get {return rootObject as global::Microsoft.Search.Query.SimilarType; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.IncludeRefinementResults root) {
+        public XRoot(global::Microsoft.Search.Query.IncludeRefinementResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRefinementResults; } }
+		public global::Microsoft.Search.Query.IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as global::Microsoft.Search.Query.IncludeRefinementResults; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.Refiners root) {
+        public XRoot(global::Microsoft.Search.Query.Refiners root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.Refiners Refiners {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiners; } }
+		public global::Microsoft.Search.Query.Refiners Refiners {  get {return rootObject as global::Microsoft.Search.Query.Refiners; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.RefinementFilters root) {
+        public XRoot(global::Microsoft.Search.Query.RefinementFilters root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.RefinementFilters RefinementFilters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilters; } }
+		public global::Microsoft.Search.Query.RefinementFilters RefinementFilters {  get {return rootObject as global::Microsoft.Search.Query.RefinementFilters; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.StartAt root) {
+        public XRoot(global::Microsoft.Search.Query.StartAt root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.StartAt StartAt {  get {return rootObject as global::Microsoft.Search.Query.Schemas.StartAt; } }
+		public global::Microsoft.Search.Query.StartAt StartAt {  get {return rootObject as global::Microsoft.Search.Query.StartAt; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.Count root) {
+        public XRoot(global::Microsoft.Search.Query.Count root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.Count Count {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Count; } }
+		public global::Microsoft.Search.Query.Count Count {  get {return rootObject as global::Microsoft.Search.Query.Count; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior root) {
+        public XRoot(global::Microsoft.Search.Query.ImplicitAndBehavior root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior; } }
+		public global::Microsoft.Search.Query.ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as global::Microsoft.Search.Query.ImplicitAndBehavior; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.EnableStemming root) {
+        public XRoot(global::Microsoft.Search.Query.EnableStemming root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.EnableStemming EnableStemming {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableStemming; } }
+		public global::Microsoft.Search.Query.EnableStemming EnableStemming {  get {return rootObject as global::Microsoft.Search.Query.EnableStemming; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults root) {
+        public XRoot(global::Microsoft.Search.Query.IncludeSpecialTermResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults; } }
+		public global::Microsoft.Search.Query.IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as global::Microsoft.Search.Query.IncludeSpecialTermResults; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.PreQuerySuggestions root) {
+        public XRoot(global::Microsoft.Search.Query.PreQuerySuggestions root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.PreQuerySuggestions; } }
+		public global::Microsoft.Search.Query.PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.PreQuerySuggestions; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions root) {
+        public XRoot(global::Microsoft.Search.Query.HighlightQuerySuggestions root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions; } }
+		public global::Microsoft.Search.Query.HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.HighlightQuerySuggestions; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters root) {
+        public XRoot(global::Microsoft.Search.Query.CapitalizeFirstLetters root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters; } }
+		public global::Microsoft.Search.Query.CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as global::Microsoft.Search.Query.CapitalizeFirstLetters; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.UserContextData root) {
+        public XRoot(global::Microsoft.Search.Query.UserContextData root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.UserContextData UserContextData {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContextData; } }
+		public global::Microsoft.Search.Query.UserContextData UserContextData {  get {return rootObject as global::Microsoft.Search.Query.UserContextData; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.SimilarTo root) {
+        public XRoot(global::Microsoft.Search.Query.SimilarTo root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.SimilarTo SimilarTo {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarTo; } }
+		public global::Microsoft.Search.Query.SimilarTo SimilarTo {  get {return rootObject as global::Microsoft.Search.Query.SimilarTo; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.SortSimilar root) {
+        public XRoot(global::Microsoft.Search.Query.SortSimilar root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.SortSimilar SortSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortSimilar; } }
+		public global::Microsoft.Search.Query.SortSimilar SortSimilar {  get {return rootObject as global::Microsoft.Search.Query.SortSimilar; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.Refiner root) {
+        public XRoot(global::Microsoft.Search.Query.Refiner root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.Refiner Refiner {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiner; } }
+		public global::Microsoft.Search.Query.Refiner Refiner {  get {return rootObject as global::Microsoft.Search.Query.Refiner; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits root) {
+        public XRoot(global::Microsoft.Search.Query.MaxShallowRefinementHits root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits; } }
+		public global::Microsoft.Search.Query.MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as global::Microsoft.Search.Query.MaxShallowRefinementHits; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.RefinementFilter root) {
+        public XRoot(global::Microsoft.Search.Query.RefinementFilter root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.RefinementFilter RefinementFilter {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilter; } }
+		public global::Microsoft.Search.Query.RefinementFilter RefinementFilter {  get {return rootObject as global::Microsoft.Search.Query.RefinementFilter; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery root) {
+        public XRoot(global::Microsoft.Search.Query.IgnoreAllNoiseQuery root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery; } }
+		public global::Microsoft.Search.Query.IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as global::Microsoft.Search.Query.IgnoreAllNoiseQuery; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.IncludeRelevantResults root) {
+        public XRoot(global::Microsoft.Search.Query.IncludeRelevantResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRelevantResults; } }
+		public global::Microsoft.Search.Query.IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as global::Microsoft.Search.Query.IncludeRelevantResults; } }
         
-        public XRoot(global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults root) {
+        public XRoot(global::Microsoft.Search.Query.IncludeHighConfidenceResults root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults; } }
+		public global::Microsoft.Search.Query.IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as global::Microsoft.Search.Query.IncludeHighConfidenceResults; } }
     }
 }
