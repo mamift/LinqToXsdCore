@@ -37,12 +37,12 @@
                 </xs:element>
                 <xs:element minOccurs="0" name="IncludedBy" type="xs:string">
                     <xs:annotation>
-                        <xs:documentation>List of schema names that include this one.</xs:documentation>
+                        <xs:documentation>List of schema names that include this one. Delimit by semicolon (;).</xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element minOccurs="0" name="ImportedBy" type="xs:string">
                     <xs:annotation>
-                        <xs:documentation>List of schema names that import this one.</xs:documentation>
+                        <xs:documentation>List of schema names that import this one. Delimit by semicolon (;).</xs:documentation>
                     </xs:annotation>
                 </xs:element>
             </xs:sequence>

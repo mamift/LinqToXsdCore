@@ -44,7 +44,7 @@ public partial class Schema
     /// </summary>
     /// <param name="skipList"></param>
     /// <returns></returns>
-    public List<Schema> GetDependenciesRecursively(List<Schema> skipList = null)
+    public List<Schema> GetDependenciesRecursively(List<Schema>? skipList = null)
     {
         Graph graph = (Graph)this.Untyped.Parent;
 
@@ -74,5 +74,41 @@ public partial class Schema
         }
 
         return returnList;
+    }
+
+    private List<string>? _importedByList = null;
+    internal List<string> ImportedByList
+    {
+        get
+        {
+            return _importedByList ??= this.ImportedBy.Split([';'], StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
+        set
+        {
+            _importedByList = value;
+            if (value.Any())
+            {
+                ImportedBy = string.Join(";", value);
+            }
+        }
+    }
+    
+    private List<string>? _includedBy = null;
+    internal List<string> IncludedByList
+    {
+        get
+        {
+            return _includedBy ??= this.IncludedBy.Split([';'], StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
+        set
+        {
+            _includedBy = value;
+            if (value.Any())
+            {
+                IncludedBy = string.Join(";", value);
+            }
+        }
     }
 }

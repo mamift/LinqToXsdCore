@@ -270,7 +270,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         /// <summary>
         /// <para>
-        /// List of schema names that include this one.
+        /// List of schema names that include this one. Delimit by semicolon (;).
         /// </para>
         /// <para>
         /// Occurrence: optional
@@ -298,7 +298,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         /// <summary>
         /// <para>
-        /// List of schema names that import this one.
+        /// List of schema names that import this one. Delimit by semicolon (;).
         /// </para>
         /// <para>
         /// Occurrence: optional

@@ -35,16 +35,24 @@ public class GraphTests
                            <Includes>
                              <Schema Name="coredefinitions.xsd" />
                            </Includes>
+                           <IncludedBy>CamlView.xsd</IncludedBy>
                          </Schema>
                          <Schema Name="CamlView.xsd">
                            <Includes>
                              <Schema Name="coredefinitions.xsd" />
                              <Schema Name="CamlQuery.xsd" />
                            </Includes>
+                           <IncludedBy>wss.xsd</IncludedBy>
                          </Schema>
-                         <Schema Name="CoreDefinitions.xsd" />
-                         <Schema Name="cui.xsd" />
-                         <Schema Name="WorkflowActions.xsd" />
+                         <Schema Name="CoreDefinitions.xsd">
+                           <IncludedBy>CamlQuery.xsd;CamlView.xsd</IncludedBy>
+                         </Schema>
+                         <Schema Name="cui.xsd">
+                           <IncludedBy>wss.xsd</IncludedBy>
+                         </Schema>
+                         <Schema Name="WorkflowActions.xsd">
+                           <IncludedBy>wss.xsd</IncludedBy>
+                         </Schema>
                          <Schema Name="wss.xsd">
                            <Includes>
                              <Schema Name="camlview.xsd" />
@@ -299,6 +307,20 @@ public class GraphTests
     }
 
     [Test]
+    public void TestGetEntrypointSchemasFromMicrosoftSearchXsd()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("Microsoft Search");
+        
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+        
+        Assert.IsNotNull(graph);
+
+        var entryPoint = graph.GetEntryPointSchemas();
+        
+        Assert.IsNotEmpty(entryPoint);
+    }
+
+    [Test]
     public void TestGetConnectedSchemasSharePoint2010()
     {
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
@@ -398,6 +420,234 @@ public class GraphTests
         Assert.IsEmpty(connectedNames);
         Assert.IsEmpty(disconnected);
         Assert.IsEmpty(disconnectedNames);
+    }
+
+    [Test]
+    public void TestBuildFromFolderPopulatesIncludedBySharePoint2010()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var wss = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("wss.xsd"));
+        var camlView = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("CamlView.xsd"));
+        var camlQuery = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("CamlQuery.xsd"));
+        var coreDefs = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("CoreDefinitions.xsd"));
+        var cui = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("cui.xsd"));
+        var workflowActions = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("WorkflowActions.xsd"));
+
+        Assert.IsNull(wss.IncludedBy);
+
+        Assert.IsNotNull(camlView.IncludedBy);
+        Assert.That(camlView.IncludedByList, Is.EquivalentTo(new[] { "wss.xsd" }));
+
+        Assert.IsNotNull(camlQuery.IncludedBy);
+        Assert.That(camlQuery.IncludedByList, Is.EquivalentTo(new[] { "CamlView.xsd" }));
+
+        Assert.IsNotNull(coreDefs.IncludedBy);
+        Assert.That(coreDefs.IncludedByList, Is.EquivalentTo(new[] { "CamlQuery.xsd", "CamlView.xsd" }));
+
+        Assert.IsNotNull(cui.IncludedBy);
+        Assert.That(cui.IncludedByList, Is.EquivalentTo(new[] { "wss.xsd" }));
+
+        Assert.IsNotNull(workflowActions.IncludedBy);
+        Assert.That(workflowActions.IncludedByList, Is.EquivalentTo(new[] { "wss.xsd" }));
+    }
+
+    [Test]
+    public void TestBuildFromFolderPopulatesImportedByOfficeOpenXMLStrict()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("OfficeOpenXML-XMLSchema-Strict");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        var importedSchemas = graph.Schema.Where(s => s.ImportedBy != null && s.ImportedBy.Any()).ToList();
+        Assert.IsNotEmpty(importedSchemas);
+
+        foreach (var imported in importedSchemas)
+        {
+            Assert.IsNotNull(imported.ImportedByList);
+            Assert.IsNotEmpty(imported.ImportedByList);
+            foreach (var importerName in imported.ImportedByList)
+            {
+                var importer = graph.Schema.FirstOrDefault(s => s.Name.EqualsIgnoreCase(importerName));
+                Assert.IsNotNull(importer);
+                Assert.IsNotNull(importer.Imports?.Schema);
+                Assert.IsTrue(importer.Imports.Schema.Any(i => Path.GetFileName(i.Name).EqualsIgnoreCase(imported.Name)));
+            }
+        }
+    }
+
+    [Test]
+    public void TestBuildFromFolderPopulatesIncludedByAndImportedByInTempFolder()
+    {
+        string tempDir = Path.Combine(Path.GetTempPath(), "LinqToXsdGraphTests_" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(tempDir);
+        try
+        {
+            string baseSchema = """
+                                <?xml version="1.0" encoding="utf-8"?>
+                                <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/base">
+                                  <xs:element name="BaseElement" type="xs:string"/>
+                                </xs:schema>
+                                """;
+
+            string includedSchema = """
+                                    <?xml version="1.0" encoding="utf-8"?>
+                                    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/main">
+                                      <xs:element name="IncElement" type="xs:string"/>
+                                    </xs:schema>
+                                    """;
+
+            string mainSchema = """
+                                <?xml version="1.0" encoding="utf-8"?>
+                                <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/main" xmlns:b="http://example.com/base">
+                                  <xs:include schemaLocation="included.xsd"/>
+                                  <xs:import namespace="http://example.com/base" schemaLocation="base.xsd"/>
+                                  <xs:element name="MainElement" type="xs:string"/>
+                                </xs:schema>
+                                """;
+
+            string standaloneSchema = """
+                                      <?xml version="1.0" encoding="utf-8"?>
+                                      <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/standalone">
+                                        <xs:element name="StandaloneElement" type="xs:string"/>
+                                      </xs:schema>
+                                      """;
+
+            File.WriteAllText(Path.Combine(tempDir, "base.xsd"), baseSchema);
+            File.WriteAllText(Path.Combine(tempDir, "included.xsd"), includedSchema);
+            File.WriteAllText(Path.Combine(tempDir, "main.xsd"), mainSchema);
+            File.WriteAllText(Path.Combine(tempDir, "standalone.xsd"), standaloneSchema);
+
+            Graph graph = Graph.BuildFromFolder(tempDir);
+
+            var main = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("main.xsd"));
+            var included = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("included.xsd"));
+            var @base = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("base.xsd"));
+            var standalone = graph.Schema.Single(s => s.Name.EqualsIgnoreCase("standalone.xsd"));
+
+            Assert.IsNull(main.IncludedBy);
+            Assert.IsNull(main.ImportedBy);
+
+            Assert.IsNotNull(included.IncludedBy);
+            Assert.That(included.IncludedByList, Is.EquivalentTo(new[] { "main.xsd" }));
+            Assert.IsNull(included.ImportedBy);
+
+            Assert.IsNotNull(@base.ImportedBy);
+            Assert.That(@base.ImportedByList, Is.EquivalentTo(new[] { "main.xsd" }));
+            Assert.IsNull(@base.IncludedBy);
+
+            Assert.IsNull(standalone.IncludedBy);
+            Assert.IsNull(standalone.ImportedBy);
+        }
+        finally
+        {
+            if (Directory.Exists(tempDir))
+                Directory.Delete(tempDir, true);
+        }
+    }
+
+    [Test]
+    public void TestGetRootSchemasSharePoint2010()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("SharePoint2010");
+        Graph graph = Graph.BuildFromFolder(dir.FullName);
+
+        List<Linq.CodeGen.Schema> rootSchemas = graph.GetRootSchemas();
+
+        Assert.IsNotNull(rootSchemas);
+        Assert.AreEqual(1, rootSchemas.Count);
+        Assert.That(rootSchemas.Single().Name, Is.EqualTo("wss.xsd").IgnoreCase);
+    }
+
+    [Test]
+    public void TestGetRootSchemasWithImportsAndIncludes()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="root1.xsd">
+                           <Imports>
+                             <Schema Name="child1.xsd" />
+                           </Imports>
+                         </Schema>
+                         <Schema Name="root2.xsd">
+                           <Includes>
+                             <Schema Name="child2.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="child1.xsd">
+                           <Includes>
+                             <Schema Name="subchild.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="child2.xsd" />
+                         <Schema Name="subchild.xsd" />
+                         <Schema Name="standalone.xsd" />
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+
+        var rootSchemas = graph.GetRootSchemas();
+
+        Assert.IsNotNull(rootSchemas);
+        Assert.AreEqual(2, rootSchemas.Count);
+        var rootNames = rootSchemas.Select(s => s.Name).ToList();
+        Assert.That(rootNames, Is.EquivalentTo(new[] { "root1.xsd", "root2.xsd" }));
+    }
+
+    [Test]
+    public void TestGetRootSchemasIsolatedOnly()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="standalone1.xsd" />
+                         <Schema Name="standalone2.xsd" />
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+
+        var rootSchemas = graph.GetRootSchemas();
+
+        Assert.IsNotNull(rootSchemas);
+        Assert.IsEmpty(rootSchemas);
+    }
+
+    [Test]
+    public void TestGetRootSchemasCyclic()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="a.xsd">
+                           <Includes>
+                             <Schema Name="b.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="b.xsd">
+                           <Includes>
+                             <Schema Name="a.xsd" />
+                           </Includes>
+                         </Schema>
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+
+        var rootSchemas = graph.GetRootSchemas();
+
+        Assert.IsNotNull(rootSchemas);
+        Assert.IsEmpty(rootSchemas);
+    }
+
+    [Test]
+    public void TestGetRootSchemasEmpty()
+    {
+        var graph = new Graph();
+
+        var rootSchemas = graph.GetRootSchemas();
+
+        Assert.IsNotNull(rootSchemas);
+        Assert.IsEmpty(rootSchemas);
     }
 
     public static DirectoryInfo GetGeneratedSchemaLibraryFolder(string folder)

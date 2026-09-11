@@ -75,6 +75,8 @@ public partial class Graph
             graph.Schema.Add(schemaEl);
         }
 
+        PopulateIncludedByAndImportedBy(graph);
+
         return graph;
     }
 
@@ -166,6 +168,8 @@ public partial class Graph
 
             graph.Schema.Add(schemaEl);
         }
+
+        PopulateIncludedByAndImportedBy(graph);
 
         return graph;
     }
@@ -312,6 +316,24 @@ public partial class Graph
     }
 
     /// <summary>
+    /// Gets all schemas that include and import others, but are themselves NOT included nor imported by others.
+    /// </summary>
+    /// <returns></returns>
+    public List<Schema> GetRootSchemas()
+    {
+        var schemasWithOutgoing = GetSchemasThatImportsOrIncludeOthers();
+        if (schemasWithOutgoing.Count == 0)
+            return new List<Schema>();
+
+        var included = GetSchemasThatAreIncludedByOthers().ToHashSet();
+        var imported = GetSchemasThatAreImportedByOthers().ToHashSet();
+
+        return schemasWithOutgoing
+            .Where(s => !included.Contains(s) && !imported.Contains(s))
+            .ToList();
+    }
+
+    /// <summary>
     /// Finds the minimum set of graph schema entry points that should be added to an <see cref="System.Xml.Schema.XmlSchemaSet"/>.
     /// One schema representative is selected from each source strongly connected component in the include/import graph.
     /// </summary>
@@ -450,6 +472,92 @@ public partial class Graph
             string normalized = Path.GetFileName(import.Name);
             if (!string.IsNullOrWhiteSpace(normalized))
                 yield return normalized;
+        }
+    }
+
+    private static void PopulateIncludedByAndImportedBy(Graph graph)
+    {
+        if (graph.Schema == null || graph.Schema.Count == 0)
+            return;
+
+        var includedByMap = new Dictionary<Schema, List<string>>();
+        var importedByMap = new Dictionary<Schema, List<string>>();
+
+        foreach (Schema source in graph.Schema)
+        {
+            if (string.IsNullOrWhiteSpace(source.Name)) continue;
+
+            if (source.Includes?.Schema != null)
+            {
+                foreach (Schema inc in source.Includes.Schema)
+                {
+                    if (string.IsNullOrWhiteSpace(inc.Name)) continue;
+                    string incFileName = Path.GetFileName(inc.Name);
+
+                    foreach (Schema target in graph.Schema)
+                    {
+                        if (string.IsNullOrWhiteSpace(target.Name)) continue;
+                        if (target.Name.EqualsIgnoreCase(inc.Name) ||
+                            target.Name.EqualsIgnoreCase(incFileName) ||
+                            Path.GetFileName(target.Name).EqualsIgnoreCase(incFileName))
+                        {
+                            if (!includedByMap.TryGetValue(target, out var list))
+                            {
+                                list = new List<string>();
+                                includedByMap[target] = list;
+                            }
+                            if (!list.Contains(source.Name, StringComparer.OrdinalIgnoreCase))
+                            {
+                                list.Add(source.Name);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (source.Imports?.Schema != null)
+            {
+                foreach (Schema imp in source.Imports.Schema)
+                {
+                    if (string.IsNullOrWhiteSpace(imp.Name)) continue;
+                    string impFileName = Path.GetFileName(imp.Name);
+
+                    foreach (Schema target in graph.Schema)
+                    {
+                        if (string.IsNullOrWhiteSpace(target.Name)) continue;
+                        if (target.Name.EqualsIgnoreCase(imp.Name) ||
+                            target.Name.EqualsIgnoreCase(impFileName) ||
+                            Path.GetFileName(target.Name).EqualsIgnoreCase(impFileName))
+                        {
+                            if (!importedByMap.TryGetValue(target, out var list))
+                            {
+                                list = new List<string>();
+                                importedByMap[target] = list;
+                            }
+                            if (!list.Contains(source.Name, StringComparer.OrdinalIgnoreCase))
+                            {
+                                list.Add(source.Name);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (var kvp in includedByMap)
+        {
+            if (kvp.Value.Count > 0)
+            {
+                kvp.Key.IncludedBy = string.Join(";", kvp.Value);
+            }
+        }
+
+        foreach (var kvp in importedByMap)
+        {
+            if (kvp.Value.Count > 0)
+            {
+                kvp.Key.ImportedBy = string.Join(";", kvp.Value);
+            }
         }
     }
 
