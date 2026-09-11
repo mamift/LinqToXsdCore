@@ -177,7 +177,7 @@ namespace Xml.Schema.Linq.CodeGen {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Includes, Imports)
+    /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
     /// </para>
     /// </summary>
     public partial class Schema : XTypedElement, IXMetaData {
@@ -214,7 +214,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Includes, Imports)
+        /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
         /// </para>
         /// </summary>
         public Schema() {
@@ -229,7 +229,7 @@ namespace Xml.Schema.Linq.CodeGen {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Includes, Imports)
+        /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
         /// </para>
         /// </summary>
         public virtual IncludesLocalType Includes {
@@ -251,7 +251,7 @@ namespace Xml.Schema.Linq.CodeGen {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Includes, Imports)
+        /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
         /// </para>
         /// </summary>
         public virtual ImportsLocalType Imports {
@@ -261,6 +261,62 @@ namespace Xml.Schema.Linq.CodeGen {
             }
             set {
                 this.SetElement(ImportsXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IncludedByXName = System.Xml.Linq.XName.Get("IncludedBy", "https://github.com/mamift/LinqToXsdCore");
+        
+        /// <summary>
+        /// <para>
+        /// List of schema names that include this one.
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> IncludedBy {
+            get {
+                XElement x = this.GetElement(IncludedByXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetListElement(IncludedByXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ImportedByXName = System.Xml.Linq.XName.Get("ImportedBy", "https://github.com/mamift/LinqToXsdCore");
+        
+        /// <summary>
+        /// <para>
+        /// List of schema names that import this one.
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> ImportedBy {
+            get {
+                XElement x = this.GetElement(ImportedByXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetListElement(ImportedByXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -339,7 +395,7 @@ namespace Xml.Schema.Linq.CodeGen {
         
         static Schema() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IncludesXName), new NamedContentModelEntity(ImportsXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IncludesXName), new NamedContentModelEntity(ImportsXName), new NamedContentModelEntity(IncludedByXName), new NamedContentModelEntity(ImportedByXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -348,6 +404,8 @@ namespace Xml.Schema.Linq.CodeGen {
         private static void BuildElementDictionary() {
             localElementDictionary.Add(IncludesXName, typeof(IncludesLocalType));
             localElementDictionary.Add(ImportsXName, typeof(ImportsLocalType));
+            localElementDictionary.Add(IncludedByXName, typeof(string));
+            localElementDictionary.Add(ImportedByXName, typeof(string));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -599,6 +657,24 @@ namespace Xml.Schema.Linq.CodeGen {
                     return LinqToXsdTypeManager.Instance;
                 }
             }
+        }
+        
+        private class IncludedByLocalType {
+            
+            private IncludedByLocalType() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null));
+        }
+        
+        private class ImportedByLocalType {
+            
+            private ImportedByLocalType() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null));
         }
     }
     
