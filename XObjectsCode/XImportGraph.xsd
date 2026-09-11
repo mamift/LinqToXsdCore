@@ -35,21 +35,15 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element minOccurs="0" name="IncludedBy">
+                <xs:element minOccurs="0" name="IncludedBy" type="xs:string">
                     <xs:annotation>
                         <xs:documentation>List of schema names that include this one.</xs:documentation>
                     </xs:annotation>
-                    <xs:simpleType>
-                        <xs:list itemType="xs:string"/>
-                    </xs:simpleType>
                 </xs:element>
-                <xs:element minOccurs="0" name="ImportedBy">
+                <xs:element minOccurs="0" name="ImportedBy" type="xs:string">
                     <xs:annotation>
                         <xs:documentation>List of schema names that import this one.</xs:documentation>
                     </xs:annotation>
-                    <xs:simpleType>
-                        <xs:list itemType="xs:string"/>
-                    </xs:simpleType>
                 </xs:element>
             </xs:sequence>
             <xs:attribute name="RelativePath" type="xs:string" use="required">

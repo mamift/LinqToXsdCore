@@ -279,16 +279,16 @@ namespace Xml.Schema.Linq.CodeGen {
         /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
         /// </para>
         /// </summary>
-        public virtual IList<string> IncludedBy {
+        public virtual string IncludedBy {
             get {
                 XElement x = this.GetElement(IncludedByXName);
                 if ((x == null)) {
                     return null;
                 }
-                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetListElement(IncludedByXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetElement(IncludedByXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -307,16 +307,16 @@ namespace Xml.Schema.Linq.CodeGen {
         /// Regular expression: (Includes, Imports, IncludedBy?, ImportedBy?)
         /// </para>
         /// </summary>
-        public virtual IList<string> ImportedBy {
+        public virtual string ImportedBy {
             get {
                 XElement x = this.GetElement(ImportedByXName);
                 if ((x == null)) {
                     return null;
                 }
-                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetListElement(ImportedByXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetElement(ImportedByXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -657,24 +657,6 @@ namespace Xml.Schema.Linq.CodeGen {
                     return LinqToXsdTypeManager.Instance;
                 }
             }
-        }
-        
-        private class IncludedByLocalType {
-            
-            private IncludedByLocalType() {
-            }
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null));
-        }
-        
-        private class ImportedByLocalType {
-            
-            private ImportedByLocalType() {
-            }
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null));
         }
     }
     
