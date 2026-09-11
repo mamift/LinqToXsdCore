@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<!-- Schema: Office.ServiceParameters.xsd                       -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Office.ServiceParameters"
+            xmlns="urn:Microsoft.Search.Office.ServiceParameters"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines Form information augmenting a query.  The root
+			element in this schema is designed to be used inside the
+			Microsoft.Search.Query.xsd schema.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: ServiceParameters                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="ServiceParameters">
+		<xsd:annotation>
+			<xsd:documentation>                The value of parameters passed
+				by a service inside a Form.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Action"
+				             type="t:IDType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							The id of the form element
+							that triggered the requery.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Parameters" type="ParametersType"
+				             minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							A collection of form
+							parameters and their values.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:any namespace="##other" minOccurs="0"
+				         maxOccurs="unbounded" processContents="skip">
+					<xsd:annotation>
+						<xsd:documentation>
+							Any element in another namespace.  Can
+							be used for extensibility in the future.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:any>
+			</xsd:sequence>
+			<xsd:attribute name="revision" type="xsd:unsignedInt"
+			               use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unsigned integer indicating the revision of
+						the schema used in the request.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="build" type="t:String255"
+			               use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						The build of the component used
+						to generate the request.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ParametersType                              -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ParametersType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A collection of form parameters and their values.
+				The IDs of the various Form elements will be mapped
+				to an element name which contains their value.
+				The elements appear as a sequence.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:any namespace="##local" minOccurs="0"
+			         maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in the local namespace.  Element
+						names are derived from the Form control IDs.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

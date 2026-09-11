@@ -1,0 +1,1432 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Schema: Response.Content.xsd                                -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Response.Content"
+            xmlns="urn:Microsoft.Search.Response.Content"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines rich content and actions that can be returned
+			as results.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: Content                             -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="Content">
+		<xsd:annotation>
+			<xsd:documentation>
+				Rich content and actions associated with it.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:group ref="HeadingGroup">
+					<xsd:annotation>
+						<xsd:documentation>
+							All possible content elements, which
+							can be used in any order.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:group>
+			</xsd:sequence>
+			<xsd:attribute name="revision"
+			               type="xsd:unsignedInt" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unsigned integer indicating the revision
+						of the schema used in the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="build"
+			               type="t:String255" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						The build of the component used to
+						generate the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="rtl"
+			               type="xsd:boolean" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						If set to 'true' then the content is
+						right-to-left.  If set to 'false' then
+						the content is left-to-right.  If
+						unspecified, the system will choose.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Group: HeadingGroup                               -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:group name="HeadingGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines all possible content elements.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="Tabular" type="TabularType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A simple two-column table.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Heading" type="HeadingType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A Heading that may have content under it.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Hyperlink" type="HyperlinkNavType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A hyperlink.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="NewQuery" type="NewQueryContentType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A hyperlink that launches a new query.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Image" type="ImageType">
+				<xsd:annotation>
+					<xsd:documentation>
+						An image or icon.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="HorizontalRule">
+				<xsd:annotation>
+					<xsd:documentation>
+						A horizontal line that acts as a separator.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Line" type="LineType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A set of content controls that display side
+						by side where possible.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="P" type="ParagraphType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A paragraph of text.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Actions" type="ActionType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Actions for content.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Insert" type="InsertType">
+				<xsd:annotation>
+					<xsd:documentation>
+						An insert button.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Copy" type="CopyType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A copy button.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: TabularType                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="TabularType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a simple two-column table.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Record" type="RecordType"
+			             minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						A table record or row.  The table can have
+						any number of them.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="title" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					A title for the table.  It is bolded and appears
+					above the table.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="rtl" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' the table is right-to-left.
+					If set to 'false' the table is left-to-right.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: RecordType                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="RecordType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a table record.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="Name" type="NameType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						A name in a name-value pair
+						within a table record.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Value" type="ValueType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						A value in a name-value pair
+						within a table record.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Actions"
+			             type="ShortActionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						An actions menu for the record.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="borders"
+		               type="xsd:boolean" use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'false' then suppress the
+					border for the record.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="rtl" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' the record is right-to-left.
+					If set to 'false' the record is left-to-right.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: NameType                                    -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="NameType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a name in a name-value pair
+				within a table record.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="bold" type="xsd:boolean"
+				               use="optional" default="false">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' then the text is bold.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="rtl"
+				               type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' the
+							text is right-to-left.
+							If set to 'false' the
+							text is left-to-right.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ValueType                                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ValueType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a value in a name-value
+				pair within a table record.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="bold" type="xsd:boolean"
+				               use="optional" default="false">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' then the text is bold.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="rtl"
+				               type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' then the text is
+							right-to-left.  If set to 'false' then
+							the text is left-to-right.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ShortActionType                             -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ShortActionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines an actions menu for a table record.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Insert"
+			             type="InsertActionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						An action used to insert text.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Copy"
+			             type="CopyActionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						An action used to copy text to the clipboard.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:choice>
+					<xsd:element name="Data" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								The data to be inserted or copied by
+								the Insert or Copy actions.  Multiple
+								Data islands will be copied/inserted
+								as multiple paragraphs.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="NewQuery"
+					             type="NewQueryActionType">
+						<xsd:annotation>
+							<xsd:documentation>
+								An action that launches a new query.
+								IMPORTANT: Due to a limitation only
+								one NewQuery element should be used
+								within a given ShortActionType.
+								Multiple ones will not work
+								appropriately.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Hyperlink"
+					             type="HyperlinkActionType">
+						<xsd:annotation>
+							<xsd:documentation>
+								An action that launches a hyperlink.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:sequence>
+		<xsd:attribute name="defaultAllowed"
+		               type="xsd:boolean" use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'false' no default action is allowed.
+					The default action is executed when the user
+					clicks the record as opposed to clicking the
+					record's action menu.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: HeadingType                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="HeadingType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a Heading with content under it.
+				The Heading can be collapsible.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the Heading.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:group ref="HeadingGroup"
+			           minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						The contents under the Heading, which can
+						be text and other controls.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:group>
+		</xsd:sequence>
+		<xsd:attribute name="collapsible" type="xsd:boolean"
+		               use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'false' the contents of the heading
+					are always visible and cannot be collapsed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="collapsed"
+		               use="optional" default="auto">
+			<xsd:annotation>
+				<xsd:documentation>
+					Only valid if @collapsible is 'true'; it
+					determines the initial display state of
+					the Heading.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="false">
+						<xsd:annotation>
+							<xsd:documentation>
+								The heading is not initially collapsed.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+					<xsd:enumeration value="true">
+						<xsd:annotation>
+							<xsd:documentation>
+								The heading is initially collapsed.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+					<xsd:enumeration value="auto">
+						<xsd:annotation>
+							<xsd:documentation>
+								The system will determine whether the
+								heading is collapsed or not.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="level" use="optional" default="1">
+			<xsd:annotation>
+				<xsd:documentation>
+					The indentation level of the heading.  By default
+					the level is calculated based on nesting, but it
+					can be explicitly set if a specific indentation
+					is desired.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:integer">
+					<xsd:minInclusive value="1" />
+					<xsd:maxInclusive value="4" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: HyperlinkNavType                            -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="HyperlinkNavType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a hyperlink.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text of the hyperlink.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="url"
+		               type="xsd:anyURI" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					The URL to be launched.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="tooltip"
+		               type="t:String2048" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					An optional tooltip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="font" type="Font"
+		               use="optional" default="normal">
+			<xsd:annotation>
+				<xsd:documentation>
+					The font type of the hyperlink.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="forPay" type="xsd:boolean"
+		               use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' it indicates that the link
+					takes the user to paid content through a
+					special currency icon.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: NewQueryContentType                         -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="NewQueryContentType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a link that launches a new query.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the NewQuery.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="query"
+		               type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					The actual query to be sent
+					when the link is clicked.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="tooltip"
+		               type="t:String2048" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					An optional tooltip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="category"
+		               type="t:CategoryType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Category or group of services to be searched.
+					If not specified, the currently selected set
+					of services is searched.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="font" type="Font"
+		               use="optional" default="normal">
+			<xsd:annotation>
+				<xsd:documentation>
+					The font type of the link.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ImageType                                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ImageType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines an image, which can come from a URL,
+				a file path, or a specific icon.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="tooltip"
+		               type="t:String2048" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					An optional tooltip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="source"
+		               type="xsd:anyURI" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Path to the image.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="altText"
+		               type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Alternative text associated with the image.
+					Used by accessibility tools.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="icon" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					This attribute is used to generate an icon
+					automatically. It can be: (a) a path to a
+					file (e.g. "http://foo.htm"), in which case
+					we use the icon corresponding to the file type,
+					(b) a file extension (e.g. ".doc"), in which
+					case the behavior is also to use the icon for
+					the file type, (c) a string representing any
+					of the built-in icons, "Research", "Spelling",
+					"FileSearch", or "Help". These will display
+					the standard Research icon, the standard
+					Spelling icon, the standard File Search icon,
+					and the standard Help icon, respectively.
+					This overrides the @source attribute.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: LineType                                    -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="LineType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a group of controls, which display
+				side-by-side if possible.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="Hyperlink"
+				             type="HyperlinkNavType">
+					<xsd:annotation>
+						<xsd:documentation>
+							A hyperlink.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Char" type="CharType">
+					<xsd:annotation>
+						<xsd:documentation>
+							A run of text with optional formatting.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Image" type="ImageType">
+					<xsd:annotation>
+						<xsd:documentation>
+							An image.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="NewQuery"
+				             type="NewQueryContentType">
+					<xsd:annotation>
+						<xsd:documentation>
+							A hyperlink that launches a new query.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Actions" type="ActionType">
+					<xsd:annotation>
+						<xsd:documentation>
+							Actions for content,
+							presented as a button.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Insert" type="InsertType">
+					<xsd:annotation>
+						<xsd:documentation>
+							An insert button.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Copy" type="CopyType">
+					<xsd:annotation>
+						<xsd:documentation>
+							A copy button.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="rtl" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the line is right-to-left.
+					If set to 'false' then the line is left-to-right.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: CharType                                    -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="CharType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a character string within a Line element.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attributeGroup ref="CharAttributes">
+					<xsd:annotation>
+						<xsd:documentation>
+							Group of character formatting attributes.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attributeGroup>
+				<xsd:attribute name="noPadding" type="xsd:boolean"
+				               use="optional" default="false">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' then there is no padding
+							between the character run and its
+							adjacent elements.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ParagraphType                               -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ParagraphType" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="Char" type="CharTypeNested"
+			             minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						A run of text with optional formatting.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="Actions" type="ActionType">
+					<xsd:annotation>
+						<xsd:documentation>
+							Actions for content,
+							presented as a button.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Insert" type="InsertType">
+					<xsd:annotation>
+						<xsd:documentation>
+							An insert button.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Copy" type="CopyType">
+					<xsd:annotation>
+						<xsd:documentation>
+							A copy button.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="CharAttributes" />
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: CharTypeNested                              -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="CharTypeNested" mixed="true">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a character string within a P element.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Char" type="CharTypeNested"
+			             minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						A nested character string within a P element.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="CharAttributes">
+			<xsd:annotation>
+				<xsd:documentation>
+					Group of character formatting attributes.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attributeGroup>
+		<xsd:attribute name="noPadding" type="xsd:boolean"
+		               use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'false' then padding is added between
+					the character run and its adjacent elements.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Attribute Group: CharAttributes                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:attributeGroup name="CharAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines shared font formatting attributes.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="bold" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is bold.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="italic"
+		               type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is italicized.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="smallCaps"
+		               type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is small caps.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="underline"
+		               type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is underlined.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="light"
+		               type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is light.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="superscript"
+		               type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is superscript.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="subscript"
+		               type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is subscript.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="rtl"
+		               type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the text is right-to-left.
+					If set to 'false' then the text is left-to-right.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="font"
+		               type="Font" use="optional" default="normal">
+			<xsd:annotation>
+				<xsd:documentation>
+					The font type of the text.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: Font                                        -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="Font">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a font type for text.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="arial">
+				<xsd:annotation>
+					<xsd:documentation>
+						Arial font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bookshelf symbol">
+				<xsd:annotation>
+					<xsd:documentation>
+						Bookshelf font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="courier">
+				<xsd:annotation>
+					<xsd:documentation>
+						Courier New font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gothic">
+				<xsd:annotation>
+					<xsd:documentation>
+						MS PGothic font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lucida console">
+				<xsd:annotation>
+					<xsd:documentation>
+						Lucida Console font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="marlett">
+				<xsd:annotation>
+					<xsd:documentation>
+						Marlett font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="normal">
+				<xsd:annotation>
+					<xsd:documentation>
+						Default user interface font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="reference">
+				<xsd:annotation>
+					<xsd:documentation>
+						MS Reference font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="reference serif">
+				<xsd:annotation>
+					<xsd:documentation>
+						MS Reference Sans Serif font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="symbol">
+				<xsd:annotation>
+					<xsd:documentation>
+						Symbol font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="times">
+				<xsd:annotation>
+					<xsd:documentation>
+						Times New Roman font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="unicode">
+				<xsd:annotation>
+					<xsd:documentation>
+						A Unicode-enabled font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="wingdings">
+				<xsd:annotation>
+					<xsd:documentation>
+						Wingdings font.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ActionType                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ActionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a button offering several actions.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the button face, if there are no
+						default actions.  If there is a default
+						action, that action name is used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Insert"
+			             type="InsertActionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						An action used to insert text.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Copy"
+			             type="CopyActionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						An action used to copy text to the clipboard.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:choice>
+					<xsd:element name="Data" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								The data to be inserted or copied by
+								the Insert or Copy actions.
+								Multiple Data islands will be
+								copied/inserted as multiple
+								paragraphs.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="NewQuery"
+					             type="NewQueryActionType">
+						<xsd:annotation>
+							<xsd:documentation>
+								An action that launches a new query.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Hyperlink"
+					             type="HyperlinkActionType">
+						<xsd:annotation>
+							<xsd:documentation>
+								An action that launches a hyperlink.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Custom" type="CustomType">
+						<xsd:annotation>
+							<xsd:documentation>
+								A set of custom actions on the
+								content, provided by a smart tag
+								DLL on the client machine.  Note
+								that, due to limitations in the
+								implementation, only one Custom
+								element is allowed when the
+								defaultAllowed attribute is set to
+								'false'.  The smart tag that
+								interacts with a Custom element can
+								return any number of actions.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:sequence>
+		<xsd:attribute name="defaultAllowed"
+		               type="xsd:boolean" use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'false' no default action is allowed
+					and the button displays as a menu button.
+					Otherwise it is a split button with a default
+					action and a menu arrow.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: InsertActionType                            -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="InsertActionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines an action used to insert text.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the menu item.  If not
+						specified, 'Insert' or the appropriate
+						translated term is used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="default"
+		               type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the the action will be the
+					default action for the action control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: CopyActionType                              -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="CopyActionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines an action used to copy text to the clipboard.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the menu item.  If not
+						specified, 'Copy' or the appropriate
+						translated term is used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="default"
+		               type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the the action will be the
+					default action for the action control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: NewQueryActionType                          -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="NewQueryActionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a control to launch a new query within
+				an action menu.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the menu item.  If not
+						specified, 'Look Up' or the appropriate
+						translated term is used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="query" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					The query string.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="default"
+		               type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the new query action is the
+					default action for the action control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="noIcon"
+		               type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the new query icon is
+					suppressed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="category"
+		               type="t:CategoryType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Category or group of services to be searched.
+					If not specified, the currently selected set
+					of services is searched.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: HyperlinkActionType                         -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="HyperlinkActionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a hyperlink control within an action menu.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the menu item.  If not
+						specified, 'Open' or the appropriate
+						translated term is used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="url" type="xsd:anyURI" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					The URL to be launched.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="default"
+		               type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the new query action is
+					the default action for the action control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="noIcon"
+		               type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' then the hyperlink icon is
+					suppressed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="forPay"
+		               type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true' it indicates that the link
+					takes the user to paid content through a
+					special currency icon.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: CustomType                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="CustomType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a set of custom actions on the content,
+				provided by a smart tag DLL on the client machine.
+				The smart tag that interacts with the Custom element
+				can return any number of actions.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  XML
+						island used to trigger a smart tag action.
+						The XML, along with an object model pointer
+						to the application and other parameters, is
+						passed to the smart tag.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="displayName"
+		               type="t:String255" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Display name for the set of actions.  Used only
+					when multiple custom action sets are specified,
+					requiring a cascading menu.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="url" type="xsd:anyURI" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					The URL where smart tags for this data type can
+					be downloaded.  If specified a "Check for New
+					Actions" menu item appears that can be used to
+					launch the URL.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: InsertType                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="InsertType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a button used to insert text.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Text"
+			             type="TextContentType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text for the button.  If not specified,
+						'Insert' or the appropriate translated term
+						is used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Data" type="xsd:string"
+			             minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						The data to be inserted by the Insert action.
+						Multiple Data islands will be inserted as
+						multiple paragraphs.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: CopyType                                    -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="CopyType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a button used to copy text to the clipboard.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation>
+					The text for the button.  If not specified,
+					'Copy' or the appropriate translated term
+					is used.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:element name="Data" type="xsd:string"
+			             minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						The data to be copied by the Copy actions.
+						Multiple Data islands will be copied as
+						multiple paragraphs.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: TextContentType                             -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="TextContentType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a text label for a control.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="rtl"
+				               type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							If set to 'true' then the text is
+							right-to-left.  If set to 'false'
+							then the text is left-to-right.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

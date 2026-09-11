@@ -302,6 +302,12 @@
       "commandLineArgs": "gen -a .",
       "workingDirectory": "..\\LinqToXsd.Schemas\\RecursiveGroupStackoverflowBug",
       "hotReloadEnabled": false
+    },
+    "SOAP-WSDL": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\SOAP-WSDL",
+      "hotReloadEnabled": false
     }
   }
 }

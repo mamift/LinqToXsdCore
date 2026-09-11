@@ -353,7 +353,8 @@ namespace Xml.Schema.Linq.CodeGen
             Action<ClrTypeReference> createNestedEnumType)
         {
             var typeRef = this.TypeReference;
-            if (typeRef.IsEnum)
+            var isLocalEnumOrListOfEnum = typeRef.IsEnum || (typeRef.IsSchemaList && (typeRef.SchemaObject as XmlSchemaSimpleType)?.GetListItemType().IsEnum() == true && typeRef.IsLocalType);
+            if (isLocalEnumOrListOfEnum)
             {
                 if (string.IsNullOrEmpty(typeRef.Name))
                 {

@@ -1,6 +1,14 @@
 # LinqToXsdCore Release Notes
 
-## Version 3.4.22
+## Version 3.4.23
+
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.23
+* https://www.nuget.org/packages/XObjectsCore/3.4.23
+  * [#102](https://github.com/mamift/LinqToXsdCore/pull/102)
+    * Adds more sample XSDs for testing (GML, SOAP-WSDL, LoC-ALTO)
+    * Fixes a code generation bug (evidence: `metalex.xsd` and `metalex_mcontainerTypeBug.xsd`) that prevented properties on a base class for an XSD complex type from being generated properly and also the constructor for the derived class for a derived complex type passing arguments to a base constructor that had the wrong signature.
+        * XObjectsCode/Src/XsdToTypesConverter.cs — in `TraverseParticle`, elements inherited through a restriction-derived base are no longer marked FromBaseType, since such a base contributes no generated members (its content model is deliberately skipped by BuildProperties). The derived type now generates the inherited content members itself, so its functional constructors initialize their own fields instead of forwarding to base(...) constructors that were never emitted.
 
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.22

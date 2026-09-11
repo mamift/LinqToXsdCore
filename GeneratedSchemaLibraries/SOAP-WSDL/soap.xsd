@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xs:schema PUBLIC "-//W3C//DTD XMLSCHEMA 200102//EN" "http://www.w3.org/2001/XMLSchema.dtd">
+<!-- 
+   W3C XML Schema defined in the Web Services Description Language
+   (WSDL) Version 2.0 Part 2: Adjuncts specification
+     http://www.w3.org/TR/wsdl20-adjuncts
+
+   Copyright © 2007 World Wide Web Consortium,
+
+   (Massachusetts Institute of Technology, European Research Consortium for
+   Informatics and Mathematics, Keio University). All Rights Reserved. This
+   work is distributed under the W3C® Software License [1] in the hope that
+   it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+   [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
+
+   $Id: soap.xsd,v 1.2 2007/06/26 21:16:58 plehegar Exp $
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsoap="http://www.w3.org/ns/wsdl/soap" xmlns:wsdl="http://www.w3.org/ns/wsdl" targetNamespace="http://www.w3.org/ns/wsdl/soap" elementFormDefault="qualified" attributeFormDefault="unqualified" finalDefault="" blockDefault="">
+
+	<xs:import namespace="http://www.w3.org/ns/wsdl" schemaLocation="wsdl20.xsd"/>
+
+	<xs:attribute name="version" type="xs:string"/>
+	<xs:attribute name="protocol" type="xs:anyURI"/>
+
+	<xs:attribute name="mepDefault" type="xs:anyURI"/>
+	<xs:attribute name="mep" type="xs:anyURI"/>
+
+	<xs:attribute name="action" type="xs:anyURI"/>
+
+	<xs:element name="module">
+		<xs:complexType mixed="false">
+			<xs:complexContent>
+				<xs:extension base="wsdl:ExtensibleDocumentedType">
+					<xs:attribute name="ref" type="xs:anyURI" use="required"/>
+					<xs:attribute name="required" type="xs:boolean"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="header">
+		<xs:complexType mixed="false">
+			<xs:complexContent>
+				<xs:extension base="wsdl:ExtensibleDocumentedType">
+					<xs:attribute name="element" type="xs:QName" use="required"/>
+					<xs:attribute name="mustUnderstand" type="xs:boolean"/>
+					<xs:attribute name="required" type="xs:boolean"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="TokenAny">
+	  <xs:restriction base="xs:token">
+	    <xs:enumeration value="#any"/>
+	  </xs:restriction>
+	</xs:simpleType>
+
+	<xs:attribute name="code">
+	  <xs:simpleType>
+	    <xs:union memberTypes="xs:QName wsoap:TokenAny"/>
+	  </xs:simpleType>
+	</xs:attribute>
+
+	<xs:attribute name="subcodes">
+	  <xs:simpleType>
+	    <xs:union memberTypes="wsoap:TokenAny">
+		<xs:simpleType>
+			<xs:list itemType="xs:QName"/>
+		</xs:simpleType>
+	    </xs:union>
+	  </xs:simpleType>
+	</xs:attribute>
+
+</xs:schema>

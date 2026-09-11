@@ -1,0 +1,1 @@
+﻿This schema was reverse-engineered from an existing instance of an Expression Media Catalog file, and informed by the official Microsoft help documentation that shipped with the app.

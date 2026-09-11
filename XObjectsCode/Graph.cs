@@ -11,6 +11,9 @@ using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen;
 
+/// <summary>
+/// Represents a graph of XSD files in a folder (including subfolders).
+/// </summary>
 public partial class Graph
 {
     public IFileSystem? FileSystem { get; set; }
@@ -71,6 +74,8 @@ public partial class Graph
 
             graph.Schema.Add(schemaEl);
         }
+
+        PopulateIncludedByAndImportedBy(graph);
 
         return graph;
     }
@@ -164,6 +169,8 @@ public partial class Graph
             graph.Schema.Add(schemaEl);
         }
 
+        PopulateIncludedByAndImportedBy(graph);
+
         return graph;
     }
 
@@ -195,10 +202,15 @@ public partial class Graph
 
     public List<Schema> GetSchemasThatAreIncludedByOthers()
     {
-        return (from s in Schema
-            where s.Includes?.Schema is not null && s.Includes.Schema.Any()
-            from i in s.Includes.Schema
-            select i).Distinct().ToList();
+        var includedNames = Schema
+            .Where(s => s.Includes?.Schema is { Count: > 0 })
+            .SelectMany(s => s.Includes.Schema)
+            .Select(i => Path.GetFileName(i.Name))
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        return Schema.Where(sc => !string.IsNullOrWhiteSpace(sc.Name) &&
+                                  (includedNames.Contains(sc.Name) || includedNames.Contains(Path.GetFileName(sc.Name)))).ToList();
     }
 
     public List<Schema> GetSchemasThatAreImportedByOthers()
@@ -210,11 +222,78 @@ public partial class Graph
             .Where(n => !string.IsNullOrWhiteSpace(n))
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        return Schema.Where(sc => importedNames.Contains(sc.Name)).ToList();
+        return Schema.Where(sc => !string.IsNullOrWhiteSpace(sc.Name) &&
+                                  (importedNames.Contains(sc.Name) || importedNames.Contains(Path.GetFileName(sc.Name)))).ToList();
     }
 
     /// <summary>
-    /// Using the output from <see cref="FindEntryPointSchemas"/>, loads them all into their own <see cref="XmlSchemaSet"/> or sets.
+    /// Returns all schemas that are part of the connected graph (i.e. schemas that import/include other schemas, or are imported/included by other schemas).
+    /// </summary>
+    /// <returns>A list of schemas that have at least one incoming or outgoing dependency connection.</returns>
+    public List<Schema> GetConnectedSchemas()
+    {
+        if (Schema.Count == 0)
+            return new List<Schema>();
+
+        var allReferencedNames = Schema
+            .SelectMany(EnumerateDependencies)
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        return Schema.Where(s =>
+        {
+            if (EnumerateDependencies(s).Any())
+                return true;
+
+            if (!string.IsNullOrWhiteSpace(s.Name))
+            {
+                string fileName = Path.GetFileName(s.Name);
+                if (allReferencedNames.Contains(s.Name) || allReferencedNames.Contains(fileName))
+                    return true;
+            }
+
+            return false;
+        }).ToList();
+    }
+
+    /// <summary>
+    /// Returns the distinct names of all schemas that are part of the connected graph (i.e. schemas that import/include other schemas, or are imported/included by other schemas).
+    /// </summary>
+    /// <returns>A list of schema names that have dependency connections.</returns>
+    public List<string> GetConnectedSchemaNames()
+    {
+        return GetConnectedSchemas()
+            .Select(s => s.Name)
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    /// <summary>
+    /// Returns all schemas that are isolated/disconnected (i.e. schemas that neither import/include other schemas, nor are imported/included by other schemas).
+    /// </summary>
+    /// <returns>A list of standalone schemas with no dependency connections.</returns>
+    public List<Schema> GetDisconnectedSchemas()
+    {
+        var connected = GetConnectedSchemas().ToHashSet();
+        return Schema.Where(s => !connected.Contains(s)).ToList();
+    }
+
+    /// <summary>
+    /// Returns the distinct names of all schemas that are isolated/disconnected.
+    /// </summary>
+    /// <returns>A list of standalone schema names with no dependency connections.</returns>
+    public List<string> GetDisconnectedSchemaNames()
+    {
+        return GetDisconnectedSchemas()
+            .Select(s => s.Name)
+            .Where(n => !string.IsNullOrWhiteSpace(n))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    /// <summary>
+    /// Using the output from <see cref="GetEntryPointSchemas"/>, loads them all into their own <see cref="XmlSchemaSet"/> or sets.
     /// <para>Each entrypoint schema represents it's own <see cref="XmlSchemaSet"/>; this means some schemas in a graph that are 'standalone' (not included/imported by others and not including/importing others),
     /// will be loaded into their own <see cref="XmlSchemaSet"/>.</para>
     /// <para>Any schema linked (i.e. imported/included) will be loaded into the <see cref="XmlSchemaSet"/> of the schema that imports/includes it.</para>
@@ -222,17 +301,35 @@ public partial class Graph
     /// <returns></returns>
     public List<XmlSchemaSet> GetXmlSchemaSetFromEntryPointSchemas()
     {
-        var entryPointSchemas = FindEntryPointSchemas();
+        var entryPointSchemas = GetEntryPointSchemas();
 
         throw new NotImplementedException();
     }
 
-    public List<Schema> FindEntryPointSchemas()
+    public List<Schema> GetEntryPointSchemas()
     {
-        List<string> entryPointNames = FindEntryPointSchemaNames();
+        List<string> entryPointNames = GetEntryPointSchemaNames();
 
         return this.SchemaField
             .Where(sc => entryPointNames.Any(e => e.EqualsIgnoreCase(sc.Name)))
+            .ToList();
+    }
+
+    /// <summary>
+    /// Gets all schemas that include and import others, but are themselves NOT included nor imported by others.
+    /// </summary>
+    /// <returns></returns>
+    public List<Schema> GetRootSchemas()
+    {
+        var schemasWithOutgoing = GetSchemasThatImportsOrIncludeOthers();
+        if (schemasWithOutgoing.Count == 0)
+            return new List<Schema>();
+
+        var included = GetSchemasThatAreIncludedByOthers().ToHashSet();
+        var imported = GetSchemasThatAreImportedByOthers().ToHashSet();
+
+        return schemasWithOutgoing
+            .Where(s => !included.Contains(s) && !imported.Contains(s))
             .ToList();
     }
 
@@ -241,7 +338,7 @@ public partial class Graph
     /// One schema representative is selected from each source strongly connected component in the include/import graph.
     /// </summary>
     /// <returns>Schema file names suitable as entry points.</returns>
-    public List<string> FindEntryPointSchemaNames()
+    public List<string> GetEntryPointSchemaNames()
     {
         if (Schema.Count == 0)
             return new List<string>();
@@ -378,6 +475,92 @@ public partial class Graph
         }
     }
 
+    private static void PopulateIncludedByAndImportedBy(Graph graph)
+    {
+        if (graph.Schema == null || graph.Schema.Count == 0)
+            return;
+
+        var includedByMap = new Dictionary<Schema, List<string>>();
+        var importedByMap = new Dictionary<Schema, List<string>>();
+
+        foreach (Schema source in graph.Schema)
+        {
+            if (string.IsNullOrWhiteSpace(source.Name)) continue;
+
+            if (source.Includes?.Schema != null)
+            {
+                foreach (Schema inc in source.Includes.Schema)
+                {
+                    if (string.IsNullOrWhiteSpace(inc.Name)) continue;
+                    string incFileName = Path.GetFileName(inc.Name);
+
+                    foreach (Schema target in graph.Schema)
+                    {
+                        if (string.IsNullOrWhiteSpace(target.Name)) continue;
+                        if (target.Name.EqualsIgnoreCase(inc.Name) ||
+                            target.Name.EqualsIgnoreCase(incFileName) ||
+                            Path.GetFileName(target.Name).EqualsIgnoreCase(incFileName))
+                        {
+                            if (!includedByMap.TryGetValue(target, out var list))
+                            {
+                                list = new List<string>();
+                                includedByMap[target] = list;
+                            }
+                            if (!list.Contains(source.Name, StringComparer.OrdinalIgnoreCase))
+                            {
+                                list.Add(source.Name);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (source.Imports?.Schema != null)
+            {
+                foreach (Schema imp in source.Imports.Schema)
+                {
+                    if (string.IsNullOrWhiteSpace(imp.Name)) continue;
+                    string impFileName = Path.GetFileName(imp.Name);
+
+                    foreach (Schema target in graph.Schema)
+                    {
+                        if (string.IsNullOrWhiteSpace(target.Name)) continue;
+                        if (target.Name.EqualsIgnoreCase(imp.Name) ||
+                            target.Name.EqualsIgnoreCase(impFileName) ||
+                            Path.GetFileName(target.Name).EqualsIgnoreCase(impFileName))
+                        {
+                            if (!importedByMap.TryGetValue(target, out var list))
+                            {
+                                list = new List<string>();
+                                importedByMap[target] = list;
+                            }
+                            if (!list.Contains(source.Name, StringComparer.OrdinalIgnoreCase))
+                            {
+                                list.Add(source.Name);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (var kvp in includedByMap)
+        {
+            if (kvp.Value.Count > 0)
+            {
+                kvp.Key.IncludedBy = string.Join(";", kvp.Value);
+            }
+        }
+
+        foreach (var kvp in importedByMap)
+        {
+            if (kvp.Value.Count > 0)
+            {
+                kvp.Key.ImportedBy = string.Join(";", kvp.Value);
+            }
+        }
+    }
+
     /// <summary>
     /// After a <see cref="Graph"/> instance has been built , this method will return a list of <see cref="IFileInfo"/> objects representing the XSD files in the graph.
     /// <para>If <see cref="FileSystem"/> is not null, it will use paths provided by that instead.</para>
@@ -413,74 +596,5 @@ public partial class Graph
         }
 
         return result;
-    }
-}
-
-public partial class Schema
-{
-    /// <summary>
-    /// If this Schema links or imports others (has dependencies), this will return a flat list of those linked Schema objects.
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerable<Schema> GetDependencies()
-    {
-        // since this Schema represents a <Schema> XML element under the <Graph> XML element,
-        // we can conveniently navigate to the parent by casting to the right type!
-        Graph graph = (Graph)this.Untyped.Parent;
-
-        if (Includes?.Schema != null && Includes.Schema.Any())
-        {
-            foreach (Schema include in Includes.Schema)
-            {
-                var schemaByNameFromGraphRoot = graph.Schema.Single(s => s.Name.EqualsIgnoreCase(include.Name));
-                yield return schemaByNameFromGraphRoot;
-            }
-        }
-
-        if (Imports?.Schema != null && Imports.Schema.Any())
-        {
-            foreach (Schema import in Imports.Schema)
-            {
-                var schemaByNameFromGraphRoot = graph.Schema.Single(s => s.Name.EqualsIgnoreCase(import.Name));
-                yield return schemaByNameFromGraphRoot;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Returns the complete list of dependencies for the current Schema, the direct and indirect dependencies. 
-    /// </summary>
-    /// <param name="skipList"></param>
-    /// <returns></returns>
-    public List<Schema> GetDependenciesRecursively(List<Schema> skipList = null)
-    {
-        Graph graph = (Graph)this.Untyped.Parent;
-
-        var dependencies = GetDependencies();
-
-        var returnList = new List<Schema>();
-        foreach (Schema dependency in dependencies)
-        {
-            if (returnList.Contains(dependency))
-            {
-                continue;
-            }
-
-            returnList.Add(dependency);
-
-            var countOfSkips = 0;
-            foreach (Schema recursiveDependency in dependency.GetDependenciesRecursively(returnList))
-            {
-                if (returnList.Contains(recursiveDependency))
-                {
-                    countOfSkips++;
-                    continue;
-                }
-
-                returnList.Add(recursiveDependency);
-            }
-        }
-
-        return returnList;
     }
 }

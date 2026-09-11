@@ -74,9 +74,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </PackageReference>
-	  <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'">
+    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
-	  </PackageReference>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeneratedSchemaLibraries\1707_ISYBAU_XML_Schema\1707_ISYBAU_XML_Schema.csproj" />
@@ -141,6 +141,9 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\OGC-misc\OGC-misc.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\W3C.XML\W3C.XML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\BITS-2.0-XSD\BITS-2.0-XSD.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\ALTO\ALTO.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\GraffitiMarkupLanguage\GraffitiMarkupLanguage.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\SOAP-WSDL\SOAP-WSDL.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">

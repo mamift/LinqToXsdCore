@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Schema: Types.xsd                                           -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Types"
+            xmlns="urn:Microsoft.Search.Types"
+            elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			This is a list of simple types used by multiple schemas
+			in urn:Microsoft.Search.
+		</xsd:documentation>
+	</xsd:annotation>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!--  Type: String255                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="String255">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines string of up to 255 characters.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0" />
+			<xsd:maxLength value="255" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!--  Type: String2048                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="String2048">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a string of up to 2048 characters.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0" />
+			<xsd:maxLength value="2048" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: GUIDType                                    -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="GUIDType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a GUID, with or without the
+				enclosing curly braces.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value=
+							 "\{[A-Fa-f0-9]{8}-([A-Fa-f0-9]
+                    {4}-){3}[A-Fa-f0-9]{12}\}" />
+			<xsd:pattern value=
+							 "[A-Fa-f0-9]{8}-([A-Fa-f0-9]
+                    {4}-){3}[A-Fa-f0-9]{12}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ISO3166Type                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="ISO3166Type">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a a country or region in ISO 3166 format.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="2" />
+			<xsd:maxLength value="8" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: IDType                                      -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="IDType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the ID for a control.  Since IDs get turned
+				into XML elements, the ids must be valid XML
+				element names.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:NCName">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="128" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: StartAtType                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="StartAtType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the index of the initial result based on '1'
+				as the lowest result index.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:unsignedInt">
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: CategoryType                                -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="CategoryType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the category under which the service shows
+				in the user interface. Only high level categories
+				display in the user interface, though.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="REFERENCE_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference General category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_DICTIONARY">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Dictionaries category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_THESAURUS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Thesauri category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_TRANSLATION">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Translation category.  Services in
+						this category are handled in a special way
+						by the Office client
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_QUOTATIONS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Quotations category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_ALMANACS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Alamanacs category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_ENCYCLOPEDIA">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Encyclopedias category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_SCIENCE">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Science category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_DIRECTORIES">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Directories category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE_WEATHER">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reference Weather category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="RESEARCH_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Research General category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="RESEARCH_NEWS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Research News category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="RESEARCH_ENCYCLOPEDIA">
+				<xsd:annotation>
+					<xsd:documentation>
+						Research Encyclopedias category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="RESEARCH_WEBSEARCH">
+				<xsd:annotation>
+					<xsd:documentation>
+						Research Web Search category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						General Business Finance Category category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_FINANCE">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Finances category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_BUSINESS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Business category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_COMPANIES">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Companies category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_INDUSTRIES">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Industries category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_JOBS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Jobs category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_PERSONALFINANCE">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Personal Finance category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_PROFESSIONS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Professions category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESS_SMALLBUSINESS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Small Business category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science General category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_BIOLOGY">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Biology category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_CHEMISTRY">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Chemistry category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_EARTH">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Earth Sciences category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_MATH">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Math category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_PHYSICS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Physics category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_SOCIALSCIENCES">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Social Sciences category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_TECHNOLOGY">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Technology category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SCIENCE_ENGINEERING">
+				<xsd:annotation>
+					<xsd:documentation>
+						Science Engineering category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LAW_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Law category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MEDICAL_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Medicine category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERTAINMENT_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Entertainment General category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERTAINMENT_ARTS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Entertainment Arts category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERTAINMENT_SHOPPING">
+				<xsd:annotation>
+					<xsd:documentation>
+						Entertainment Shopping category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERTAINMENT_SPORTS">
+				<xsd:annotation>
+					<xsd:documentation>
+						Entertainment Sports category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERTAINMENT_MUSIC">
+				<xsd:annotation>
+					<xsd:documentation>
+						Entertainment Music category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERTAINMENT_GAMES">
+				<xsd:annotation>
+					<xsd:documentation>
+						Entertainment Games category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERTAINMENT_MOVIESTV">
+				<xsd:annotation>
+					<xsd:documentation>
+						Entertainment Movies and TV category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="INTRANET_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Intranet Services category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CRM_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Customer Relationship Management Services
+						category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SUPPLYMANAGEMENT_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Supply Management Services category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BUSINESSINTELLIGENCE_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Business Intelligence Services category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ECOMMERCE_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Ecommerce Services category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTERPRISERESOURCES_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Enterprise Resource Management Services
+						category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="FILESEARCH_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						File Search category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OTHER_GENERAL">
+				<xsd:annotation>
+					<xsd:documentation>
+						Other category.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
