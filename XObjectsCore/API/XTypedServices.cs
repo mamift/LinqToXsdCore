@@ -670,10 +670,13 @@ namespace Xml.Schema.Linq
 
         internal static void TryConvert(object value, XmlSchemaDatatype datatype, XNamespaceResolver resolver)
         {
+            // this is disabled for now due to a failing test and need time to understand its implications
+#if false
             if (value != null && value.GetType().IsEnum)
             {
                 return;
             }
+#endif
 
             // XmlSchemaDatatype doesn't support new .net types such as DateOnly and TimeOnly,
             // we need to special-case them.
