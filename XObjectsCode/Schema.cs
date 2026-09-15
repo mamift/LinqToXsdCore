@@ -81,15 +81,21 @@ public partial class Schema
     {
         get
         {
-            return _importedByList ??= this.ImportedBy.Split([';'], StringSplitOptions.RemoveEmptyEntries).ToList();
+            return _importedByList ??= string.IsNullOrWhiteSpace(ImportedBy)
+                ? new List<string>()
+                : ImportedBy.Split([';'], StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
         set
         {
             _importedByList = value;
-            if (value.Any())
+            if (value != null && value.Any())
             {
                 ImportedBy = string.Join(";", value);
+            }
+            else
+            {
+                ImportedBy = null;
             }
         }
     }
