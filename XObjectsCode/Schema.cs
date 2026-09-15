@@ -83,9 +83,15 @@ public partial class Schema
     {
         get
         {
-            return _importedByList ??= string.IsNullOrWhiteSpace(ImportedBy)
-                ? new List<string>()
-                : ImportedBy.Split([';'], StringSplitOptions.RemoveEmptyEntries).ToList();
+            if (_importedByList == null)
+            {
+                if (string.IsNullOrWhiteSpace(ImportedBy))
+                    _importedByList = new List<string>();
+                else
+                    _importedByList = ImportedBy.Split([';'], StringSplitOptions.RemoveEmptyEntries).ToList();
+            }
+
+            return _importedByList;
         }
 
         set
