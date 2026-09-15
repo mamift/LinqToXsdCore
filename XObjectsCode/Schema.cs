@@ -48,34 +48,22 @@ public partial class Schema
     /// <returns></returns>
     public List<Schema> GetDependenciesRecursively(List<Schema>? skipList = null)
     {
-        Graph graph = (Graph)this.Untyped.Parent;
+        skipList ??= new List<Schema>();
 
         var dependencies = GetDependencies();
 
-        var returnList = new List<Schema>();
         foreach (Schema dependency in dependencies)
         {
-            if (returnList.Contains(dependency))
+            if (skipList.Contains(dependency))
             {
                 continue;
             }
 
-            returnList.Add(dependency);
-
-            var countOfSkips = 0;
-            foreach (Schema recursiveDependency in dependency.GetDependenciesRecursively(returnList))
-            {
-                if (returnList.Contains(recursiveDependency))
-                {
-                    countOfSkips++;
-                    continue;
-                }
-
-                returnList.Add(recursiveDependency);
-            }
+            skipList.Add(dependency);
+            dependency.GetDependenciesRecursively(skipList);
         }
 
-        return returnList;
+        return skipList;
     }
 
     private List<string>? _importedByList = null;

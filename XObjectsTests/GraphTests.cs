@@ -149,6 +149,118 @@ public class GraphTests
     }
 
     [Test]
+    public void TestGetDependenciesRecursivelyWithCycleDoesNotStackOverflow()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="a.xsd">
+                           <Includes>
+                             <Schema Name="b.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="b.xsd">
+                           <Includes>
+                             <Schema Name="a.xsd" />
+                           </Includes>
+                         </Schema>
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+        var schemaA = graph.Schema.First(s => s.Name == "a.xsd");
+        var deps = schemaA.GetDependenciesRecursively();
+
+        Assert.IsNotNull(deps);
+        Assert.AreEqual(2, deps.Count);
+        Assert.AreEqual("b.xsd", deps[0].Name);
+        Assert.AreEqual("a.xsd", deps[1].Name);
+    }
+
+    [Test]
+    public void TestGetDependenciesRecursivelyWithDiamond()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="a.xsd">
+                           <Includes>
+                             <Schema Name="b.xsd" />
+                             <Schema Name="c.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="b.xsd">
+                           <Includes>
+                             <Schema Name="d.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="c.xsd">
+                           <Includes>
+                             <Schema Name="d.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="d.xsd" />
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+        var schemaA = graph.Schema.First(s => s.Name == "a.xsd");
+        var deps = schemaA.GetDependenciesRecursively();
+
+        Assert.IsNotNull(deps);
+        Assert.AreEqual(3, deps.Count);
+        Assert.AreEqual(new[] { "b.xsd", "d.xsd", "c.xsd" }, deps.Select(s => s.Name).ToArray());
+    }
+
+    [Test]
+    public void TestGetDependenciesRecursivelyWithSkipList()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="a.xsd">
+                           <Includes>
+                             <Schema Name="b.xsd" />
+                             <Schema Name="c.xsd" />
+                           </Includes>
+                         </Schema>
+                         <Schema Name="b.xsd" />
+                         <Schema Name="c.xsd" />
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+        var schemaA = graph.Schema.First(s => s.Name == "a.xsd");
+        var schemaB = graph.Schema.First(s => s.Name == "b.xsd");
+
+        var skipList = new List<Linq.CodeGen.Schema> { schemaB };
+        var deps = schemaA.GetDependenciesRecursively(skipList);
+
+        Assert.AreSame(skipList, deps);
+        Assert.AreEqual(2, deps.Count);
+        Assert.AreEqual(new[] { "b.xsd", "c.xsd" }, deps.Select(s => s.Name).ToArray());
+    }
+
+    [Test]
+    public void TestGetDependenciesRecursivelyWithSelfReference()
+    {
+        var xmlString = """
+                        <Graph xmlns="https://github.com/mamift/LinqToXsdCore">
+                         <Schema Name="a.xsd">
+                           <Includes>
+                             <Schema Name="a.xsd" />
+                           </Includes>
+                         </Schema>
+                        </Graph>
+                        """;
+
+        var graph = Graph.Parse(xmlString);
+        var schemaA = graph.Schema.First(s => s.Name == "a.xsd");
+        var deps = schemaA.GetDependenciesRecursively();
+
+        Assert.IsNotNull(deps);
+        Assert.AreEqual(1, deps.Count);
+        Assert.AreEqual("a.xsd", deps[0].Name);
+    }
+
+    [Test]
     public void TestFindEntryPointSchemasFromOfficeOpenXMLXMLSchemaStrict()
     {
         DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("OfficeOpenXML-XMLSchema-Strict");
