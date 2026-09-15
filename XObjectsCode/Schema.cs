@@ -24,8 +24,10 @@ public partial class Schema
         {
             foreach (Schema include in Includes.Schema)
             {
-                var schemaByNameFromGraphRoot = graph.Schema.Single(s => s.Name.EqualsIgnoreCase(include.Name));
-                yield return schemaByNameFromGraphRoot;
+                var includeName = System.IO.Path.GetFileName(include.Name);
+                var schemaByNameFromGraphRoot = graph.Schema.FirstOrDefault(s => s.Name.EqualsIgnoreCase(includeName));
+                if (schemaByNameFromGraphRoot != null)
+                    yield return schemaByNameFromGraphRoot;
             }
         }
 
