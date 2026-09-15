@@ -113,7 +113,7 @@ public partial class Schema
     {
         get
         {
-            return _includedBy ??= this.IncludedBy.Split([';'], StringSplitOptions.RemoveEmptyEntries).ToList();
+            return _includedBy ??= this.IncludedBy?.Split([';'], StringSplitOptions.RemoveEmptyEntries)?.ToList() ?? new List<string>();
         }
 
         set
