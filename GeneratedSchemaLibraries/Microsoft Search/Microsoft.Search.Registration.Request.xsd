@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<!-- Schema: Registration.Request.xsd                           -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Registration.Request"
+            xmlns="urn:Microsoft.Search.Registration.Request"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines a registration request to a service provider.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: RegistrationRequest                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="RegistrationRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="OriginatorId"
+				             type="t:GUIDType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							Unique identifier for the client.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SupportedFormats"
+				             type="SupportedFormatsType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							Formats that the client
+							understands for the response.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SystemInformation"
+				             type="SystemInformationType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							Information about the system that is
+							requesting the registration information.
+							The service provider can use this to
+							determine if and how to register with
+							the system.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:any namespace="##other" minOccurs="0"
+				         maxOccurs="unbounded" processContents="skip">
+					<xsd:annotation>
+						<xsd:documentation>
+							Any element in another namespace.  Can be
+							used for extensibility in the future.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:any>
+			</xsd:sequence>
+			<xsd:attribute name="revision"
+			               type="xsd:unsignedInt" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unsigned integer indicating the revision
+						of the schema used in the request.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="build"
+			               type="t:String255" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						The build of the component used to
+						generate the request.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: SupportedFormatsType                        -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="SupportedFormatsType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Describes any number of formats that the client
+				understands for the response.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Format" type="FormatType"
+			             maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						Supported response elements (QNames).
+						All recognized namespaces should
+						be specified here.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: FormatType                                  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="FormatType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a supported format.  Normally this should be
+				treated as a fully qualified name
+				(namespace:localname).
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="revision"
+				               type="xsd:unsignedInt" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Unsigned integer indicating the
+							revision of the schema.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="build"
+				               type="t:String255" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							The build of the component used.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: SystemInformationType                       -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="SystemInformationType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Describes information about the system that is
+				requesting the information.  The service provider
+				can use this to determine how to respond.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SkuLanguage"
+			             type="xsd:language" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The system's main language.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LanguagePack" type="xsd:language"
+			             minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						One of the system's language flavors.
+						There could be multiple ones.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="InterfaceLanguage"
+			             type="xsd:language" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The current language of the user interface.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Location"
+			             type="t:ISO3166Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Country or region indicating the
+						current location of the system.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

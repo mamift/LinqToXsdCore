@@ -378,7 +378,9 @@ namespace Xml.Schema.Linq.CodeGen
             Dictionary<XmlSchemaObject, string> nameMappings,
             LinqToXsdSettings settings)
         {
-            string typeName = typeInfo is EnumSimpleTypeInfo ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
+            bool isEnumOrListOfAnonymousEnum = typeInfo is EnumSimpleTypeInfo ||
+                (typeInfo is ListSimpleTypeInfo listInfo && listInfo.ItemType is EnumSimpleTypeInfo && (listInfo.InnerType as XmlSchemaSimpleType)?.GetListItemType().QualifiedName.IsEmpty == true);
+            string typeName = isEnumOrListOfAnonymousEnum ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
             CodeTypeDeclaration simpleTypeDecl = new CodeTypeDeclaration(typeName);
             // might need special handling when typeInfo.clrtypeNs is null, but returning default Visibility (public) when clrtypeNs is null works for now
             TypeAttributes typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();

@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<!-- Schema: Registration.Response.xsd                          -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Registration.Response"
+            xmlns="urn:Microsoft.Search.Registration.Response"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines a registration response from a service provider.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: ProviderUpdate                      -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="ProviderUpdate">
+		<xsd:annotation>
+			<xsd:documentation>
+				Contains all registration information
+				about a service provider.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Status" type="ResultsCodeType">
+					<xsd:annotation>
+						<xsd:documentation>
+							Status of the response.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Message"
+				             type="t:String255" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							Message to display to the user before the
+							registration process begins.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Providers"
+				             type="ProviderCollectionType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							Data for all providers being registered.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:any namespace="##other" minOccurs="0"
+				         maxOccurs="unbounded" processContents="skip">
+					<xsd:annotation>
+						<xsd:documentation>
+							Any element in another namespace.  Can be
+							used for extensibility in the future.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:any>
+			</xsd:sequence>
+			<xsd:attribute name="revision"
+			               type="xsd:unsignedInt" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unsigned integer indicating the revision of
+						the schema used in the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="build"
+			               type="t:String255" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						The build of the component used to
+						generate the response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ResultsCodeType                             -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="ResultsCodeType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the possible result codes.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SUCCESS">
+				<xsd:annotation>
+					<xsd:documentation>
+						The service successfully generated
+						the registration response.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR">
+				<xsd:annotation>
+					<xsd:documentation>
+						An error occurred.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR_NOT_COMPATIBLE">
+				<xsd:annotation>
+					<xsd:documentation>
+						The service is not compatible
+						with the client system.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ProviderCollectionType                      -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ProviderCollectionType">
+		<xsd:sequence>
+			<xsd:element name="Provider" type="ProviderInfoType">
+				<xsd:annotation>
+					<xsd:documentation>
+						The registration information for
+						a single service provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.
+						Can be used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="revision" type="xsd:unsignedInt"
+		               use="optional" default="0">
+			<xsd:annotation>
+				<xsd:documentation>
+					Revision of the Provider Collection.  Not
+					currently used as only one Provider is
+					expected in the collection.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ProviderInfoType                            -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ProviderInfoType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the registration information for a
+				single service provider.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Message"
+			             type="t:String255" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						A welcome message in the
+						registration process.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="License"
+			             type="LicenseType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						The text of a license to be presented
+						to the user during registration.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Id" type="t:GUIDType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unique Provider ID.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="t:String255">
+				<xsd:annotation>
+					<xsd:documentation>
+						Provider name that will appear
+						in the user interface.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="QueryPath" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						Path to which all queries will be sent.
+						Normally it should be a URL.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationPath"
+			             minOccurs="0" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						Path where service updates can be found.
+						Normally it should be a URL.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AboutPath"
+			             type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Path where more information about the
+						provider can be found.
+						Normally it should be a URL.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Type" type="ProviderType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Type of provider.
+						SOAP is the expected value.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Revision"
+			             type="xsd:unsignedInt" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Provider revision.  Office will save this
+						value and then compare it against the
+						ResponsePacket @providerRevision attribute
+						in future query responses.  If
+						@providerRevision is ever different than
+						the stored value, Office will prompt the
+						user to update the provider's information.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Services"
+			             type="ServiceCollectionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Collection of services
+						provided by the provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="action"
+		               type="t:String255" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Optional attribute added for extensibility.
+					It is not currently used.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: LicenseType                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="LicenseType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the text of a license to be presented
+				to the user during registration.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="LicenseText" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						Text of a license to be presented to the
+						user during registration.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="acceptRequired"
+		               type="xsd:boolean" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					If set to 'true', require that the user accept
+					the license before continuing.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ProviderType                                -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="ProviderType">
+		<xsd:annotation>
+			<xsd:documentation>
+				There are two types of providers: internal ones that
+				ship with Office and external ones that are accessed
+				via SOAP.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SOAP">
+				<xsd:annotation>
+					<xsd:documentation>
+						SOAP Service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Internal">
+				<xsd:annotation>
+					<xsd:documentation>
+						Reserved for internal, built-in services.
+						It should not be used.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ServiceCollectionType                       -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ServiceCollectionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Contains the registration information for each
+				service offered by a provider.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Service"
+			             type="ServiceInfoType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						Information for an individual service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ServiceInfoType                             -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ServiceInfoType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the information for an individual service.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Id" type="t:GUIDType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unique Provider ID.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="t:String255">
+				<xsd:annotation>
+					<xsd:documentation>
+						Service Name.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Data"
+			             type="t:String255" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Service data which will be stored and sent
+						up with every query.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Description"
+			             type="t:String2048" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Service description that will display in the
+						service's property page.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AboutPath"
+			             type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Path to more information about the service.
+						Normally it should be a URL.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Copyright"
+			             type="t:String2048" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Copyright that will display in the
+						service's property page.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TermsOfUsePath"
+			             type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Path to a full terms of use page.
+						Normally it should be a URL.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Display"
+			             type="DisplayType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Display state of the service.  It defines
+						how the service shows in the user interface.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Category" type="t:CategoryType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Defines the category under which the service
+						shows in the user interface.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OptionsPath"
+			             type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Path to an options page for the service.
+						Normally it should be a URL.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Parental" type="ParentalType"
+			             minOccurs="0" default="Unsupported">
+				<xsd:annotation>
+					<xsd:documentation>
+						Indicates whether the service supports
+						filtering of potentially offensive content.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.
+						Can be used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: DisplayType                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="DisplayType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the visibility of the service in the user
+				interface.  Hidden services are typically translation
+				services that don't explicitly appear in the user
+				interface.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="On">
+				<xsd:annotation>
+					<xsd:documentation>
+						The service should be on by default.
+						This is the recommended value.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Off">
+				<xsd:annotation>
+					<xsd:documentation>
+						The service should be off by default.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Hidden">
+				<xsd:annotation>
+					<xsd:documentation>
+						The service should be hidden by default, so
+						the client will not display it explicitly in
+						the user interface.  Generally used for
+						Translation services only.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="">
+				<xsd:annotation>
+					<xsd:documentation>
+						The display state is unspecified.
+						The system will choose.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ParentalType                                -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:simpleType name="ParentalType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Indicates whether a service supports filtering of
+				potentially offensive content.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Supported">
+				<xsd:annotation>
+					<xsd:documentation>
+						Parental control is supported by the service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Unsupported">
+				<xsd:annotation>
+					<xsd:documentation>
+						Parental control is not
+						supported by the service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

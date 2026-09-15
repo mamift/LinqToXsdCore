@@ -158,7 +158,7 @@ namespace Xml.Schema.Linq.CodeGen
                     }
                     return false;
                 case XmlSchemaDatatypeVariety.List:
-                    return type.GetListItemType().IsEnum();
+                    return false;
                 case XmlSchemaDatatypeVariety.Union:
                     return false;
 
@@ -180,6 +180,11 @@ namespace Xml.Schema.Linq.CodeGen
                     or XmlTypeCode.Idref
                     or XmlTypeCode.Entity;
             }
+        }
+
+        public static bool IsListOfEnums(this XmlSchemaSimpleType type)
+        {
+            return type?.Datatype?.Variety == XmlSchemaDatatypeVariety.List && type.GetListItemType().IsEnum();
         }
 
         public static IEnumerable<EnumFacet> GetEnumFacets(this XmlSchemaType type)

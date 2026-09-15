@@ -652,11 +652,18 @@ namespace Xml.Schema.Linq.CodeGen
                             bool fromBaseType = false;
                             if (derivationMethod == XmlSchemaDerivationMethod.Extension && typeInfo.IsDerived)
                             {
-                                if (baseParticle.ContainsElement(elem))
+                                // A base type that is itself derived by restriction contributes no generated
+                                // members: its content model is deliberately skipped (see BuildProperties above).
+                                // Elements that appear in such a base's particle therefore do not exist in the
+                                // base CLR type, and must be generated as this type's own members. Otherwise
+                                // the functional constructors emitted for this type would forward to base
+                                // constructors that were never generated.
+                                bool baseTypeGeneratesContent = !baseType.IsDerivedByRestriction();
+                                if (baseTypeGeneratesContent && baseParticle.ContainsElement(elem))
                                 {
                                     fromBaseType = true;
                                 }
-                                else if (!typeInfo.InlineBaseType && baseType.ContainsName(elem.QualifiedName))
+                                else if (baseTypeGeneratesContent && !typeInfo.InlineBaseType && baseType.ContainsName(elem.QualifiedName))
                                 {
                                     typeInfo.InlineBaseType = true;
                                 }

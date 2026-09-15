@@ -1,4 +1,4 @@
-{
+﻿{
   "solution": {
     "path": "LinqToXsdCore.sln",
     "projects": [
@@ -6,6 +6,7 @@
       "GeneratedSchemaLibraries\\AbstractTypeTest\\AbstractTypeTest.csproj",
       "GeneratedSchemaLibraries\\AkomaNtoso30-CSD13-D2f\\AkomaNtoso30-CSD13-D2f.csproj",
       "GeneratedSchemaLibraries\\AkomaNtoso\\AkomaNtoso.csproj",
+      "GeneratedSchemaLibraries\\ALTO\\ALTO.csproj",
       "GeneratedSchemaLibraries\\AspNetSiteMaps\\AspNetSiteMaps.csproj",
       "GeneratedSchemaLibraries\\Atom\\Atom.csproj",
       "GeneratedSchemaLibraries\\BasePropsTest\\BasePropsTest.csproj",
@@ -16,6 +17,7 @@
       "GeneratedSchemaLibraries\\EnumsTest\\EnumsTest.csproj",
       "GeneratedSchemaLibraries\\EnzymeML\\EnzymeML.csproj",
       "GeneratedSchemaLibraries\\GelML\\GelML.csproj",
+      "GeneratedSchemaLibraries\\GraffitiMarkupLanguage\\GraffitiMarkupLanguage.csproj",
       "GeneratedSchemaLibraries\\GS1\\GS1.csproj",
       "GeneratedSchemaLibraries\\HL-7\\HL-7.csproj",
       "GeneratedSchemaLibraries\\HR-XML\\HR-XML.csproj",
@@ -47,6 +49,7 @@
       "GeneratedSchemaLibraries\\Rss\\Rss.csproj",
       "GeneratedSchemaLibraries\\SBML\\SBML.csproj",
       "GeneratedSchemaLibraries\\SharePoint2010\\SharePoint2010.csproj",
+      "GeneratedSchemaLibraries\\SOAP-WSDL\\SOAP-WSDL.csproj",
       "GeneratedSchemaLibraries\\SWRL\\SWRL.csproj",
       "GeneratedSchemaLibraries\\ThermoML\\ThermoML.csproj",
       "GeneratedSchemaLibraries\\Toy schemas\\Toy schemas.csproj",

@@ -239,7 +239,8 @@ public partial class ClrTypeReference
 
         this.clrName = clrTypeName;
 
-        if (IsEnum && !string.IsNullOrEmpty(clrTypeName))
+        bool isEnumOrListOfAnonymousEnum = IsEnum || (IsSchemaList && (schemaObject as XmlSchemaSimpleType)?.GetListItemType().IsEnum() == true && (schemaObject as XmlSchemaSimpleType)?.GetListItemType().QualifiedName.IsEmpty == true);
+        if (isEnumOrListOfAnonymousEnum && !string.IsNullOrEmpty(clrTypeName))
         {
             clrTypeName += Constants.EnumValidator;
         }
@@ -288,15 +289,35 @@ public partial class ClrTypeReference
             var st = schemaObject as XmlSchemaSimpleType;
             Debug.Assert(st != null);
 
-            var schemaType = IsSchemaList ? st.GetListItemType().Datatype : st.Datatype;
-
-            clrTypeName = schemaType.TypeCode switch
+            if (IsSchemaList && st.GetListItemType().IsEnum())
             {
-                XmlTypeCode.Date when settings.UseDateOnly => "System.DateOnly",
-                XmlTypeCode.Time when settings.UseTimeOnly => "System.TimeOnly",
-                XmlTypeCode.DateTime when settings.UseDateTimeOffset => "System.DateTimeOffset",
-                _ => schemaType.ValueType.ToString(),
-            };
+                var listItemType = st.GetListItemType();
+                if (listItemType.QualifiedName.IsEmpty)
+                {
+                    clrTypeName = nameMappings.TryGetValue(schemaObject, out string identifier) ? identifier : typeName;
+                }
+                else
+                {
+                    clrTypeName = nameMappings.TryGetValue(listItemType, out string identifier) ? identifier : listItemType.QualifiedName.Name;
+                }
+
+                if (typeNs != string.Empty && (typeNs != parentTypeClrNs || nameMappings.Values.Where(v => v == clrTypeName).Skip(1).Any()))
+                {
+                    clrTypeName = typeNs + "." + clrTypeName;
+                }
+            }
+            else
+            {
+                var schemaType = IsSchemaList ? st.GetListItemType().Datatype : st.Datatype;
+
+                clrTypeName = schemaType.TypeCode switch
+                {
+                    XmlTypeCode.Date when settings.UseDateOnly => "System.DateOnly",
+                    XmlTypeCode.Time when settings.UseTimeOnly => "System.TimeOnly",
+                    XmlTypeCode.DateTime when settings.UseDateTimeOffset => "System.DateTimeOffset",
+                    _ => schemaType.ValueType.ToString(),
+                };
+            }
         }
 
         return clrTypeName;

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<!-- Schema: Query.Office.Keywords.xsd                          -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Microsoft.Search.Query.Office.Keywords"
+            xmlns="urn:Microsoft.Search.Query.Office.Keywords"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the furnishing
+			of this document does not give you any license to these
+			patents, trademarks, copyrights, or other intellectual
+			property. (c) 2003 Microsoft Corporation. All rights
+			reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines a list of keywords representing a query.  The
+			root element in this schema is designed to be used inside
+			the Microsoft.Search.Query.xsd schema.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: Keywords                            -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="Keywords">
+		<xsd:annotation>
+			<xsd:documentation>
+				List of keywords representing a query.  It represents
+				the word-breaking and stemming done to the original
+				query string.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="QueryText" type="t:String255">
+					<xsd:annotation>
+						<xsd:documentation>
+							The original query string, whose
+							breakdown into keywords follows.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element name="Keyword" type="KeywordType">
+						<xsd:annotation>
+							<xsd:documentation>
+								Individual word in the query,
+								together with word variants.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="StartAltPhrase">
+						<xsd:annotation>
+							<xsd:documentation>
+								Indicates the beginning of a phrase.
+								All keywords between the
+								StartAltPhrase and EndAltPhrase
+								elements or between two
+								StartAltPhrase elements are
+								considered part of a phrase.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="EndAltPhrase">
+						<xsd:annotation>
+							<xsd:documentation>
+								Indicates the end of a phrase.  All
+								keywords between the StartAltPhrase
+								and EndAltPhrase elements are
+								considered part of a phrase.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="EndOfSentence">
+						<xsd:annotation>
+							<xsd:documentation>
+								Indicates the end of a sentence
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+				<xsd:any namespace="##other" minOccurs="0"
+				         maxOccurs="unbounded" processContents="skip">
+					<xsd:annotation>
+						<xsd:documentation>
+							Any element in another namespace.  Can
+							be used for extensibility in the future.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:any>
+			</xsd:sequence>
+			<xsd:attribute name="revision" type="xsd:unsignedInt"
+			               use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unsigned integer indicating the revision of
+						the schema used in the request.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="build" type="t:String255"
+			               use="optional">
+				<xsd:annotation>
+					<xsd:documentation>
+						The build of the component
+						used to generate the request.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: KeywordType                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="KeywordType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Describes an individual keyword.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="Word" type="t:String255">
+					<xsd:annotation>
+						<xsd:documentation>
+							The actual word.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="AltWord" type="t:String255">
+					<xsd:annotation>
+						<xsd:documentation>
+							An alternative word to the
+							following keyword.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="Stem" type="t:String255"
+			             minOccurs="0" maxOccurs="25">
+				<xsd:annotation>
+					<xsd:documentation>
+						Variant of the word that can be used to
+						make the query more flexible.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

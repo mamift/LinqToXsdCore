@@ -92,6 +92,20 @@ namespace Xml.Schema.Linq.CodeGen
                                 typeWithDuplicateEnum.Members.Remove(duplicateEnum);
                             }
                         }
+                        else if (stInfo is ListSimpleTypeInfo listTypeInfo && listTypeInfo.ItemType is EnumSimpleTypeInfo listItemEnumTypeInfo && (listTypeInfo.InnerType as XmlSchemaSimpleType)?.GetListItemType().QualifiedName.IsEmpty == true)
+                        {
+                            listItemEnumTypeInfo.clrtypeName = stInfo.clrtypeName;
+                            listItemEnumTypeInfo.clrtypeNs = stInfo.clrtypeNs;
+                            var enumType = TypeBuilder.CreateEnumType(listItemEnumTypeInfo, settings, stInfo);
+                            codeNamespace.AddTypeWithParentNamespace(enumType);
+                            var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
+                            if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
+                                var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
+                                var duplicateEnum = typeWithDuplicateEnum.Members.OfType<CodeTypeDeclaration>()
+                                    .First(c => c.IsEqualEnumDeclaration(enumType));
+                                typeWithDuplicateEnum.Members.Remove(duplicateEnum);
+                            }
+                        }
 
                         codeNamespace.AddTypeWithParentNamespace(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     }
@@ -220,19 +234,20 @@ namespace Xml.Schema.Linq.CodeGen
 
             var innerType = typeRef.SchemaObject as XmlSchemaSimpleType;
             Debug.Assert(innerType != null);
+            var enumSimpleType = innerType.Datatype.Variety == XmlSchemaDatatypeVariety.List ? innerType.GetListItemType() : innerType;
             var visibilitySetting = this.settings.NamespaceTypesVisibilityMap.ValueForKey(typeRef.Namespace);
             var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) {
                 IsEnum = true,
                 TypeAttributes = visibilitySetting.ToTypeAttribute()
             };
-            foreach (var facet in innerType.GetEnumFacets()) {
+            foreach (var facet in enumSimpleType.GetEnumFacets()) {
                 enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet.Member));
             }
 
             enumTypeDecl.UserData[nameof(ClrTypeReference)] = typeRef;
 
             //Create enum validator type
-            var enumTypeInfo = new EnumSimpleTypeInfo(innerType) { clrtypeName = typeRef.Name, clrtypeNs = string.Empty };
+            var enumTypeInfo = new EnumSimpleTypeInfo(enumSimpleType) { clrtypeName = typeRef.Name, clrtypeNs = string.Empty };
             var enumValidatorDecl = TypeBuilder.CreateSimpleType(enumTypeInfo, nameMappings, settings);
 
             parentDecl.Members.Add(enumTypeDecl);

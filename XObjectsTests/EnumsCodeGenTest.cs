@@ -164,5 +164,74 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual("rm",    element5.Untyped.FirstAttribute.NextAttribute.NextAttribute.Value);
             Assert.AreEqual("it-rm", element5.Untyped.FirstAttribute.NextAttribute.NextAttribute.NextAttribute.Value);
         }
+
+        [Test]
+        public void T7_ListOfEnumsSimpleType_GeneratesCorrectValidatorAndProperties()
+        {
+            const string xsd = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<xs:schema xmlns:xs=""http://www.w3.org/2001/XMLSchema"" targetNamespace=""http://example.com/test"" xmlns=""http://example.com/test"" elementFormDefault=""qualified"">
+    <xs:simpleType name=""fontStylesType"">
+        <xs:restriction>
+            <xs:simpleType>
+                <xs:list>
+                    <xs:simpleType>
+                        <xs:restriction base=""xs:string"">
+                            <xs:enumeration value=""bold""/>
+                            <xs:enumeration value=""italics""/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:list>
+            </xs:simpleType>
+            <xs:minLength value=""1""/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name=""Root"">
+        <xs:complexType>
+            <xs:attribute name=""STYLE"" type=""fontStylesType""/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>";
+
+            var mfs = new MockFileSystem(new Dictionary<string, MockFileData> {
+                { @"C:\schema.xsd", new MockFileData(xsd) }
+            });
+
+            var tree = Utilities.GenerateSyntaxTree(@"C:\schema.xsd", mfs);
+            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(tree);
+            Assert.AreEqual(0, diags.Length);
+
+            var nodes = tree.GetNamespaceRoot().DescendantNodes();
+            var enums = nodes.OfType<EnumDeclarationSyntax>().ToList();
+            var fontStylesEnum = enums.FirstOrDefault(e => e.Identifier.Text == "fontStylesType");
+            Assert.IsNotNull(fontStylesEnum);
+            Assert.IsTrue(fontStylesEnum.Members.Any(m => m.Identifier.Text == "bold"));
+            Assert.IsTrue(fontStylesEnum.Members.Any(m => m.Identifier.Text == "italics"));
+
+            var classes = nodes.OfType<ClassDeclarationSyntax>().ToList();
+            var validatorClass = classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesTypeValidator");
+            Assert.IsNotNull(validatorClass);
+
+            var rootClass = classes.FirstOrDefault(c => c.Identifier.Text == "Root");
+            Assert.IsNotNull(rootClass);
+            var styleProp = rootClass.Members.OfType<PropertyDeclarationSyntax>().FirstOrDefault(p => p.Identifier.Text == "STYLE");
+            Assert.IsNotNull(styleProp);
+            Assert.AreEqual("IList<fontStylesType>", styleProp.Type.ToString());
+        }
+
+        [Test]
+        public void T8_ListOfEnumsRuntime_GetSetValues()
+        {
+            var textStyle = new LibraryOfCongress.ALTO.TextStyleType();
+            textStyle.FONTSTYLE = new List<LibraryOfCongress.ALTO.fontStylesType>
+            {
+                LibraryOfCongress.ALTO.fontStylesType.bold,
+                LibraryOfCongress.ALTO.fontStylesType.italics
+            };
+
+            Assert.AreEqual(2, textStyle.FONTSTYLE.Count);
+            Assert.AreEqual(LibraryOfCongress.ALTO.fontStylesType.bold, textStyle.FONTSTYLE[0]);
+            Assert.AreEqual(LibraryOfCongress.ALTO.fontStylesType.italics, textStyle.FONTSTYLE[1]);
+            Assert.AreEqual("bold italics", textStyle.Untyped.Attribute("FONTSTYLE")?.Value);
+        }
     }
 }

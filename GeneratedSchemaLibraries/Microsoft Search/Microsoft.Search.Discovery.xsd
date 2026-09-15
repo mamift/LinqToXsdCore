@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<!-- Schema: Discovery.xsd                                      -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace=
+				"http://schemas.microsoft.com/Office/Research/2002/8/Discovery"
+            xmlns=
+				"http://schemas.microsoft.com/Office/Research/2002/8/Discovery"
+            elementFormDefault="qualified"
+            xmlns:t="urn:Microsoft.Search.Types">
+	<xsd:annotation>
+		<xsd:documentation>
+			This document is provided for informational purposes
+			only. MICROSOFT MAKES NO WARRANTIES, EXPRESS OR IMPLIED,
+			AS TO THE INFORMATION IN THIS DOCUMENT. Complying with
+			all applicable copyright laws is the responsibility of
+			the user.  Microsoft may have patents, patent
+			applications, trademarks, copyrights, or other
+			intellectual property rights covering subject matter in
+			this document. Except as expressly provided in any
+			written license agreement from Microsoft, the
+			furnishing of this document does not give you any
+			license to these patents, trademarks, copyrights, or
+			other intellectual property. (c) 2003 Microsoft
+			Corporation. All rights reserved.
+		</xsd:documentation>
+		<xsd:documentation>
+			Defines the response that a discovery service uses to
+			return a list of services to be advertised or
+			automatically installed.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import schemaLocation="Microsoft.Search.Types.xsd"
+	            namespace="urn:Microsoft.Search.Types" />
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Root Element: Discovery                           -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:element name="Discovery">
+		<xsd:annotation>
+			<xsd:documentation>
+				Describes the basic properties of a service to be
+				advertised or automatically installed.  It provides
+				enough information for the user to make a choice on
+				whether to install the service or not.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Research"
+				             type="ResearchType" minOccurs="0"
+				             maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>
+							Describes the basic properties of a
+							research service provider.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:any namespace="##other" minOccurs="0"
+				         maxOccurs="unbounded" processContents="skip">
+					<xsd:annotation>
+						<xsd:documentation>
+							Any element in another namespace.  Can be
+							used for extensibility in the future.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:any>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Type: ResearchType                                -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsd:complexType name="ResearchType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Describes the basic properties of a
+				research service provider.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Id" type="t:GUIDType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Unique GUID of the research service provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="t:String255">
+				<xsd:annotation>
+					<xsd:documentation>
+						Name of the research service provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationPath" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						Registration URL of the
+						research service provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Description" type="t:String2048"
+			             minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Description of the research service provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AboutPath" type="xsd:string"
+			             minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Link for more information on the research
+						service provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any namespace="##other" minOccurs="0"
+			         maxOccurs="unbounded" processContents="skip">
+				<xsd:annotation>
+					<xsd:documentation>
+						Any element in another namespace.  Can be
+						used for extensibility in the future.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="autoInstall" type="xsd:boolean"
+		               use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>
+					Boolean that indicates whether the research
+					service provider's services should be
+					automatically installed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

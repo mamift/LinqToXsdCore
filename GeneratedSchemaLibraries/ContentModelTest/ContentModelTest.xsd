@@ -85,4 +85,33 @@
       <xs:element name="Tic" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <!--
+    A complex type derived by restriction contributes no generated members: the
+    generator deliberately skips the restriction's content model. A type derived by
+    extension from such a restriction base must therefore generate the inherited
+    content members itself, otherwise its functional constructors would forward to
+    base constructors that were never emitted (see MetaLEX mcontainerType bug).
+    ChoiceBaseType restricts a wildcard content model, mirroring the MetaLEX
+    pattern where absMcontainerType restricts the any-type-based urType.
+  -->
+  <xs:complexType name="ChoiceBaseType" abstract="true">
+    <xs:sequence>
+      <xs:any processContents="lax" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RestrictedChoiceBaseType">
+    <xs:complexContent>
+      <xs:restriction base="ChoiceBaseType">
+        <xs:choice>
+          <xs:element name="Tic" type="xs:string" maxOccurs="unbounded" />
+          <xs:element name="Tac" type="xs:int" maxOccurs="unbounded" />
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ExtensionOfRestrictedChoiceType">
+    <xs:complexContent>
+      <xs:extension base="RestrictedChoiceBaseType" />
+    </xs:complexContent>
+  </xs:complexType>
 </xs:schema>
