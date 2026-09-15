@@ -166,14 +166,21 @@ public class GraphTests
                         </Graph>
                         """;
 
-        var graph = Graph.Parse(xmlString);
-        var schemaA = graph.Schema.First(s => s.Name == "a.xsd");
-        var deps = schemaA.GetDependenciesRecursively();
+        Graph? graph = Graph.Parse(xmlString);
+        Linq.CodeGen.Schema? schemaA = graph.Schema.First(s => s.Name == "a.xsd");
+        Linq.CodeGen.Schema? schemaB = graph.Schema.First(s => s.Name == "b.xsd");
+        List<Linq.CodeGen.Schema> depsA = schemaA.GetDependenciesRecursively();
+        List<Linq.CodeGen.Schema> depsB = schemaB.GetDependenciesRecursively();
 
-        Assert.IsNotNull(deps);
-        Assert.AreEqual(2, deps.Count);
-        Assert.AreEqual("b.xsd", deps[0].Name);
-        Assert.AreEqual("a.xsd", deps[1].Name);
+        Assert.IsNotNull(depsA);
+        Assert.AreEqual(2, depsA.Count);
+        Assert.AreEqual("b.xsd", depsA[0].Name);
+        Assert.AreEqual("a.xsd", depsA[1].Name);
+        
+        Assert.IsNotNull(depsB);
+        Assert.AreEqual(2, depsB.Count);
+        Assert.AreEqual("a.xsd", depsB[0].Name);
+        Assert.AreEqual("b.xsd", depsB[1].Name);
     }
 
     [Test]
