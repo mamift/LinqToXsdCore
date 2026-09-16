@@ -769,6 +769,33 @@ public class GraphTests
         Assert.IsEmpty(rootSchemas);
     }
 
+    [Test]
+    public void TestBuildFromMzMlDir()
+    {
+        DirectoryInfo dir = GetGeneratedSchemaLibraryFolder("mzML");
+        var graph = Graph.BuildFromFolder(dir);
+
+        Assert.NotNull(graph);
+        Assert.IsNotEmpty(graph.Schema);
+
+        Assert.True(graph.Schema.Count == 3);
+        Assert.True(graph.GetEntryPointSchemaNames().Count == 2);
+
+        List<string> filesOrFolders = dir.GetFiles("*.xsd").Select(f => f.FullName).ToList();
+        List<string> schemas = FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(filesOrFolders);
+
+        Assert.NotNull(filesOrFolders);
+        Assert.IsNotEmpty(filesOrFolders);
+
+        string[] includeReport = FileSystemUtilities.GenerateImportIncludeReport(dir.FullName);
+        Assert.NotNull(includeReport);
+        Assert.IsNotEmpty(includeReport);
+
+        Assert.True(includeReport.Contains("CvMapping.xsd <- (none)"));
+        Assert.True(includeReport.Contains("mzML1.1.0.xsd <- (none)"));
+        Assert.True(includeReport.Contains("mzML1.1.1_idx.xsd <- inc: mzML1.1.0.xsd"));
+    }
+
     public static DirectoryInfo GetGeneratedSchemaLibraryFolder(string folder)
     {
         if (folder == null) throw new ArgumentNullException(nameof(folder));
