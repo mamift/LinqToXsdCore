@@ -20,6 +20,9 @@ namespace LinqToXsd
             Console.WriteLine(s);
         });
 
+        /// <summary>
+        /// This is currently unused, but it is intended to be used for logging warnings to the console without propagating an exception.
+        /// </summary>
         public static IWarnableObserver<string> ProgramObserver { get; } = new LinqToXsdProgramObserver();
 
         public static bool IsConsolePresent
@@ -164,9 +167,15 @@ namespace LinqToXsd
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
-            Dictionary<string, TextWriter> textWriters = generateOptions.AutoConfig
-                ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, ProgramObserver)
-                : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings, ProgramObserver);
+            Dictionary<string, TextWriter> textWriters;
+            if (generateOptions.AutoConfig)
+            {
+                textWriters = XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, ProgramObserver);
+            }
+            else
+            {
+                textWriters = XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings, ProgramObserver);
+            }
 
             if (generateOptions.Output.IsEmpty()) {
                 PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
