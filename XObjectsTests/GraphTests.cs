@@ -786,6 +786,9 @@ public class GraphTests
 
         Assert.NotNull(filesOrFolders);
         Assert.IsNotEmpty(filesOrFolders);
+        Assert.True(filesOrFolders.Count == 3);
+
+        Assert.True(schemas.Count == 2);
 
         string[] includeReport = FileSystemUtilities.GenerateImportIncludeReport(dir.FullName);
         Assert.NotNull(includeReport);
