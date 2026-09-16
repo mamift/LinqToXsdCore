@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Linq;
 using CommandLine;
 using Xml.Schema.Linq;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
@@ -39,6 +40,7 @@ namespace LinqToXsd
         protected Dictionary<string, XmlReader> schemaReaders = new Dictionary<string, XmlReader>();
 
         protected List<string> resolvedSchemaFiles = new List<string>();
+        protected List<Schema> entryPointSchemas = new();
 
         /// <summary>
         /// CLI argument: The file or folder paths given at the CL.
@@ -71,6 +73,19 @@ namespace LinqToXsd
                 resolvedSchemaFiles = FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(FilesOrFolders);
 
                 return resolvedSchemaFiles;
+            }
+        }
+
+        public virtual List<Schema> EntryPointSchemas
+        {
+            get
+            {
+                if (entryPointSchemas.Any()) return entryPointSchemas;
+
+                var graph = Graph.BuildFromFiles(filesOrFolders);
+                entryPointSchemas = [..graph.Schema];
+
+                return entryPointSchemas;
             }
         }
 
