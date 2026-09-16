@@ -238,13 +238,13 @@ namespace Xml.Schema.Linq
                 .Where(filePairs => filePairs.xsdFile.Exists && filePairs.xsdFile.GetXmlSchemaVersion() == XmlSchemaVersion.Version1_1)
                 .ToList();
 
-            if (excludeV11Xsds.Count != dictOfSchemasAndTheirConfigs.Count) {
+            if (excludeV11Xsds.Count > 0) {
                 observer?.OnWarn("Found some XSD v1.1 schemas: this tool does not support XSD v1.1. and will ignore those.");
             }
 
             observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
 
-            return excludeV11Xsds
+            return dictOfSchemasAndTheirConfigs.Except(excludeV11Xsds)
                 .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName, observer))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
