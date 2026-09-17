@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Xml.Schema.Linq.Extensions;
 
@@ -8,6 +9,16 @@ namespace Xml.Schema.Linq.CodeGen;
 
 public partial class Schema
 {
+    public string ToFullFilePath()
+    {
+        var parent = (Graph)this.Untyped.Parent;
+
+        if (parent == null)
+            throw new InvalidOperationException("This Schema is not part of a Graph.");
+
+        return Path.Combine(parent.Folder, this.RelativePath);
+    }
+
     /// <summary>
     /// If this Schema links or imports others (has dependencies), this will return a flat list of those linked Schema objects.
     /// </summary>

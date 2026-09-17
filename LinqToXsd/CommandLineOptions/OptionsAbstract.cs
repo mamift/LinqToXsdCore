@@ -35,11 +35,11 @@ namespace LinqToXsd
         /// <returns></returns>
         public virtual bool FilesWereGiven => FileSystemUtilities.HasFilePaths(FilesOrFolders);
 
-        protected string[] filesOrFolders = new string[0];
+        protected string[] filesOrFolders = Array.Empty<string>();
 
-        protected Dictionary<string, XmlReader> schemaReaders = new Dictionary<string, XmlReader>();
+        protected Dictionary<string, XmlReader> schemaReaders = new();
 
-        protected List<string> resolvedSchemaFiles = new List<string>();
+        protected List<string> resolvedSchemaFiles = new();
         protected List<Schema> entryPointSchemas = new();
 
         /// <summary>
