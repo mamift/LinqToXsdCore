@@ -40,16 +40,17 @@ namespace LinqToXsd
         /// instance of that configuration file.
         /// <para>If this resolves to a folder, then all those configuration files are merged into a single instance.</para>
         /// </summary>
-        public LinqToXsdSettings GetConfigInstance(IProgress<string> progress = null)
+        public LinqToXsdSettings? GetConfigInstance(IProgress<string> progress = null)
         {
             if (linqToXsdSettings != null) return linqToXsdSettings; // don't run twice
             if (Config.IsEmpty()) return null;
             if (!File.Exists(Config) && !Directory.Exists(Config)) return null;
 
             var fileInfo = new FileInfo(Config);
-            linqToXsdSettings = fileInfo.Attributes.HasFlag(FileAttributes.Directory)
-                ? ConfigurationProvider.Load(new DirectoryInfo(fileInfo.FullName), progress) // load directory
-                : XObjectsCoreGenerator.LoadLinqToXsdSettings(Config); // load file
+            if (fileInfo.Attributes.HasFlag(FileAttributes.Directory))
+                linqToXsdSettings = ConfigurationProvider.Load(new DirectoryInfo(fileInfo.FullName), progress);
+            else
+                linqToXsdSettings = XObjectsCoreGenerator.LoadLinqToXsdSettings(Config);
 
             return linqToXsdSettings;
         }

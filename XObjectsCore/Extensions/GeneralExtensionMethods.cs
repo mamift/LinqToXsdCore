@@ -11,6 +11,10 @@ namespace Xml.Schema.Linq.Extensions
 {
     public static class GeneralExtensionMethods
     {
+        private static string XmlSchemaDefaultNamespace = "http://www.w3.org/2001/XMLSchema";
+        public static string XmlSchemaVersioningNamespace = "http://www.w3.org/2007/XMLSchema-versioning";
+        public static string XsdV1_1 = "1.1";
+
         /// <summary>
         /// Assuming the file is an XML schema, will return the XML schema version (<see cref="XmlSchemaVersion"/>).
         /// </summary>
@@ -27,14 +31,15 @@ namespace Xml.Schema.Linq.Extensions
             while (reader.Read()) {
                 switch (reader.NodeType) {
                     case XmlNodeType.Element:
-                        if (reader.IsStartElement("schema", "http://www.w3.org/2001/XMLSchema")) {
-                            var version = reader.GetAttribute("version");
+                        if (reader.IsStartElement("schema", XmlSchemaDefaultNamespace)) {
+                            var version = reader.GetAttribute("version", XmlSchemaVersioningNamespace);
                             if (version == null) {
                                 goto outOfLoop;
                             }
 
-                            if (version.EndsWith(".1") && version.StartsWith("1")) return XmlSchemaVersion.Version1_1;
-                            if (version == "1" || (version.EndsWith(".0") && version.StartsWith("1"))) return XmlSchemaVersion.Version1_0;
+                            if (version == XsdV1_1) return XmlSchemaVersion.Version1_1;
+                            if (version == "1" || (version == "1.0")) return XmlSchemaVersion.Version1_0;
+                            if (version == string.Empty || version.IsWhiteSpace()) return XmlSchemaVersion.Unspecified;
                             pastFirstElement = true;
                         }
 
