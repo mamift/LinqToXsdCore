@@ -799,8 +799,8 @@ public class GraphTests
         Assert.True(includeReport.Contains("mzML1.1.1_idx.xsd <- inc: mzML1.1.0.xsd"));
     }
 
-    [Test, TestCaseSource(nameof(GetGeneratedSchemaLibraryFolders)), Explicit]
-    public void TestGetFullPath(DirectoryInfo dir)
+    [Test, TestCaseSource(nameof(GetGeneratedSchemaLibraryFolders))]
+    public void TestGetFullPathFromSchemaInGraph(DirectoryInfo dir)
     {
         var graph = Graph.BuildFromFolder(dir);
         Assert.NotNull(graph);
@@ -812,14 +812,24 @@ public class GraphTests
         Assert.True(schemaFullNames.All(sf => File.Exists(sf)));
     }
 
-    public static IEnumerable<DirectoryInfo> GetGeneratedSchemaLibraryFolders()
+    public static IEnumerable<TestCaseData> GetGeneratedSchemaLibraryFolders()
     {
         var root = new DirectoryInfo(Environment.CurrentDirectory)
             .AscendToFolder("XObjectsTests")
             .AscendByLevel(1)
             .DescendToFolder("GeneratedSchemaLibraries");
 
-        return root.GetDirectories();
+        foreach (var dir in root.GetDirectories())
+        {
+            if (dir.GetFiles("*.xsd", SearchOption.TopDirectoryOnly).Length == 0)
+            {
+                yield return new TestCaseData(dir).Ignore("No top level XSDs here; to refactor test later");
+            }
+            else
+            {
+                yield return new TestCaseData(dir);
+            }
+        }
     }
 
     public static DirectoryInfo GetGeneratedSchemaLibraryFolder(string folder)
