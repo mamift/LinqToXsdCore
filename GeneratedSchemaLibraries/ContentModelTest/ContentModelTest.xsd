@@ -53,6 +53,12 @@
       <xs:element name="Toc" type="xs:string" />
     </xs:choice>
   </xs:complexType>
+  <xs:complexType name="ChoiceOfRepeatableType">
+    <xs:choice>
+      <xs:element name="Foo" type="xs:string" maxOccurs="unbounded" />
+      <xs:element name="Bar" type="xs:string" maxOccurs="unbounded" />
+    </xs:choice>
+  </xs:complexType>
   <xs:complexType name="DeepChoiceTreeType">
     <xs:choice>
       <xs:sequence>

@@ -746,6 +746,152 @@ namespace LinqToXsd.Schemas.Test.ContentModelTypes {
     
     /// <summary>
     /// <para>
+    /// Regular expression: (Foo+ | Bar+)
+    /// </para>
+    /// </summary>
+    public partial class ChoiceOfRepeatableType : XTypedElement, IXMetaData {
+        
+		public static explicit operator ChoiceOfRepeatableType(XElement xe) { return XTypedServices.ToXTypedElement<ChoiceOfRepeatableType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ChoiceOfRepeatableType>(this);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Foo+ | Bar+)
+        /// </para>
+        /// </summary>
+        public ChoiceOfRepeatableType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> FooField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (Foo+ | Bar+)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> Foo {
+            get {
+                if ((this.FooField == null)) {
+                    this.FooField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, FooXName);
+                }
+                return this.FooField;
+            }
+            set {
+                if ((value == null)) {
+                    this.FooField = null;
+                }
+                else {
+                    if ((this.FooField == null)) {
+                        this.FooField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, FooXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.FooField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> BarField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (Foo+ | Bar+)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> Bar {
+            get {
+                if ((this.BarField == null)) {
+                    this.BarField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, BarXName);
+                }
+                return this.BarField;
+            }
+            set {
+                if ((value == null)) {
+                    this.BarField = null;
+                }
+                else {
+                    if ((this.BarField == null)) {
+                        this.BarField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, BarXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.BarField, value);
+                    }
+                }
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChoiceOfRepeatableType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
+        
+        static ChoiceOfRepeatableType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(FooXName), new NamedContentModelEntity(BarXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FooXName, typeof(string));
+            localElementDictionary.Add(BarXName, typeof(string));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+    }
+    
+    /// <summary>
+    /// <para>
     /// Regular expression: ((((Foo, Bar)|Toc), Foz, Baz)|Tic)
     /// </para>
     /// </summary>
@@ -1496,6 +1642,7 @@ namespace LinqToXsd.Schemas.Test.ContentModelTypes {
             typeDictionary.Add(System.Xml.Linq.XName.Get("SimpleChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.SimpleChoiceType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("SequenceWithChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.SequenceWithChoiceType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceWithSequemceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.ChoiceWithSequemceType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceOfRepeatableType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.ChoiceOfRepeatableType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("DeepChoiceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.DeepChoiceTreeType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("DeepSequenceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.DeepSequenceTreeType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceBaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.ChoiceBaseType));
