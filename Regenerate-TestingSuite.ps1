@@ -1,11 +1,14 @@
 <#
 .SYNOPSIS
     Regenerates code for all GeneratedSchemaLibraries projects listed in
-    the LinqToXsd-TestingSuite.slnf solution filter.
+    the LinqToXsd-TestingSuite.slnf solution filter, plus every top-level
+    XSD folder under the LinqToXsd.Schemas project.
 .DESCRIPTION
     Parses the solution filter JSON, finds every project under the
     GeneratedSchemaLibraries folder, and invokes the LinqToXsd CLI tool
-    with 'gen -a .' in each project directory.
+    with 'gen -a .' in each project directory. Also invokes 'gen -a .' in
+    each top-level folder under LinqToXsd.Schemas that contains XSDs (the
+    CLI recurses into subfolders, so one run covers the whole tree below it).
 #>
 
 param(
@@ -171,23 +174,34 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 $slnf = Get-Content $slnfPath -Raw | ConvertFrom-Json
-$projects = $slnf.solution.projects |
-    Where-Object { $_.StartsWith('GeneratedSchemaLibraries\') }
+$projectDirs = $slnf.solution.projects |
+    Where-Object { $_.StartsWith('GeneratedSchemaLibraries\') } |
+    ForEach-Object { Split-Path $_ -Parent }
 
-Write-Host "Found $($projects.Count) projects in GeneratedSchemaLibraries." -ForegroundColor Cyan
+# Top-level folders under LinqToXsd.Schemas that contain XSDs. The CLI recurses
+# into subfolders, so one run per top-level folder covers the whole tree below it.
+$schemasProjectRoot = Join-Path $repoRoot 'LinqToXsd.Schemas'
+$schemaDirs = Get-ChildItem -LiteralPath $schemasProjectRoot -Directory |
+    Where-Object { $_.Name -notin 'bin', 'obj' } |
+    Where-Object { @(Get-ChildItem -LiteralPath $_.FullName -Filter '*.xsd' -File -Recurse).Count -gt 0 } |
+    ForEach-Object { $_.FullName }
+
+# Every directory to run 'gen -a .' in: one per GeneratedSchemaLibraries project
+# (from the solution filter) plus one per LinqToXsd.Schemas XSD folder.
+$targetDirs = @($projectDirs | ForEach-Object { Join-Path $repoRoot $_ }) + @($schemaDirs)
+
+Write-Host "Found $($projectDirs.Count) projects in GeneratedSchemaLibraries and $($schemaDirs.Count) XSD folders in LinqToXsd.Schemas." -ForegroundColor Cyan
 
 $failed = @()
 $succeeded = 0
 try {
-foreach ($proj in $projects) {
-    # Path looks like: GeneratedSchemaLibraries\ProjectName\ProjectName.csproj
-    $projDir = Split-Path $proj -Parent           # e.g. GeneratedSchemaLibraries\ProjectName
-    $absProjDir = Join-Path $repoRoot $projDir    # full absolute path
+foreach ($targetDir in $targetDirs) {
+    $dirLabel = [System.IO.Path]::GetRelativePath($repoRoot, $targetDir)
 
-        Write-Host "`n[$($succeeded + $failed.Count + 1)/$($projects.Count)] $projDir" -ForegroundColor Yellow
+        Write-Host "`n[$($succeeded + $failed.Count + 1)/$($targetDirs.Count)] $dirLabel" -ForegroundColor Yellow
         Write-Host "  Running: dotnet run -c $Configuration --project LinqToXsd -- gen -a ."
 
-        Push-Location $absProjDir
+        Push-Location $targetDir
         try {
             $output = & dotnet run -c $Configuration -v q --framework netframework472 --project $linqToXsdProject -- gen -a . 2>&1
             if ($LASTEXITCODE -eq 0) {
@@ -197,7 +211,7 @@ foreach ($proj in $projects) {
             else {
                 Write-Host "  FAILED (exit code: $LASTEXITCODE)" -ForegroundColor Red
                 $failed += [PSCustomObject]@{
-                    Project  = $projDir
+                    Project  = $dirLabel
                     ExitCode = $LASTEXITCODE
                     Output   = $output | Out-String
                 }
