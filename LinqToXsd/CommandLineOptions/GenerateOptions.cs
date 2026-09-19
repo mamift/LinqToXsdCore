@@ -65,7 +65,7 @@ namespace LinqToXsd
 
         [Option('a', nameof(AutoConfig), HelpText =
             "(bool) Specify this with a folder containing XSDs and accompanying configuration files. This argument associate a configuration file with an XSD when one follows the naming convention: 'schema.xsd' + 'schema.xsd.config' - this is the default convention used by the 'config -e' verb when you specify a folder. Use this parameter to associate an XSD with its own configuration settings to prevent those settings being overriden or merged as the -" +
-            nameof(Config) + " argument would do. Only accepts folder paths. Incompatible with -" + nameof(Config) + ". Will only generate code for XSDs that have an accompanying .config file. If no output is generated, run the 'config' verb on the folder first.")]
+            nameof(Config) + " argument would do. Only accepts folder paths. Incompatible with -" + nameof(Config) + ". Will only generate code for XSDs that have an accompanying .config file. If no output is generated, run the 'config' verb on the folder first. Any legacy output files (e.g. 'schema.xsd.cs') found next to the XSDs are deleted automatically before the new output ('schema.xsd-g.cs') is written.")]
         public bool AutoConfig
         {
             get => autoConfig;

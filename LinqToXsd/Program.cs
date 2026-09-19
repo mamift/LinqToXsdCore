@@ -166,7 +166,7 @@ namespace LinqToXsd
 
             if (generateOptions.AutoConfig)
             {
-                ProgressReporter.Report("NOTE: As of v3.4.24 the -a flag is now always automatically applied. If an .xsd.config is not found, default config values are applied.");
+                ProgressReporter.Report("NOTE: As of v3.4.24 the -a flag (which searches for a config file matching the filename of an XSD) is now always automatically applied. If an .xsd.config is not found, default config values are applied.");
             }
 
             Dictionary<string, TextWriter> textWriters;
