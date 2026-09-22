@@ -62,7 +62,9 @@ public class MockXmlUrlResolver : XmlResolver
             ? null : possibleMappingResult.Key;
 
         if (theFile == null) {
-            var fsResult = fsSearch.FirstOrDefault();
+            // When multiple embedded resources share the same file name across assemblies, the order of fs.AllFiles
+            // may vary depending on assembly load order and cause non-deterministic resolution. Make selection deterministic.
+            var fsResult = fsSearch.OrderBy(f => f, StringComparer.OrdinalIgnoreCase).FirstOrDefault();
             if (fsResult != null) {
                 theFile = new Uri(fsResult);
             }

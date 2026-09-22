@@ -25,9 +25,15 @@ public static class FileExtensions
         if (resolver == null) throw new ArgumentNullException(nameof(resolver));
         
         using var sr = new StreamReader(fileInfo.OpenRead());
-        XmlReaderSettings defaultXmlReaderSettings = Defaults.DefaultXmlReaderSettings;
-        defaultXmlReaderSettings.XmlResolver = resolver;
-        var reader = XmlReader.Create(sr, defaultXmlReaderSettings);
+        // Use a new XmlReaderSettings instance to avoid mutating the shared Defaults.DefaultXmlReaderSettings,
+        // which can cause cross-test interference when tests run in the same process.
+        var settings = new XmlReaderSettings()
+        {
+            DtdProcessing = Defaults.DefaultXmlReaderSettings.DtdProcessing,
+            CloseInput = Defaults.DefaultXmlReaderSettings.CloseInput,
+            XmlResolver = resolver
+        };
+        var reader = XmlReader.Create(sr, settings);
         var xsd = reader.ToXmlSchemaSet(resolver);
 
         return xsd;
