@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AllEntCf.xsd" />
+    <EmbeddedResource Include="AllEntCf.xsd-xml" />
     <EmbeddedResource Include="AllEntCf.xsd.config" />
     <EmbeddedResource Include="AssnEntCF.xsd" />
     <EmbeddedResource Include="mspdi_pj12.xsd" />
@@ -14,7 +14,7 @@
     <EmbeddedResource Include="TaskEntCF.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="AllEntCf.xsd" />
+    <None Remove="AllEntCf.xsd-xml" />
     <None Remove="AllEntCf.xsd.config" />
     <None Remove="AssnEntCF.xsd" />
     <None Remove="mspdi_pj12.xsd" />
