@@ -1,5 +1,16 @@
 # LinqToXsdCore Release Notes
 
+All releases are cumulative - for e.g. v3.4.24 includes all the changes/fixes described in all previous releases. Some releases are not made public, so upgrading via `dotnet tool update -g linqtoxsdcore`, you may notice version number jumps (and that certain version numbers are not visible on nuget.org) - this is intentional and expected.
+
+## Version 3.4.24
+
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.24
+* https://www.nuget.org/packages/XObjectsCore/3.4.24
+  * [#105](https://github.com/mamift/LinqToXsdCore/pull/105), also fixes [issue #42](https://github.com/mamift/LinqToXsdCore/issues/42).
+    * Fixes code generation and runtime bug with creation of `xs:choices` of repeatable elements (where `maxOccurs="unbounded"`).
+  * []
+
 ## Version 3.4.23
 
 Nuget packages:
@@ -8,15 +19,15 @@ Nuget packages:
   * [#102](https://github.com/mamift/LinqToXsdCore/pull/102)
     * Adds more sample XSDs for testing (GML, SOAP-WSDL, LoC-ALTO)
     * Fixes a code generation bug (evidence: `metalex.xsd` and `metalex_mcontainerTypeBug.xsd`) that prevented properties on a base class for an XSD complex type from being generated properly and also the constructor for the derived class for a derived complex type passing arguments to a base constructor that had the wrong signature.
-        * XObjectsCode/Src/XsdToTypesConverter.cs — in `TraverseParticle`, elements inherited through a restriction-derived base are no longer marked FromBaseType, since such a base contributes no generated members (its content model is deliberately skipped by BuildProperties). The derived type now generates the inherited content members itself, so its functional constructors initialize their own fields instead of forwarding to base(...) constructors that were never emitted.
+        * `XObjectsCode/Src/XsdToTypesConverter.cs` in `TraverseParticle`, elements inherited through a restriction-derived base are no longer marked FromBaseType, since such a base contributes no generated members (its content model is deliberately skipped by BuildProperties). The derived type now generates the inherited content members itself, so its functional constructors initialize their own fields instead of forwarding to base(...) constructors that were never emitted.
 
-Nuget packages:
-* https://www.nuget.org/packages/LinqToXsdCore/3.4.22
-* https://www.nuget.org/packages/XObjectsCore/3.4.22
-  * [#100](https://github.com/mamift/LinqToXsdCore/pull/100)
-    * The auto-generated topmost comment now emits the LinqToXsd version instead of the CLR version.
-    * Adds C# 8 keywords (file record required scope) to name mangling logic so generated source code can prefix them with @ when required
-    * Fixed a regression wiht v3.4.21 which resulted in the omission of private classes for element definitions with an inline-defined anonymous type (i.e. no named complex or simple type). Evidence: `OAGi_Chem_eStandards_5.3_dayOfMonthBug.xsd-g.cs`
+## Version 3.4.22
+NOTE: This was an internal release. 3.4.23 includes all the changes/fixes described here:
+
+Fixes:
+* The auto-generated topmost comment now emits the LinqToXsd version instead of the CLR version.
+* Adds C# 8 keywords (file record required scope) to name mangling logic so generated source code can prefix them with @ when required
+* Fixed a regression wiht v3.4.21 which resulted in the omission of private classes for element definitions with an inline-defined anonymous type (i.e. no named complex or simple type). Evidence: `OAGi_Chem_eStandards_5.3_dayOfMonthBug.xsd-g.cs`
     
 ## Version 3.4.21
 NOTE: If you are upgrading from 3.4.19, please note the version number skip is intentional. This release (3.4.21) was published publicly to nuget.org, while 3.4.20 was an internal only release. Please read over the release notes for 3.4.20 to see the full scope of changes if you are upgrading from 3.4.19.
