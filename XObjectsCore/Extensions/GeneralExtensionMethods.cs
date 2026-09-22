@@ -34,6 +34,11 @@ namespace Xml.Schema.Linq.Extensions
                         if (reader.IsStartElement("schema", XmlSchemaDefaultNamespace)) {
                             var version = reader.GetAttribute("version", XmlSchemaVersioningNamespace);
                             if (version == null) {
+                                // The W3C's own XSD 1.1 schema declares an un-namespaced version="1.1" attribute.
+                                version = reader.GetAttribute("version");
+                            }
+
+                            if (version == null) {
                                 goto outOfLoop;
                             }
 

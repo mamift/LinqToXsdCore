@@ -109,10 +109,21 @@ namespace Xml.Schema.Linq
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
 
-            var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
+            // Create a fresh XmlReaderSettings per invocation: Defaults.DefaultXmlReaderSettings is a
+            // process-wide static that callers (e.g. unit tests) can mutate, which would change the
+            // BaseURI resolution of schemas read here.
+            var resolver = new XmlUrlResolver();
+            var readerSettings = new XmlReaderSettings() {
+                DtdProcessing = Defaults.DefaultXmlReaderSettings.DtdProcessing,
+                CloseInput = Defaults.DefaultXmlReaderSettings.CloseInput
+            };
+            readerSettings.XmlResolver = resolver;
+            var xmlReader = XmlReader.Create(xsdFilePath, readerSettings);
 
             using (xmlReader) {
-                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet();
+                // Pass the resolver explicitly so xs:import/xs:include resolution uses the reader's
+                // resolver and BaseURI rather than anything inherited from shared/global state.
+                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet(resolver);
 
                 string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
 
