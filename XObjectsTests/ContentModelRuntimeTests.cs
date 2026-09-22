@@ -132,5 +132,25 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNull(obj.Baz);
             Assert.AreEqual("tic", obj.Tic);
         }
+        [Test]
+        public void T6_ChoiceOfRepeatable()
+        {
+            var obj = new ChoiceOfRepeatableType() { Foo = ["a", "b"] };
+            Assert.True(obj.Foo.SequenceEqual(["a", "b"]));
+
+            obj.Bar = ["c"];
+            Assert.IsEmpty(obj.Foo);
+            Assert.True(obj.Bar.SequenceEqual(["c"]));
+
+            obj.Bar.Add("d");
+            Assert.True(obj.Bar.SequenceEqual(["c", "d"]));
+
+            obj.Foo.Clear();
+            Assert.True(obj.Bar.SequenceEqual(["c", "d"]));
+
+            obj.Foo.Add("e");
+            Assert.IsEmpty(obj.Bar);
+            Assert.True(obj.Foo.SequenceEqual(["e"]));
+        }
     }
 }

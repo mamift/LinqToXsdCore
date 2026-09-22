@@ -16,7 +16,12 @@ namespace Xml.Schema.Linq
             XmlSchemaDatatype datatype, Type elementBaseType)
         {
             var element = base.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
-            this.RemoveChoices(element, parentElement);
+
+            if (addToExisting)
+                this.RemoveChoices(element.Name, parentElement);
+            else
+                this.RemoveChoices(element, parentElement);
+
             base.OnElementAdded(this, element, parentElement);
             return element;
         }
@@ -25,6 +30,16 @@ namespace Xml.Schema.Linq
         {
             this.RemoveChoices(owner, parentElement);
             base.OnElementAdded(this, element, parentElement);
+        }
+
+        private void RemoveChoices(XName keep, XElement parentElement)
+        {
+            var candidates = parentElement.Elements().Where(elem => this.Contains(elem));
+            var toRemove = candidates.Where(elem => elem.Name != keep).ToArray();
+            foreach (var element in toRemove)
+            {
+                element.Remove();
+            }
         }
 
         private void RemoveChoices(XElement keep, XElement parentElement)
