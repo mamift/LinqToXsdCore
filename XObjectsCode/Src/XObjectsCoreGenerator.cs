@@ -22,11 +22,26 @@ namespace Xml.Schema.Linq
         /// Creates a new instance of <see cref="LinqToXsdSettings"/>, optionally by loading from an XML file.
         /// </summary>
         /// <param name="fromXmlFile">Null, empty or non-existent file path value will simply return a default instance.</param>
+        /// <param name="observer"></param>
         /// <returns></returns>
-        public static LinqToXsdSettings LoadLinqToXsdSettings(string? fromXmlFile = null)
+        public static LinqToXsdSettings LoadLinqToXsdSettings(string? fromXmlFile = null, IWarnableObserver<string>? observer = null)
         {
             var settings = new LinqToXsdSettings();
-            if (fromXmlFile.IsNotEmpty() && File.Exists(fromXmlFile)) settings.Load(fromXmlFile);
+            if (fromXmlFile.IsNotEmpty() && File.Exists(fromXmlFile))
+            {
+                settings.Load(fromXmlFile);
+            }
+            else if (observer != null) 
+            {
+                if (fromXmlFile.IsEmpty())
+                {
+                    observer?.OnWarn("Config file not provided; using default values");
+                }
+                else
+                {
+                    observer.OnWarn($"Config file '{fromXmlFile}' did not exist; using default values");
+                }
+            }
 
             return settings;
         }
@@ -37,6 +52,7 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public static LinqToXsdSettings LoadLinqToXsdSettings(XDocument xdoc)
         {
+            if (xdoc == null) throw new ArgumentNullException(nameof(xdoc));
             var settings = new LinqToXsdSettings();
             settings.Load(xdoc);
 
@@ -54,6 +70,7 @@ namespace Xml.Schema.Linq
             LinqToXsdSettings settings, IWarnableObserver<string>? programObserver = null)
         {
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             return xsdFilePaths
                 .SelectMany(file => Generate(file, settings))
@@ -68,12 +85,14 @@ namespace Xml.Schema.Linq
         /// </summary>
         /// <param name="xsdFilePath"></param>
         /// <param name="linqToXsdSettingsFilePath"></param>
+        /// <param name="observer"></param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, string? linqToXsdSettingsFilePath = null)
+        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, string? linqToXsdSettingsFilePath = null,
+            IWarnableObserver<string>? observer = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
-            var settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath);
+            LinqToXsdSettings settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath, observer);
 
             return Generate(xsdFilePath, settings);
         }
@@ -90,10 +109,21 @@ namespace Xml.Schema.Linq
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
 
-            var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
+            // Create a fresh XmlReaderSettings per invocation: Defaults.DefaultXmlReaderSettings is a
+            // process-wide static that callers (e.g. unit tests) can mutate, which would change the
+            // BaseURI resolution of schemas read here.
+            var resolver = new XmlUrlResolver();
+            var readerSettings = new XmlReaderSettings() {
+                DtdProcessing = Defaults.DefaultXmlReaderSettings.DtdProcessing,
+                CloseInput = Defaults.DefaultXmlReaderSettings.CloseInput
+            };
+            readerSettings.XmlResolver = resolver;
+            var xmlReader = XmlReader.Create(xsdFilePath, readerSettings);
 
             using (xmlReader) {
-                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet();
+                // Pass the resolver explicitly so xs:import/xs:include resolution uses the reader's
+                // resolver and BaseURI rather than anything inherited from shared/global state.
+                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet(resolver);
 
                 string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
 
@@ -198,7 +228,7 @@ namespace Xml.Schema.Linq
 
         /// <summary>
         /// Generates code by searching for an accompanying configuration file, whereby each configuration file is named the same as the XSD file, but with an
-        /// .config extension (i.e. schemaFileName.xsd.config). Will skip over XSDs that have no accompanying .config file.
+        /// .config extension (i.e. schemaFileName.xsd.config). Will skip v1.1 XSDs; XSDs that have no config file will be generated with default settings.
         /// </summary>
         /// <param name="schemaFiles"></param>
         /// <param name="observer"></param>
@@ -216,17 +246,17 @@ namespace Xml.Schema.Linq
                 .ToList();
             
             var excludeV11Xsds = dictOfSchemasAndTheirConfigs
-                .Where(filePairs => filePairs.xsdFile.Exists && filePairs.xsdFile.GetXmlSchemaVersion() != XmlSchemaVersion.Version1_1)
+                .Where(filePairs => filePairs.xsdFile.Exists && filePairs.xsdFile.GetXmlSchemaVersion() == XmlSchemaVersion.Version1_1)
                 .ToList();
 
-            if (excludeV11Xsds.Count != dictOfSchemasAndTheirConfigs.Count) {
+            if (excludeV11Xsds.Count > 0) {
                 observer?.OnWarn("Found some XSD v1.1 schemas: this tool does not support XSD v1.1. and will ignore those.");
             }
 
             observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
 
-            return excludeV11Xsds
-                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName))
+            return dictOfSchemasAndTheirConfigs.Except(excludeV11Xsds)
+                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName, observer))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())

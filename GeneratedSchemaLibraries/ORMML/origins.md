@@ -1,0 +1,1 @@
+taken from research paper on ORM-ML: https://www.jarrar.info/publications/ORM%20Markup%20Language%203.pdf

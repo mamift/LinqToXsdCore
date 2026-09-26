@@ -1,5 +1,21 @@
 # LinqToXsdCore Release Notes
 
+- **Important:** the `LinqToXsdCore` nuget package is the global `dotnet tool` that can be installed by a developer to generate code from an existing XSD file. To use this code in a shipping app or library, add a reference to the [XObjectsCore](https://www.nuget.org/packages/XObjectsCore/) nuget package to allow your generated code to build. See the [full readme for more instructions.](https://github.com/mamift/LinqToXsdCore)
+- **Also important:** any generated code **should be tracked in git**. Please see [this section in the readme](https://github.com/mamift/LinqToXsdCore#best-practices) for more information.
+- All releases are cumulative - for e.g. v3.4.24 includes all the changes/fixes described in all previous releases. Some releases are not made public, so upgrading via `dotnet tool update -g linqtoxsdcore`, you may notice version number skips (and that certain version numbers are not visible on nuget.org) - this is intentional and expected due to the simplified release management strategy employed. If something genuinely seems out of place, please file an issue on GitHub: https://github.com/mamift/LinqToXsdCore
+
+## Version 3.4.24
+
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.24
+* https://www.nuget.org/packages/XObjectsCore/3.4.24
+  * [#105](https://github.com/mamift/LinqToXsdCore/pull/105), also fixes [issue #42](https://github.com/mamift/LinqToXsdCore/issues/42).
+    * Fixes code generation and runtime bug with creation of `xs:choices` of repeatable elements (where `maxOccurs="unbounded"`).
+  * [#104](https://github.com/mamift/LinqToXsdCore/pull/104) The linqtoxsd CLI tool behaviour has changed:
+    - the `-a` flag will now delete existing files with the `.xsd.cs` extension (since v3.4.17, the default output extension is now `.xsd-g.cs`) when outputting code
+    - fixed a bug with getting the actual XML Schema version, the `xs:schema\@version` attribute is a user defined attribute for the schema version, it does not specify which W3C XSD specification version to validate against (i.e. v1.0 or v1.1). This has inadvertently caused `linqtoxsd` to skip schemas whose versions were v1.1 or higher.
+    - the behaviour of the `-a` argument when invoking the `linqtoxsd` CLI tool is now always applied i.e. it now always searches for a `.xsd.config` file regardless. However, in previous versions, if a config file was not found, `linqtoxsd` would skip that XSD file - now `linqtoxsd` will simply apply default config values for those XSD files and proceed to generate code.
+
 ## Version 3.4.23
 
 Nuget packages:
@@ -8,15 +24,15 @@ Nuget packages:
   * [#102](https://github.com/mamift/LinqToXsdCore/pull/102)
     * Adds more sample XSDs for testing (GML, SOAP-WSDL, LoC-ALTO)
     * Fixes a code generation bug (evidence: `metalex.xsd` and `metalex_mcontainerTypeBug.xsd`) that prevented properties on a base class for an XSD complex type from being generated properly and also the constructor for the derived class for a derived complex type passing arguments to a base constructor that had the wrong signature.
-        * XObjectsCode/Src/XsdToTypesConverter.cs — in `TraverseParticle`, elements inherited through a restriction-derived base are no longer marked FromBaseType, since such a base contributes no generated members (its content model is deliberately skipped by BuildProperties). The derived type now generates the inherited content members itself, so its functional constructors initialize their own fields instead of forwarding to base(...) constructors that were never emitted.
+        * `XObjectsCode/Src/XsdToTypesConverter.cs` in `TraverseParticle`, elements inherited through a restriction-derived base are no longer marked FromBaseType, since such a base contributes no generated members (its content model is deliberately skipped by BuildProperties). The derived type now generates the inherited content members itself, so its functional constructors initialize their own fields instead of forwarding to base(...) constructors that were never emitted.
 
-Nuget packages:
-* https://www.nuget.org/packages/LinqToXsdCore/3.4.22
-* https://www.nuget.org/packages/XObjectsCore/3.4.22
-  * [#100](https://github.com/mamift/LinqToXsdCore/pull/100)
-    * The auto-generated topmost comment now emits the LinqToXsd version instead of the CLR version.
-    * Adds C# 8 keywords (file record required scope) to name mangling logic so generated source code can prefix them with @ when required
-    * Fixed a regression wiht v3.4.21 which resulted in the omission of private classes for element definitions with an inline-defined anonymous type (i.e. no named complex or simple type). Evidence: `OAGi_Chem_eStandards_5.3_dayOfMonthBug.xsd-g.cs`
+## Version 3.4.22 (internal)
+NOTE: This was an internal release. All subsequent versions after this one includes all the changes/fixes described here:
+
+Changes from [PR #100](https://github.com/mamift/LinqToXsdCore/pull/100):
+* The auto-generated topmost comment now emits the LinqToXsd version instead of the CLR version.
+* Adds C# 8 keywords (file record required scope) to name mangling logic so generated source code can prefix them with @ when required
+* Fixed a regression wiht v3.4.21 which resulted in the omission of private classes for element definitions with an inline-defined anonymous type (i.e. no named complex or simple type). Evidence: `OAGi_Chem_eStandards_5.3_dayOfMonthBug.xsd-g.cs`
     
 ## Version 3.4.21
 NOTE: If you are upgrading from 3.4.19, please note the version number skip is intentional. This release (3.4.21) was published publicly to nuget.org, while 3.4.20 was an internal only release. Please read over the release notes for 3.4.20 to see the full scope of changes if you are upgrading from 3.4.19.
@@ -25,13 +41,12 @@ Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.21
 * https://www.nuget.org/packages/XObjectsCore/3.4.21
   * [#99](https://github.com/mamift/LinqToXsdCore/pull/99)
-    * Fixed a bug that caused a Stackoverflow exception when LinqToXsd was given an XSD with a nested group definition.
+    * Fixed a bug that caused a Stackoverflow exception when LinqToXsd was given an XSD with a recursively nested element group definition.
     
 ## Version 3.4.20 (internal)
-NOTE: This release was an internal-only release as the changes for 3.4.20 and 3.4.21 were initially one release, but the changes became so major, it was decided to be broken into two separate releases to thoroughly test the build and release pipelines to ensure no regressions.
+NOTE: This was an internal release. All subsequent versions after this one includes all the changes/fixes described here:
 
-Nuget packages:
-* [#96](https://github.com/mamift/LinqToXsdCore/pull/96)
+Changes from [PR #96](https://github.com/mamift/LinqToXsdCore/pull/96):
   * Fixes a code gen bug: when a schema imports another schema that contains a global attribute whose schema type was anonymous and had enums, LinqToXsd will now properly generate the C# enum definition.
   * added powershell for regenerating code in test libraries under (GeneratedSchemaLibraries). If you are contributing to LinqToXsdCore development, you can run this script to regenerate the test libraries.
   * fixes a bug with `ResolveFileAndFolderPathsToJustFiles`, added tests for `ResolvePossibleFileAndFolderPathsToProcessableSchemas`

@@ -1,8 +1,10 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Alba.CsConsoleFormat.Fluent;
 using CommandLine;
 using Xml.Schema.Linq;
@@ -20,6 +22,9 @@ namespace LinqToXsd
             Console.WriteLine(s);
         });
 
+        /// <summary>
+        /// This is currently unused, but it is intended to be used for logging warnings to the console without propagating an exception.
+        /// </summary>
         public static IWarnableObserver<string> ProgramObserver { get; } = new LinqToXsdProgramObserver();
 
         public static bool IsConsolePresent
@@ -157,18 +162,27 @@ namespace LinqToXsd
         /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
-            LinqToXsdSettings settingsFromFile = generateOptions.GetConfigInstance(ProgressReporter);
-            LinqToXsdSettings settings = settingsFromFile ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
-            if (settingsFromFile != null)
-                PrintLn("Configuration file(s) loaded...".Gray());
+            LinqToXsdSettings? settingsFromFile = generateOptions.GetConfigInstance(ProgressReporter);
 
-            settings.EnableServiceReference = generateOptions.EnableServiceReference;
+            if (generateOptions.AutoConfig)
+            {
+                ProgressReporter.Report("NOTE: As of v3.4.24 the -a flag (which searches for a config file matching the filename of an XSD) is now always automatically applied. If an .xsd.config is not found, default config values are applied.");
+            }
 
-            Dictionary<string, TextWriter> textWriters = generateOptions.AutoConfig
-                ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, ProgramObserver)
-                : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings, ProgramObserver);
+            Dictionary<string, TextWriter> textWriters;
+            if (settingsFromFile is null)
+            {
+                textWriters = XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, ProgramObserver);
+            }
+            else
+            {
+                settingsFromFile.EnableServiceReference = generateOptions.EnableServiceReference;
+                Debug.Assert(settingsFromFile != null, nameof(settingsFromFile) + " != null");
+                textWriters = XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settingsFromFile, ProgramObserver);
+            }
 
-            if (generateOptions.Output.IsEmpty()) {
+            if (generateOptions.Output.IsEmpty())
+            {
                 PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
                 generateOptions.Output = "-1";
             }
