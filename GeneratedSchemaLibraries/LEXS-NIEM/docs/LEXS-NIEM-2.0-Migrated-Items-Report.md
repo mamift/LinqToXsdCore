@@ -1,0 +1,537 @@
+## No Further Action Required: Items Migrated Automatically
+
+These items were migrated automatically. Common migrations include namespace changes, property name changes, and type changes. No further action is required from you for these items.
+
+## Types
+
+- 1) c:AircraftType ----&gt; nc:AircraftType
+- 2) c:ConveyanceType ----&gt; nc:ConveyanceType
+- 3) c:DrugType ----&gt; nc:DrugType
+- 4) c:FirearmType ----&gt; nc:FirearmType
+- 5) c:PersonInvolvementInActivityAssociationType ----&gt; nc:ActivityInvolvedPersonAssociationType
+- 6) c:PersonType ----&gt; nc:PersonType
+- 7) c:PropertyType ----&gt; nc:ItemType
+- 8) j:DriverAuthorizationType ----&gt; nc:DriverLicenseBaseType
+- 9) j:DrugType ----&gt; nc:DrugType
+- 10) j:PersonType ----&gt; j:PersonAugmentationType
+- 11) nibrs:DrugCategoryCodeSimpleType ----&gt; fbi:DrugCategoryCodeSimpleType
+- 12) nibrs:DrugCategoryCodeType ----&gt; fbi:DrugCategoryCodeType
+- 13) nibrs:DrugMeasurementCodeSimpleType ----&gt; fbi:DrugMeasurementCodeSimpleType
+- 14) u:AgeUnitCodeSimpleType ----&gt; unece:TimeCodeSimpleType
+- 15) u:AssociationType ----&gt; nc:AssociationType
+- 16) u:ContactInformationType ----&gt; nc:ContactInformationType
+- 17) u:DateType ----&gt; nc:DateType
+- 18) u:IDType ----&gt; nc:IdentificationType
+- 19) u:LengthMeasureType ----&gt; nc:LengthMeasureType
+- 20) u:LocationType ----&gt; nc:LocationType
+- 21) u:MeasureCNCType ----&gt; nc:MeasureType
+- 22) u:MeasureType ----&gt; nc:MeasureType
+- 23) u:OrganizationType ----&gt; nc:OrganizationType
+- 24) u:PersonHeightMeasureType ----&gt; nc:LengthMeasureType
+- 25) u:PersonHeightUnitCodeSimpleType ----&gt; unece:LengthCodeSimpleType
+- 26) u:PersonType ----&gt; nc:PersonType
+- 27) u:PersonWeightMeasureType ----&gt; nc:WeightMeasureType
+- 28) u:PersonWeightUnitCodeSimpleType ----&gt; unece:MassCodeSimpleType
+- 29) u:PropertyType ----&gt; nc:PropertyType
+- 30) u:RangeAgeMeasureType ----&gt; nc:TimeMeasureType
+- 31) u:RangeMeasureType ----&gt; nc:MeasureType
+- 32) u:RangePersonHeightMeasureType ----&gt; nc:LengthMeasureType
+- 33) u:RangePersonWeightMeasureType ----&gt; nc:WeightMeasureType
+
+34) u:StatusType ----&gt; nc:StatusType
+
+## Elements
+
+- 1) c:AcquaintanceAssociation ----&gt; nc:AcquaintanceAssociation
+- 2) c:ActivityInformationAbstracterOrganizationAssociation ----&gt; nc:ActivityInformationAbstracterOrganizationAssociation
+- 3) c:ActivityInformationClearerOrganizationAssociation ----&gt; nc:ActivityInformationClearerOrganizationAssociation
+- 4) c:ActivityInvolvedOrganizationAssociation ----&gt; nc:ActivityInvolvedOrganizationAssociation
+- 5) c:ActivityInvolvedPersonAssociation ----&gt; nc:ActivityInvolvedPersonAssociation
+- 6) c:ActivityPrimaryOrganizationAssociation ----&gt; nc:ActivityPrimaryOrganizationAssociation
+- 7) c:ActivityReportingOrganizationAssociation ----&gt; nc:ActivityReportingOrganizationAssociation
+- 8) c:ActivityResponsibleOrganizationAssociation ----&gt; nc:ActivityResponsibleOrganizationAssociation
+- 9) c:ActivitySupervisingOrganizationAssociation ----&gt; nc:ActivitySupervisorPersonAssociation
+- 10) c:Aircraft ----&gt; nc:Aircraft
+- 11) c:AircraftFuselageColorCode ----&gt; nc:AircraftFuselageColorCode
+- 12) c:AircraftFuselageColorText ----&gt; nc:AircraftFuselageColorText
+- 13) c:AircraftStyleCode ----&gt; nc:AircraftStyleCode
+- 14) c:AircraftWingColor ----&gt; nc:AircraftWingColor
+- 15) c:AircraftWingColorCode ----&gt; nc:AircraftWingColorCode
+- 16) c:AircraftWingColorText ----&gt; nc:AircraftWingColorText
+- 17) c:AuthorityFigureAssociation ----&gt; nc:AuthorityFigureAssociation
+- 18) c:BabysitterAssociation ----&gt; nc:BabysitterAssociation
+- 19) c:Boat ----&gt; nc:Vessel
+- 20) c:BoatCategoryCode ----&gt; nc:VesselCategoryCode
+- 21) c:BoatHullMaterial ----&gt; nc:VesselHullMaterial
+- 22) c:BoatHullMaterialCode ----&gt; nc:VesselHullMaterialCode
+- 23) c:BoatHullMaterialText ----&gt; nc:VesselHullMaterialText
+- 24) c:BoatHullShape ----&gt; nc:VesselHullShape
+- 25) c:BoatHullShapeCode ----&gt; nc:VesselHullShapeCode
+- 26) c:BoatHullShapeText ----&gt; nc:VesselHullShapeText
+- 27) c:BoatPropulsion ----&gt; nc:VesselPropulsion
+- 28) c:BoatPropulsionCode ----&gt; nc:VesselPropulsionCode
+- 29) c:BoatPropulsionText ----&gt; nc:VesselPropulsionText
+- 30) c:BoatTrailerMake ----&gt; nc:VesselTrailerMake
+- 31) c:BoatTrailerMakeCode ----&gt; nc:VesselTrailerMakeCode
+- 32) c:BoatTrailerMakeName ----&gt; nc:VesselTrailerMakeName
+- 33) c:CohabitantAssociation ----&gt; nc:CohabitantAssociation
+- 34) c:ContactInformation ----&gt; nc:ContactInformation
+- 35) c:CoworkerAssociation ----&gt; nc:CoworkerAssociation
+- 36) c:DocumentCountryCode ----&gt; nc:DocumentCountryCode
+
+- 37) c:DocumentCountryFIPS10-4Code ----&gt; nc:DocumentCountryFIPS10-4Code
+- 38) c:DomesticPartnershipAssociation ----&gt; nc:DomesticPartnershipAssociation
+- 39) c:Drug ----&gt; nc:Drug
+- 40) c:DrugCompositionDescriptionText ----&gt; nc:SubstanceCompositionDescriptionText
+- 41) c:DrugSubstanceFormText ----&gt; nc:SubstanceFormText
+- 42) c:FamilyAssociation ----&gt; nc:FamilyAssociation
+- 43) c:FamilyKinship ----&gt; nc:FamilyKinshipCategory
+- 44) c:FamilyKinshipCode ----&gt; nc:FamilyKinshipCode
+- 45) c:FamilyKinshipText ----&gt; nc:FamilyKinshipText
+- 46) c:Firearm ----&gt; nc:Firearm
+- 47) c:FirearmCaliberCode ----&gt; nc:FirearmCaliberCode
+- 48) c:FirearmCaliberText ----&gt; nc:FirearmCaliberText
+- 49) c:FirearmCategoryDescription ----&gt; nc:FirearmCategoryDescription
+- 50) c:FirearmCategoryDescriptionCode ----&gt; nc:FirearmCategoryDescriptionCode
+- 51) c:FirearmCategoryDescriptionText ----&gt; nc:FirearmCategoryDescriptionText
+- 52) c:FirearmFinishCode ----&gt; nc:FirearmFinishCode
+- 53) c:FirearmFinishText ----&gt; nc:FirearmFinishText
+- 54) c:FriendshipAssociation ----&gt; nc:FriendshipAssociation
+- 55) c:GuardianAssociation ----&gt; nc:GuardianAssociation
+- 56) c:LocationContainsOrganizationAssociation ----&gt; nc:LocationContainsOrganizationAssociation
+- 57) c:LocationEmergencyServicesAssociation ----&gt; nc:LocationEmergencyServicesAssociation
+- 58) c:LocationNeighboringPersonAssociation ----&gt; nc:LocationNeighboringPersonAssociation
+- 59) c:LocationOrganizationAssociation ----&gt; nc:LocationOrganizationAssociation
+- 60) c:LocationPoliceDepartmentAssociation ----&gt; nc:LocationPoliceDepartmentAssociation
+- 61) c:MarriageAssociation ----&gt; nc:MarriageAssociation
+- 62) c:MarriageStatusCode ----&gt; nc:PersonUnionStatusCode
+- 63) c:NeighborAssociation ----&gt; nc:NeighborAssociation
+- 64) c:NuclearFamilyAssociation ----&gt; nc:ImmediateFamilyAssociation
+- 65) c:Organization ----&gt; nc:Organization
+- 66) c:OrganizationGangAssociation ----&gt; nc:OrganizationGangAssociation
+- 67) c:OrganizationOwnsPropertyAssociation ----&gt; nc:OrganizationOwnsItemAssociation
+- 68) c:OrganizationParentAssociation ----&gt; nc:OrganizationParentAssociation
+- 69) c:OrganizationPossessesPropertyAssociation ----&gt; nc:OrganizationPossessesItemAssociation
+- 70) c:OrganizationPrincipalOfficialAssociation ----&gt; nc:OrganizationPrincipalOfficialAssociation
+- 71) c:OrganizationSubsidiaryAssociation ----&gt; nc:OrganizationSubsidiaryAssociation
+- 72) c:OrganizationToOrganizationAssociation ----&gt; nc:OrganizationAssociation
+- 73) c:Person ----&gt; nc:Person
+- 74) c:PersonAlternateName ----&gt; nc:PersonAlternateName
+- 75) c:PersonAssignedUnitAssociation ----&gt; nc:PersonAssignedUnitAssociation
+- 76) c:PersonCitizenshipFIPS10-4Code ----&gt; nc:PersonCitizenshipFIPS10-4Code
+
+- 77) c:PersonCurrentEmploymentAssociation ----&gt; nc:PersonCurrentEmploymentAssociation
+- 78) c:PersonCurrentLocationAssociation ----&gt; nc:PersonCurrentLocationAssociation
+- 79) c:PersonDetainmentLocationAssociation ----&gt; nc:PersonDetainmentLocationAssociation
+- 80) c:PersonEmploymentAssociation ----&gt; nc:PersonEmploymentAssociation
+- 81) c:PersonEmploymentLocationAssociation ----&gt; nc:PersonEmploymentLocationAssociation
+- 82) c:PersonEyeColor ----&gt; nc:PersonEyeColor
+- 83) c:PersonEyeColorCode ----&gt; nc:PersonEyeColorCode
+- 84) c:PersonEyeColorText ----&gt; nc:PersonEyeColorText
+- 85) c:PersonFormerEmploymentAssociation ----&gt; nc:PersonFormerEmploymentAssociation
+- 86) c:PersonGangAssociation ----&gt; nc:PersonGangAssociation
+- 87) c:PersonHairColor ----&gt; nc:PersonHairColor
+- 88) c:PersonHairColorCode ----&gt; nc:PersonHairColorCode
+- 89) c:PersonHairColorText ----&gt; nc:PersonHairColorText
+- 90) c:PersonHeightMeasureRange ----&gt; nc:PersonHeightMeasure
+- 91) c:PersonInvolvedInCriminalOrganizationAssociation ----&gt; nc:PersonCriminalOrganizationAssociation
+- 92) c:PersonInvolvedInDrivingIncidentAssociation ----&gt; nc:PersonInvolvedInDrivingIncidentAssociation
+- 93) c:PersonInvolvementInActivityAssociation ----&gt; nc:PersonActivityInvolvementAssociation
+- 94) c:PersonKnownPreviousLocationAssociation ----&gt; nc:PersonKnownPreviousLocationAssociation
+- 95) c:PersonLastSeenLocationAssociation ----&gt; nc:PersonLastSeenLocationAssociation
+- 96) c:PersonLocationAssociation ----&gt; nc:PersonLocationAssociation
+- 97) c:PersonOrganizationAffiliationAssociation ----&gt; nc:PersonOrganizationAffiliationAssociation
+- 98) c:PersonOwnsPropertyAssociation ----&gt; nc:PersonOwnsItemAssociation
+- 99) c:PersonPossessesPropertyAssociation ----&gt; nc:PersonPossessesItemAssociation
+- 100) c:PersonPrimaryWorkerAssociation ----&gt; nc:PersonPrimaryWorkerAssociation
+- 101) c:PersonRace ----&gt; nc:PersonRace
+- 102) c:PersonRaceCode ----&gt; nc:PersonRaceCode
+- 103) c:PersonRaceText ----&gt; nc:PersonRaceText
+- 104) c:PersonReferralWorkerAssociation ----&gt; nc:PersonReferralWorkerAssociation
+- 105) c:PersonSexCode ----&gt; nc:PersonSexCode
+- 106) c:PersonTemporaryAssignedUnitAssociation ----&gt; nc:PersonTemporaryAssignedUnitAssociation
+- 107) c:PersonVehicleAssociation ----&gt; nc:PersonConveyanceAssociation
+- 108) c:PersonWorkerAssociation ----&gt; nc:PersonWorkerAssociation
+- 109) c:PersonalAssociation ----&gt; nc:PersonAssociation
+- 110) c:PreviousActivityAssociation ----&gt; nc:PreviousActivityAssociation
+- 111) c:Property ----&gt; nc:Property
+- 112) c:PropertyCategoryText ----&gt; nc:ItemCategoryText
+- 113) c:PropertyCurrentLocationAssociation ----&gt; nc:PropertyCurrentLocationAssociation
+- 114) c:PropertyDispositionLocationAssociation ----&gt; nc:PropertyDispositionLocationAssociation
+- 115) c:PropertyHolderAssociation ----&gt; nc:ItemHolderAssociation
+- 116) c:PropertyLocationAssociation ----&gt; nc:ItemLocationAssociation
+
+- 117) c:PropertyMoverAssociation ----&gt; nc:ItemMoverAssociation
+- 118) c:PropertyStyle ----&gt; nc:ItemStyle
+- 119) c:RelatedActivityAssociation ----&gt; nc:RelatedActivityAssociation
+- 120) c:RelatedCaseAssociation ----&gt; nc:RelatedCaseAssociation
+- 121) c:ResidenceAssociation ----&gt; nc:ResidenceAssociation
+- 122) c:StrangerAssociation ----&gt; nc:StrangerAssociation
+- 123) c:Vehicle ----&gt; nc:Vehicle
+- 124) c:VehicleBrander ----&gt; nc:VehicleBrander
+- 125) c:VehicleColorPrimaryCode ----&gt; nc:VehicleColorPrimaryCode
+- 126) c:VehicleColorSecondaryCode ----&gt; nc:VehicleColorSecondaryCode
+- 127) c:VehicleGarageLocationAssociation ----&gt; nc:VehicleGarageLocationAssociation
+- 128) c:VehicleModelYearDate ----&gt; nc:ItemModelYearDate
+- 129) c:VehicleStyleCode ----&gt; nc:VehicleStyleCode
+- 130) c:VehicleTowerAssociation ----&gt; nc:VehicleTowerAssociation
+- 131) c:Weapon ----&gt; nc:Weapon
+- 132) im:AlienNumber ----&gt; im:AlienNumber
+- 133) j:DriverLicense ----&gt; nc:DriverLicense
+- 134) j:Drug ----&gt; nc:Drug
+- 135) j:IDJurisdictionNCICLISCode ----&gt; j:IdentificationJurisdictionNCICLISCode
+- 136) j:IDJurisdictionNCICRESCode ----&gt; j:IdentificationJurisdictionNCICRESCode
+- 137) j:PersonAgeMeasureRange ----&gt; nc:PersonAgeMeasure
+- 138) j:PersonFBIID ----&gt; j:PersonFBIIdentification
+- 139) j:PersonStateID ----&gt; j:PersonStateFingerprintIdentification
+- 140) j:PersonWeightMeasureRange ----&gt; nc:PersonWeightMeasure
+- 141) j:RegisteredOffenderID ----&gt; j:RegisteredOffenderIdentification
+- 142) j:SupervisionOfficial ----&gt; nc:SupervisionSupervisor
+- 143) j:SupervisionSubject ----&gt; nc:SupervisionPerson
+- 144) j:Victim ----&gt; j:VictimEntity
+- 145) scr:Passport ----&gt; nc:Passport
+- 146) scr:PassportNumberID ----&gt; nc:PassportNumberIdentification
+- 147) u:Activity ----&gt; nc:Activity
+- 148) u:Binary ----&gt; nc:Binary
+- 149) u:BinaryBase64Object ----&gt; nc:BinaryBase64Object
+- 150) u:ContactEmailID ----&gt; nc:ContactEmailID
+- 151) u:ContactFacsimileNumber ----&gt; nc:ContactFaxNumber
+- 152) u:ContactMobileTelephoneNumber ----&gt; nc:ContactMobileTelephoneNumber
+- 153) u:ContactPagerNumber ----&gt; nc:ContactPagerNumber
+- 154) u:ContactTelephoneNumber ----&gt; nc:ContactTelephoneNumber
+- 155) u:IDJurisdictionText ----&gt; nc:IdentificationJurisdictionText
+- 156) u:IDJurisdictionValue ----&gt; nc:IdentificationJurisdiction
+
+- 157) u:IDStatus ----&gt; nc:IdentificationStatus
+- 158) u:Location ----&gt; nc:Location
+- 159) u:LocationCountry ----&gt; nc:LocationCountry
+- 160) u:LocationCountryName ----&gt; nc:LocationCountryName
+- 161) u:LocationState ----&gt; nc:LocationState
+- 162) u:LocationStateName ----&gt; nc:LocationStateName
+- 163) u:Metadata ----&gt; nc:Metadata
+- 164) u:OrganizationCategoryText ----&gt; nc:OrganizationCategoryText
+- 165) u:Person ----&gt; nc:Person
+- 166) u:PersonAgeMeasure ----&gt; nc:PersonAgeMeasure
+- 167) u:PersonHeightMeasure ----&gt; nc:PersonHeightMeasure
+- 168) u:PersonSSNID ----&gt; nc:PersonSSNIdentification
+- 169) u:PersonWeightAbstractMeasure ----&gt; nc:PersonWeightMeasure
+- 170) u:PersonWeightMeasure ----&gt; nc:PersonWeightMeasure
+- 171) u:PropertyHeightMeasure ----&gt; nc:ItemHeightMeasure
+- 172) u:PropertyImage ----&gt; nc:ItemImage
+- 173) u:RangePersonHeightMeasure ----&gt; nc:PersonHeightMeasure
+- 174) u:RangePersonWeightMeasure ----&gt; nc:PersonWeightMeasure
+- 175) u:TelephoneNumber ----&gt; nc:TelephoneNumber
+
+## Elements In Type
+
+- 1) c:ActivityInvolvedOrganizationAssociationType contains u:Activity ----&gt; nc:ActivityOrganizationAssociationType contains nc:Activity
+- 2) c:ActivityInvolvedOrganizationAssociationType contains u:Organization ----&gt; nc:ActivityOrganizationAssociationType contains nc:Organization
+- 3) c:ActivityInvolvedPersonAssociationType contains u:Activity ----&gt; nc:ActivityPersonAssociationType contains nc:Activity
+- 4) c:ActivityInvolvedPersonAssociationType contains u:Person ----&gt; nc:ActivityPersonAssociationType contains nc:Person
+- 5) c:AircraftType contains c:AircraftAirportID ----&gt; nc:FacilityType contains nc:FacilityIdentification
+- 6) c:AircraftType contains c:AircraftAirportName ----&gt; nc:FacilityType contains nc:FacilityName
+- 7) c:AircraftType contains c:AircraftEngineQuantity ----&gt; nc:ConveyanceType contains nc:ConveyanceEngineQuantity
+- 8) c:AircraftType contains c:AircraftFuselageColor ----&gt; nc:AircraftType contains nc:AircraftFuselageColor
+- 9) c:AircraftType contains c:AircraftMakeCode ----&gt; nc:AircraftType contains nc:AircraftMakeCode
+- 10) c:AircraftType contains c:AircraftModelCode ----&gt; nc:AircraftType contains nc:AircraftModelCode
+- 11) c:AircraftType contains c:AircraftStyleCode ----&gt; nc:AircraftType contains nc:AircraftStyleCode
+- 12) c:AircraftType contains c:AircraftTailID ----&gt; nc:AircraftType contains nc:AircraftTailID
+- 13) c:AircraftType contains c:AircraftWingColor ----&gt; nc:AircraftType contains nc:AircraftWingColor
+- 14) c:AircraftType contains c:AircraftYearDate ----&gt; nc:TangibleItemType contains nc:ItemModelYearDate
+- 15) c:AuthorityFigureAssociationType contains c:PersonAuthorityFigure ----&gt; nc:AuthorityFigureAssociationType contains nc:PersonAuthorityFigure
+- 16) c:AuthorityFigureAssociationType contains u:Person ----&gt; nc:AuthorityFigureAssociationType contains nc:Person
+
+- 17) c:BoatType contains c:BoatCategoryCode ----&gt; nc:VesselType contains nc:VesselCategoryCode
+- 18) c:BoatType contains c:BoatColorCode ----&gt; nc:TangibleItemType contains nc:ItemColor
+- 19) c:BoatType contains c:BoatHullID ----&gt; nc:VesselType contains nc:VesselHullIdentification
+- 20) c:BoatType contains c:BoatHullMaterial ----&gt; nc:VesselType contains nc:VesselHullMaterial
+- 21) c:BoatType contains c:BoatHullShape ----&gt; nc:VesselType contains nc:VesselHullShape
+- 22) c:BoatType contains c:BoatMakeCode ----&gt; nc:VesselType contains nc:VesselMakeCode
+- 23) c:BoatType contains c:BoatPropulsion ----&gt; nc:VesselType contains nc:VesselPropulsion
+- 24) c:BoatType contains c:BoatRegistrationID ----&gt; nc:VesselType contains nc:VesselRegistrationIdentification
+- 25) c:BoatType contains c:BoatTrailerMake ----&gt; nc:VesselType contains nc:VesselTrailerMake
+- 26) c:ConveyanceType contains c:VehicleID ----&gt; nc:VehicleType contains nc:VehicleIdentification
+- 27) c:ConveyanceType contains c:VehicleLicensePlateID ----&gt; nc:ConveyanceType contains nc:ConveyanceRegistrationPlateIdentification
+- 28) c:ConveyanceType contains c:VehicleModelYearDate ----&gt; nc:TangibleItemType contains nc:ItemModelYearDate
+- 29) c:DrugType contains c:DrugCompositionDescriptionText ----&gt; nc:SubstanceType contains nc:SubstanceCompositionDescriptionText
+- 30) c:DrugType contains c:DrugQuantityMeasure ----&gt; nc:SubstanceType contains nc:SubstanceQuantityMeasure
+- 31) c:DrugType contains c:DrugSubstanceFormText ----&gt; nc:SubstanceType contains nc:SubstanceFormText
+- 32) c:EntityAssociationType contains u:Organization ----&gt; nc:OrganizationAssociationType contains nc:Organization
+- 33) c:EntityAssociationType contains u:Person ----&gt; nc:PersonAssociationType contains nc:Person
+- 34) c:EntityPropertyAssociationType contains u:Organization ----&gt; nc:OrganizationItemAssociationType contains nc:Organization
+- 35) c:EntityPropertyAssociationType contains u:Person ----&gt; nc:PersonItemAssociationType contains nc:Person
+- 36) c:FirearmType contains c:FirearmAutomaticIndicator ----&gt; nc:FirearmType contains nc:FirearmAutomaticIndicator
+- 37) c:FirearmType contains c:FirearmCaliber ----&gt; nc:FirearmType contains nc:FirearmCaliber
+- 38) c:FirearmType contains c:FirearmCategoryCode ----&gt; nc:FirearmType contains nc:FirearmCategoryCode
+- 39) c:FirearmType contains c:FirearmCategoryDescription ----&gt; nc:FirearmType contains nc:FirearmCategoryDescription
+- 40) c:FirearmType contains c:FirearmFinish ----&gt; nc:FirearmType contains nc:FirearmFinish
+- 41) c:FirearmType contains c:FirearmGaugeText ----&gt; nc:FirearmType contains nc:FirearmGaugeText
+- 42) c:FirearmType contains c:FirearmGripText ----&gt; nc:FirearmType contains nc:FirearmGripText
+- 43) c:FirearmType contains c:FirearmMakeCode ----&gt; nc:FirearmType contains nc:FirearmMakeCode
+- 44) c:GuardianAssociationType contains c:PersonDependent ----&gt; nc:GuardianAssociationType contains nc:PersonDependent
+- 45) c:GuardianAssociationType contains c:PersonGuardian ----&gt; nc:GuardianAssociationType contains nc:PersonGuardian
+- 46) c:LocationOrganizationAssociationType contains u:Location ----&gt; nc:OrganizationLocationAssociationType contains nc:Location
+- 47) c:LocationOrganizationAssociationType contains u:Organization ----&gt; nc:OrganizationLocationAssociationType contains nc:Organization
+- 48) c:MarriageAssociationType contains c:MarriageBeginDate ----&gt; nc:AssociationType contains nc:AssociationBeginDate
+- 49) c:MarriageAssociationType contains c:MarriageEndDate ----&gt; nc:AssociationType contains nc:AssociationEndDate
+- 50) c:MarriageAssociationType contains c:MarriageStatus ----&gt; nc:PersonUnionAssociationType contains nc:PersonUnionStatus
+- 51) c:MarriageStatusType contains c:MarriageStatusCode ----&gt; nc:MarriageStatusType contains nc:PersonUnionStatusCode
+- 52) c:NuclearFamilyAssociationType contains c:FamilyKinship ----&gt; nc:ImmediateFamilyAssociationType contains nc:FamilyKinshipCategory
+- 53) c:NuclearFamilyAssociationType contains c:PersonChild ----&gt; nc:ImmediateFamilyAssociationType contains nc:PersonChild
+- 54) c:NuclearFamilyAssociationType contains c:PersonParent ----&gt; nc:ImmediateFamilyAssociationType contains nc:PersonParent
+
+- 55) c:OrganizationType contains c:OrganizationTaxID ----&gt; nc:OrganizationType contains nc:OrganizationTaxIdentification
+- 56) c:PersonEmploymentAssociationType contains c:Employee ----&gt; nc:PersonEmploymentAssociationType contains nc:Employee
+- 57) c:PersonEmploymentAssociationType contains c:EmployeeDepartmentName ----&gt; nc:PersonEmploymentAssociationType contains nc:EmployeeDepartmentName
+- 58) c:PersonEmploymentAssociationType contains c:EmployeePersonID ----&gt; nc:PersonEmploymentAssociationType contains nc:EmployeeIdentification
+- 59) c:PersonEmploymentAssociationType contains c:EmployeePositionName ----&gt; nc:PersonEmploymentAssociationType contains nc:EmployeePositionName
+- 60) c:PersonEmploymentAssociationType contains c:EmployeeRankText ----&gt; nc:PersonEmploymentAssociationType contains nc:EmployeeRankText
+- 61) c:PersonEmploymentAssociationType contains c:Employer ----&gt; nc:PersonEmploymentAssociationType contains nc:Employer
+- 62) c:PersonEmploymentAssociationType contains c:EmploymentStatus ----&gt; nc:PersonEmploymentAssociationType contains nc:EmploymentStatus
+- 63) c:PersonInvolvementInActivityAssociationType contains c:PersonalActivityInvolvementText ----&gt; nc:ActivityInvolvedPersonAssociationType contains nc:PersonActivityInvolvementText
+- 64) c:PersonInvolvementInActivityAssociationType contains u:Activity ----&gt; nc:ActivityPersonAssociationType contains nc:Activity
+- 65) c:PersonInvolvementInActivityAssociationType contains u:Person ----&gt; nc:ActivityPersonAssociationType contains nc:Person
+- 66) c:PersonLocationAssociationType contains u:Location ----&gt; nc:PersonLocationAssociationType contains nc:Location
+- 67) c:PersonLocationAssociationType contains u:Person ----&gt; nc:PersonLocationAssociationType contains nc:Person
+- 68) c:PersonType contains c:PersonAlternateName ----&gt; nc:PersonType contains nc:PersonAlternateName
+- 69) c:PersonType contains c:PersonCitizenship ----&gt; nc:PersonType contains nc:PersonCitizenship
+- 70) c:PersonType contains c:PersonEyeColor ----&gt; nc:PersonType contains nc:PersonEyeColor
+- 71) c:PersonType contains c:PersonHairColor ----&gt; nc:PersonType contains nc:PersonHairColor
+- 72) c:PersonType contains c:PersonRace ----&gt; nc:PersonType contains nc:PersonRace
+- 73) c:PersonWorkerAssociationType contains c:PersonWorker ----&gt; nc:PersonWorkerAssociationType contains nc:PersonWorker
+- 74) c:PersonWorkerAssociationType contains u:Person ----&gt; nc:PersonWorkerAssociationType contains nc:Person
+- 75) c:PersonalAssociationType contains u:Person ----&gt; nc:PersonAssociationType contains nc:Person
+- 76) c:PropertyLocationAssociationType contains u:Location ----&gt; nc:ItemLocationAssociationType contains nc:Location
+- 77) c:PropertyLocationAssociationType contains u:Property ----&gt; nc:ItemLocationAssociationType contains nc:Item
+- 78) c:PropertyRegistrationType contains c:RegistrationID ----&gt; nc:ItemRegistrationType contains nc:RegistrationIdentification
+- 79) c:PropertyType contains c:PropertyCategory ----&gt; nc:TangibleItemType contains nc:ItemCategory
+- 80) c:PropertyType contains c:PropertyRegistration ----&gt; nc:ItemRegistrationAssociationType contains nc:ItemRegistration
+- 81) c:PropertyType contains c:PropertySerialID ----&gt; nc:ItemType contains nc:ItemSerialIdentification
+- 82) c:PropertyType contains c:PropertyStyle ----&gt; nc:TangibleItemType contains nc:ItemStyle
+- 83) c:PropertyType contains c:PropertyWeaponUseText ----&gt; nc:WeaponType contains nc:WeaponUsageText
+- 84) c:RelatedActivityAssociationType contains c:RelatedActivity ----&gt; nc:RelatedActivityAssociationType contains nc:Activity
+- 85) c:RelatedActivityAssociationType contains c:RelationText ----&gt; nc:RelatedActivityAssociationType contains nc:ActivityRelationText
+- 86) c:RelatedActivityAssociationType contains u:Activity ----&gt; nc:RelatedActivityAssociationType contains nc:Activity
+- 87) c:ResidentialAssociationType contains c:ResidenceCategoryText ----&gt; nc:PersonResidenceAssociationType contains nc:ResidenceOccupancyCategoryText
+
+- 88) c:ResidentialAssociationType contains c:ResidenceOccupancyCategoryText ----&gt; nc:PersonResidenceAssociationType contains nc:ResidenceOccupancyCategoryText
+- 89) c:ResidentialAssociationType contains c:ResidencePaymentAmount ----&gt; nc:PersonResidenceAssociationType contains nc:ResidencePaymentAmount
+- 90) c:ResidentialAssociationType contains c:ResidencePaymentPeriodText ----&gt; nc:PersonResidenceAssociationType contains nc:ResidencePaymentPeriodText
+- 91) c:VehicleBranderType contains c:BranderID ----&gt; nc:VehicleBranderType contains nc:VehicleBranderIdentification
+- 92) c:VehicleBranderType contains u:RoleOfOrganization ----&gt; nc:VehicleBranderType contains nc:RoleOfOrganization
+- 93) c:VehicleType contains c:VehicleColorPrimaryCode ----&gt; nc:TangibleItemType contains nc:ItemColor
+- 94) c:VehicleType contains c:VehicleColorSecondaryCode ----&gt; nc:TangibleItemType contains nc:ItemColor
+- 95) c:VehicleType contains c:VehicleMakeCode ----&gt; nc:VehicleType contains nc:VehicleMakeCode
+- 96) c:VehicleType contains c:VehicleModelCode ----&gt; nc:VehicleType contains nc:VehicleModelCode
+- 97) c:WeaponType contains c:WeaponUsageText ----&gt; nc:WeaponType contains nc:WeaponUsageText
+- 98) c:WeaponType contains c:WeaponUser ----&gt; nc:WeaponType contains nc:WeaponUser
+- 99) c:WeaponType contains u:RoleOfProperty ----&gt; nc:WeaponType contains nc:RoleOfItem
+- 100) em:ResourceType contains u:RoleOfPerson ----&gt; em:ResourceType contains nc:RoleOfPerson
+- 101) em:ResourceType contains u:RoleOfProperty ----&gt; em:ResourceType contains nc:RoleOfItem
+- 102) j:CriminalOrganizationType contains j:CriminalOrganizationNCICID ----&gt; j:CriminalOrganizationType contains j:CriminalOrganizationNCICIdentification
+- 103) j:CriminalOrganizationType contains u:RoleOfOrganization ----&gt; j:CriminalOrganizationType contains nc:RoleOfOrganization
+- 104) j:DriverAuthorizationType contains j:DriverAuthorizationID ----&gt; nc:DriverLicenseBaseType contains nc:DriverLicenseIdentification
+- 105) j:EnforcementOfficialType contains j:EnforcementOfficialBadgeID ----&gt; j:EnforcementOfficialType contains j:EnforcementOfficialBadgeIdentification
+- 106) j:EnforcementOfficialType contains u:RoleOfPerson ----&gt; j:EnforcementOfficialType contains nc:RoleOfPerson
+- 107) j:EnforcementUnitType contains j:EnforcementUnitBeatID ----&gt; j:EnforcementUnitType contains j:EnforcementUnitBeatIdentification
+- 108) j:EnforcementUnitType contains j:EnforcementUnitID ----&gt; j:EnforcementUnitType contains j:EnforcementUnitIdentification
+- 109) j:EnforcementUnitType contains j:EnforcementUnitNumberID ----&gt; j:EnforcementUnitType contains j:EnforcementUnitNumberIdentification
+- 110) j:EnforcementUnitType contains j:EnforcementUnitSectionID ----&gt; j:EnforcementUnitType contains j:EnforcementUnitSectionIdentification
+- 111) j:JudicialOfficialType contains j:JudicialOfficialPanelID ----&gt; j:JudicialOfficialType contains j:JudicialOfficialPanelIdentification
+- 112) j:JudicialOfficialType contains j:JudicialOfficialRegistrationID ----&gt; j:JudicialOfficialType contains j:JudicialOfficialRegistrationIdentification
+- 113) j:JudicialOfficialType contains u:RoleOfPerson ----&gt; j:JudicialOfficialType contains nc:RoleOfPerson
+- 114) j:JurorType contains j:JurorID ----&gt; j:JurorType contains j:JurorIdentification
+- 115) j:JurorType contains j:JurorPanelID ----&gt; j:JurorType contains j:JurorPanelIdentification
+- 116) j:JurorType contains u:RoleOfPerson ----&gt; j:JurorType contains nc:RoleOfPerson
+- 117) j:MissingPersonType contains u:RoleOfPerson ----&gt; j:MissingPersonType contains nc:RoleOfPerson
+- 118) j:PersonAugmentationType contains j:DriverLicense ----&gt; j:PersonAugmentationType contains nc:DriverLicense
+
+- 119) j:PersonAugmentationType contains j:PersonFBIID ----&gt; j:PersonAugmentationType contains j:PersonFBIIdentification
+- 120) j:PersonAugmentationType contains j:PersonStateID ----&gt; j:PersonAugmentationType contains j:PersonStateFingerprintIdentification
+- 121) j:RegisteredOffenderType contains j:RegisteredOffenderID ----&gt; j:RegisteredOffenderType contains j:RegisteredOffenderIdentification
+- 122) j:RegisteredOffenderType contains u:RoleOfPerson ----&gt; j:RegisteredOffenderType contains nc:RoleOfPerson
+- 123) j:SubjectPersonAssociationType contains u:Person ----&gt; j:SubjectPersonAssociationType contains nc:Person
+- 124) j:SubjectType contains u:RoleOfPerson ----&gt; j:SubjectType contains nc:RoleOfPerson
+- 125) j:VictimType contains u:RoleOfOrganization ----&gt; j:VictimType contains nc:RoleOfOrganization
+- 126) j:VictimType contains u:RoleOfPerson ----&gt; j:VictimType contains nc:RoleOfPerson
+- 127) j:VictimType contains u:RoleOfProperty ----&gt; j:VictimType contains nc:RoleOfItem
+- 128) j:WitnessType contains j:WitnessID ----&gt; j:WitnessType contains j:WitnessIdentification
+- 129) j:WitnessType contains u:RoleOfPerson ----&gt; j:WitnessType contains nc:RoleOfPerson
+- 130) scr:PassportType contains c:DocumentCountryCode ----&gt; nc:DocumentType contains nc:DocumentCountryCode
+- 131) scr:PassportType contains scr:PassportNumberID ----&gt; nc:PassportType contains nc:PassportNumberIdentification
+- 132) u:ActivityType contains u:ActivityCategoryText ----&gt; nc:ActivityType contains nc:ActivityCategoryText
+- 133) u:ActivityType contains u:ActivityDate ----&gt; nc:ActivityType contains nc:ActivityDateRepresentation
+- 134) u:ActivityType contains u:ActivityDescriptionText ----&gt; nc:ActivityType contains nc:ActivityDescriptionText
+- 135) u:ActivityType contains u:ActivityID ----&gt; nc:ActivityType contains nc:ActivityIdentification
+- 136) u:ActivityType contains u:ActivityTime ----&gt; nc:ActivityType contains nc:ActivityDateRepresentation
+- 137) u:AddressType contains u:LocationCityName ----&gt; nc:StructuredAddressType contains nc:LocationCityName
+- 138) u:AddressType contains u:LocationCountry ----&gt; nc:StructuredAddressType contains nc:LocationCountry
+- 139) u:AddressType contains u:LocationPostalCodeID ----&gt; nc:StructuredAddressType contains nc:LocationPostalCode
+- 140) u:AddressType contains u:LocationSecondaryUnitText ----&gt; nc:AddressType contains nc:AddressRepresentation
+- 141) u:AddressType contains u:LocationState ----&gt; nc:StructuredAddressType contains nc:LocationState
+- 142) u:AddressType contains u:LocationStreet ----&gt; nc:AddressType contains nc:AddressRepresentation
+- 143) u:AssociationType contains u:AssociationBeginDate ----&gt; nc:AssociationType contains nc:AssociationBeginDate
+- 144) u:AssociationType contains u:AssociationBeginTime ----&gt; nc:AssociationType contains nc:AssociationBeginDate
+- 145) u:AssociationType contains u:AssociationEndDate ----&gt; nc:AssociationType contains nc:AssociationEndDate
+- 146) u:AssociationType contains u:AssociationEndTime ----&gt; nc:AssociationType contains nc:AssociationEndDate
+- 147) u:BinaryType contains u:BinaryCaptureDate ----&gt; nc:BinaryType contains nc:BinaryCaptureDate
+- 148) u:BinaryType contains u:BinaryCaptureTime ----&gt; nc:BinaryType contains nc:BinaryCaptureDate
+- 149) u:BinaryType contains u:BinaryCategoryText ----&gt; nc:BinaryType contains nc:BinaryCategoryText
+- 150) u:BinaryType contains u:BinaryDescriptionText ----&gt; nc:BinaryType contains nc:BinaryDescriptionText
+- 151) u:BinaryType contains u:BinaryFormatCategoryText ----&gt; nc:BinaryType contains nc:BinaryFormatStandardName
+- 152) u:BinaryType contains u:BinaryFormatText ----&gt; nc:BinaryType contains nc:BinaryFormatID
+- 153) u:BinaryType contains u:BinaryID ----&gt; nc:BinaryType contains nc:BinaryID
+- 154) u:BinaryType contains u:BinaryObject ----&gt; nc:BinaryType contains nc:BinaryObject
+- 155) u:BinaryType contains u:BinarySizeValue ----&gt; nc:BinaryType contains nc:BinarySizeValue
+- 156) u:ContactInformationType contains u:ContactEmailID ----&gt; nc:ContactInformationType contains nc:ContactMeans
+- 157) u:ContactInformationType contains u:ContactFacsimileNumber ----&gt; nc:ContactInformationType contains nc:ContactMeans
+- 158) u:ContactInformationType contains u:ContactMobileTelephoneNumber ----&gt; nc:ContactInformationType contains nc:ContactMeans
+
+- 159) u:ContactInformationType contains u:ContactPagerNumber ----&gt; nc:ContactInformationType contains nc:ContactMeans
+- 160) u:ContactInformationType contains u:ContactTelephoneNumber ----&gt; nc:ContactInformationType contains nc:ContactMeans
+- 161) u:GeographicCoordinateType contains u:GeographicCoordinateLatitude ----&gt; nc:TwoDimensionalGeographicCoordinateType contains nc:GeographicCoordinateLatitude
+- 162) u:GeographicCoordinateType contains u:GeographicCoordinateLongitude ----&gt; nc:TwoDimensionalGeographicCoordinateType contains nc:GeographicCoordinateLongitude
+- 163) u:IDType contains u:ID ----&gt; nc:IdentificationType contains nc:IdentificationID
+- 164) u:IDType contains u:IDEffectiveDate ----&gt; nc:IdentificationType contains nc:IdentificationEffectiveDate
+- 165) u:IDType contains u:IDExpirationDate ----&gt; nc:IdentificationType contains nc:IdentificationExpirationDate
+- 166) u:IDType contains u:IDIssuingAuthorityText ----&gt; nc:IdentificationType contains nc:IdentificationSourceText
+- 167) u:IDType contains u:IDJurisdictionValue ----&gt; nc:IdentificationType contains nc:IdentificationJurisdiction
+- 168) u:IDType contains u:IDStatus ----&gt; nc:IdentificationType contains nc:IdentificationStatus
+- 169) u:LatitudeCoordinateType contains u:LatitudeDegreeValue ----&gt; nc:LatitudeCoordinateType contains nc:LatitudeDegreeValue
+- 170) u:LatitudeCoordinateType contains u:LatitudeMinuteValue ----&gt; nc:LatitudeCoordinateType contains nc:LatitudeMinuteValue
+- 171) u:LatitudeCoordinateType contains u:LatitudeSecondValue ----&gt; nc:LatitudeCoordinateType contains nc:LatitudeSecondValue
+- 172) u:LocationType contains u:LocationAddress ----&gt; nc:LocationType contains nc:LocationAddress
+- 173) u:LocationType contains u:LocationGeographicCoordinate ----&gt; nc:LocationType contains nc:LocationTwoDimensionalGeographicCoordinate
+- 174) u:LongitudeCoordinateType contains u:LongitudeDegreeValue ----&gt; nc:LongitudeCoordinateType contains nc:LongitudeDegreeValue
+- 175) u:LongitudeCoordinateType contains u:LongitudeMinuteValue ----&gt; nc:LongitudeCoordinateType contains nc:LongitudeMinuteValue
+- 176) u:LongitudeCoordinateType contains u:LongitudeSecondValue ----&gt; nc:LongitudeCoordinateType contains nc:LongitudeSecondValue
+- 177) u:MetadataType contains u:CommentText ----&gt; nc:MetadataType contains nc:CommentText
+- 178) u:MetadataType contains u:EffectiveDate ----&gt; nc:MetadataType contains nc:EffectiveDate
+- 179) u:MetadataType contains u:EffectiveTime ----&gt; nc:MetadataType contains nc:EffectiveDate
+- 180) u:MetadataType contains u:ExpirationDate ----&gt; nc:MetadataType contains nc:ExpirationDate
+- 181) u:MetadataType contains u:ExpirationTime ----&gt; nc:MetadataType contains nc:ExpirationDate
+- 182) u:MetadataType contains u:LastUpdatedDate ----&gt; nc:MetadataType contains nc:LastUpdatedDate
+- 183) u:MetadataType contains u:LastUpdatedTime ----&gt; nc:MetadataType contains nc:LastUpdatedDate
+- 184) u:MetadataType contains u:LastVerifiedDate ----&gt; nc:MetadataType contains nc:LastVerifiedDate
+- 185) u:MetadataType contains u:LastVerifiedTime ----&gt; nc:MetadataType contains nc:LastVerifiedDate
+- 186) u:MetadataType contains u:ReportedDate ----&gt; nc:MetadataType contains nc:ReportedDate
+- 187) u:MetadataType contains u:ReportedTime ----&gt; nc:MetadataType contains nc:ReportedDate
+- 188) u:MetadataType contains u:SourceIDText ----&gt; nc:MetadataType contains nc:SourceIDText
+- 189) u:OrganizationType contains u:OrganizationCategoryAbstract ----&gt; nc:OrganizationType contains nc:OrganizationCategory
+- 190) u:OrganizationType contains u:OrganizationName ----&gt; nc:OrganizationType contains nc:OrganizationName
+- 191) u:PersonNameType contains u:PersonFullName ----&gt; nc:PersonNameType contains nc:PersonFullName
+- 192) u:PersonNameType contains u:PersonGivenName ----&gt; nc:PersonNameType contains nc:PersonGivenName
+- 193) u:PersonNameType contains u:PersonMiddleName ----&gt; nc:PersonNameType contains nc:PersonMiddleName
+- 194) u:PersonNameType contains u:PersonSurName ----&gt; nc:PersonNameType contains nc:PersonSurName
+- 195) u:PersonType contains u:PersonAgeAbstractMeasure ----&gt; nc:PersonType contains nc:PersonAgeMeasure
+
+- 196) u:PersonType contains u:PersonBirthDate ----&gt; nc:PersonType contains nc:PersonBirthDate
+- 197) u:PersonType contains u:PersonHeightAbstractMeasure ----&gt; nc:PersonType contains nc:PersonHeightMeasure
+- 198) u:PersonType contains u:PersonName ----&gt; nc:PersonType contains nc:PersonName
+- 199) u:PersonType contains u:PersonSSNID ----&gt; nc:PersonType contains nc:PersonSSNIdentification
+- 200) u:PersonType contains u:PersonSex ----&gt; nc:PersonType contains nc:PersonSex
+- 201) u:PersonType contains u:PersonWeightAbstractMeasure ----&gt; nc:PersonType contains nc:PersonWeightMeasure
+- 202) u:PropertyType contains u:PropertyDescriptionText ----&gt; nc:ItemType contains nc:ItemDescriptionText
+- 203) u:PropertyType contains u:PropertyHeightMeasure ----&gt; nc:TangibleItemType contains nc:ItemHeightMeasure
+- 204) u:PropertyType contains u:PropertyLengthMeasure ----&gt; nc:TangibleItemType contains nc:ItemLengthMeasure
+- 205) u:PropertyType contains u:PropertyMakeName ----&gt; nc:TangibleItemType contains nc:ItemMakeName
+- 206) u:PropertyType contains u:PropertyModelName ----&gt; nc:TangibleItemType contains nc:ItemModelName
+- 207) u:PropertyType contains u:PropertyValue ----&gt; nc:ItemType contains nc:ItemValue
+- 208) u:PropertyType contains u:PropertyWeightMeasure ----&gt; nc:TangibleItemType contains nc:ItemWeightMeasure
+- 209) u:PropertyType contains u:PropertyWidthMeasure ----&gt; nc:TangibleItemType contains nc:ItemWidthMeasure
+- 210) u:PropertyType contains u:PropertyYearDate ----&gt; nc:TangibleItemType contains nc:ItemModelYearDate
+- 211) u:PropertyValueType contains u:PropertyValueAmount ----&gt; nc:ItemValueType contains nc:ItemValueAmount
+- 212) u:PropertyValueType contains u:PropertyValueDate ----&gt; nc:ItemValueType contains nc:ItemValueDate
+- 213) u:PropertyValueType contains u:PropertyValueDescriptionText ----&gt; nc:ItemValueType contains nc:ItemValueDescriptionText
+- 214) u:RangeMeasureType contains u:RangeMaximumMeasure ----&gt; nc:MeasureRangeValueType contains nc:RangeMaximumValue
+- 215) u:RangeMeasureType contains u:RangeMinimumMeasure ----&gt; nc:MeasureRangeValueType contains nc:RangeMinimumValue
+- 216) u:StatusType contains u:StatusDate ----&gt; nc:StatusType contains nc:StatusDate
+- 217) u:StatusType contains u:StatusDescriptionText ----&gt; nc:StatusType contains nc:StatusDescriptionText
+- 218) u:StatusType contains u:StatusIssuerText ----&gt; nc:StatusType contains nc:StatusIssuerText
+- 219) u:StatusType contains u:StatusTime ----&gt; nc:StatusType contains nc:StatusDate
+- 220) u:StreetType contains u:StreetCategoryText ----&gt; nc:StreetType contains nc:StreetCategoryText
+- 221) u:StreetType contains u:StreetFullText ----&gt; nc:StreetType contains nc:StreetFullText
+- 222) u:StreetType contains u:StreetName ----&gt; nc:StreetType contains nc:StreetName
+- 223) u:StreetType contains u:StreetNumberText ----&gt; nc:StreetType contains nc:StreetNumberText
+- 224) u:StreetType contains u:StreetPostdirectionalText ----&gt; nc:StreetType contains nc:StreetPostdirectionalText
+- 225) u:StreetType contains u:StreetPredirectionalText ----&gt; nc:StreetType contains nc:StreetPredirectionalText
+- 226) u:TelephoneNumberType contains u:TelephoneAreaCodeID ----&gt; nc:NANPTelephoneNumberType contains nc:TelephoneAreaCodeID
+- 227) u:TelephoneNumberType contains u:TelephoneCityCodeID ----&gt; nc:NANPTelephoneNumberType contains nc:TelephoneAreaCodeID 228) u:TelephoneNumberType contains u:TelephoneCountryCodeID ----&gt; nc:InternationalTelephoneNumberType contains nc:TelephoneCountryCodeID
+- 229) u:TelephoneNumberType contains u:TelephoneExchangeID ----&gt; nc:NANPTelephoneNumberType contains nc:TelephoneExchangeID 230) u:TelephoneNumberType contains u:TelephoneNumberFullID ----&gt; nc:FullTelephoneNumberType contains nc:TelephoneNumberFullID
+- 231) u:TelephoneNumberType contains u:TelephoneSubscriberID ----&gt; nc:NANPTelephoneNumberType contains nc:TelephoneLineID 232) u:TelephoneNumberType contains u:TelephoneSuffixID ----&gt; nc:FullTelephoneNumberType contains nc:TelephoneSuffixID
+
+## Facets
+
+- 1) fips\_10-4:CountryCodeSimpleType-CG - ZAIRE ----&gt; fips\_10-4:CountryCodeSimpleType-CG - CONGO, DEMOCRATIC REPUBLIC OF THE
+- 2) fips\_10-4:CountryCodeSimpleType-FM - FEDERATED STATES OF MICRONESIA ----&gt; fips\_10-4:CountryCodeSimpleType-FM - MICRONESIA, FEDERATED STATES OF
+- 3) fips\_10-4:CountryCodeSimpleType-IM - MAN, ISLE OF ----&gt; fips\_10-4:CountryCodeSimpleType-IM - ISLE OF MAN
+- 4) fips\_10-4:CountryCodeSimpleType-IV - COTE D&amp;apos;IVOIRE ----&gt; fips\_10-4:CountryCodeSimpleType-IV - COTE D'IVOIRE
+- 5) fips\_10-4:CountryCodeSimpleType-KN - KOREA, DEMOCRATIC PEOPLE&amp;apos;S REPUBLIC OF ----&gt; fips\_10-4:CountryCodeSimpleType-KN - NORTH KOREA
+- 6) fips\_10-4:CountryCodeSimpleType-KS - KOREA, REPUBLIC OF ----&gt; fips\_10-4:CountryCodeSimpleType-KS - SOUTH KOREA
+- 7) fips\_10-4:CountryCodeSimpleType-MW - MONTENEGRO ----&gt; fips\_10-4:CountryCodeSimpleType-MJ - MONTENEGRO
+- 8) fips\_10-4:CountryCodeSimpleType-PS - TRUST TERRITORY OF THE PACIFIC ISLANDS (PALAU) ----&gt; fips\_10-4:CountryCodeSimpleType-PS - PALAU
+- 9) fips\_10-4:CountryCodeSimpleType-SB - ST. PIERRE AND MIQUELON ----&gt; fips\_10-4:CountryCodeSimpleType-SB - SAINT PIERRE AND MIQUELON
+- 10) fips\_10-4:CountryCodeSimpleType-SC - ST. KITTS AND NEVIS ----&gt; fips\_10-4:CountryCodeSimpleType-SC - SAINT KITTS AND NEVIS
+- 11) fips\_10-4:CountryCodeSimpleType-SH - ST. HELENA ----&gt; fips\_10-4:CountryCodeSimpleType-SH - SAINT HELENA
+- 12) fips\_10-4:CountryCodeSimpleType-SR - SERBIA ----&gt; fips\_10-4:CountryCodeSimpleType-RB - SERBIA
+- 13) fips\_10-4:CountryCodeSimpleType-ST - ST. LUCIA ----&gt; fips\_10-4:CountryCodeSimpleType-ST - SAINT LUCIA
+- 14) fips\_10-4:CountryCodeSimpleType-TC - UNITED ARAB EMIRATES ----&gt; fips\_10-4:CountryCodeSimpleType-AE - UNITED ARAB EMIRATES
+- 15) fips\_10-4:CountryCodeSimpleType-UV - BURKINA ----&gt; fips\_10-4:CountryCodeSimpleType-UV - BURKINA FASO
+- 16) fips\_10-4:CountryCodeSimpleType-VC - ST. VINCENT AND THE GRENADINES ----&gt; fips\_10-4:CountryCodeSimpleType-VC - SAINT VINCENT AND THE GRENADINES
+- 17) fips\_10-4:CountryCodeSimpleType-VQ - VIRGIN ISLANDS ----&gt; fips\_10-4:CountryCodeSimpleType-VQ - UNITED STATES VIRGIN ISLANDS
+- 18) fips\_10-4:CountryCodeSimpleType-WS - WESTERN SAMOA ----&gt; fips\_10-4:CountryCodeSimpleType-WS - SAMOA
+- 19) ncic:PROCodeSimpleType-IN - INBOARD\_(I ----&gt; fbi:PROCodeSimpleType-IN - Inboard (includes inboard/outboard, stern drive, and inboard/outdrives)
+- 20) ncic:PROCodeSimpleType-MP - MANUAL (OARS PADDLES) ----&gt; fbi:PROCodeSimpleType-MP - Manual (oars, paddles, etc.)
+- 21) ncic:PROCodeSimpleType-OB - OUTBOARD ----&gt; fbi:PROCodeSimpleType-OB - Outboard
+- 22) ncic:PROCodeSimpleType-SA - SAIL ONLY ----&gt; fbi:PROCodeSimpleType-SA - Sail only
+- 23) ncic:PROCodeSimpleType-SI - SAIL W/AUXILIARY INBOARD POWER ----&gt; fbi:PROCodeSimpleType-SI - Sail w/Auxiliary Inboard Power
+- 24) ncic:PROCodeSimpleType-SO - SAIL W/AUXILIARY OUTBOARD POWER ----&gt; fbi:PROCodeSimpleType-SO - Sail w/Auxiliary Outboard Power
+- 25) ncic:VMOCodeSimpleType-250 - (BMW) 2500 Series, BMW; (LEXS) ES250, Lexus; (MDNA) GT250, Modena; (MERZ) 250 Series,
+
+Mercedes-Benz; (TRIU) 250, Triumph ----&gt; fbi:VMOCodeSimpleType-250 - (BMW) 2500 Series, BMW; (LEXS) ES250, Lexus; (MDNA) GT250, Modena; (MERZ) 250 Series, Mercedes-Benz; (TRIU) 250, Triumph; (LEXS) IS250, Lexus 26) ncic:VMOCodeSimpleType-325 - (BMW) 325, BMW ----&gt; fbi:VMOCodeSimpleType-325 - (BMW) 325, BMW; (BMW) 325Xi, BMW 27) ncic:VMOCodeSimpleType-330 - (DODG) 330 Series, Dodge; (BMW) 330I, BMW; (LEXS) ES330, Lexus ----&gt; fbi:VMOCodeSimpleType-330 - (DODG) 330 Series, Dodge; (BMW) 330I, BMW; (LEXS) ES330, Lexus; (BMW) 330Xi, BMW 28) ncic:VMOCodeSimpleType-350 - (MASE) 3500 (series), Maserati; (ROV) 3500, Rover; (NISS) 350Z, Nissan ; (MERZ) E350 OR SLK350, Mercedes Benz; (MERZ) S350, Mercedes - Benz; (ISU) i350, Isuzu ----&gt; fbi:VMOCodeSimpleType-350 - (MASE) 3500 (series), Maserati; (ROV) 3500, Rover; (NISS) 350Z, Nissan ; (MERZ) E350 OR SLK350, Mercedes Benz; (MERZ) S350, Mercedes - Benz; (ISU) i350, Isuzu; (LEXS) IS350, Lexus 29) ncic:VMOCodeSimpleType-525 - (BMW) 525ia, BMW ----&gt; fbi:VMOCodeSimpleType-525 - (BMW) 525ia, BMW; (BMW) 525i, BMW 30) ncic:VMOCodeSimpleType-750 - (BMW) 750, BMW; (FIAT) 750, Fiat; (RENA) 750, Renault ----&gt; fbi:VMOCodeSimpleType-750 - (BMW) 750, BMW; (FIAT) 750, Fiat; (RENA) 750, Renault; (BMW) 750i, BMW; (BMW) 750L, BMW 31) ncic:VMOCodeSimpleType-760 - (VOLV) 760, Volvo; (BMW) 760 LI, BMW ----&gt; fbi:VMOCodeSimpleType-760 - (VOLV) 760, Volvo; (BMW) 760 LI, BMW ; (BMW) 760i, BMW 32) ncic:VMOCodeSimpleType-ASP - (DODG) Aspen, Dodge; (FORD) Aspire, Ford (see English, French, German, and Italian Ford) ----&gt; fbi:VMOCodeSimpleType-ASP - (DODG) Aspen, Dodge; (FORD) Aspire, Ford (see English, French, German, and Italian Ford); (CHRY) Aspen, Chrysler 33) ncic:VMOCodeSimpleType-AUR - (OLDS) Aurora, Oldsmobile ----&gt; fbi:VMOCodeSimpleType-AUR - (OLDS) Aurora, Oldsmobile; (STRN) Aura, XE, XR, Saturn 34) ncic:VMOCodeSimpleType-C35 - (CHEV) C/K 3500, Chevrolet ----&gt; fbi:VMOCodeSimpleType-C35 - (CHEV) C/K 3500, Chevrolet; (MERZ) C350, Mercedes Benz 35) ncic:VMOCodeSimpleType-CAL - (BUIC) California, Buick; (CADI) Calais, Cadillac; (OLDS) Calais, Oldsmobile ----&gt; fbi:VMOCodeSimpleType-CAL - (BUIC) California, Buick; (CADI) Calais, Cadillac; (OLDS) Calais, Oldsmobile; (DODG) Caliber, Dodge 36) ncic:VMOCodeSimpleType-CSX - (SHEB) CSX, Shelby American ----&gt; fbi:VMOCodeSimpleType-CSX - (SHEB) CSX, Shelby American; (ACUR) CSX, Acura 37) ncic:VMOCodeSimpleType-ENC - (AMER) Encore, American Motors (see make Rambler for Ramblers mfd. prior to 1966), Jeep (for vehicle years 1970-1988, use VMA/AMER) ----&gt; fbi:VMOCodeSimpleType-ENC - (AMER) Encore, American Motors (see make Rambler for Ramblers mfd. prior to 1966), Jeep (for vehicle years 1970-1988, use VMA/AMER); (BUIC) Enclave, Buick 38) ncic:VMOCodeSimpleType-G45 - (BUIC) GS455, Buick ----&gt; fbi:VMOCodeSimpleType-G45 - (BUIC) GS455, Buick; (LEXS) GS450h, Lexus 39) ncic:VMOCodeSimpleType-OUT - (MITS) Outlander, Mitsubishi ----&gt; fbi:VMOCodeSimpleType-OUT - (MITS) Outlander, Mitsubishi ; (STRN) Outlook, Saturn; (SUBA) Outback, Subaru 40) ncic:VMOCodeSimpleType-PAT - (PACK) Patrician, Packard ----&gt; fbi:VMOCodeSimpleType-PAT - (PACK) Patrician, Packard; (JEEP) Patriot, Jeep 41) ncic:VMOCodeSimpleType-R35 - (DODG) Ram 3500 (pickup), Dodge ----&gt; fbi:VMOCodeSimpleType-R35 - (DODG) Ram 3500 (pickup), Dodge; (LEXS) RX350, Lexus; (MERZ) R350 (Sport Wagon), Mercedes Benz 42) ncic:VMOCodeSimpleType-TAL - (EGIL) Talon, Eagle ----&gt; fbi:VMOCodeSimpleType-TAL - (EGIL) Talon, Eagle; (TLCC) Talbo, TLC Carrossiers; (TLCC) Talbo Lago, TLC Carrossiers 43) unece:LengthCodeSimpleType-A - angstrom ----&gt; unece:LengthCodeSimpleType-A11 - angstrom 44) unece:LengthCodeSimpleType-AU - astronomical unit ----&gt; unece:LengthCodeSimpleType-A12 - astronomical unit
+
+- 45) unece:LengthCodeSimpleType-ch - chain ----&gt; unece:LengthCodeSimpleType-X1 - chain
+- 46) unece:LengthCodeSimpleType-cm - centimetre ----&gt; unece:LengthCodeSimpleType-CMT - centimetre
+- 47) unece:LengthCodeSimpleType-dam - decametre ----&gt; unece:LengthCodeSimpleType-A45 - decametre
+- 48) unece:LengthCodeSimpleType-dm - decimetre ----&gt; unece:LengthCodeSimpleType-DMT - decimetre
+- 49) unece:LengthCodeSimpleType-fathom - fathom ----&gt; unece:LengthCodeSimpleType-AK - fathom
+- 50) unece:LengthCodeSimpleType-fm - femtometre ----&gt; unece:LengthCodeSimpleType-A71 - femtometre
+- 51) unece:LengthCodeSimpleType-ft - foot ----&gt; unece:LengthCodeSimpleType-FOT - foot
+- 52) unece:LengthCodeSimpleType-hm - hectometre ----&gt; unece:LengthCodeSimpleType-HMT - hectometre
+- 53) unece:LengthCodeSimpleType-in - inch ----&gt; unece:LengthCodeSimpleType-INH - inch
+- 54) unece:LengthCodeSimpleType-km - kilometre ----&gt; unece:LengthCodeSimpleType-KMT - kilometre
+- 55) unece:LengthCodeSimpleType-l.y. - light year ----&gt; unece:LengthCodeSimpleType-B57 - light year
+- 56) unece:LengthCodeSimpleType-m - metre ----&gt; unece:LengthCodeSimpleType-MTR - metre
+- 57) unece:LengthCodeSimpleType-mil - milli- inch ----&gt; unece:LengthCodeSimpleType-77 - milli-inch
+- 58) unece:LengthCodeSimpleType-mile - mile (statute mile) ----&gt; unece:LengthCodeSimpleType-SMI - mile (statute mile)
+- 59) unece:LengthCodeSimpleType-mm - millimetre ----&gt; unece:LengthCodeSimpleType-MMT - millimetre
+- 60) unece:LengthCodeSimpleType-n mile - nautical mile ----&gt; unece:LengthCodeSimpleType-NMI - nautical mile
+- 61) unece:LengthCodeSimpleType-nm - nanometre ----&gt; unece:LengthCodeSimpleType-C45 - nanometre
+- 62) unece:LengthCodeSimpleType-pc - parsec ----&gt; unece:LengthCodeSimpleType-C63 - parsec
+- 63) unece:LengthCodeSimpleType-pm - picometre ----&gt; unece:LengthCodeSimpleType-C52 - picometre
+- 64) unece:LengthCodeSimpleType-uin - micro- inch ----&gt; unece:LengthCodeSimpleType-M7 - micro-inch
+- 65) unece:LengthCodeSimpleType-um - micrometre (micron) ----&gt; unece:LengthCodeSimpleType-4H - micrometre (micron)
+- 66) unece:LengthCodeSimpleType-yd - yard ----&gt; unece:LengthCodeSimpleType-YRD - yard
+- 67) unece:MassCodeSimpleType-cg - centigram ----&gt; unece:MassCodeSimpleType-CGM - centigram
+- 68) unece:MassCodeSimpleType-cwt (UK) - hundred weight (UK) ----&gt; unece:MassCodeSimpleType-CWI - hundred weight (UK)
+- 69) unece:MassCodeSimpleType-cwt (US) - hundred pounds (cwt)/ hundred weight (US) ----&gt; unece:MassCodeSimpleType-CWA - hundred pounds (cwt) / hundred weight (US)
+- 70) unece:MassCodeSimpleType-dag - decagram ----&gt; unece:MassCodeSimpleType-DJ - decagram
+- 71) unece:MassCodeSimpleType-dg - decigram ----&gt; unece:MassCodeSimpleType-DG - decigram
+- 72) unece:MassCodeSimpleType-dt - decitonne ----&gt; unece:MassCodeSimpleType-DTN - decitonne
+- 73) unece:MassCodeSimpleType-g - gram ----&gt; unece:MassCodeSimpleType-GRM - gram
+- 74) unece:MassCodeSimpleType-gr - grain ----&gt; unece:MassCodeSimpleType-GRN - grain
+- 75) unece:MassCodeSimpleType-hg - hectogram ----&gt; unece:MassCodeSimpleType-HGM - hectogram
+- 76) unece:MassCodeSimpleType-kg - kilogram ----&gt; unece:MassCodeSimpleType-KGM - kilogram
+- 77) unece:MassCodeSimpleType-kt - kilotonne ----&gt; unece:MassCodeSimpleType-KTN - kilotonne
+- 78) unece:MassCodeSimpleType-lb - pound ----&gt; unece:MassCodeSimpleType-LBR - pound
+- 79) unece:MassCodeSimpleType-mg - milligram ----&gt; unece:MassCodeSimpleType-2U - megagram
+- 80) unece:MassCodeSimpleType-oz - ounce ----&gt; unece:MassCodeSimpleType-ONZ - ounce
+- 81) unece:MassCodeSimpleType-stone - stone (UK) ----&gt; unece:MassCodeSimpleType-STI - stone (UK)
+- 82) unece:MassCodeSimpleType-t - tonne (metric ton) ----&gt; unece:MassCodeSimpleType-TNE - tonne (metric ton)
+- 83) unece:MassCodeSimpleType-ton (UK) - ton (UK) or longton (US) ----&gt; unece:MassCodeSimpleType-LTN - ton (UK) or long ton (US)
+
+84) unece:MassCodeSimpleType-ton (US) - ton (US) or short ton (UK/US) ----&gt; unece:MassCodeSimpleType-STN - ton (US) or short ton (UK/US)
+
+85) unece:MassCodeSimpleType-tr oz - troy ounce or apothecaries&amp;apos; ounce ----&gt; unece:MassCodeSimpleType-APZ - troy ounce or apothecary ounce
+
+[Back to Top]

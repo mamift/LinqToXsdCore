@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document      : $Id: library.xsd 1867 2008-12-22 01:31:55Z ys34 $
+    LEXS version  : 3.1.4
+    Namespace     : xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1"
+    Description   : a library for LEXS common elements.
+-->
+<xsd:schema 
+    targetNamespace="http://usdoj.gov/leisp/lexs/library/3.1"
+    version="3.1.4"
+    xmlns:i="http://niem.gov/niem/appinfo/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <xsd:import 
+        namespace="http://niem.gov/niem/structures/2.0" 
+        schemaLocation="../../niem-constrained/structures/2.0/structures.xsd"/>
+    <xsd:import 
+        namespace="http://niem.gov/niem/appinfo/2.0" 
+        schemaLocation="../../niem-constrained/appinfo/2.0/appinfo.xsd"/>
+    
+    <xsd:complexType name="SameAsPayloadAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that defines association that identifies objects as the same. Association is used to connect object in digest to object located within payload ( downpoint reference ).</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="s:ComplexObjectType">
+                <xsd:sequence>
+                    <xsd:element ref="lexslib:ObjectReference"/>
+                    <xsd:element ref="lexslib:PayloadObjectReference"/>
+                    <xsd:element ref="lexslib:PayloadReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <!-- used to point to the object located under PackageStructuredPayload when schema is not available -->
+    <xsd:complexType name="ReferenceType" final="#all">
+        <xsd:annotation>
+            <xsd:documentation>A structure that allows reference to an object that is located within closed(xsd:any) container (for example under lexs:StructuredPayload) and is beyond the scope of XML Schema validation. lexslib:ref element holds a valid ID value for the scope of the referenced document (located under xsd:any) rather than a local document.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute ref="s:id"/>
+        <xsd:attribute ref="lexslib:ref" use="required"/>
+        <xsd:attribute ref="s:linkMetadata"/>
+    </xsd:complexType>
+    
+    <xsd:element name="ObjectReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to an object</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:name="ComplexObjectType" i:namespace="http://niem.gov/niem/structures/2.0"/>
+            </xsd:appinfo>            
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:element name="PayloadObjectReference" type="lexslib:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to an object located within Payload. This reference is not validated by default with XML Schema validation during LEXS validation pass.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:name="ComplexObjectType" i:namespace="http://niem.gov/niem/structures/2.0"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:element name="PayloadReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to a Payload</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:name="StructuredPayloadType" i:namespace="http://usdoj.gov/leisp/lexs/3.1"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:element name="AttachmentLinkReference" type="lexslib:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to an AttachmentLink.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:name="AttachmentLinkType" i:namespace="http://usdoj.gov/leisp/lexs/3.1"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <!-- standalone form, used to connect entity from digest to payload ( downpoint reference ) -->
+    <xsd:element name="SameAsPayloadAssociation" type="lexslib:SameAsPayloadAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>Association that identifies objects as the same. Association is used to connect object in digest to object located within payload ( downpoint reference ).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+   <!-- embedded form (used within the object), used to point from payload entities to digest entities (uppoint reference ) -->
+    <xsd:element name="SameAsDigestReference" type="lexslib:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to the object that is considered the same. Used to connect XML elements from the Structured Payload to XML elements in the Digest, when the Structured Payload builds upon the contents of the Digest.  Sometimes referred to as an up-pointing reference.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:name="ComplexObjectType" i:namespace="http://niem.gov/niem/structures/2.0"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <!-- reference to the object that is located beyond the scope of validation -->
+    <xsd:attribute name="ref" type="xsd:NCName">
+        <xsd:annotation>
+            <xsd:documentation>Reference to an object. Used to point to an object that is located beyond the scope of XML Schema validation mechanisms.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    
+    <!--  Reference to the external Structured Payload object which is beyond the scope of validation from inside of Structured Payload -->
+    <xsd:attribute name="pref" type="xsd:NCName">
+        <xsd:annotation>
+            <xsd:documentation>Reference to the external Structured Payload object which is beyond the scope of XML Schema validation mechanisms from inside of Structured Payload.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    
+    <!-- used to point to the object located under PackageStructuredPayload when schema is not available -->
+    <xsd:complexType name="PayloadObjectReferenceType" final="#all">
+        <xsd:annotation>
+            <xsd:documentation>A structure that allows reference to an object that is located within closed (xsd:any) container (for example under lexs:StructuredPayload) and is beyond the scope of XML Schema validation. lexslib:ref element holds a valid ID value for the scope of the referenced document (located under xsd:any) rather than a local document.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute ref="s:id"/>
+        <xsd:attribute ref="lexslib:ref" use="required"/>
+        <xsd:attribute ref="lexslib:pref" use="required"/>
+        <xsd:attribute ref="s:linkMetadata"/>
+    </xsd:complexType>    
+    
+    <!-- embedded form, double reference, used to point from payload entities to other payload entities (cross reference ). Uses lexslib:ref to point to the object and lexlib:pref to point to structured payload  -->
+    <xsd:element name="SameAsPayloadReference" type="lexslib:PayloadObjectReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to the object that is considered the same. Used to connect XML elements from one Structured Payload to XML elements in another Structured Payload, when one Structured Payload builds upon the contents of another Structured Payload.  Sometimes referred to as cross reference.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+</xsd:schema>
