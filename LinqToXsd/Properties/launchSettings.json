@@ -308,6 +308,12 @@
       "commandLineArgs": "gen -a .",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\SOAP-WSDL",
       "hotReloadEnabled": false
+    },
+    "XTCE": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XTCE",
+      "hotReloadEnabled": false
     }
   }
 }

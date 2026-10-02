@@ -61,6 +61,7 @@
       "GeneratedSchemaLibraries\\XMLSpec\\XMLSpec.csproj",
       "GeneratedSchemaLibraries\\XQueryX\\XQueryX.csproj",
       "GeneratedSchemaLibraries\\XSD\\XSD.csproj",
+      "GeneratedSchemaLibraries\\XTCE\\XTCE.csproj",
       "LinqToXsd.Schemas\\LinqToXsd.Schemas.csproj",
       "LinqToXsd\\LinqToXsd.csproj",
       "XObjectsCode\\XObjectsCodeGen.csproj",
