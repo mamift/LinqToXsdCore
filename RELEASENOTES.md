@@ -15,6 +15,7 @@ Nuget packages:
     - the `-a` flag will now delete existing files with the `.xsd.cs` extension (since v3.4.17, the default output extension is now `.xsd-g.cs`) when outputting code
     - fixed a bug with getting the actual XML Schema version, the `xs:schema\@version` attribute is a user defined attribute for the schema version, it does not specify which W3C XSD specification version to validate against (i.e. v1.0 or v1.1). This has inadvertently caused `linqtoxsd` to skip schemas whose versions were v1.1 or higher.
     - the behaviour of the `-a` argument when invoking the `linqtoxsd` CLI tool is now always applied i.e. it now always searches for a `.xsd.config` file regardless. However, in previous versions, if a config file was not found, `linqtoxsd` would skip that XSD file - now `linqtoxsd` will simply apply default config values for those XSD files and proceed to generate code.
+    - added a new CLI verb `sum` that will emit a markdown file that summarises the generated code.
 
 ## Version 3.4.23
 
