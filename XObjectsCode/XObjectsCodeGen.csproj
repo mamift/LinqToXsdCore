@@ -15,6 +15,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="PreloadedXsds\xml.xsd" />
+    <None Remove="PreloadedXsds\xml.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="PreloadedXsds\xml.xsd" />
+    <EmbeddedResource Include="PreloadedXsds\xml.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="OneOf" Version="3.0.263" />
     <PackageReference Include="PolySharp" Version="1.15.0">
       <PrivateAssets>all</PrivateAssets>
