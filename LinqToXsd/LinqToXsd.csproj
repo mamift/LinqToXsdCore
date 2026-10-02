@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <None Include="..\RELEASENOTES.md" Link="RELEASENOTES.md" Pack="true" PackagePath="" />
+	<None Include=".\SKILLS.md" Link="SKILLS.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
