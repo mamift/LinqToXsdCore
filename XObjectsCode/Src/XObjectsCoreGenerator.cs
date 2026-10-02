@@ -121,9 +121,19 @@ namespace Xml.Schema.Linq
             var xmlReader = XmlReader.Create(xsdFilePath, readerSettings);
 
             using (xmlReader) {
+                XmlSchemaSet? schemaSet = null;
                 // Pass the resolver explicitly so xs:import/xs:include resolution uses the reader's
                 // resolver and BaseURI rather than anything inherited from shared/global state.
-                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet(resolver);
+                try
+                {
+                    schemaSet = xmlReader.ToXmlSchemaSet(resolver);
+                }
+                catch (XmlSchemaException xse) when (xse.IsXmlNamespaceAttributeError())
+                {
+                    readerSettings.XmlResolver = null;
+                    using var xmlReader2 = XmlReader.Create(xsdFilePath, readerSettings);
+                    schemaSet = xmlReader2.CompileXmlSchemaSetWithPreloadedXsds();
+                }
 
                 string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
 

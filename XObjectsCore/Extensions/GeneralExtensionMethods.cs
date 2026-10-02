@@ -74,13 +74,7 @@ namespace Xml.Schema.Linq.Extensions
             };
 
             newXmlSet.Add(null, reader);
-            try {
-                newXmlSet.Compile();
-            } catch (XmlSchemaException ex) when
-                (ex.Message.Contains("The 'http://www.w3.org/XML/1998/namespace:base' attribute is not declared.")) {
-
-                throw new LinqToXsdException($"Error compiling schema: {reader.BaseURI}", ex);
-            }
+            newXmlSet.Compile();
 
             return newXmlSet;
         }
