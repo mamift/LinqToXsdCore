@@ -1,11 +1,11 @@
-﻿{
+{
   "solution": {
     "path": "LinqToXsdCore.sln",
     "projects": [
       "GeneratedSchemaLibraries\\1707_ISYBAU_XML_Schema\\1707_ISYBAU_XML_Schema.csproj",
       "GeneratedSchemaLibraries\\AbstractTypeTest\\AbstractTypeTest.csproj",
-      "GeneratedSchemaLibraries\\AkomaNtoso30-CSD13-D2f\\AkomaNtoso30-CSD13-D2f.csproj",
       "GeneratedSchemaLibraries\\AkomaNtoso\\AkomaNtoso.csproj",
+      "GeneratedSchemaLibraries\\AkomaNtoso30-CSD13-D2f\\AkomaNtoso30-CSD13-D2f.csproj",
       "GeneratedSchemaLibraries\\ALTO\\ALTO.csproj",
       "GeneratedSchemaLibraries\\AspNetSiteMaps\\AspNetSiteMaps.csproj",
       "GeneratedSchemaLibraries\\Atom\\Atom.csproj",
@@ -44,6 +44,7 @@
       "GeneratedSchemaLibraries\\OPC\\OPC.csproj",
       "GeneratedSchemaLibraries\\OpenPackagingConventions-XMLSchema\\OpenPackagingConventions-XMLSchema.csproj",
       "GeneratedSchemaLibraries\\Opml\\Opml.csproj",
+      "GeneratedSchemaLibraries\\ORMML\\ORMML.csproj",
       "GeneratedSchemaLibraries\\ParaParserXml\\ParaParserXml.csproj",
       "GeneratedSchemaLibraries\\Pubmed\\Pubmed.csproj",
       "GeneratedSchemaLibraries\\Rss\\Rss.csproj",

@@ -144,6 +144,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\ALTO\ALTO.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\GraffitiMarkupLanguage\GraffitiMarkupLanguage.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\SOAP-WSDL\SOAP-WSDL.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\ORMML\ORMML.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">
