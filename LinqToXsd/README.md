@@ -57,6 +57,16 @@ linqtoxsd gen "$(ProjectDir)wss.xsd" -c "$(ProjectDir)wss.xsd.config"
 
 In the above example, the strings beginning with `$()` are MSBuild macros.
 
+### Summarising generated code
+
+The `sum` verb (short for summarise) writes a markdown file (`*.md`) describing the classes and their members in each generated `.xsd-g.cs` file:
+
+```
+linqtoxsd sum wss.xsd-g.cs
+```
+
+It accepts one or more `.xsd-g.cs` files, or a single folder of them. Method bodies and private members are omitted from the summary, and because the source is parsed with Roslyn, a syntax error in the generated code makes the command fail. See `linqtoxsd sum --help` for more details.
+
 ## Using generated code in a shipping app or library
 
 For any project that includes the generated code, add a reference to the **XObjectsCore** nuget package. The latest version can be found here: https://www.nuget.org/packages/XObjectsCore/
