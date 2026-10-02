@@ -106,7 +106,7 @@ linqtoxsd sum Generated/wss.xsd-g.cs
 linqtoxsd sum Generated/      # one folder of .xsd-g.cs files
 ```
 
-It accepts one or more `.xsd-g.cs` file paths, or a single folder of them (not both), and writes `<filename>.md` next to each input file (or into a folder given with `-o`). For each class the summary records the declaration (base types and interfaces included), plus all public/protected/internal methods, properties and constructors, shortened to signatures with bodies omitted; private members are excluded. Enums are listed with their values.
+It accepts one or more `.xsd-g.cs` file paths, or a single folder of them (not both), and writes `<filename>.md` next to each input file (or into a folder given with `-o`). For each class the summary records the declaration (base types and interfaces included), plus all public/protected/internal methods, properties and constructors, shortened to signatures with bodies omitted; private members are excluded. The static `SimpleTypeValidator` fields generated for simple types are listed under a "Type validators" section (without their initialisers). Enums are listed with their values.
 
 Because each file is parsed with Roslyn (at C# 8), any syntax error in the generated code makes the command fail with a non-zero exit code — `sum` doubles as a quick validity check on generated output.
 

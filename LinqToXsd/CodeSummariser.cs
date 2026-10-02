@@ -38,7 +38,8 @@ namespace LinqToXsd
         /// <summary>
         /// Summarises the classes and enums defined in <paramref name="sourceCode"/>.
         /// Members that are not visible outside their declaring type (private, or default accessibility) are omitted,
-        /// as are all method, accessor and constructor bodies.
+        /// as are all method, accessor and constructor bodies. Type validator fields (the static
+        /// <c>SimpleTypeValidator</c> instances generated for simple types) are included without their initialisers.
         /// </summary>
         /// <param name="sourceCode"></param>
         /// <param name="sourceFileName">Used for error messages only.</param>
@@ -119,6 +120,7 @@ namespace LinqToXsd
             var constructors = new List<string>();
             var methods = new List<string>();
             var properties = new List<string>();
+            var typeValidators = new List<string>();
 
             foreach (var member in classDeclaration.Members)
             {
@@ -133,12 +135,16 @@ namespace LinqToXsd
                     case PropertyDeclarationSyntax property when IsVisible(property.Modifiers):
                         properties.Add(PropertySignature(property));
                         break;
+                    case FieldDeclarationSyntax field when IsTypeValidatorField(field):
+                        typeValidators.Add(FieldSignature(field));
+                        break;
                 }
             }
 
             AppendMembersSection(markdown, "Constructors", constructors);
             AppendMembersSection(markdown, "Methods", methods);
             AppendMembersSection(markdown, "Properties", properties);
+            AppendMembersSection(markdown, "Type validators", typeValidators);
         }
 
         private static void AppendEnumSummary(StringBuilder markdown, EnumDeclarationSyntax enumDeclaration)
@@ -167,6 +173,22 @@ namespace LinqToXsd
             markdown.AppendLine();
             foreach (var signature in signatures) markdown.AppendLine($"- `{signature}`");
             markdown.AppendLine();
+        }
+
+        /// <summary>
+        /// True when a field is a type validator: the static <c>SimpleTypeValidator TypeDefinition</c> fields that the
+        /// generator emits into simple type classes. Other fields (XName constants etc.) are not part of the summary.
+        /// </summary>
+        private static bool IsTypeValidatorField(FieldDeclarationSyntax field)
+        {
+            if (!IsVisible(field.Modifiers)) return false;
+            return field.Declaration.Type.ToString().Contains("SimpleTypeValidator");
+        }
+
+        private static string FieldSignature(FieldDeclarationSyntax field)
+        {
+            var names = string.Join(", ", field.Declaration.Variables.Select(v => v.Identifier.Text));
+            return Normalise($"{ModifiersText(field.Modifiers)} {field.Declaration.Type} {names}");
         }
 
         private static string ClassDeclarationSignature(ClassDeclarationSyntax classDeclaration)

@@ -42,6 +42,8 @@ namespace Sample.Namespace {
                 return 0;
             }
         }
+        public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.AtomicSimpleTypeValidator();
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get(""id"");
         public enum NestedEnum {
             One = 1,
             Two
@@ -77,6 +79,11 @@ namespace Sample.Namespace {
             StringAssert.Contains("One = 1", summary);
             StringAssert.Contains("public enum TopLevelEnum : long", summary);
             StringAssert.Contains("B = 2", summary);
+            // type validator fields are included without their initialisers
+            StringAssert.Contains("public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition", summary);
+            StringAssert.DoesNotContain("AtomicSimpleTypeValidator()", summary);
+            // other fields (XName constants) are not part of the summary
+            StringAssert.DoesNotContain("idXName", summary);
             // private members are omitted
             StringAssert.DoesNotContain("hiddenField", summary);
             StringAssert.DoesNotContain("HiddenMethod", summary);
