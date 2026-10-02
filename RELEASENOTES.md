@@ -16,6 +16,7 @@ Nuget packages:
     - fixed a bug with getting the actual XML Schema version, the `xs:schema\@version` attribute is a user defined attribute for the schema version, it does not specify which W3C XSD specification version to validate against (i.e. v1.0 or v1.1). This has inadvertently caused `linqtoxsd` to skip schemas whose versions were v1.1 or higher.
     - the behaviour of the `-a` argument when invoking the `linqtoxsd` CLI tool is now always applied i.e. it now always searches for a `.xsd.config` file regardless. However, in previous versions, if a config file was not found, `linqtoxsd` would skip that XSD file - now `linqtoxsd` will simply apply default config values for those XSD files and proceed to generate code.
     - added a new CLI verb `sum` that will emit a markdown file that summarises the generated code.
+    - codegen: `global::` is now prefixed to the generated method `GetRootType()` when global:: is used in other places for namespaces with Xml in them.
 
 ## Version 3.4.23
 
