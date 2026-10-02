@@ -11,7 +11,10 @@ namespace Xml.Schema.Linq.CodeGen;
 
 public class PreloadedXsdsResolver: XmlUrlResolver
 {
-    public static string[] XmlXsdUrls = [
+    /// <summary>
+    /// From: <see cref="https://www.w3.org/2001/xml.xsd"/> (view in a web browser).
+    /// </summary>
+    public static readonly string[] XmlXsdUrls = [
         "http://www.w3.org/2009/01/xml.xsd", "http://www.w3.org/2007/08/xml.xsd", "http://www.w3.org/2004/10/xml.xsd",
         "http://www.w3.org/2001/03/xml.xsd", "http://www.w3.org/2001/xml.xsd"
     ];
@@ -36,8 +39,6 @@ public class PreloadedXsdsResolver: XmlUrlResolver
         fallback:
         return base.GetEntity(absoluteUri, role, ofObjectToReturn);
     }
-
-    public bool WasPreloadedXsdResolved { get; private set; }
 
     public List<string> PreloadedXsdFileNames { get; private set; } = new();
 
