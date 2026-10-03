@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
 using Xml.Schema.Linq.CodeGen;
@@ -100,6 +101,7 @@ namespace Xml.Schema.Linq
             var isEnum = simpleType.IsEnum();
             XmlSchemaSimpleType type = simpleType;
             XmlSchemaSimpleType enumSimpleType = null; //simpletype that has most restricted enums.
+            List<string> enumFacetValues = new List<string>();
             flags = 0;
             while (type != null &&
                    !String.Equals(type.QualifiedName.Namespace, Constants.XSD, StringComparison.Ordinal))
@@ -154,8 +156,9 @@ namespace Xml.Schema.Linq
                             var value = type.BaseXmlSchemaType.Datatype.ParseValue(s: facet.Value, nameTable: nameTable, nsmgr: null);
                             if (isEnum)
                             {
-                                var enumFacet = new EnumFacet(value.ToString());
-                                enumerations.Add(enumFacet.ToString());
+                                // defer to the end so every facet receives a member name that is
+                                // unique within the whole enumeration (see EnumFacet.CreateUniqueFacets)
+                                enumFacetValues.Add(value.ToString());
                             }
                             else
                             {
@@ -248,6 +251,14 @@ namespace Xml.Schema.Linq
                 }
 
                 type = type.BaseXmlSchemaType as XmlSchemaSimpleType;
+            }
+
+            if (enumFacetValues.Count > 0)
+            {
+                foreach (var enumFacet in EnumFacet.CreateUniqueFacets(enumFacetValues))
+                {
+                    enumerations.Add(enumFacet.ToString());
+                }
             }
         }
     }
