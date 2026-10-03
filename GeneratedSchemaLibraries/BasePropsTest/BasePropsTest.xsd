@@ -33,4 +33,19 @@
   </xs:complexType>
 
   <xs:element name="Wrapper" type="ContentType"/>
+
+  <!-- An extension that re-declares an element of its base type (issue #106). The content type merges both
+       occurrences into one 'new' property; the wrapper must forward it once, not also the base type's property. -->
+  <xs:complexType name="RedeclaringContentType">
+    <xs:complexContent>
+      <xs:extension base="Base1Type">
+        <xs:sequence>
+          <xs:element name="RedeclaringProp" type="xs:string"/>
+          <xs:element name="Base1Prop" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="RedeclaringWrapper" type="RedeclaringContentType"/>
 </xs:schema>
