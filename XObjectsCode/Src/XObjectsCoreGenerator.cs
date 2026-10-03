@@ -119,6 +119,7 @@ namespace Xml.Schema.Linq
             };
             readerSettings.XmlResolver = resolver;
             var xmlReader = XmlReader.Create(xsdFilePath, readerSettings);
+            List<string> preloadedFileNames = new();
 
             using (xmlReader) {
                 XmlSchemaSet? schemaSet = null;
@@ -132,7 +133,28 @@ namespace Xml.Schema.Linq
                 {
                     readerSettings.XmlResolver = null;
                     using var xmlReader2 = XmlReader.Create(xsdFilePath, readerSettings);
-                    schemaSet = xmlReader2.CompileXmlSchemaSetWithPreloadedXsds();
+                    schemaSet = xmlReader2.CompileXmlSchemaSetWithPreloadedXsds(out preloadedFileNames);
+                }
+
+                // the compilation of XSDs resulted in using preloaded schemas, then use preloaded XSD configuration so
+                // generated code is emitted in a user-friendly namespace
+                if (preloadedFileNames.Any()) {
+                    var assembly = typeof(XmlReaderExtensions).Assembly;
+                    var names = assembly.GetManifestResourceNames();
+                    bool isAnEmbeddedXmlSchema = false;
+                    foreach (var fileName in preloadedFileNames) {
+                        int findIndex = Array.FindIndex(names, n => n.EndsWith(fileName));
+                        if (findIndex == -1)
+                            throw new InvalidOperationException($"File name not found embedded in assembly: {fileName}");
+                        isAnEmbeddedXmlSchema = true;
+                        break;
+                    }
+
+                    if (isAnEmbeddedXmlSchema) {
+                        var configFileName = Array.Find(names, n => n.EndsWith(PreloadedXsdsResolver.EmbeddedXsdFileNames.XmlXsdConfig));
+                        var streamForFilename = assembly.GetManifestResourceStream(configFileName ?? throw new InvalidOperationException("Unable to find xml.xsd.config"));
+                        settings.AppendFromAdditionalConfigFile(streamForFilename);
+                    }
                 }
 
                 string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
