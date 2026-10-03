@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document: $Id: Sample-8-non-digest-aware.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original: 7/19/2007
+    LEXS version  : 3.1.4
+    Description   :
+            Sample XML instance for the publish message that illustrates the use of not digest aware structured payload
+            In this example the digest refers down into the structured payload (down-pointing reference).
+-->
+<lexspd:doPublish 
+    xmlns:new="http://somewhere.gov/new-community" 
+    xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1" 
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.0"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+	xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1" 
+    xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/publishdiscover/3.1 ../../xsd/publish-discover/3.1/publish-discover.xsd">
+	<lexs:PublishMessageContainer>
+		<lexs:PublishMessage>
+            <lexs:PDMessageMetadata>
+                <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+                <lexs:MessageDateTime>2006-12-01T09:30:47.0Z</lexs:MessageDateTime>
+                <lexs:MessageSequenceNumber>1</lexs:MessageSequenceNumber>
+                <lexs:DataSensitivity>SBU</lexs:DataSensitivity>
+            </lexs:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+			<lexs:DataSubmitterMetadata>
+				<lexs:SystemIdentifier>
+					<nc:OrganizationName>Hypothetical Organization C</nc:OrganizationName>
+					<lexs:SystemID>SysC</lexs:SystemID>
+				</lexs:SystemIdentifier>
+				<lexs:SystemContact>
+					<nc:PersonGivenName>Michael</nc:PersonGivenName>
+					<nc:PersonSurName>Park</nc:PersonSurName>
+					<!-- Contact telephone number is required, other kinds of numbers optional -->
+					<nc:ContactTelephoneNumber>
+						<!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+						<nc:NANPTelephoneNumber>
+							<nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+							<nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+							<nc:TelephoneLineID>1212</nc:TelephoneLineID>
+						</nc:NANPTelephoneNumber>
+					</nc:ContactTelephoneNumber>
+				</lexs:SystemContact>
+			</lexs:DataSubmitterMetadata>
+            <!--==================== Package ====================-->
+            <lexs:DataItemPackage>
+                <lexs:PackageMetadata>
+                    <lexs:DataItemID>12345678</lexs:DataItemID>
+                    <lexs:DataItemDate>1967-08-13</lexs:DataItemDate>
+                    <lexs:DataItemReferenceID>12345678</lexs:DataItemReferenceID>
+                    <lexs:DataItemPublishInstruction>Insert</lexs:DataItemPublishInstruction>
+                    <lexs:DataItemStatus>Valid</lexs:DataItemStatus>
+                    <!--=======================  Data Owner Metadata  =======================-->
+					<lexs:DataOwnerMetadata>
+						<lexs:DataOwnerIdentifier>
+							<lexs:OriginatingAgencyID>AA1234567</lexs:OriginatingAgencyID>
+							<nc:OrganizationName>Hypothetical Agency A</nc:OrganizationName>
+							<lexs:SystemID>SysA</lexs:SystemID>
+						</lexs:DataOwnerIdentifier>
+						<lexs:DataOwnerContact>
+							<nc:PersonGivenName>Will</nc:PersonGivenName>
+							<nc:PersonSurName>Jones</nc:PersonSurName>
+							<nc:ContactTelephoneNumber>
+								<nc:FullTelephoneNumber>
+									<nc:TelephoneNumberFullID>111-222-3333</nc:TelephoneNumberFullID>
+								</nc:FullTelephoneNumber>
+							</nc:ContactTelephoneNumber>
+						</lexs:DataOwnerContact>
+					</lexs:DataOwnerMetadata>
+                    <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <lexs:Digest>
+                    <!--==================  Person A  ==================-->
+                    <lexsdigest:EntityPerson s:id="EPerson1">
+                        <lexsdigest:Metadata s:id="MPerson1">
+                            <nc:SourceIDText>P123</nc:SourceIDText>
+                        </lexsdigest:Metadata>
+                        <lexsdigest:Person s:id="Person1" s:metadata="MPerson1">
+                            <nc:PersonName>
+                                <nc:PersonGivenName>John</nc:PersonGivenName>
+                                <nc:PersonSurName>Doe</nc:PersonSurName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                    <!--==================  Person B  ==================-->
+                    <lexsdigest:EntityPerson s:id="EPerson2">
+                        <lexsdigest:Metadata s:id="MPerson2">
+                            <nc:SourceIDText>P234</nc:SourceIDText>
+                        </lexsdigest:Metadata>
+                        <lexsdigest:Person s:id="Person2" s:metadata="MPerson2">
+                            <nc:PersonName>
+                                <nc:PersonGivenName>Bill</nc:PersonGivenName>
+                                <nc:PersonSurName>Smith</nc:PersonSurName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                    <!--=======================  Associations  =======================-->
+                    <lexsdigest:Associations>
+                        <lexslib:SameAsPayloadAssociation>
+                            <!-- Association for which the structured payload is providing additional information -->
+                            <lexslib:ObjectReference s:ref="Assoc1"/>
+                            <!-- Structured payload that contains the additional information -->
+                            <lexslib:PayloadObjectReference lexslib:ref="PSPAssoc1"/>
+                            <!-- Object in structured payload that contains the additional information -->
+                            <lexslib:PayloadReference s:ref="PSP1"/>
+                        </lexslib:SameAsPayloadAssociation>
+                         <nc:FriendshipAssociation s:id="Assoc1">
+                            <nc:PersonReference s:ref="Person1"/>
+                            <nc:PersonReference s:ref="Person2"/>
+                        </nc:FriendshipAssociation>
+                   </lexsdigest:Associations>
+                </lexs:Digest>
+                <!--======================= Data from another community ======================-->
+                <lexs:StructuredPayload s:id="PSP1">
+                    <lexs:StructuredPayloadMetadata>
+                        <lexs:CommunityURI>http://somewhere.gov/new-community</lexs:CommunityURI>
+                        <lexs:CommunityDescription>New Community</lexs:CommunityDescription>
+                        <lexs:CommunityVersion>1.0</lexs:CommunityVersion>
+                    </lexs:StructuredPayloadMetadata>
+                    <new:Report>
+                        <new:Person s:id="PSPPerson1">
+                            <nc:PersonHairStyleText>strawberry blond</nc:PersonHairStyleText>
+                        </new:Person>
+                        <new:Association s:id="PSPAssoc1">
+                            <new:AssociationCircumstance>Cellmates</new:AssociationCircumstance>
+                        </new:Association>
+                    </new:Report>
+                </lexs:StructuredPayload>
+            </lexs:DataItemPackage>
+        </lexs:PublishMessage>
+    </lexs:PublishMessageContainer>
+</lexspd:doPublish>

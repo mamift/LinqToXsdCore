@@ -23,11 +23,18 @@ public static class FileExtensions
     public static XmlSchemaSet ReadAsXmlSchemaSet(this IFileInfo fileInfo, XmlResolver resolver)
     {
         if (resolver == null) throw new ArgumentNullException(nameof(resolver));
-        
+
         using var sr = new StreamReader(fileInfo.OpenRead());
-        XmlReaderSettings defaultXmlReaderSettings = Defaults.DefaultXmlReaderSettings;
-        defaultXmlReaderSettings.XmlResolver = resolver;
-        var reader = XmlReader.Create(sr, defaultXmlReaderSettings);
+        // Use a fresh XmlReaderSettings instance: mutating the shared Defaults.DefaultXmlReaderSettings
+        // poisons the static for every later caller in the process, including the CLI generation path
+        // that reuses it in XObjectsCoreGenerator (see TestGenerateCodeFromSingleDirectoryWithAutoConfig).
+        var settings = new XmlReaderSettings()
+        {
+            DtdProcessing = Defaults.DefaultXmlReaderSettings.DtdProcessing,
+            CloseInput = Defaults.DefaultXmlReaderSettings.CloseInput,
+            XmlResolver = resolver
+        };
+        var reader = XmlReader.Create(sr, settings);
         var xsd = reader.ToXmlSchemaSet(resolver);
 
         return xsd;

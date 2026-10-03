@@ -1,0 +1,293 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+     <!--  edited with XMLSPY v5 rel. 3 U (http://www.xmlspy.com) by rth77 (rth77) -->
+  <xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="../DublinCore/qualified/dc.xsd"></xs:import><xs:element name="ORMSchema"><xs:annotation> 
+  <xs:documentation>Root</xs:documentation>  
+  </xs:annotation><xs:complexType><xs:complexContent><xs:extension base="ORMType"><xs:sequence><xs:element minOccurs="0" name="ORMMeta"><xs:complexType><xs:sequence><xs:element name="Meta"><xs:complexType> 
+  <xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>  
+  <xs:attribute name="Content" type="xs:string" use="required"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element><xs:element name="ORMBody"><xs:complexType><xs:sequence><xs:element maxOccurs="unbounded" name="Object" type="Object"><xs:annotation> 
+  <xs:documentation>Object: LOT or NOLOT</xs:documentation>  
+  </xs:annotation> 
+  </xs:element> 
+  <xs:element maxOccurs="unbounded" minOccurs="0" name="Subtype" type="Subtype"></xs:element>  
+  <xs:element maxOccurs="unbounded" minOccurs="0" name="Predicate" type="Predicate"></xs:element><xs:element maxOccurs="unbounded" minOccurs="0" name="Predicate_Object" type="Predicate_Object"><xs:annotation> 
+  <xs:documentation>Objectified Predicate</xs:documentation>  
+  </xs:annotation> 
+  </xs:element> 
+  <xs:element maxOccurs="unbounded" minOccurs="0" name="Constraint" type="Constraint"></xs:element><xs:element minOccurs="0" name="Subcommitment"><xs:complexType><xs:sequence> 
+  <xs:element ref="ORMSchema"></xs:element>  
+  </xs:sequence> 
+  <xs:attribute name="order" type="xs:integer" use="optional"></xs:attribute>  
+  <xs:attribute name="URI" type="xs:string" use="optional"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  <xs:attribute name="OntologyBase" type="xs:string" use="required"></xs:attribute>  
+  <xs:attribute name="Context" type="xs:string" use="required"></xs:attribute>  
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType> 
+  </xs:element><xs:complexType abstract="true" name="Object"><xs:annotation> 
+  <xs:documentation>Object: LOT or NOLOT</xs:documentation>  
+  </xs:annotation><xs:sequence><xs:element maxOccurs="unbounded" minOccurs="0" name="Translation"><xs:complexType> 
+  <xs:attribute name="Language" type="xs:string" use="required"></xs:attribute>  
+  <xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>  
+  <xs:attribute name="Description" type="xs:string" use="required"></xs:attribute>  
+  <xs:attribute name="Reference" type="xs:string" use="required"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  <xs:attribute name="Name" type="xs:ID" use="required"></xs:attribute>  
+  <xs:attribute name="Gloss" type="xs:string" use="optional"></xs:attribute>  
+  <xs:attribute name="Datatype" type="xs:string" use="optional"></xs:attribute>  
+  <xs:attribute name="TermUpperForm" type="xs:string" use="optional"></xs:attribute>  
+  <xs:attribute name="NameSpace" type="xs:string" use="optional"></xs:attribute>  
+  </xs:complexType><xs:complexType name="LOT"><xs:annotation> 
+  <xs:documentation>Lexical Object Type</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Object"> 
+  <xs:attribute default="false" name="numeric" type="xs:boolean" use="optional"></xs:attribute>  
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="NOLOT"><xs:annotation> 
+  <xs:documentation>Non Lexical Object Type</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Object"><xs:sequence><xs:element minOccurs="0" name="Reference"><xs:complexType> 
+  <xs:attribute name="Ref_Name" use="required"></xs:attribute>  
+  <xs:attribute default="false" name="numeric" type="xs:boolean" use="optional"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  <xs:attribute default="false" name="Independent" type="xs:boolean" use="optional"></xs:attribute>  
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Object_Role"><xs:annotation> 
+  <xs:documentation>Object + Role</xs:documentation>  
+  </xs:annotation> 
+  <xs:attribute name="ID" type="xs:ID" use="required"></xs:attribute>  
+  <xs:attribute name="Object" type="xs:IDREF" use="required"></xs:attribute>  
+  <xs:attribute name="Role" type="xs:string" use="optional"></xs:attribute> 
+   </xs:complexType> 
+  <xs:complexType name="ORMType"></xs:complexType><xs:complexType name="Predicate"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="Object_Role"></xs:element>  
+  <xs:element maxOccurs="unbounded" minOccurs="0" name="Rule"></xs:element>  
+  </xs:sequence> 
+  <xs:attribute default="false" name="Derived" type="xs:boolean"></xs:attribute>  
+  <xs:attribute default="false" name="Derived_Stored" type="xs:boolean"></xs:attribute>  
+  </xs:complexType><xs:complexType abstract="true" name="Constraint"><xs:annotation> 
+  <xs:documentation>Abstract element for constraints</xs:documentation>  
+  </xs:annotation> 
+  </xs:complexType><xs:complexType name="Predicate_Object"><xs:annotation> 
+  <xs:documentation>Objectified Predicate</xs:documentation>  
+  </xs:annotation><xs:sequence> 
+  <xs:element name="Predicate" type="Predicate"></xs:element>  
+  </xs:sequence> 
+  <xs:attribute name="Predicate_Name" type="xs:ID" use="required"></xs:attribute>  
+  </xs:complexType><xs:complexType name="Subtype"><xs:annotation> 
+  <xs:documentation>SubType</xs:documentation>  
+  </xs:annotation><xs:sequence><xs:element name="Parent"><xs:complexType> 
+  <xs:attribute name="Object" type="xs:IDREF"></xs:attribute>  
+  <xs:attribute name="Role" type="xs:string"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element><xs:element name="Child"><xs:complexType> 
+  <xs:attribute name="Object" type="xs:IDREF"></xs:attribute>  
+  <xs:attribute name="Role" type="xs:string"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  </xs:complexType><xs:complexType name="Mandatory"><xs:annotation> 
+  <xs:documentation>Mandatory Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Uniqueness"><xs:annotation> 
+  <xs:documentation>Uniqueness Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence>
+    <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Subset"><xs:annotation> 
+  <xs:documentation>SubSet Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence><xs:element name="Parent"><xs:complexType><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element><xs:element name="Child"><xs:complexType><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Equality"><xs:annotation> 
+  <xs:documentation>Equality Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence><xs:element name="First"><xs:complexType><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element><xs:element name="Second"><xs:complexType><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Exclusion"><xs:annotation> 
+  <xs:documentation>Exclusion Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element name="First"><xs:complexType><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element><xs:element name="Second"><xs:complexType><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Frequency"><xs:annotation> 
+  <xs:documentation>Frequency Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role"></xs:element>  
+  </xs:sequence> 
+  <xs:attribute name="Minimum" type="xs:integer"></xs:attribute>  
+  <xs:attribute name="Maximum" type="xs:integer"></xs:attribute>  
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Irreflexive"><xs:annotation> 
+  <xs:documentation>Irreflexive Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Intransitive"><xs:annotation> 
+  <xs:documentation>Intransitive Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Transitive"><xs:annotation> 
+  <xs:documentation>Transitive Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint">
+  <xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Acyclic"><xs:annotation> 
+  <xs:documentation>Acyclic Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Type" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Asymmetric"><xs:annotation> 
+  <xs:documentation>Assymetric Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Antisymmetric"><xs:annotation> 
+  <xs:documentation>Antisymmetric Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Symmetric"><xs:annotation> 
+  <xs:documentation>Symmetric Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Reflexive"><xs:annotation> 
+  <xs:documentation>Reflexive Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent> 
+  <xs:extension base="Constraint"></xs:extension>  
+  </xs:complexContent> 
+  </xs:complexType> 
+  <xs:complexType name="Total"><xs:annotation> 
+  <xs:documentation>Total constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element name="Supertype"></xs:element>  
+  <xs:element maxOccurs="unbounded" name="Subtype"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Exclusive"><xs:annotation> 
+  <xs:documentation>Exclusive constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element name="Supertype"></xs:element>  
+  <xs:element maxOccurs="unbounded" name="Subtype"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Value"><xs:annotation> 
+  <xs:documentation>Exclusive constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence><xs:element maxOccurs="unbounded" name="Value"><xs:complexType> 
+  <xs:attribute name="datatype" type="xs:string" use="required"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element><xs:element maxOccurs="unbounded" name="ValueRange"><xs:complexType> 
+  <xs:attribute name="datatype" type="xs:string" use="required"></xs:attribute>  
+  <xs:attribute name="begin" type="xs:string" use="required"></xs:attribute>  
+  <xs:attribute name="end" type="xs:string" use="required"></xs:attribute>  
+  </xs:complexType> 
+  </xs:element> 
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Partition"><xs:annotation> 
+  <xs:documentation>Partition constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Subtype" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  <xs:attribute name="Supertype" type="xs:IDREF" use="required"></xs:attribute>  
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType>
+  <xs:complexType name="Intransitive_symmetric"><xs:annotation> 
+  <xs:documentation>Intransitive + symmetric Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Acyclic_intransitive"><xs:annotation> 
+  <xs:documentation>Acyclic+intransitive Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Asymmetric_intransitive"><xs:annotation> 
+  <xs:documentation>Asymmetric+intransitive Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType><xs:complexType name="Irreflexive_symmetric"><xs:annotation> 
+  <xs:documentation>Irreflexive + symmetric Ring Constraint</xs:documentation>  
+  </xs:annotation><xs:complexContent><xs:extension base="Constraint"><xs:sequence> 
+  <xs:element maxOccurs="unbounded" name="Object_Role" type="xs:IDREF"></xs:element>  
+  </xs:sequence> 
+  </xs:extension> 
+  </xs:complexContent> 
+  </xs:complexType> 
+  </xs:schema>

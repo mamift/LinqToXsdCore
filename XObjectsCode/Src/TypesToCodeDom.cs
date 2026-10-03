@@ -616,23 +616,42 @@ namespace Xml.Schema.Linq.CodeGen
                 rootCodeNamespace.AddTypeWithParentNamespace(typeManagerDeclaration);
                 //Add using statements in the rest of the namespaces for the root namespace to avoid error on TypeManager reference
                 //Add using statements in the root namespace for the rest of the namespaces to avoid errors while building type dictionaries
-                CodeNamespaceImport rootImport = new CodeNamespaceImport(rootCodeNamespace.Name);
                 foreach (CodeNamespace cns in codeNamespacesTable.Values)
                 {
                     if (cns != rootCodeNamespace)
                     {
                         if (rootCodeNamespace.Name.Length > 0)
                         {
-                            cns.Imports.Add(rootImport);
+                            cns.Imports.Add(new CodeNamespaceImport(AddGlobalPrefixIfRequired(rootCodeNamespace.Name, cns.Name)));
                         }
 
                         if (cns.Name.Length > 0)
                         {
-                            rootCodeNamespace.Imports.Add(new CodeNamespaceImport(cns.Name));
+                            rootCodeNamespace.Imports.Add(new CodeNamespaceImport(AddGlobalPrefixIfRequired(cns.Name, rootCodeNamespace.Name)));
                         }
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Decides whether a using import for <paramref name="importNamespace"/>, to be declared inside the code namespace
+        /// <paramref name="importingNamespace"/>, needs the global:: prefix. This mirrors the decision made for the default
+        /// imports in <see cref="AddDefaultImports"/>: the prefix is always applied when the settings demand it, otherwise it
+        /// is applied when the two namespaces share a component, in which case the compiler can resolve the import relative
+        /// to the importing namespace rather than the global one.
+        /// </summary>
+        private string AddGlobalPrefixIfRequired(string importNamespace, string importingNamespace)
+        {
+            bool shouldPrefix = settings.AlwaysPrefixGlobalInUsingDirectives;
+            if (!shouldPrefix)
+            {
+                string[] importComponents = importNamespace.Split(['.']);
+                shouldPrefix = importingNamespace.Split(['.']).Any(component =>
+                    importComponents.Any(ic => ic.Equals(component, StringComparison.CurrentCultureIgnoreCase)));
+            }
+
+            return shouldPrefix ? "global::" + importNamespace : importNamespace;
         }
 
         private bool ForwardProperty(CodeMemberProperty property)

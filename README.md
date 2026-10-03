@@ -4,7 +4,20 @@ This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET
 
 This .NET Core port itself requires .NET Core 2.1 or 3.1, but it can generate code that is compatible with .NET Framework 4.6.x and .NET Core 2.x and later (this includes .NET 5 and later).
 
-![Build Status](https://dev.azure.com/mamift1/LinqToXsdCore/_apis/build/status/LinqToXsdCore-.NET%20Desktop-CI) ![Nuget](https://buildstats.info/nuget/LinqToXsdCore)
+### Build status
+
+![Build Status](https://dev.azure.com/mamift1/LinqToXsdCore/_apis/build/status/LinqToXsdCore-.NET%20Desktop-CI) 
+
+### Internal release
+[![LinqToXsdCore package in LinqToXsdCore-Release feed in Azure Artifacts](https://feeds.dev.azure.com/mamift1/c5c5cda4-7601-4d2b-b688-21450f77d935/_apis/public/Packaging/Feeds/LinqToXsdCore-Release/Packages/4cbbbca3-14bc-4d93-905b-603230fee754/Badge)](https://dev.azure.com/mamift1/LinqToXsdCore/_artifacts/feed/LinqToXsdCore-Release/NuGet/LinqToXsdCore?preferRelease=true)
+
+### Nuget.org
+
+[![NuGet Downloads](https://img.shields.io/nuget/dt/LinqToXsdCore)](https://www.nuget.org/packages/LinqToXsdCore)
+
+## Contributing
+
+Please see the [CONTRIBUTING](CONTRIBUTING.md) document.
 
 ## Get started
 

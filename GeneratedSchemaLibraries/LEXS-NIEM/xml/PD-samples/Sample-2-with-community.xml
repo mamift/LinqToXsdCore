@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document: $Id: Sample-2-with-community.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original: 7/18/2007
+    LEXS version  : 3.1.4
+    Description   : 
+            Sample XML instance for the publish message that illustrates the use of the "base" LEXS schema.
+            Sample includes community level structured payload that uses "up-pointing" reference to the LEXS Digest.  
+            Sample also contains a sample of an Attachment.
+-->
+<lexspd:doPublish 
+    xmlns:new="http://somewhere.gov/new-community" 
+    xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1" 
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.0"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0" 
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1" 
+    xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/publishdiscover/3.1 ../../xsd/publish-discover/3.1/publish-discover.xsd">
+    <lexs:PublishMessageContainer>
+        <lexs:PublishMessage>
+            <lexs:PDMessageMetadata>
+                <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+                <lexs:MessageDateTime>2006-12-01T09:30:47.0Z</lexs:MessageDateTime>
+                <lexs:MessageSequenceNumber>1</lexs:MessageSequenceNumber>
+                <lexs:DataSensitivity>SBU</lexs:DataSensitivity>
+                <lexs:DomainAttribute>
+                    <lexs:AttributeName>RegionInfo</lexs:AttributeName>
+                    <lexs:AttributeValue>SEA</lexs:AttributeValue>
+                    <lexs:Domain>R-DEx</lexs:Domain>
+                </lexs:DomainAttribute>
+                <lexs:DomainAttribute>
+                    <lexs:AttributeName>CaseType</lexs:AttributeName>
+                    <lexs:AttributeValue>WEAPON-TRAFFICKING</lexs:AttributeValue>
+                    <lexs:Domain>ATF</lexs:Domain>
+                </lexs:DomainAttribute>
+            </lexs:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+            <lexs:DataSubmitterMetadata>
+                <lexs:SystemIdentifier>
+                    <nc:OrganizationName>Hypothetical Organization C</nc:OrganizationName>
+                    <lexs:SystemID>SysC</lexs:SystemID>
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Michael</nc:PersonGivenName>
+                    <nc:PersonSurName>Park</nc:PersonSurName>
+                    <!-- Contact telephone number is required, other kinds of numbers optional -->
+                    <nc:ContactTelephoneNumber>
+                        <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                        <nc:NANPTelephoneNumber>
+                            <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                            <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                            <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                        </nc:NANPTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:DataSubmitterMetadata>
+            <!-- A message may include one or more packages -->
+            <lexs:DataItemPackage>
+                <lexs:PackageMetadata>
+                    <lexs:DataItemID>12345678</lexs:DataItemID>
+                    <lexs:DataItemCompleteIndicator>false</lexs:DataItemCompleteIndicator>
+                    <!-- DataItemContact is the person(s) who can be contacted about the data item  -->
+                    <!-- DataItemContact is optional, and there can be more than one -->
+                    <lexs:DataItemContact>
+                        <!-- PersonName may be a split out name, or both a split out name and a full name.  Last name is required. -->
+                        <nc:PersonSurName>Smith</nc:PersonSurName>
+                        <nc:PersonFullName>Mary Jones-Smith</nc:PersonFullName>
+                        <!-- Contact telephone number is required, other kinds of numbers optional -->
+                        <nc:ContactTelephoneNumber>
+                            <!-- Full phone number listed here, although the phone number could be split into parts -->
+                            <nc:FullTelephoneNumber>
+                                <nc:TelephoneNumberFullID>333-444-5555 x6</nc:TelephoneNumberFullID>
+                            </nc:FullTelephoneNumber>
+                        </nc:ContactTelephoneNumber>
+                    </lexs:DataItemContact>
+                    <lexs:DataItemDate>1967-08-13</lexs:DataItemDate>
+                    <!-- DataItemReferenceID may be the same as the DataItemID, or may be a more human-readable version of DataItemID -->
+                    <lexs:DataItemReferenceID>12345678</lexs:DataItemReferenceID>
+                    <lexs:DataItemPublishInstruction>Insert</lexs:DataItemPublishInstruction>
+                    <lexs:DataItemStatus>Valid</lexs:DataItemStatus>
+                    <!--=======================  Data Owner Metadata  =======================-->
+                    <lexs:DataOwnerMetadata>
+                        <lexs:DataOwnerIdentifier>
+                            <lexs:OriginatingAgencyID>AA1234567</lexs:OriginatingAgencyID>
+                            <nc:OrganizationName>Hypothetical Agency A</nc:OrganizationName>
+                            <lexs:SystemID>SysA</lexs:SystemID>
+                        </lexs:DataOwnerIdentifier>
+                        <lexs:DataOwnerContact>
+                            <nc:PersonGivenName>Will</nc:PersonGivenName>
+                            <nc:PersonSurName>Jones</nc:PersonSurName>
+                            <nc:ContactTelephoneNumber>
+                                <nc:FullTelephoneNumber>
+                                    <nc:TelephoneNumberFullID>111-222-3333</nc:TelephoneNumberFullID>
+                                </nc:FullTelephoneNumber>
+                            </nc:ContactTelephoneNumber>
+                        </lexs:DataOwnerContact>
+                    </lexs:DataOwnerMetadata>
+                    <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <lexs:Digest>
+                    <!--=======================  Activity Incident  =======================-->
+                    <lexsdigest:EntityActivity>
+                        <nc:Activity s:id="Incident1">
+                            <nc:ActivityIdentification>
+                                <nc:IdentificationID>Inc123456</nc:IdentificationID>
+                            </nc:ActivityIdentification>
+                            <nc:ActivityCategoryText>Incident</nc:ActivityCategoryText>
+                            <nc:ActivityDate>
+                                <nc:DateTime>2000-08-23T14:31:00</nc:DateTime> 
+                            </nc:ActivityDate>
+                            <nc:ActivityDescriptionText>The intoxicated subject became angry about a parking space. After shouting profanities, he struck the victim and proceeded to puncture the tires of the victim's vehicle.</nc:ActivityDescriptionText>
+                        </nc:Activity>
+                    </lexsdigest:EntityActivity>
+                    <!--=======================  Person with Subject Role  =======================-->
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Metadata s:id="MSub2">
+                            <nc:SourceIDText>Per12348</nc:SourceIDText>
+                        </lexsdigest:Metadata>
+                        <lexsdigest:Person s:id="Sub2" s:metadata="MSub2">
+                            <nc:PersonAgeMeasure>
+                                <nc:MeasurePointValue>29</nc:MeasurePointValue>
+                                <nc:TimeUnitCode>ANN</nc:TimeUnitCode>
+                            </nc:PersonAgeMeasure>
+                            <nc:PersonEyeColorCode>BLU</nc:PersonEyeColorCode>
+                            <nc:PersonHairColorCode>BRO</nc:PersonHairColorCode>
+                            <nc:PersonHeightMeasure>
+                                <nc:MeasurePointValue>68</nc:MeasurePointValue>
+                                <nc:LengthUnitCode>INH</nc:LengthUnitCode>
+                            </nc:PersonHeightMeasure>
+                            <nc:PersonName>
+                                <nc:PersonGivenName>Tommy</nc:PersonGivenName>
+                                <nc:PersonMiddleName>Lee</nc:PersonMiddleName>
+                                <nc:PersonSurName>Jones</nc:PersonSurName>
+                            </nc:PersonName>
+                            <nc:PersonRaceText>White</nc:PersonRaceText>
+                            <nc:PersonSexCode>M</nc:PersonSexCode>
+                            <nc:PersonSSNIdentification>
+                                <nc:IdentificationID>555443333</nc:IdentificationID>
+                            </nc:PersonSSNIdentification>
+                            <nc:PersonWeightMeasure>
+                                <nc:MeasurePointValue>160</nc:MeasurePointValue>
+                                <nc:WeightUnitCode>LBR</nc:WeightUnitCode>
+                            </nc:PersonWeightMeasure>
+                        </lexsdigest:Person>
+                        <j:IncidentSubject>
+                            <nc:RoleOfPersonReference s:ref="Sub2"/>
+                        </j:IncidentSubject>
+                    </lexsdigest:EntityPerson>
+                    <!--=======================  Associations  =======================-->
+                    <lexsdigest:Associations>
+                        <!--     Incident Subject Association     -->
+                        <nc:ActivityInvolvedPersonAssociation>
+                            <nc:ActivityReference s:ref="Incident1"/>
+                            <nc:PersonReference s:ref="Sub2"/>
+                            <nc:PersonActivityInvolvementText>Incident Subject</nc:PersonActivityInvolvementText>
+                        </nc:ActivityInvolvedPersonAssociation>
+                    </lexsdigest:Associations>
+                </lexs:Digest>
+                <!--======================= Data from another community ======================-->
+                <!-- Note that there can be multiple PackageStructurePayloads if multiple communinities build on each other.  For example there could be an Incident Community that -->
+                <!--     builds upon the digest, and a Federal Incident Community that builds upon the Incident Community.  This example only shows one community level. -->
+                <lexs:StructuredPayload>
+                    <lexs:StructuredPayloadMetadata>
+                        <!-- URI is an identifier that uniquely identifies the community (or program)  that defined the schema for this structured payload.  -->
+                        <!-- This should be the namespace for the the structured payload. -->
+                        <lexs:CommunityURI>http://somewhere.gov/new-community</lexs:CommunityURI>
+                        <!-- Description is an abbreviation or name for the community (or program), such as NDEx or RDEx -->
+                        <lexs:CommunityDescription>New Community</lexs:CommunityDescription>
+                        <!-- Version is the version for the community providing the information, so for example version 2.1b -->
+                        <lexs:CommunityVersion>1.0</lexs:CommunityVersion>
+                    </lexs:StructuredPayloadMetadata>
+                    <new:IncidentReport>
+                        <new:Person>
+                            <nc:PersonHairStyleText>strawberry blond</nc:PersonHairStyleText>
+                            <lexslib:SameAsDigestReference lexslib:ref="Sub2"/>
+                        </new:Person>
+                        <j:Incident>
+                            <j:IncidentArrestMadeIndicator>true</j:IncidentArrestMadeIndicator>
+                            <lexslib:SameAsDigestReference lexslib:ref="Incident1"/>
+                        </j:Incident>
+                    </new:IncidentReport>
+                </lexs:StructuredPayload>
+                <!--=======================  Package Attachment Link for Stylesheet used for Rendering  =======================-->
+                <lexs:AttachmentLink s:id="PAttachment2">
+                    <lexs:AttachmentURI>http://www.gtri.org/LEXS/examples/XMLViewer.xsl</lexs:AttachmentURI>
+                    <lexs:AttachmentViewableIndicator>false</lexs:AttachmentViewableIndicator>
+                    <nc:BinaryDescriptionText>XML Stylesheet for pretty-printing any XML content</nc:BinaryDescriptionText>
+                </lexs:AttachmentLink>
+                <!--=======================  Rendering Instructions  =======================-->
+                <lexs:RenderingInstructions>
+                    <lexs:RenderingMethod>HTMLStyleSheet</lexs:RenderingMethod>
+                    <lexs:RenderingReference s:ref="PAttachment2"/>
+                    <lexs:RenderingDescription>Pretty prints a message</lexs:RenderingDescription>
+                </lexs:RenderingInstructions>				
+            </lexs:DataItemPackage>
+            <!--=======================  Message Attachment containing Stylesheet  =======================-->
+            <lexs:Attachment>
+                <lexs:AttachmentURI>http://www.gtri.org/LEXS/examples/XMLViewer.xsl</lexs:AttachmentURI>
+                <nc:Binary>
+                    <nc:BinaryBase64Object>PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8IS0tDQogICAgRG9jdW1lbnQgICA6ICRJZDoganhkbXZpZXcueHNsLHYgMS4yIDIwMDQvMDYvMTYgMjE6Mjk6NTYgc2hyb20gRXhwICQNCiAgICBEZXNjcmlwdGlvbjogR2VuZXJpYyBzdHlsZXNoZWV0IGFueSBYTUwgZGF0YSBmaWxlLiBTdHlsZXNoZWV0IGlkZWEgaXMgYmFzZWQgb24gdGhlIGFydGljbGUgYnkgQ3JhaWcgQmVycnkgaW4gWE1MSm91cm5hbCANCgkJCQkJCVVzZXMgQVNDSUkgY2hhcmFjdGVycyByYXRoZXIgdGhhbiBHSUYgaW1hZ2VzIHNvIGV4dGVybmFsIGZpbGVzIGFyZSBub3QgbmVlZGVkLCBhbmQgdG8gc3BlZWQgcHJvY2Vzc2luZw0KLS0+DQo8eHNsOnN0eWxlc2hlZXQgdmVyc2lvbj0iMS4wIg0KICB4bWxuczp4c2w9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvWFNML1RyYW5zZm9ybSI+DQoNCiAgPHhzbDpvdXRwdXQNCiAgICBtZXRob2Q9Imh0bWwiDQogICAgZW5jb2Rpbmc9IlVURi04Ig0KICAgIGluZGVudD0ieWVzIg0KICAgIHZlcnNpb249IjEuMCINCiAgICBvbWl0LXhtbC1kZWNsYXJhdGlvbj0ieWVzIg0KICAgIG1lZGlhLXR5cGU9InRleHQvaHRtbCINCiAgICBzdGFuZGFsb25lPSJ5ZXMiLz4NCg0KICA8eHNsOnRlbXBsYXRlIG1hdGNoPSIvY2hpbGQ6OipbMV0iPg0KICAgIDxodG1sPg0KICAgICAgPGhlYWQ+DQogICAgICAgIDx0aXRsZT5EYXRhIFZpZXc8L3RpdGxlPg0KICAgICAgICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KICAgICAgICAgIGJvZHkgeyBmb250LXNpemU6IHNtYWxsZXIgfQ0KICAgICAgICAgIGRpdiwgaW1nIHsgYm9yZGVyOiAwcHg7IG1hcmdpbjogMHB4OyBwYWRkaW5nOiAwcHggfQ0KICAgICAgICAgIGRpdi5Ob2RlICogeyB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlIH0NCiAgICAgICAgICBpLkF0dHJpYnV0ZVZhbCAgeyBjb2xvcjogcmdiKDUwLDEyNywxMjcpIH0NCiAgICAgICAgICBpLkVsZW1lbnRWYWwgIHsgY29sb3I6IHJnYig0MCwwLDI1NSkgfQ0KICAgICAgICAgIGIuQXR0cmlidXRlICAgeyBjb2xvcjogIzc3MTUxRiB9DQogICAgICAgIDwvc3R5bGU+DQogICAgICA8L2hlYWQ+DQogICAgICA8Ym9keT4NCiAgICAgICAgPGI+PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Im5hbWUoKSIvPjwvYj4NCiAgICAgICAgPHhzbDphcHBseS10ZW1wbGF0ZXMgbW9kZT0ibGluZSIvPg0KICAgICAgPC9ib2R5Pg0KICAgIDwvaHRtbD4NCiAgPC94c2w6dGVtcGxhdGU+DQoNCiAgPCEtLSBTaG93IGVhY2ggdHJlZSBsaW5lIC0tPg0KICA8eHNsOnRlbXBsYXRlIG1hdGNoPSIqIiBtb2RlPSJsaW5lIj4NCiAgICA8ZGl2IGNsYXNzPSJOb2RlIj4NCiAgICAgIDx4c2w6Y2FsbC10ZW1wbGF0ZSBuYW1lPSJncmFmdCIvPg0KICAgICAgPHhzbDphcHBseS10ZW1wbGF0ZXMgc2VsZWN0PSIuIiBtb2RlPSJpdGVtIi8+DQogICAgPC9kaXY+ICAgIA0KICAgIDx4c2w6YXBwbHktdGVtcGxhdGVzICBzZWxlY3Q9ImNoaWxkOjoqIiBtb2RlPSJsaW5lIi8+DQogIDwveHNsOnRlbXBsYXRlPg0KICANCiAgPHhzbDp0ZW1wbGF0ZSBtYXRjaD0iKiIgbW9kZT0iaXRlbSI+DQogICAgICA8Yj48eHNsOnZhbHVlLW9mIHNlbGVjdD0ibmFtZSgpIi8+PC9iPg0KICAgICAgPHhzbDppZiB0ZXN0PSJAKiI+DQogICAgICAgICAgPHhzbDp0ZXh0PiBbICA8L3hzbDp0ZXh0PiAgICAgIA0KICAgICAgICAgICAgPHhzbDpmb3ItZWFjaCBzZWxlY3Q9IkAqIj4NCiAgICAgICAgICAgICAgICA8YiBjbGFzcz0iQXR0cmlidXRlIj48eHNsOnZhbHVlLW9mIHNlbGVjdD0ibmFtZSgpIi8+PC9iPg0KICAgICAgICAgICAgICAgIDx4c2w6dGV4dD4gPSAiPC94c2w6dGV4dD4NCiAgICAgICAgICAgICAgICA8aSBjbGFzcz0iQXR0cmlidXRlVmFsIj48eHNsOnZhbHVlLW9mIHNlbGVjdD0iLiIvPjwvaT4NCiAgICAgICAgICAgICAgICA8eHNsOnRleHQ+IiA8L3hzbDp0ZXh0Pg0KICAgICAgICAgICAgPC94c2w6Zm9yLWVhY2g+DQogICAgICAgICAgPHhzbDp0ZXh0PiBdIDwveHNsOnRleHQ+DQogICAgICA8L3hzbDppZj4NCiAgICAgIDx4c2w6dGV4dD4gICAgPC94c2w6dGV4dD4NCiAgICAgIDxpIGNsYXNzPSJFbGVtZW50VmFsIj48eHNsOnZhbHVlLW9mIHNlbGVjdD0idGV4dCgpIi8+PC9pPg0KICA8L3hzbDp0ZW1wbGF0ZT4NCiAgIA0KICA8IS0tIFRlbXBsYXRlcyB1c2VkIHRvIGdlbmVyYXRlIHRoZSAic3RpY2sgc3RhY2siIG9mDQogICAgICAgdHJlZSBjb25uZWN0b3JzIC0tPg0KDQogIDx4c2w6dGVtcGxhdGUgbmFtZT0iZ3JhZnQiPg0KICAgIDwhLS0gR2VuZXJhdGUgYW5jZXN0b3IgY29ubmVjdG9ycyAtLT4NCiAgICA8eHNsOmFwcGx5LXRlbXBsYXRlcyBzZWxlY3Q9ImFuY2VzdG9yOjoqIiBtb2RlPSJ0cmVlIi8+DQoNCiAgICA8IS0tIEdlbmVyYXRlIGN1cnJlbnQtbm9kZSBjb25uZWN0b3IgLS0+DQogICAgPHhzbDpjaG9vc2U+DQogICAgICA8eHNsOndoZW4gdGVzdD0iZm9sbG93aW5nLXNpYmxpbmc6OioiPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmI3gyNTFjOyZhbXA7bmJzcDs8L3hzbDp0ZXh0Pg0KICAgICAgPC94c2w6d2hlbj4NCiAgICAgIDx4c2w6b3RoZXJ3aXNlPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmI3gyNTE0OyZhbXA7bmJzcDs8L3hzbDp0ZXh0Pg0KICAgICAgPC94c2w6b3RoZXJ3aXNlPg0KICAgIDwveHNsOmNob29zZT4NCiAgPC94c2w6dGVtcGxhdGU+DQoNCiAgPCEtLSBTdXBwcmVzcyBhbmNlc3RvciBjb25uZWN0b3IgZm9yIHRoZSB0b3Agbm9kZSAtLT4NCg0KICA8eHNsOnRlbXBsYXRlIG1hdGNoPSIvY2hpbGQ6OipbMV0iIG1vZGU9InRyZWUiLz4NCg0KICA8IS0tIFNob3cgYW5jZXN0b3IgY29ubmVjdG9ycyBmb3IgYWxsIG90aGVyIG5vZGUgdHlwZXMgLS0+DQoNCiAgPHhzbDp0ZW1wbGF0ZSBtYXRjaD0iKiIgbW9kZT0idHJlZSI+DQogICAgPHhzbDpjaG9vc2U+DQogICAgICA8eHNsOndoZW4gdGVzdD0iZm9sbG93aW5nLXNpYmxpbmc6OioiPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmI3gyNTAyOyZhbXA7bmJzcDs8L3hzbDp0ZXh0Pg0KICAgICAgPC94c2w6d2hlbj4NCiAgICAgIDx4c2w6b3RoZXJ3aXNlPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmYW1wO25ic3A7JiN4MjIxOTsmYW1wO25ic3A7PC94c2w6dGV4dD4NCiAgICAgIDwveHNsOm90aGVyd2lzZT4NCiAgICA8L3hzbDpjaG9vc2U+DQogIDwveHNsOnRlbXBsYXRlPg0KDQo8L3hzbDpzdHlsZXNoZWV0Pg==</nc:BinaryBase64Object>
+                    <nc:BinaryDescriptionText>XML Stylesheet for pretty-printing any XML content</nc:BinaryDescriptionText>
+                    <nc:BinaryFormatID>application/xml+xslt</nc:BinaryFormatID>
+                    <nc:BinaryFormatStandardName>MIME</nc:BinaryFormatStandardName>
+                    <nc:BinaryCategoryText>Stylesheet</nc:BinaryCategoryText>
+                </nc:Binary>
+            </lexs:Attachment> 
+        </lexs:PublishMessage>
+    </lexs:PublishMessageContainer>
+</lexspd:doPublish>

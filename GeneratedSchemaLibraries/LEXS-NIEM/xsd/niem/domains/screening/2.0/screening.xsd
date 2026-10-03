@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://niem.gov/niem/domains/screening/2.0" version="1" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nc="http://niem.gov/niem/niem-core/2.0" xmlns:i="http://niem.gov/niem/appinfo/2.0" xmlns:scr="http://niem.gov/niem/domains/screening/2.0">
+  <xsd:annotation>
+    <xsd:documentation>The People Screening domain provides harmonized information sharing content within the Screening Portfolio of DHS.  The Screening namespace is initially being populated with person screening information for immigrant and non-immigrant person types who have been encountered and identified by the Screening Portfolio Components.  Screening expands on encounter-related NIEM elements currently included in the Immigration and Intelligence domains.</xsd:documentation>
+    <xsd:appinfo>
+      <i:ConformantIndicator>true</i:ConformantIndicator>
+    </xsd:appinfo>
+  </xsd:annotation>
+  <xsd:import schemaLocation="../../../structures/2.0/structures.xsd" namespace="http://niem.gov/niem/structures/2.0"/>
+  <xsd:import schemaLocation="../../../appinfo/2.0/appinfo.xsd" namespace="http://niem.gov/niem/appinfo/2.0"/>
+  <xsd:import schemaLocation="../../../niem-core/2.0/niem-core.xsd" namespace="http://niem.gov/niem/niem-core/2.0"/>
+  <xsd:complexType name="AdoptedChildAssociationType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="ImmediateFamilyAssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:ImmediateFamilyAssociationType">
+        <xsd:sequence>
+          <xsd:element ref="scr:AdoptionEffectiveDate" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ElectronicAddressType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="s:ComplexObjectType">
+        <xsd:sequence>
+          <xsd:element ref="scr:ElectronicAddressText" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="LocationAssociationType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:AssociationType">
+        <xsd:sequence>
+          <xsd:element ref="scr:PrimaryLocationReference" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="scr:SecondaryLocationReference" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AdoptedChildAssociation" type="scr:AdoptedChildAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An unmarried CHILD under 18 years of age taken voluntarily as a dependent by a person other than his/her biological parents.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="AdoptionEffectiveDate" type="nc:DateType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>The date on which the adoption of the ADOPTED CHILD took place.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ElectronicAddressText" type="nc:TextType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>The text that describes the ELECTRONIC ADDRESS.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="LocationAssociation" type="scr:LocationAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An association between one LOCATION and another LOCATION.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="PrimaryLocationReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>An identifier that represents a LOCATION. </xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="LocationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="SecondaryLocationReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>An identifier that represents a LOCATION. </xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="LocationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

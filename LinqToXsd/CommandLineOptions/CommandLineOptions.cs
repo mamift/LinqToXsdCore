@@ -8,5 +8,7 @@ namespace LinqToXsd
         public ConfigurationOptions config { get; set; }
 
         public GenerateOptions gen { get; set; }
+
+        public SummaryOptions sum { get; set; }
     }
 }

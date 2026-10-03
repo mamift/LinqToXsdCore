@@ -10,6 +10,7 @@ namespace Xml.Schema.Linq
     /// </summary>
     /// <remarks>This class is used to parse <see cref="RestrictionFacets.Enumeration"/> values, which may include
     /// both the XML schema value and the CLR enum value separated by a colon (e.g., "Value:Member").
+    /// The last colon is treated as the separator, so schema values may themselves contain colons.
     /// If no colon is present, the value is assumed to be the same as the member name.</remarks>
     public class EnumFacetMapping
     {
@@ -31,11 +32,14 @@ namespace Xml.Schema.Linq
 
         private EnumFacetMapping(string value)
         {
-            var atoms = value.Split(':');
-            if (atoms.Length > 1)
+            // Split on the last colon: enum member names are valid identifiers and can never contain
+            // a colon, whereas the schema value itself may (e.g. "12:30"). Splitting on the first
+            // colon would truncate such values.
+            var separatorIndex = value.LastIndexOf(':');
+            if (separatorIndex >= 0)
             {
-                Value  = atoms[0];
-                Member = atoms[1];
+                Value  = value.Substring(0, separatorIndex);
+                Member = value.Substring(separatorIndex + 1);
             }
             else
             {

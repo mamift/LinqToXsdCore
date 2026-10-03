@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: Sample-4-BOP-ITS-Call-Log.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original: 7/19/2007
+    LEXS version  : 3.1.4
+    Description   : 
+    	Sample XML instance for the BOP ITS Call LOG publish message
+-->
+<lexspd:doPublish 
+    xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1" 
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.0"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0" 
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1" 
+    xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/publishdiscover/3.1 ../../xsd/publish-discover/3.1/publish-discover.xsd">
+    <lexs:PublishMessageContainer>
+        <lexs:PublishMessage>
+            <lexs:PDMessageMetadata>
+                <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+                <lexs:MessageDateTime>2006-12-30T09:30:47.0Z</lexs:MessageDateTime>
+                <lexs:MessageSequenceNumber>1</lexs:MessageSequenceNumber>
+                <lexs:DataSensitivity>SBU</lexs:DataSensitivity>
+                <lexs:DomainAttribute>
+                    <lexs:AttributeName>BOP_ITS_RecordType</lexs:AttributeName>
+                    <lexs:AttributeValue>BOP-ITS-CALL-LOG</lexs:AttributeValue>
+                    <lexs:Domain>BOP_ITS</lexs:Domain>
+                </lexs:DomainAttribute>
+                <lexs:DomainAttribute>
+                    <lexs:AttributeName>BOP_ITS_SYSTEM_PLATFORM</lexs:AttributeName>
+                    <lexs:AttributeValue>HP-UX-11.23</lexs:AttributeValue>
+                    <lexs:Domain>BOP_ITS</lexs:Domain>
+                </lexs:DomainAttribute>
+            </lexs:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+            <lexs:DataSubmitterMetadata>
+                <lexs:SystemIdentifier>
+                    <lexs:OriginatingAgencyID>ZZ1234567</lexs:OriginatingAgencyID>
+                    <nc:OrganizationName>BOP</nc:OrganizationName>
+                    <lexs:SystemID>ITS</lexs:SystemID>
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>David</nc:PersonGivenName>
+                    <nc:PersonSurName>Casillas</nc:PersonSurName>
+                    <!-- Contact telephone number is required, other kinds of numbers optional -->
+                    <nc:ContactTelephoneNumber>
+                        <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                        <nc:NANPTelephoneNumber>
+                            <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                            <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                            <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                        </nc:NANPTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:DataSubmitterMetadata>
+            <!-- A message may include one or more packages -->
+            <lexs:DataItemPackage>
+                <lexs:PackageMetadata>
+                    <lexs:DataItemID>DIDR01037082Y2006M12D30T5034537912</lexs:DataItemID>
+                    <lexs:DataItemCompleteIndicator>true</lexs:DataItemCompleteIndicator>
+                    <!-- DataItemContact is the person(s) who can be contacted about the data item  -->
+                    <!-- DataItemContact is optional, and there can be more than one -->
+                    <lexs:DataItemContact>
+                        <!-- PersonName may be a split out name, or both a split out name and a full name.  Last name is required. -->
+                        <nc:PersonSurName>Casillas</nc:PersonSurName>
+                        <nc:PersonFullName>David Casillas</nc:PersonFullName>
+                        <!-- Contact telephone number is required, other kinds of numbers optional -->
+                        <nc:ContactTelephoneNumber>
+                            <!-- Full phone number listed here, although the phone number could be split into parts -->
+                            <nc:FullTelephoneNumber>
+                                <nc:TelephoneNumberFullID>333-444-5555 x6</nc:TelephoneNumberFullID>
+                            </nc:FullTelephoneNumber>
+                        </nc:ContactTelephoneNumber>
+                    </lexs:DataItemContact>
+                    <!-- DataItemReferenceID may be the same as the DataItemID, or may be a more human-readable version of DataItemID -->
+                    <lexs:DataItemReferenceID>RIDR01037082Y2006M12D30T5034537912</lexs:DataItemReferenceID>
+                    <lexs:DataItemPublishInstruction>Insert</lexs:DataItemPublishInstruction>
+                    <lexs:DataItemStatus>Valid</lexs:DataItemStatus>
+                    <!--=======================  Data Owner Metadata  =======================-->
+                    <lexs:DataOwnerMetadata>
+                        <lexs:DataOwnerIdentifier>
+                            <lexs:OriginatingAgencyID>ZZ1234567</lexs:OriginatingAgencyID>
+                            <nc:OrganizationName>BOP</nc:OrganizationName>
+                            <lexs:SystemID>ITS</lexs:SystemID>
+                        </lexs:DataOwnerIdentifier>
+                        <lexs:DataOwnerContact>
+                            <nc:PersonGivenName>David</nc:PersonGivenName>
+                            <nc:PersonSurName>Casillas</nc:PersonSurName>
+                            <nc:ContactTelephoneNumber>
+                                <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                                <nc:NANPTelephoneNumber>
+                                    <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                                    <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                                    <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                                </nc:NANPTelephoneNumber>
+                            </nc:ContactTelephoneNumber>
+                        </lexs:DataOwnerContact>
+                    </lexs:DataOwnerMetadata>
+                    <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <lexs:Digest>
+                    <lexsdigest:EntityPerson>
+                        <!--Entity ID for Person = PID + Register# + Telephone#-->
+                        <lexsdigest:Person s:id="PIDR01037082T5034537912">
+                            <nc:PersonName>
+                                <nc:PersonGivenName>Tommy</nc:PersonGivenName>
+                                <nc:PersonMiddleName>Lee</nc:PersonMiddleName>
+                                <nc:PersonSurName>Jones</nc:PersonSurName>
+                            </nc:PersonName>
+                            <lexsdigest:PersonAugmentation xsi:nil="false">
+                                <lexsdigest:PersonRegisterNumber>
+                                    <nc:IdentificationID>01037082</nc:IdentificationID>
+                                    <lexsdigest:BOPRegisterNumberOriginatorIndicator>true</lexsdigest:BOPRegisterNumberOriginatorIndicator>
+                                </lexsdigest:PersonRegisterNumber>
+                            </lexsdigest:PersonAugmentation>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                    <lexsdigest:EntityTelephoneNumber>
+                        <lexsdigest:TelephoneNumber s:id="TIDR01037082T5034537912">
+                            <nc:FullTelephoneNumber>
+                                <nc:TelephoneNumberFullID>5034537912</nc:TelephoneNumberFullID>
+                            </nc:FullTelephoneNumber>
+                        </lexsdigest:TelephoneNumber>
+                    </lexsdigest:EntityTelephoneNumber>
+                    <!--=======================  Associations  =======================-->
+                    <lexsdigest:Associations>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-11T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <nc:AssociationEndDate>
+                                <nc:DateTime>2006-12-11T09:25:34.0Z</nc:DateTime>
+                            </nc:AssociationEndDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537912"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537912"/>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-01T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <nc:AssociationEndDate>
+                                <nc:DateTime>2006-12-01T09:25:34.0Z</nc:DateTime>
+                            </nc:AssociationEndDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537912"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537912"/>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-14T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537912"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537912"/>
+                            <lexsdigest:CallDuration>P0Y0M0DT1H11M25S</lexsdigest:CallDuration>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-05T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <nc:AssociationEndDate>
+                                <nc:DateTime>2006-12-05T09:25:34.0Z</nc:DateTime>
+                            </nc:AssociationEndDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537912"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537912"/>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                    </lexsdigest:Associations>
+                </lexs:Digest>
+            </lexs:DataItemPackage>
+        </lexs:PublishMessage>
+        <lexs:PublishMessage>
+            <lexs:PDMessageMetadata>
+                <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+                <lexs:MessageDateTime>2006-12-30T09:30:47.0Z</lexs:MessageDateTime>
+                <lexs:MessageSequenceNumber>2</lexs:MessageSequenceNumber>
+                <lexs:DataSensitivity>SBU</lexs:DataSensitivity>
+                <lexs:DomainAttribute>
+                    <lexs:AttributeName>BOP_ITS_RecordType</lexs:AttributeName>
+                    <lexs:AttributeValue>BOP-ITS-CALL-LOG</lexs:AttributeValue>
+                    <lexs:Domain>BOP_ITS</lexs:Domain>
+                </lexs:DomainAttribute>
+                <lexs:DomainAttribute>
+                    <lexs:AttributeName>BOP_ITS_SYSTEM_PLATFORM</lexs:AttributeName>
+                    <lexs:AttributeValue>HP-UX-11.23</lexs:AttributeValue>
+                    <lexs:Domain>BOP_ITS</lexs:Domain>
+                </lexs:DomainAttribute>
+            </lexs:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+            <lexs:DataSubmitterMetadata>
+                <lexs:SystemIdentifier>
+                    <lexs:OriginatingAgencyID>ZZ1234567</lexs:OriginatingAgencyID>
+                    <nc:OrganizationName>BOP</nc:OrganizationName>
+                    <lexs:SystemID>ITS</lexs:SystemID>
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>David</nc:PersonGivenName>
+                    <nc:PersonSurName>Casillas</nc:PersonSurName>
+                    <!-- Contact telephone number is required, other kinds of numbers optional -->
+                    <nc:ContactTelephoneNumber>
+                        <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                        <nc:NANPTelephoneNumber>
+                            <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                            <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                            <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                        </nc:NANPTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:DataSubmitterMetadata>
+            <!-- A message may include one or more packages -->
+            <lexs:DataItemPackage>
+                <lexs:PackageMetadata>
+                    <lexs:DataItemID>DIDR01037082Y2006M12D30T5034537913</lexs:DataItemID>
+                    <lexs:DataItemCompleteIndicator>true</lexs:DataItemCompleteIndicator>
+                    <!-- DataItemContact is the person(s) who can be contacted about the data item  -->
+                    <!-- DataItemContact is optional, and there can be more than one -->
+                    <lexs:DataItemContact>
+                        <!-- PersonName may be a split out name, or both a split out name and a full name.  Last name is required. -->
+                        <nc:PersonSurName>Casillas</nc:PersonSurName>
+                        <nc:PersonFullName>David Casillas</nc:PersonFullName>
+                        <!-- Contact telephone number is required, other kinds of numbers optional -->
+                        <nc:ContactTelephoneNumber>
+                            <!-- Full phone number listed here, although the phone number could be split into parts -->
+                            <nc:FullTelephoneNumber>
+                                <nc:TelephoneNumberFullID>333-444-5555 x6</nc:TelephoneNumberFullID>
+                            </nc:FullTelephoneNumber>
+                        </nc:ContactTelephoneNumber>
+                    </lexs:DataItemContact>
+                    <lexs:DataItemDate>2006-12-13</lexs:DataItemDate>
+                    <!-- DataItemReferenceID may be the same as the DataItemID, or may be a more human-readable version of DataItemID -->
+                    <lexs:DataItemReferenceID>RIDR01037082Y2006M12D30T5034537913</lexs:DataItemReferenceID>
+                    <lexs:DataItemPublishInstruction>Insert</lexs:DataItemPublishInstruction>
+                    <lexs:DataItemStatus>Valid</lexs:DataItemStatus>
+                    <lexs:DataOwnerMetadata>
+                        <lexs:DataOwnerIdentifier>
+                            <lexs:OriginatingAgencyID>ZZ1234567</lexs:OriginatingAgencyID>
+                            <nc:OrganizationName>BOP</nc:OrganizationName>
+                            <lexs:SystemID>ITS</lexs:SystemID>
+                        </lexs:DataOwnerIdentifier>
+                        <lexs:DataOwnerContact>
+                            <nc:PersonGivenName>David</nc:PersonGivenName>
+                            <nc:PersonSurName>Casillas</nc:PersonSurName>
+                            <nc:ContactTelephoneNumber>
+                                <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                                <nc:NANPTelephoneNumber>
+                                    <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                                    <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                                    <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                                </nc:NANPTelephoneNumber>
+                            </nc:ContactTelephoneNumber>
+                        </lexs:DataOwnerContact>
+                    </lexs:DataOwnerMetadata>
+                    <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <lexs:Digest>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person s:id="PIDR01037082T5034537913">
+                            <nc:PersonName>
+                                <nc:PersonGivenName>Tommy</nc:PersonGivenName>
+                                <nc:PersonMiddleName>Lee</nc:PersonMiddleName>
+                                <nc:PersonSurName>Jones</nc:PersonSurName>
+                            </nc:PersonName>
+                            <lexsdigest:PersonAugmentation xsi:nil="false">
+                                <lexsdigest:PersonRegisterNumber>
+                                    <nc:IdentificationID>01037082</nc:IdentificationID>
+                                    <lexsdigest:BOPRegisterNumberOriginatorIndicator>true</lexsdigest:BOPRegisterNumberOriginatorIndicator>
+                                </lexsdigest:PersonRegisterNumber>
+                            </lexsdigest:PersonAugmentation>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                    <lexsdigest:EntityTelephoneNumber>
+                        <lexsdigest:TelephoneNumber s:id="TIDR01037082T5034537913">
+                            <nc:FullTelephoneNumber>
+                                <nc:TelephoneNumberFullID>5034537913</nc:TelephoneNumberFullID>
+                            </nc:FullTelephoneNumber>
+                        </lexsdigest:TelephoneNumber>
+                    </lexsdigest:EntityTelephoneNumber>
+                    <!--=======================  Associations  =======================-->
+                    <lexsdigest:Associations>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-12T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <nc:AssociationEndDate>
+                                <nc:DateTime>2006-12-12T09:25:34.0Z</nc:DateTime>
+                            </nc:AssociationEndDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537913"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537913"/>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-02T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <nc:AssociationEndDate>
+                                <nc:DateTime>2006-12-02T09:25:34.0Z</nc:DateTime>
+                            </nc:AssociationEndDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537913"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537913"/>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-05T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537913"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537913"/>
+                            <lexsdigest:CallDuration>P0Y0M0DT1H11M25S</lexsdigest:CallDuration>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                        <lexsdigest:InmateTelephoneCallLogAssociation>
+                            <nc:AssociationBeginDate>
+                                <nc:DateTime>2006-12-05T09:20:11.0Z</nc:DateTime>
+                            </nc:AssociationBeginDate>
+                            <nc:AssociationEndDate>
+                                <nc:DateTime>2006-12-02T09:25:34.0Z</nc:DateTime>
+                            </nc:AssociationEndDate>
+                            <lexsdigest:OriginatorPersonReference s:ref="PIDR01037082T5034537913"/>
+                            <lexsdigest:ReceiverTelephoneNumberReference s:ref="TIDR01037082T5034537913"/>
+                        </lexsdigest:InmateTelephoneCallLogAssociation>
+                    </lexsdigest:Associations>
+                </lexs:Digest>
+            </lexs:DataItemPackage>
+        </lexs:PublishMessage>
+    </lexs:PublishMessageContainer>
+</lexspd:doPublish>
