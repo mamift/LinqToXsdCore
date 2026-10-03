@@ -20,7 +20,7 @@ namespace ObjectRoleModelling.Xml {
     using global::System.Xml.Schema;
     using global::System.Xml.Linq;
     using global::Xml.Schema.Linq;
-    using www.w3.org.XML.Item1998.@namespace;
+    using global::www.w3.org.XML.Item1998.@namespace;
     using purl.org.dc.elements.Item1.Item1;
     
     
@@ -6205,7 +6205,7 @@ namespace www.w3.org.XML.Item1998.@namespace {
     using global::System.Xml.Schema;
     using global::System.Xml.Linq;
     using global::Xml.Schema.Linq;
-    using ObjectRoleModelling.Xml;
+    using global::ObjectRoleModelling.Xml;
     
     
     public sealed class lang {

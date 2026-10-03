@@ -20,7 +20,7 @@ namespace LinqToXsd.Schemas.XsdFeatureTests.ImportsXmlAttributes {
     using global::System.Xml.Schema;
     using global::System.Xml.Linq;
     using global::Xml.Schema.Linq;
-    using W3C.Xml1998;
+    using global::W3C.Xml1998;
     
     
     public partial class localAttributeGroupElementTest : XTypedElement, IXMetaData {
@@ -758,7 +758,7 @@ namespace W3C.Xml1998 {
     using global::System.Xml.Schema;
     using global::System.Xml.Linq;
     using global::Xml.Schema.Linq;
-    using LinqToXsd.Schemas.XsdFeatureTests.ImportsXmlAttributes;
+    using global::LinqToXsd.Schemas.XsdFeatureTests.ImportsXmlAttributes;
     
     
     public sealed class lang {

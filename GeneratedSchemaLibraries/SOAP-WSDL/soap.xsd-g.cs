@@ -20,7 +20,7 @@ namespace W3C.WSDL.SOAP {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using W3C.WSDL;
+    using global::W3C.WSDL;
     
     
     /// <summary>
@@ -903,7 +903,7 @@ namespace W3C.WSDL {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using W3C.WSDL.SOAP;
+    using global::W3C.WSDL.SOAP;
     
     
     /// <summary>

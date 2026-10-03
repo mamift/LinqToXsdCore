@@ -20,10 +20,10 @@ namespace Microsoft.Search.Response {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using Microsoft.Search.Response.Document;
-    using Microsoft.Search.Response.Form;
-    using Microsoft.Search.Response.Content;
-    using Microsoft.Search.Types;
+    using global::Microsoft.Search.Response.Document;
+    using global::Microsoft.Search.Response.Form;
+    using global::Microsoft.Search.Response.Content;
+    using global::Microsoft.Search.Types;
     
     
     /// <summary>
@@ -1758,7 +1758,7 @@ namespace Microsoft.Search.Response.Document {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using Microsoft.Search.Response;
+    using global::Microsoft.Search.Response;
     
     
     /// <summary>
@@ -3090,7 +3090,7 @@ namespace Microsoft.Search.Response.Form {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using Microsoft.Search.Response;
+    using global::Microsoft.Search.Response;
     
     
     /// <summary>
@@ -7193,7 +7193,7 @@ namespace Microsoft.Search.Response.Content {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using Microsoft.Search.Response;
+    using global::Microsoft.Search.Response;
     
     
     /// <summary>
@@ -13782,7 +13782,7 @@ namespace Microsoft.Search.Types {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using Microsoft.Search.Response;
+    using global::Microsoft.Search.Response;
     
     
     /// <summary>
