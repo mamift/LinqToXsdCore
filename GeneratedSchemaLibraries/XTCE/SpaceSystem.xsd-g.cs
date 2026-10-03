@@ -8,33 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace www.w3.org.XML.Item1998.@namespace {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Diagnostics;
-    using global::System.Xml;
-    using global::System.Xml.Schema;
-    using global::System.Xml.Linq;
-    using global::Xml.Schema.Linq;
-    using Omg.Xtce;
-    
-    
-    public sealed class lang {
-        
-        private lang() {
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new global::Xml.Schema.Linq.SimpleTypeValidator[] {
-                    new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language), null),
-                    new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new global::Xml.Schema.Linq.RestrictionFacets(((global::Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    ""}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve))});
-    }
-}
 namespace Omg.Xtce {
     using System;
     using System.Collections;
@@ -47,7 +20,6 @@ namespace Omg.Xtce {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using www.w3.org.XML.Item1998.@namespace;
     
     
     /// <summary>
@@ -10604,7 +10576,7 @@ namespace Omg.Xtce {
         protected internal static readonly System.Xml.Linq.XName comparisonOperatorXName = System.Xml.Linq.XName.Get("comparisonOperator", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal static Omg.Xtce.ComparisonOperatorsType comparisonOperatorDefaultValue = Omg.Xtce.ComparisonOperatorsType.__;
+        internal static Omg.Xtce.ComparisonOperatorsType comparisonOperatorDefaultValue = Omg.Xtce.ComparisonOperatorsType.EqualsEquals;
         
         /// <summary>
         /// <para>
@@ -35669,17 +35641,17 @@ namespace Omg.Xtce {
     /// </summary>
     public enum ComparisonOperatorsType {
         
-        __,
+        EqualsEquals,
         
-        __,
+        ExclamationMarkEquals,
         
         LessThan,
         
-        __,
+        LessThanEquals,
         
         GreaterThan,
         
-        __,
+        GreaterThanEquals,
     }
     
     /// <summary>
@@ -35694,12 +35666,12 @@ namespace Omg.Xtce {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                        "==:__",
-                        "!=:__",
+                        "==:EqualsEquals",
+                        "!=:ExclamationMarkEquals",
                         "<:LessThan",
-                        "<=:__",
+                        "<=:LessThanEquals",
                         ">:GreaterThan",
-                        ">=:__"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                        ">=:GreaterThanEquals"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
     }
     
     /// <summary>
@@ -35728,7 +35700,7 @@ namespace Omg.Xtce {
         protected internal static readonly System.Xml.Linq.XName comparisonOperatorXName = System.Xml.Linq.XName.Get("comparisonOperator", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal static Omg.Xtce.ComparisonOperatorsType comparisonOperatorDefaultValue = Omg.Xtce.ComparisonOperatorsType.__;
+        internal static Omg.Xtce.ComparisonOperatorsType comparisonOperatorDefaultValue = Omg.Xtce.ComparisonOperatorsType.EqualsEquals;
         
         /// <summary>
         /// <para>
@@ -37869,17 +37841,17 @@ namespace Omg.Xtce {
         
         over,
         
-        __,
+        LessThanLessThan,
         
-        __,
+        GreaterThanGreaterThan,
         
         Ampersand,
         
         Pipe,
         
-        __,
+        AmpersandAmpersand,
         
-        __,
+        PipePipe,
         
         ExclamationMark,
         
@@ -37891,15 +37863,15 @@ namespace Omg.Xtce {
         
         GreaterThan,
         
-        __,
+        GreaterThanEquals,
         
         LessThan,
         
-        __,
+        LessThanEquals,
         
-        __,
+        EqualsEquals,
         
-        __,
+        ExclamationMarkEquals,
         
         min,
         
@@ -37951,22 +37923,22 @@ namespace Omg.Xtce {
                         "drop",
                         "dup",
                         "over",
-                        "<<:__",
-                        ">>:__",
+                        "<<:LessThanLessThan",
+                        ">>:GreaterThanGreaterThan",
                         "&:Ampersand",
                         "|:Pipe",
-                        "&&:__",
-                        "||:__",
+                        "&&:AmpersandAmpersand",
+                        "||:PipePipe",
                         "!:ExclamationMark",
                         "abs",
                         "div",
                         "int:@int",
                         ">:GreaterThan",
-                        ">=:__",
+                        ">=:GreaterThanEquals",
                         "<:LessThan",
-                        "<=:__",
-                        "==:__",
-                        "!=:__",
+                        "<=:LessThanEquals",
+                        "==:EqualsEquals",
+                        "!=:ExclamationMarkEquals",
                         "min",
                         "max",
                         "xor",
