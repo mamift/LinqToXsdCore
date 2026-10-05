@@ -41,5 +41,22 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotNull(prop1);
             Assert.IsNotNull(prop2);
         }
+
+        /// <summary>
+        /// https://github.com/mamift/LinqToXsdCore/issues/106: when the content type re-declares an element of its base
+        /// type, the wrapper must forward the content type's merged property once, not also the base type's property
+        /// (which produced CS0102).
+        /// </summary>
+        [Test]
+        public void T2_WhenContentTypeRedeclaresBaseElementThenWrapperForwardsItOnce()
+        {
+            var type = GeneratedTypes.Single(type => type.Identifier.Text == "RedeclaringWrapper");
+            var props = type.Members.OfType<PropertyDeclarationSyntax>().Where(prop => prop.Identifier.Text == "Base1Prop").ToList();
+            Assert.AreEqual(1, props.Count);
+            Assert.AreEqual("IList<string>", props[0].Type.ToString());
+
+            var duplicateMemberErrors = Utilities.GetSyntaxAndCompilationDiagnostics(Tree).Where(d => d.Id == "CS0102").ToArray();
+            Assert.IsEmpty(duplicateMemberErrors, string.Join("\n", duplicateMemberErrors.Select(d => d.ToString())));
+        }
     }
 }

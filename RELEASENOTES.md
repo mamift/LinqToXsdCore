@@ -1,5 +1,15 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.24
+
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.24
+* https://www.nuget.org/packages/XObjectsCore/3.4.24
+  * [#105](https://github.com/mamift/LinqToXsdCore/pull/105)
+    * Fixes choices of repeatable elements (fixes [#42](https://github.com/mamift/LinqToXsdCore/issues/42)): with a choice such as `(Foo* | Bar*)`, only the last `Foo` element was kept when several were added, because `ChoiceContentModelEntity` removed every existing element of the choice. It now honours the `addToExisting` flag and only removes elements of the other choice branches.
+  * [#108](https://github.com/mamift/LinqToXsdCore/pull/108)
+    * Fixes a code generation regression from the wrapper type changes in 3.4.8 and 3.4.9 ([#75](https://github.com/mamift/LinqToXsdCore/pull/75), [#76](https://github.com/mamift/LinqToXsdCore/pull/76)), see [#106](https://github.com/mamift/LinqToXsdCore/issues/106): when a complex type re-declares an element of its base type, the wrapper class for a global element of that type forwarded both the content type's merged `new` property and the base type's property of the same name, which did not compile (CS0102). Wrapper types now forward only the most derived property of each name. Evidence: `BasePropsTest.xsd` (`RedeclaringWrapper`); affected schemas include FpML 4.1 to 4.9 (`creditCurve`).
+
 ## Version 3.4.23
 
 Nuget packages:
