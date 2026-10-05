@@ -552,10 +552,14 @@ namespace Xml.Schema.Linq.CodeGen
                             //If the wrapped type is xs:anyType, no forwarding properties to create
                             wrappingPropertyInfo = new ClrWrappingPropertyInfo();
 
-                            //Get all properties from the inner type and its base types
+                            //Get all properties from the inner type and its base types. Members are enumerated from the
+                            //most derived type to the base types; a property that a derived type re-declares (with 'new')
+                            //hides the base one, so forward only the first property of each name.
                             var memberProperties = innerTypeDecl
                                 .GetSelfAndBaseMembers(GetCodeNamespace, GetCodeTypeDeclaration)
                                 .OfType<CodeMemberProperty>()
+                                .GroupBy(p => p.Name)
+                                .Select(g => g.First())
                                 .ToArray();
 
                             foreach (CodeMemberProperty memberProperty in memberProperties)

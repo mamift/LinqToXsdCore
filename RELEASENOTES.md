@@ -9,14 +9,10 @@
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.24
 * https://www.nuget.org/packages/XObjectsCore/3.4.24
-  * [#105](https://github.com/mamift/LinqToXsdCore/pull/105), also fixes [issue #42](https://github.com/mamift/LinqToXsdCore/issues/42).
-    * Fixes code generation and runtime bug with creation of `xs:choices` of repeatable elements (where `maxOccurs="unbounded"`).
-  * [#104](https://github.com/mamift/LinqToXsdCore/pull/104) The linqtoxsd CLI tool behaviour has changed:
-    - the `-a` flag will now delete existing files with the `.xsd.cs` extension (since v3.4.17, the default output extension is now `.xsd-g.cs`) when outputting code
-    - fixed a bug with getting the actual XML Schema version, the `xs:schema\@version` attribute is a user defined attribute for the schema version, it does not specify which W3C XSD specification version to validate against (i.e. v1.0 or v1.1). This has inadvertently caused `linqtoxsd` to skip schemas whose versions were v1.1 or higher.
-    - the behaviour of the `-a` argument when invoking the `linqtoxsd` CLI tool is now always applied i.e. it now always searches for a `.xsd.config` file regardless. However, in previous versions, if a config file was not found, `linqtoxsd` would skip that XSD file - now `linqtoxsd` will simply apply default config values for those XSD files and proceed to generate code.
-    - added a new CLI verb `sum` that will emit a markdown file that summarises the generated code.
-    - codegen: `global::` is now prefixed to the generated method `GetRootType()` when global:: is used in other places for namespaces with Xml in them.
+  * [#105](https://github.com/mamift/LinqToXsdCore/pull/105)
+    * Fixes choices of repeatable elements (fixes [#42](https://github.com/mamift/LinqToXsdCore/issues/42)): with a choice such as `(Foo* | Bar*)`, only the last `Foo` element was kept when several were added, because `ChoiceContentModelEntity` removed every existing element of the choice. It now honours the `addToExisting` flag and only removes elements of the other choice branches.
+  * [#108](https://github.com/mamift/LinqToXsdCore/pull/108)
+    * Fixes a code generation regression from the wrapper type changes in 3.4.8 and 3.4.9 ([#75](https://github.com/mamift/LinqToXsdCore/pull/75), [#76](https://github.com/mamift/LinqToXsdCore/pull/76)), see [#106](https://github.com/mamift/LinqToXsdCore/issues/106): when a complex type re-declares an element of its base type, the wrapper class for a global element of that type forwarded both the content type's merged `new` property and the base type's property of the same name, which did not compile (CS0102). Wrapper types now forward only the most derived property of each name. Evidence: `BasePropsTest.xsd` (`RedeclaringWrapper`); affected schemas include FpML 4.1 to 4.9 (`creditCurve`).
 
 ## Version 3.4.23
 
