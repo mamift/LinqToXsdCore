@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: lexsSRwebserviceIntf.wsdl 1885 2008-12-25 03:21:12Z ys34 $
+    LEXS version  : 3.1.4
+    Description   : Types, Messages, Services, and Ports defintions for Search/Retrieve LEXS Webservice
+-->
+<wsdl:definitions 
+    targetNamespace="http://usdoj.gov/leisp/lexs/searchretrieve/3.1/ws" 
+    xmlns:tns="http://usdoj.gov/leisp/lexs/searchretrieve/3.1/ws"     
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+    
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import 
+                namespace="http://usdoj.gov/leisp/lexs/searchretrieve/3.1" 
+                schemaLocation="../xsd/search-retrieve/3.1/search-retrieve.xsd"/>
+        </xsd:schema> 
+    </wsdl:types>   
+    
+    <wsdl:message name="doStructuredSearchRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:doStructuredSearchRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="doTextSearchRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:doTextSearchRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="doSearchResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:doSearchResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataItemRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataItemRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataItemResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataItemResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAttachmentRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getAttachmentRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAttachmentResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getAttachmentResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getCapabilitiesRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getCapabilitiesRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getCapabilitiesResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getCapabilitiesResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataOwnersRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataOwnersRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataOwnersResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataOwnersResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAvailabilityRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getAvailabilityRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAvailabilityResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getAvailabilityResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getDomainRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getDomainRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDomainResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getDomainResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="LEXSSearchRetrievePortType">
+        
+        <wsdl:operation name="doStructuredSearch">
+            <wsdl:input message="tns:doStructuredSearchRequestMsg"/>
+            <wsdl:output message="tns:doSearchResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doTextSearch">
+            <wsdl:input message="tns:doTextSearchRequestMsg"/>
+            <wsdl:output message="tns:doSearchResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataItem">
+            <wsdl:input message="tns:getDataItemRequestMsg"/>
+            <wsdl:output message="tns:getDataItemResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAttachment">
+            <wsdl:input message="tns:getAttachmentRequestMsg"/>
+            <wsdl:output message="tns:getAttachmentResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getCapabilities">
+            <wsdl:input message="tns:getCapabilitiesRequestMsg"/>
+            <wsdl:output message="tns:getCapabilitiesResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataOwners">
+            <wsdl:input message="tns:getDataOwnersRequestMsg"/>
+            <wsdl:output message="tns:getDataOwnersResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAvailability">
+            <wsdl:input message="tns:getAvailabilityRequestMsg"/>
+            <wsdl:output message="tns:getAvailabilityResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDomain">
+            <wsdl:input message="tns:getDomainRequestMsg"/>
+            <wsdl:output message="tns:getDomainResponseMsg"/>
+        </wsdl:operation>
+        
+    </wsdl:portType>
+    
+    <wsdl:binding 
+        name="SRWebServiceSoapBinding" 
+        type="tns:LEXSSearchRetrievePortType">
+        
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+        <wsdl:operation name="doStructuredSearch">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/doStructuredSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doTextSearch">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/doTextSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataItem">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getDataItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAttachment">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getAttachment"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getCapabilities">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getCapabilities"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataOwners">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getDataOwners"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAvailability">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getAvailability"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDomain">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getDomain"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+    </wsdl:binding>
+    
+</wsdl:definitions>

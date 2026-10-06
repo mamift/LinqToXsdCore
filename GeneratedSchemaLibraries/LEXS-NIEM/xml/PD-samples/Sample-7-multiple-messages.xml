@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: Sample-7-multiple-messages.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original: 7/19/2007
+    LEXS version  : 3.1.4
+    Description   : 
+        Sample XML instance for the publish message that includes multiple messages in a single submission
+-->
+<lexspd:doPublish 
+    xmlns:new="http://somewhere.gov/new-community" 
+    xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1" 
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.0"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1" 
+    xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/publishdiscover/3.1 ../../xsd/publish-discover/3.1/publish-discover.xsd">
+    <lexs:PublishMessageContainer>
+        <!--==================== 1st Message ====================-->
+        <lexs:PublishMessage>
+            <lexs:PDMessageMetadata>
+                <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+                <lexs:MessageDateTime>2006-12-01T09:30:47.0Z</lexs:MessageDateTime>
+                <lexs:MessageSequenceNumber>1</lexs:MessageSequenceNumber>
+                <lexs:DataSensitivity>SBU</lexs:DataSensitivity>
+            </lexs:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+            <lexs:DataSubmitterMetadata>
+                <lexs:SystemIdentifier>
+                    <nc:OrganizationName>Hypothetical Organization C</nc:OrganizationName>
+                    <lexs:SystemID>SysC</lexs:SystemID>
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Michael</nc:PersonGivenName>
+                    <nc:PersonSurName>Park</nc:PersonSurName>
+                    <!-- Contact telephone number is required, other kinds of numbers optional -->
+                    <nc:ContactTelephoneNumber>
+                        <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                        <nc:NANPTelephoneNumber>
+                            <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                            <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                            <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                        </nc:NANPTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:DataSubmitterMetadata>
+            <!--==================== Package ====================-->
+            <lexs:DataItemPackage>
+                <lexs:PackageMetadata>
+                    <lexs:DataItemID>12345678</lexs:DataItemID>
+                    <lexs:DataItemCompleteIndicator>true</lexs:DataItemCompleteIndicator>
+                    <lexs:DataItemDate>1967-08-13</lexs:DataItemDate>
+                    <lexs:DataItemReferenceID>12345678</lexs:DataItemReferenceID>
+                    <lexs:DataItemPublishInstruction>Insert</lexs:DataItemPublishInstruction>
+                    <lexs:DataItemStatus>Valid</lexs:DataItemStatus>
+                    <!--=======================  Data Owner Metadata  =======================-->
+                    <lexs:DataOwnerMetadata>
+                        <lexs:DataOwnerIdentifier>
+                            <lexs:OriginatingAgencyID>AA1234567</lexs:OriginatingAgencyID>
+                            <nc:OrganizationName>Hypothetical Agency A</nc:OrganizationName>
+                            <lexs:SystemID>SysA</lexs:SystemID>
+                        </lexs:DataOwnerIdentifier>
+                        <lexs:DataOwnerContact>
+                            <nc:PersonGivenName>Will</nc:PersonGivenName>
+                            <nc:PersonSurName>Jones</nc:PersonSurName>
+                            <nc:ContactTelephoneNumber>
+                                <nc:FullTelephoneNumber>
+                                    <nc:TelephoneNumberFullID>111-222-3333</nc:TelephoneNumberFullID>
+                                </nc:FullTelephoneNumber>
+                            </nc:ContactTelephoneNumber>
+                        </lexs:DataOwnerContact>
+                    </lexs:DataOwnerMetadata>
+                    <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <lexs:Digest>
+                    <!--==================  Person A  ==================-->
+                    <lexsdigest:EntityPerson s:id="EPerson1">
+                        <lexsdigest:Metadata s:id="MPerson1">
+                            <nc:SourceIDText>P123</nc:SourceIDText>
+                        </lexsdigest:Metadata>
+                        <lexsdigest:Person s:id="Person1" s:metadata="MPerson1">
+                            <nc:PersonAgeMeasure>
+                                <nc:MeasurePointValue>29</nc:MeasurePointValue>
+                                <nc:TimeUnitCode>ANN</nc:TimeUnitCode>
+                            </nc:PersonAgeMeasure>
+                            <nc:PersonName>
+                                <nc:PersonGivenName>John</nc:PersonGivenName>
+                                <nc:PersonSurName>Doe</nc:PersonSurName>
+                            </nc:PersonName>
+                            <nc:PersonSSNIdentification>
+                                <nc:IdentificationID>555443333</nc:IdentificationID>
+                            </nc:PersonSSNIdentification>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:Digest>
+                <!--======================= Data from another community ======================-->
+                <lexs:StructuredPayload>
+                    <lexs:StructuredPayloadMetadata>
+                        <lexs:CommunityURI>http://somewhere.gov/new-community</lexs:CommunityURI>
+                        <lexs:CommunityDescription>New Community</lexs:CommunityDescription>
+                        <lexs:CommunityVersion>1.0</lexs:CommunityVersion>
+                    </lexs:StructuredPayloadMetadata>
+                    <new:Report>
+                        <new:Person>
+                            <nc:PersonHairStyleText>strawberry blond</nc:PersonHairStyleText>
+                            <lexslib:SameAsDigestReference lexslib:ref="Person1"/>
+                        </new:Person>
+                    </new:Report>
+                </lexs:StructuredPayload>
+            </lexs:DataItemPackage>
+        </lexs:PublishMessage>
+        <!--==================== 2nd Message ====================-->
+        <lexs:PublishMessage>
+            <lexs:PDMessageMetadata>
+                <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+                <lexs:MessageDateTime>2006-12-01T09:55:00.0Z</lexs:MessageDateTime>
+                <lexs:MessageSequenceNumber>2</lexs:MessageSequenceNumber>
+                <lexs:DataSensitivity>SBU</lexs:DataSensitivity>
+            </lexs:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+            <lexs:DataSubmitterMetadata>
+                <lexs:SystemIdentifier>
+                    <nc:OrganizationName>Hypothetical Organization C</nc:OrganizationName>
+                    <lexs:SystemID>SysC</lexs:SystemID>
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Michael</nc:PersonGivenName>
+                    <nc:PersonSurName>Park</nc:PersonSurName>
+                    <!-- Contact telephone number is required, other kinds of numbers optional -->
+                    <nc:ContactTelephoneNumber>
+                        <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                        <nc:NANPTelephoneNumber>
+                            <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                            <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                            <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                        </nc:NANPTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:DataSubmitterMetadata>
+            <!--==================== Package ====================-->
+            <lexs:DataItemPackage>
+                <lexs:PackageMetadata>
+                    <lexs:DataItemID>23456789</lexs:DataItemID>
+                    <lexs:DataItemCompleteIndicator>false</lexs:DataItemCompleteIndicator>
+                    <lexs:DataItemDate>1968-09-01</lexs:DataItemDate>
+                    <lexs:DataItemReferenceID>23456789</lexs:DataItemReferenceID>
+                    <lexs:DataItemPublishInstruction>Insert</lexs:DataItemPublishInstruction>
+                    <lexs:DataItemStatus>Valid</lexs:DataItemStatus>
+                    <!--=======================  Data Owner Metadata  =======================-->
+                    <lexs:DataOwnerMetadata>
+                        <lexs:DataOwnerIdentifier>
+                            <lexs:OriginatingAgencyID>AA1234567</lexs:OriginatingAgencyID>
+                            <nc:OrganizationName>Hypothetical Agency A</nc:OrganizationName>
+                            <lexs:SystemID>SysA</lexs:SystemID>
+                        </lexs:DataOwnerIdentifier>
+                        <lexs:DataOwnerContact>
+                            <nc:PersonGivenName>Will</nc:PersonGivenName>
+                            <nc:PersonSurName>Jones</nc:PersonSurName>
+                            <nc:ContactTelephoneNumber>
+                                <nc:FullTelephoneNumber>
+                                    <nc:TelephoneNumberFullID>111-222-3333</nc:TelephoneNumberFullID>
+                                </nc:FullTelephoneNumber>
+                            </nc:ContactTelephoneNumber>
+                        </lexs:DataOwnerContact>
+                    </lexs:DataOwnerMetadata>
+                    <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <lexs:Digest>
+                    <!--============  Person B  ============-->
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Metadata s:id="MPerson2">
+                            <nc:SourceIDText>P888</nc:SourceIDText>
+                        </lexsdigest:Metadata>
+                        <lexsdigest:Person s:id="Person2" s:metadata="MPerson2">
+                            <nc:PersonAgeMeasure>
+                                <nc:MeasurePointValue>33</nc:MeasurePointValue>
+                                <nc:TimeUnitCode>ANN</nc:TimeUnitCode>
+                            </nc:PersonAgeMeasure>
+                            <nc:PersonName>
+                                <nc:PersonGivenName>Bill</nc:PersonGivenName>
+                                <nc:PersonSurName>Smitherman</nc:PersonSurName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:Digest>
+                <!--======================= Data from another community ======================-->
+                <lexs:StructuredPayload>
+                    <lexs:StructuredPayloadMetadata>
+                        <lexs:CommunityURI>http://somewhere.gov/new-community</lexs:CommunityURI>
+                        <lexs:CommunityDescription>New Community</lexs:CommunityDescription>
+                        <lexs:CommunityVersion>1.0</lexs:CommunityVersion>
+                    </lexs:StructuredPayloadMetadata>
+                    <new:Report>
+                        <new:Person>
+                            <nc:PersonHairStyleText>mohawk</nc:PersonHairStyleText>
+                            <lexslib:SameAsDigestReference lexslib:ref="Person2"/>
+                        </new:Person>
+                    </new:Report>
+                </lexs:StructuredPayload>
+            </lexs:DataItemPackage>
+        </lexs:PublishMessage>
+    </lexs:PublishMessageContainer>
+</lexspd:doPublish>

@@ -22,11 +22,13 @@
 
   <ItemGroup>
     <None Include="..\RELEASENOTES.md" Link="RELEASENOTES.md" Pack="true" PackagePath="" />
+	<None Include=".\SKILLS.md" Link="SKILLS.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Alba.CsConsoleFormat.ColorfulConsole" Version="1.0.0" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" />
     <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.2" />
   </ItemGroup>
 

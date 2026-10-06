@@ -1,0 +1,2685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: digest.xsd 1920 2009-01-08 20:31:42Z ys34 $
+    LEXS version  : 3.1.4
+    Namespace     : xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+    Description   : a library for lexs digest elements.
+-->
+<xsd:schema 
+    targetNamespace="http://usdoj.gov/leisp/lexs/digest/3.1" 
+    version="3.1.4"
+    xmlns:em="http://niem.gov/niem/domains/emergencyManagement/2.0"
+    xmlns:i="http://niem.gov/niem/appinfo/2.0"
+    xmlns:im="http://niem.gov/niem/domains/immigration/2.0"
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.0"
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1"
+    xmlns:lexscodes="http://usdoj.gov/leisp/lexs/codes/3.1"
+    xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:scr="http://niem.gov/niem/domains/screening/2.0"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <xsd:import
+        namespace="http://niem.gov/niem/structures/2.0"
+        schemaLocation="../../niem-constrained/structures/2.0/structures.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/appinfo/2.0"
+        schemaLocation="../../niem-constrained/appinfo/2.0/appinfo.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/niem-core/2.0"
+        schemaLocation="../../niem-constrained/niem-core/2.0/niem-core.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/domains/emergencyManagement/2.0"
+        schemaLocation="../../niem-constrained/domains/emergencyManagement/2.0/emergencyManagement.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/domains/jxdm/4.0"
+        schemaLocation="../../niem-constrained/domains/jxdm/4.0/jxdm.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/domains/screening/2.0"
+        schemaLocation="../../niem-constrained/domains/screening/2.0/screening.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/domains/immigration/2.0"
+        schemaLocation="../../niem-constrained/domains/immigration/2.0/immigration.xsd"/>
+    <xsd:import
+        namespace="http://usdoj.gov/leisp/lexs/library/3.1"
+        schemaLocation="../../library/3.1/library.xsd"/>
+    <xsd:import
+        namespace="http://usdoj.gov/leisp/lexs/codes/3.1"
+        schemaLocation="../../codes/3.1/codes.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/proxy/xsd/2.0"
+        schemaLocation="../../niem-constrained/proxy/xsd/2.0/xsd.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:documentation>LEXS Library for Digest Elements </xsd:documentation>
+        <xsd:appinfo>
+            <i:ConformantIndicator>true</i:ConformantIndicator>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+    <xsd:complexType name="ActivityEmailAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between an activity and an e-mail  address somehow involved in that activity.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ActivityReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EmailIDReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ActivityHashAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between an activity and a hash.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ActivityReference"/>
+                    <xsd:element ref="lexsdigest:HashReference" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ActivityInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between an activity and an instant messenger.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ActivityReference"/>
+                    <xsd:element ref="lexsdigest:InstantMessengerReference" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ActivityNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between an activity and a network address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ActivityReference"/>
+                    <xsd:element ref="lexsdigest:NetworkAddressReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ActivityTelephoneNumberAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between an activity and a telephone number somehow involved in that activity.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ActivityReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="BailBondAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a baling entity, bailee, and bail bondsman entity.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:BailingPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:BailingOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:BaileePersonReference"/>
+                    <xsd:element ref="lexsdigest:BailBondsmanPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:BailBondsmanOrganizationReference" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="CreditCardType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a credit card.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="ItemType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+          <xsd:extension base="nc:ItemType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:CreditCardCategory" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:CreditCardExpirationDate" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:CreditCardIssuerOrganizationName" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:CreditCardNumber" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:CreditCardOwnerName" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="DeclarationPersonAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a missing person and person who declared the other person missing.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:DeclarationPersonReference"/>
+                    <xsd:element ref="lexsdigest:MissingPersonReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ElectronicAddressAugmentationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type that supplements scr:ElectronicAddressType.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/domains/screening/2.0" i:name="AugmentationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="s:AugmentationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:ElectronicAddressCaptureDate" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ElectronicAddressDescriptionText" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ElectronicAddressMACNumber" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ElectronicAddressType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for an Internet Protocol (IP) address or Uniform Resource Locator (URL) that uniquely identifies a specific site on the Internet or another network.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/domains/screening/2.0" i:name="ElectronicAddressType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="scr:ElectronicAddressType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:ElectronicAddressAugmentation" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EmailMessageAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between originator, receiver, and an e-mail message.  Originator and receiver can be person and/or organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:OriginatorPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorEmailIDReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ReceiverOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ReceiverEmailIDReference" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityActivityType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Activity object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Activity"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityAircraftType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Aircraft object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Aircraft"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityAssociationsType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that provides a container for all associations between objects.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="j:AccompliceAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityAssistingPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityClearerPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityDispatcherAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityEnforcementOfficialAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityInformationAbstracterPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityInformationApproverAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityInformationOwnerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityInformationReleaserAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityInformationReporterAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityJudicialOfficialAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ActivityUnknownAffiliateAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentInformantAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentInvestigatorAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentItemObtainerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentUnknownAssociationPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:SubjectInvolvedPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ActivityEmailAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ActivityHashAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ActivityInstantMessengerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ActivityNetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ActivityPrimaryPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ActivityResponsiblePersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ActivityTelephoneNumberAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ArrestInvolvedWeaponAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ArrestOffenseAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ArrestOfficerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ArrestSubjectAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:BailBondAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:BoyfriendGirlfriendAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:CaregiverAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:CellmateAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ClientAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:CreditCardBillingLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:DeclarationPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:DeliveryAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:DocumentAuthorAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EmailMessageAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityAttachmentLinkAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityCrimeSceneImageAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityEmailAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityInstantMessengerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityItemImageAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityNetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityPersonFacialImageAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityPersonImageAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityPersonSMTImageAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntitySupportingDocumentationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:EntityTelephoneNumberAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:HomosexualAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentArrestAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentEmailAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentEvidenceAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentInstantMessengerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentInvolvedItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentNetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentOffenseAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentReportingOfficialAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentServiceCallAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentSubjectOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentSubjectPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentTelephoneNumberAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentVictimOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentVictimPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentWeaponAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:IncidentWitnessAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:InmateApprovedTelephoneListAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:InmateTelephoneCallLogAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:InstantMessengerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemAssignedNetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemAssignedTelephoneNumberAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemEmailAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemInstantMessengerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemLienHolderOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemLienHolderPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemNetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ItemTelephoneNumberAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:NetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseEmailAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseInstantMessengerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseInvolvedItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseNetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseSubjectOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseSubjectPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseTelephoneNumberAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseVictimOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseVictimPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseWeaponAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OffenseWitnessAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PatientAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonArrestLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonBirthLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonContactAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonFoundLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonLastSeenWitnessAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonOfInterestAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PhysicalMailAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PropertyRecoveryLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PropertySeizedLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallCallerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallDispatcherAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallDispatchLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallEmailAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallInstantMessengerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallNetworkAddressAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallOperatorAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceCallTelephoneNumberAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:StudentAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:SubjectVictimAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:SubjectWitnessAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:TelephoneCallAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VictimWitnessAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VisitorAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexslib:SameAsPayloadAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:AcquaintanceAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityInformationAbstracterOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityInformationClearerOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityInvolvedOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityInvolvedPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityPrimaryOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityReportingOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivityResponsibleOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivitySupervisorOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ActivitySupervisorPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:AuthorityFigureAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:BabysitterAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:CohabitantAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:CoworkerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:DomesticPartnershipAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:FamilyAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:FriendshipAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:GuardianAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ImmediateFamilyAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ItemContainerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ItemHolderAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ItemLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ItemMoverAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:LocationContainsOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:LocationEmergencyServicesAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:LocationNeighboringPersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:LocationOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:LocationPoliceDepartmentAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:MarriageAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:NeighborAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationGangAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationOwnsItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationParentAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationPossessesItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationPrincipalOfficialAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:OrganizationSubsidiaryAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonActivityInvolvementAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonAssignedUnitAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonConveyanceAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonCriminalOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonCurrentEmploymentAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonCurrentLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonDetainmentLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonEmploymentAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonEmploymentLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonFormerEmploymentAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonGangAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonInvolvedInDrivingIncidentAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonKnownPreviousLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonLastSeenLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonOrganizationAffiliationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonOrganizationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonOwnsItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonPossessesItemAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonPrimaryWorkerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonReferralWorkerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonTemporaryAssignedUnitAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonWorkerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PreviousActivityAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PropertyCurrentLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PropertyDispositionLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:RelatedActivityAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:RelatedCaseAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:ResidenceAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:StrangerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:TransportationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:VehicleGarageLocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:VehicleTowerAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="scr:AdoptedChildAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="scr:LocationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityAttachmentLinkAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that provides association between a LEXS Entity object and a LEXS AttachmentLink Object, for example to link a person to their mug shot.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:EntityReference"/>
+                    <xsd:element ref="lexsdigest:AttachmentLinkReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityCreditCardType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps Credit Card object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:CreditCard"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityDocumentType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Document object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Document"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityDrugType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Drug object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Drug"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityEmailAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a Person or Organization and email address, for example to indicate that a person has a particular email address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:PersonReference" minOccurs="0"/>
+                    <xsd:element ref="nc:OrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:EmailIDReference" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityEmailType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Email ID object.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ContactEmailID"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityExplosiveType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Explosive object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Explosive"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityFirearmType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Firearm object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Firearm"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityHashType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps LEXS Hash object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:Hash"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between an entity and an instant messenger, for example to indicate that a person has or uses a particular IRC chat address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:OrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:InstantMessengerReference" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityInstantMessengerType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Instant Messenger object and it's roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ContactInstantMessenger"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityIntangibleItemType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Intangible Item object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:IntangibleItem"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityLocationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Location object.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Location"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between an entity and a Network address, for example to indicate that a person has or uses a particular Network address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:OrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:PersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:NetworkAddressReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityNetworkAddressType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps LEXS Network Address object.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:NetworkAddress"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityOrganizationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Organization object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Organization"/>
+                    <xsd:element ref="j:ChargeSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CitationSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ConvictionSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CourtOrderDesignatedSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CriminalOrganization" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:SentenceSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Subject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Suspect" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:VerdictSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:SupervisionSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Lessee" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Lessor" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:VehicleBrander" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityPersonType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps LEXS Person object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:Person"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:AppellateCaseDecisionIssuingJudge" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:AppellateCaseNoticeProsecutingAttorney" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ArrestOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ArrestSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Attorney" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:BailSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:BookingEmployee" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:BookingReleaseCorrectionsAnalyst" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:BookingSearchOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:BookingSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:BookingTelephoneCallSupervisingOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:BookingTransportOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CaseJuror" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CaseWitness" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CitationIssuingOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CitationSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ConvictionSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CourtEventJudge" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CourtOrderDesignatedSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CourtOrderIssuingJudicialOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CourtOrderServiceOfficialEnforcement" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CourtOrderServiceOfficialJudicial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CustodyTransferReceivingEnforcementOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CustodyTransferReleasingEnforcementOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:CustodyTransferSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:EnforcementOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentAssistingOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentReportingOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentResponseOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentSupervisingOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentWitness" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Judge" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:JudicialOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Juror" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:MissingPerson" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:MissingPersonLastSeenWitness" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:PropertySeizureSeizingEnforcementOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:RegisteredOffender" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:RegisteredSexOffender" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:SentenceSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ServiceCallDispatchedOfficial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:SeverityLevelAssignedJudge" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Subject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Suspect" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:VerdictIssuingJudge" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:VerdictSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:VisitationSupervisingOfficialEnforcement" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:VisitationSupervisingOfficialJudicial" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Witness" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:Informant" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:Inmate" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:OtherInvolvedPerson" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:Parolee" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:Prisoner" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:Probationer" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ProtectedParty" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:SupervisionSubject" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Lessee" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Lessor" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntitySubstanceType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Substance object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Substance"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityTangibleItemType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Tangible Item object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:TangibleItem"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityTelephoneNumberAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a Person or Organization and a telephone number, for example to indicate that a person has a particular number.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:PersonReference" minOccurs="0"/>
+                    <xsd:element ref="nc:OrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberPrimaryIndicator" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberHomeIndicator" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberWorkIndicator" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberEmergencyIndicator" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberDayIndicator" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberEveningIndicator" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberNightIndicator" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberUnspecifiedIndicator" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityTelephoneNumberType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps LEXS TelephoneNumber object.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:TelephoneNumber"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes generic LEXS Entity object wrapper for LEXS/NIEM base entities and their roles. Groups metadata with wrapped entity.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="s:ComplexObjectType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:Metadata" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityVehicleType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Vehicle object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Vehicle"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityVesselType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that wraps NIEM Vessel (boat) object and its roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="lexsdigest:EntityType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:Vessel"/>
+                    <xsd:element ref="em:Resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ChargeVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:ForceVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:IncidentVictim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="j:Victim" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Property" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="nc:Weapon" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="InstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between originator, receiver, and an instant messenger.  Originator and receiver can be a person or an organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:OriginatorOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorInstantMessengerReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverInstantMessengerReference" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ItemEmailAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a tangible item and an email address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ItemReference"/>
+                    <xsd:element ref="lexsdigest:EmailIDReference" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ItemInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between a tangible item and an instant messenger.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ItemReference"/>
+                    <xsd:element ref="lexsdigest:InstantMessengerReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ItemNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between a tangible item and a Network address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ItemReference"/>
+                    <xsd:element ref="lexsdigest:NetworkAddressReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ItemTelephoneNumberAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between an item and a telephone number associated with it.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:ItemReference"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="HashType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a Hash of the image, movie, or any other data file or binary object. Can contain several hash values.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="s:ComplexObjectType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:HashValue" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="HashValueType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a Hash Value of the image, movie, or any other data file or binary object. Contains binary representation of the hash with corresponding hashing algorithm</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="s:ComplexObjectType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:HashValueRepresentation" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:HashValueMethodAlgorithmText" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="MetadataType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that provides additional information for NIEM Metadata.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="Metadata"/>
+                <i:AppliesTo i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+                <i:AppliesTo i:namespace="http://niem.gov/niem/structures/2.0" i:name="Association"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:MetadataType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:LogicalIDText" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="NetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a relationship between originator, receiver, and a Network address.  Originator and receiver can be a person or an organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:OriginatorNetworkAddressReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverNetworkAddressReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverPersonReference" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="OtherInvolvedPersonType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a person whose role in an activity has not been determined or is unknown.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="s:ComplexObjectType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:RoleOfPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OtherInvolvedPersonSequenceNumber" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PersonAugmentationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that provides additional information about a person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="AugmentationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="s:AugmentationType">
+                <xsd:sequence>
+                    <xsd:element ref="im:AlienNumber" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonRegisterNumber" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:PersonUSMSFugitiveIdentification" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PersonContactAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a person and a contact person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:PersonReference"/>
+                    <xsd:element ref="lexsdigest:ContactPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ContactPersonLanguage" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ContactPersonLocationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ContactPersonEmailIDReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ContactPersonTelephoneNumberReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ContactPersonRelationshipText" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PersonLastSeenWitnessAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a missing person and a witness.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:MissingPersonReference"/>
+                    <xsd:element ref="lexsdigest:WitnessPersonReference"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PersonRegisterNumberType">
+        <xsd:annotation>
+            <xsd:documentation>An identifier assigned to an inmate by the Bureau of Prisons (BOP).</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="IdentificationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:IdentificationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:BOPRegisterNumberOriginatorIndicator" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:USMSRegisterNumberOriginatorIndicator" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PersonTelephoneNumberListAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a person and telephone numbers somehow connected to that person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="nc:PersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:TelephoneNumberReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PersonType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that provides additional information for NIEM's PersonType.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:PersonType">
+                <xsd:sequence>
+                    <xsd:element ref="j:PersonAugmentation" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:PersonAugmentation" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PhysicalMailAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a sender and recipent.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:RecipientPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:RecipientOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:RecipientLocationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:SenderPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:SenderOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:SenderLocationReference" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ServiceAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a service provider entity (Person or Organization) and a service recipient entity.  Used for associations such as a student relationship where a teacher or school organization provides a service to a student.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:ServiceProviderPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceProviderOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceRecipientPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ServiceRecipientOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="SubjectVictimAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a subject and a victim.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:SubjectPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:SubjectOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VictimPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VictimOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="SubjectWitnessAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a subject and a witness.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:SubjectPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:SubjectOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:WitnessPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TelephoneCallAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes a telephone call with it's originator, receiver and duration.  Originator and receiver can be a person and/or organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:OriginatorPersonReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorOrganizationReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:OriginatorTelephoneNumberReference" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:ReceiverPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ReceiverOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:ReceiverTelephoneNumberReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:CallDuration" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TelephoneNumberType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that provides additional information for NIEM's TelephoneNumber.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="TelephoneNumber"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:TelephoneNumberType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:TelephoneNumberCategoryCode" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="VictimWitnessAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a victim and a witness.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:VictimPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VictimOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:WitnessPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="VisitorAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes an association between a visitor person or organization and visited person or organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="nc:AssociationType">
+                <xsd:sequence>
+                    <xsd:element ref="lexsdigest:VisitorPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VisitorOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VisitDescriptionText" minOccurs="0"/>
+                    <xsd:element ref="lexsdigest:VisitedPersonReference" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="lexsdigest:VisitedOrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <!-- Element Definitions -->
+    <xsd:element name="ActivityEmailAddressAssociation" type="lexsdigest:ActivityEmailAddressAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an Activity and an Email Address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ActivityHashAssociation" type="lexsdigest:ActivityHashAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an Activity and a Hash.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ActivityInstantMessengerAssociation" type="lexsdigest:ActivityInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an Activity and an instant messenger (e.g. IRC, AIM).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ActivityNetworkAddressAssociation" type="lexsdigest:ActivityNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an Activity and a Network address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ActivityPrimaryPersonAssociation" type="nc:ActivityPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an activity and a person primarily associated with that activity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ActivityResponsiblePersonAssociation" type="nc:ActivityPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an activity and a person who is responsible for the activity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ActivityTelephoneNumberAssociation" type="lexsdigest:ActivityTelephoneNumberAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an Activity and a Telelephone Number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ArrestInvolvedWeaponAssociation" type="nc:ActivityItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an arrest and a weapon.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ArrestOffenseAssociation" type="nc:RelatedActivityAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an arrest and related offense.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ArrestOfficerAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an arrest and involved officer</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ArrestSubjectAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an arrest and involved subject.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Associations" type="lexsdigest:EntityAssociationsType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A container for all associations between objects.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="AttachmentLinkReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to an AttachmentLink.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://usdoj.gov/leisp/lexs/3.1" i:name="AttachmentLinkType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BailBondAssociation" type="lexsdigest:BailBondAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a baling entity, bailee, and bail bondsman entity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BailBondsmanOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a bail bondsman organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BailBondsmanPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a bail bondsman person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BaileePersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a person who is being bailed out.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BailingOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a bailing organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BailingPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an bailing person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BOPRegisterNumberOriginatorIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>Indicates whether Board of Prisons is the originator (true) of the register number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BoyfriendGirlfriendAssociation" type="nc:PersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a boyfriend and a girlfriend.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CallDuration" type="niem-xsd:duration" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A duration of a call.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CaregiverAssociation" type="lexsdigest:ServiceAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a caregiver entity (Person or Organization) and person taken care of.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CellmateAssociation" type="nc:PersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A cellmate association between people.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ClientAssociation" type="lexsdigest:ServiceAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a client entity (Person or Organization) and a service provider entity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ContactPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a contact person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ContactPersonEmailIDReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to an electronic mailing address by which a contact person may be contacted</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="IDType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ContactPersonLanguage" type="nc:PersonLanguageType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A capacity of a contact person for a language with which that person has the strongest familiarity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ContactPersonLocationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Details about a contact Person's location.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="LocationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ContactPersonRelationshipText" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A relationship of a person to a contact person.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ContactPersonTelephoneNumberReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a contact telephone number</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="TelephoneNumberType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCard" type="lexsdigest:CreditCardType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A credit card.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCardBillingLocationAssociation" type="nc:ItemLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between credit card and its billing address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCardCategory" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>A data concept for a credit card category.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCardCategoryText" type="nc:TextType" nillable="true" substitutionGroup="lexsdigest:CreditCardCategory">
+        <xsd:annotation>
+            <xsd:documentation>A credit card category. For example: Visa, MasterCard, American Express, etc.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCardExpirationDate" type="nc:DateType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A date the credit card expires.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCardIssuerOrganizationName" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A name of the credit card issuing organization.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCardNumber" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A credit card number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="CreditCardOwnerName" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A name of the credit card owner as it appears on the card.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="DeclarationPersonAssociation" type="lexsdigest:DeclarationPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a missing person and person who declared the other person missing.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="DeclarationPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a declaration person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="DeliveryAssociation" type="lexsdigest:ServiceAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a client entity (Person or Organization) and a delivery entity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="DocumentAuthorAssociation" type="j:DocumentPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a document and its author.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ElectronicAddressAugmentation" type="lexsdigest:ElectronicAddressAugmentationType" substitutionGroup="s:Augmentation">
+        <xsd:annotation>
+            <xsd:documentation>Supplements scr:ElectronicAddressType</xsd:documentation>
+            <xsd:appinfo>
+                <i:AppliesTo i:namespace="http://niem.gov/niem/domains/screening/2.0" i:name="ElectronicAddressType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ElectronicAddressCaptureDate" type="nc:DateType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A date when the Network Address was captured.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ElectronicAddressDescriptionText" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A description of the Network Address.  This might be a description of what the site is used for, or a name of an online forum or group that is reached at that address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ElectronicAddressMACNumber" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Media Access Control address (MAC address), Ethernet Hardware Address (EHA), hardware address, adapter address or physical address assigned to most network adapters or network interface cards (NICs) by the manufacturer for identification. If assigned by the manufacturer, a MAC address usually encodes the manufacturer's registered identification number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EmailIDReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Reference to an electronic mailing address by which a person or organization may be contacted</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="IDType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EmailMessageAssociation" type="lexsdigest:EmailMessageAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between originator, receiver, and an e-mail message.  Originator and receiver can be a person or an organization.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Entity" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>LEXS abstract entity object.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityActivity" type="lexsdigest:EntityActivityType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Activity Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityAircraft" type="lexsdigest:EntityAircraftType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Aircraft  Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityAttachmentLinkAssociation" type="lexsdigest:EntityAttachmentLinkAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an AttachmentLink.  Used to connect Attachments to objects where more specific associations are not appropriate.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityCreditCard" type="lexsdigest:EntityCreditCardType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Credit Card Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityCrimeSceneImageAssociation" type="lexsdigest:EntityAttachmentLinkAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an AttachmentLink to a crime scene image.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityDocument" type="lexsdigest:EntityDocumentType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Document Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityDrug" type="lexsdigest:EntityDrugType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Drug Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityEmail" type="lexsdigest:EntityEmailType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Email Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityEmailAssociation" type="lexsdigest:EntityEmailAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an E-mail message, for example to indicate that a person has or uses a particular email address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityExplosive" type="lexsdigest:EntityExplosiveType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Explosive Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityFirearm" type="lexsdigest:EntityFirearmType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Firearm Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityHash" type="lexsdigest:EntityHashType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Hash Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityInstantMessenger" type="lexsdigest:EntityInstantMessengerType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Instant Messenger Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityInstantMessengerAssociation" type="lexsdigest:EntityInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an entity and an instant messenger, for example to indicate that a person has or uses a particular IRC chat address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityIntangibleItem" type="lexsdigest:EntityIntangibleItemType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Intangible Item Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityItemImageAssociation" type="lexsdigest:EntityAttachmentLinkAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an AttachmentLink to an item image, such as a picture of a vehicle.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityLocation" type="lexsdigest:EntityLocationType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Location Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityNetworkAddress" type="lexsdigest:EntityNetworkAddressType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Network Address Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityNetworkAddressAssociation" type="lexsdigest:EntityNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an entity and a Network address, for example to indicate that a person has or uses a particular Network address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityOrganization" type="lexsdigest:EntityOrganizationType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Organization Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityPerson" type="lexsdigest:EntityPersonType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Person Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityPersonFacialImageAssociation" type="lexsdigest:EntityAttachmentLinkAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an AttachmentLink to person facial image.  Facial image should be of just a face, or at least an image from the waist up.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityPersonImageAssociation" type="lexsdigest:EntityAttachmentLinkAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an AttachmentLink to person image.  Should be used when the image is not just a facial or waist up image.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityPersonSMTImageAssociation" type="lexsdigest:EntityAttachmentLinkAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an AttachmentLink to person scar, mark, or tattoo image.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a LEXS Entity.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:name="EntityType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntitySubstance" type="lexsdigest:EntitySubstanceType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Substance Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntitySupportingDocumentationAssociation" type="lexsdigest:EntityAttachmentLinkAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and an AttachmentLink to supporting documentaion, such as a binary version of a report.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityTangibleItem" type="lexsdigest:EntityTangibleItemType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Tangible Item Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityTelephoneNumber" type="lexsdigest:EntityTelephoneNumberType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Telephone Number Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityTelephoneNumberAssociation" type="lexsdigest:EntityTelephoneNumberAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an entity and a telephone number, for example to indicate that a person has or uses a particular phone number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityVehicle" type="lexsdigest:EntityVehicleType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Vehicle Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="EntityVessel" type="lexsdigest:EntityVesselType" substitutionGroup="lexsdigest:Entity" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A Vessel Entity</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Hash" type="lexsdigest:HashType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An object that contains hash details for some binary item.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="HashReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a hash.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:name="HashType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="HashValue" type="lexsdigest:HashValueType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A value object for the Hash.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="HashValueBinaryBase64Object" type="niem-xsd:base64Binary" substitutionGroup="lexsdigest:HashValueRepresentation" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A binary base64 value object for the Hash.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="HashValueMethodAlgorithmText" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A method used to obtain the hash value. For example one can use "http://www.w3.org/2000/09/xmldsig#sha1" string value if hash was obtained using SHA1 algorithm.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="HashValueRepresentation" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>A data concept for a hash value.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="HashValueText" type="nc:TextType" substitutionGroup="lexsdigest:HashValueRepresentation" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A text  value object for the Hash.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="HomosexualAssociation" type="nc:PersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A homosexual association between people.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentArrestAssociation" type="nc:RelatedActivityAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and an arrest.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentEmailAddressAssociation" type="lexsdigest:ActivityEmailAddressAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an Incident and an Email Address (e.g. harassing or threatening email).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentEvidenceAssociation" type="nc:ActivityItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an activity and item somehow involved in that activity ( i.e. evidence).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentInstantMessengerAssociation" type="lexsdigest:ActivityInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an Incident and an instant messenger(e.g. IRC, AIM).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentInvolvedItemAssociation" type="nc:ActivityItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an arrest and involved item.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentLocationAssociation" type="j:ActivityLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association indicating where an incident occurred.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentNetworkAddressAssociation" type="lexsdigest:ActivityNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an Incident and a Network address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="InstantMessengerAssociation" type="lexsdigest:InstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between originator, receiver, and an instant messenger.  Originator and receiver can be a person or an organization.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentOffenseAssociation" type="nc:RelatedActivityAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and an incident in which it occurred.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentReportingOfficialAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and it's reporting official.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentServiceCallAssociation" type="nc:RelatedActivityAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and a service call.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentSubjectOrganizationAssociation" type="nc:ActivityOrganizationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and an organization involved as subject.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentSubjectPersonAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and a person involved as subject.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentTelephoneNumberAssociation" type="lexsdigest:ActivityTelephoneNumberAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an Incident and a Telelephone Number (e.g. threatening phone call).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentVictimOrganizationAssociation" type="nc:ActivityOrganizationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and an organization involved as victim.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentVictimPersonAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and a person involved as victim.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentWeaponAssociation" type="nc:ActivityItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and a weapon that was involved.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="IncidentWitnessAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an incident and a witness to it.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Informant" type="lexsdigest:OtherInvolvedPersonType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An informant.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Inmate" type="j:SubjectType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An inmate.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="InmateApprovedTelephoneListAssociation" type="lexsdigest:PersonTelephoneNumberListAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an inmate and approved telephone number list for calls.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="InmateTelephoneCallLogAssociation" type="lexsdigest:TelephoneCallAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an inmate and calls placed to specific telephone number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="InstantMessengerReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an instant messenger.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="InstantMessengerType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemAssignedNetworkAddressAssociation" type="lexsdigest:ItemNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>An association between a tangible item and a Network address to which it is assigned.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemAssignedTelephoneNumberAssociation" type="lexsdigest:ItemTelephoneNumberAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a tangible item and a telephone number to which it is assigned.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemEmailAddressAssociation" type="lexsdigest:ItemEmailAddressAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a tangible item and an email address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemInstantMessengerAssociation" type="lexsdigest:ItemInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between a tangible item and an instant messenger.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemLienHolderOrganizationAssociation" type="nc:OrganizationItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an item and an organization that has a lien on it.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemLienHolderPersonAssociation" type="nc:PersonItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an item and a person that has a lien on it.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemNetworkAddressAssociation" type="lexsdigest:ItemNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between a tangible item and a Network address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ItemTelephoneNumberAssociation" type="lexsdigest:ItemTelephoneNumberAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a tangible item and a telephone number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="LocationIsItemRecoveryIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) the location is where the item was recovered.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="LocationIsItemSeizedIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) the location is where the item was seized.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="LogicalIDText" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>Used to indicate that objects may be the same.  For example, if information for two people is reported by a single data owner as having the same LogicalIDText, then consumers understand that those two people are believed to be the same.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Metadata" type="lexsdigest:MetadataType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>Provides additional information about an object.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="MissingPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a missing person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="NetworkAddress" type="lexsdigest:ElectronicAddressType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An Internet Protocol (IP) address or Uniform Resource Locator (URL) that uniquely identifies a specific site on the Internet or another network.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="NetworkAddressAssociation" type="lexsdigest:NetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between originator, receiver, and a Network address.  Originator and receiver can be a person or an organization.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="NetworkAddressReference" type="s:ReferenceType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a Network address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/domains/screening/2.0" i:name="ElectronicAddressType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseEmailAddressAssociation" type="lexsdigest:ActivityEmailAddressAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an Incident and an Email Address (e.g. harassing or threatening email).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseInvolvedItemAssociation" type="nc:ActivityItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and an involved item.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseLocationAssociation" type="j:ActivityLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and where it occurred.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseSubjectOrganizationAssociation" type="nc:ActivityOrganizationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and a subject organization.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseInstantMessengerAssociation" type="lexsdigest:ActivityInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an Offense and an instant messenger (e.g. harassing or threatening messages via IRC).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseNetworkAddressAssociation" type="lexsdigest:ActivityNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between an Offense and a Network address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseSubjectPersonAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and a subject person.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseTelephoneNumberAssociation" type="lexsdigest:ActivityTelephoneNumberAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an Offence and a Telelephone Number (e.g. threatening phone call).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseVictimOrganizationAssociation" type="nc:ActivityOrganizationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and a victim organization.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseVictimPersonAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and a victim person.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseWeaponAssociation" type="nc:ActivityItemAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and an involved weapon.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OffenseWitnessAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an offense and a witness person.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OriginatorEmailIDReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to the originator EmailID</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="IDType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OriginatorInstantMessengerReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an originator instant messenger address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="InstantMessengerType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OriginatorNetworkAddressReference" type="s:ReferenceType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an originator Network address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/domains/screening/2.0" i:name="ElectronicAddressType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OriginatorOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an originator organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OriginatorPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an originator person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OriginatorTelephoneNumberReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an originator telephone number</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="TelephoneNumberType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OtherInvolvedPerson" type="lexsdigest:OtherInvolvedPersonType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A person involved in an activity whose role has not yet been determined or is unknown.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="OtherInvolvedPersonSequenceNumber" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A sequence number for an other involved person. Sequence number is assigned if an activity involves more then one person whose role is unknown.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Parolee" type="j:SubjectType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A parolee.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PatientAssociation" type="lexsdigest:ServiceAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a patient and a person or organization who is treating them. </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Person" type="lexsdigest:PersonType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A person.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonArrestLocationAssociation" type="nc:PersonLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a person where they were arrested.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonAugmentation" type="lexsdigest:PersonAugmentationType" substitutionGroup="s:Augmentation" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>Additional information about a person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:AppliesTo i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonBirthLocationAssociation" type="nc:PersonLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a person and where they were born.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonContactAssociation" type="lexsdigest:PersonContactAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a person and where they were born.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonFoundLocationAssociation" type="nc:PersonLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a missing person and location where person was found.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonLastSeenWitnessAssociation" type="lexsdigest:PersonLastSeenWitnessAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a missing person and a witness.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonOfInterestAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an activity and a person of interest involved in the activity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PhysicalMailAssociation" type="lexsdigest:PhysicalMailAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a sender and recipent..</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonRegisterNumber" type="lexsdigest:PersonRegisterNumberType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A person register number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PersonUSMSFugitiveIdentification" type="nc:IdentificationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A person US Marshal Service fugitive ID.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Prisoner" type="j:SubjectType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A prisoner.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Probationer" type="j:SubjectType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A person on probation.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PropertyRecoveryLocationAssociation" type="nc:ItemLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between an item and where it was recovered.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="PropertySeizedLocationAssociation" type="nc:ItemLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a property and where it was seized.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ProtectedParty" type="lexsdigest:OtherInvolvedPersonType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A person under protection.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ReceiverEmailIDReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a receiver EmailID</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="IDType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ReceiverInstantMessengerReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a receiver instant messenger address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="InstantMessengerType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ReceiverNetworkAddressReference" type="s:ReferenceType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a receiver Network address.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/domains/screening/2.0" i:name="ElectronicAddressType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ReceiverOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a receiver organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ReceiverPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a receiver person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ReceiverTelephoneNumberReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a receiver telephone number.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="TelephoneNumberType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="RecipientLocationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Details about a Recipient location.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="LocationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="RecipientOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a Recipient organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="RecipientPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an Recipient person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SenderLocationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>Details about a Sender location.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="LocationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SenderOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a Sender organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SenderPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an Sender person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallCallerAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a service call and the person who called.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallDispatcherAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a service call and the dispatching person.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallDispatchLocationAssociation" type="j:ActivityLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a service call and where assistance was dispatched.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallEmailAddressAssociation" type="lexsdigest:ActivityEmailAddressAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a service call and email address where a request for service originated.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallInstantMessengerAssociation" type="lexsdigest:ActivityInstantMessengerAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between a Service Call and an instance messenger address (e.g. IRC, AIM).</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallNetworkAddressAssociation" type="lexsdigest:ActivityNetworkAddressAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>A relationship between a Service Call and a Network address.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallLocationAssociation" type="j:ActivityLocationAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a service call and where it was made from.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallOperatorAssociation" type="nc:ActivityInvolvedPersonAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a service call and an operator.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceCallTelephoneNumberAssociation" type="lexsdigest:ActivityTelephoneNumberAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a service call and a telephone number where a request for service originated.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceProviderOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to an organization providing services.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceProviderPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a person providing services.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceRecipientOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a service recipient organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="ServiceRecipientPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a person receiving services.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="StudentAssociation" type="lexsdigest:ServiceAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An student association between a teaching entity and pupil.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SubjectOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a subject organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SubjectPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a subject person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SubjectVictimAssociation" type="lexsdigest:SubjectVictimAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a subject and a victim.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SubjectWitnessAssociation" type="lexsdigest:SubjectWitnessAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a subject and a witness.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SupervisionSubject" type="j:SubjectType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A subject under supervision.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneCallAssociation" type="lexsdigest:TelephoneCallAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a telephone call originating entity and a telephone call recieving entity.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumber" type="lexsdigest:TelephoneNumberType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A telephone number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberCategoryCode" type="lexscodes:TelephoneNumberCategoryCodeType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>Defines what kind of phone number this is, such as a fax versus a pager.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberDayIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) the number is for daytime use.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberEmergencyIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) the number is for use in an emergency.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberEveningIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) the number is for evening use.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberHomeIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) this is a home number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberNightIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) the number is for nighttime use.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberPrimaryIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) this is a primary contact number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a telephone number.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="TelephoneNumberType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberUnspecifiedIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) the number is for specific use.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TelephoneNumberWorkIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>A flag which indicates whether (true) or not (false) this is a work number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="USMSRegisterNumberOriginatorIndicator" type="niem-xsd:boolean" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>Indicates whether the US Marshal's Service is the originator (true) of the register number.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VictimOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a victim organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VictimPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to victim person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VictimWitnessAssociation" type="lexsdigest:VictimWitnessAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a victim and witness.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VisitDescriptionText" type="nc:TextType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>Describes a reason for a visit.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VisitorAssociation" type="lexsdigest:VisitorAssociationType" nillable="true">
+        <xsd:annotation>
+            <xsd:documentation>An association between a visitor person or organization and visited person or organization..</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VisitedOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a visited organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VisitedPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to visited person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VisitorOrganizationReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a Visitor organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="VisitorPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to Visitor person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="WitnessPersonReference" type="s:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A reference to a witness person.</xsd:documentation>
+            <xsd:appinfo>
+                <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    
+</xsd:schema>

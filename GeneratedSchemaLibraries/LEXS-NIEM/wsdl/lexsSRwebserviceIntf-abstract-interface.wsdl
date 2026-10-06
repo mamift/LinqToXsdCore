@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: lexsSRwebserviceIntf-abstract-interface.wsdl 1885 2008-12-25 03:21:12Z ys34 $
+    LEXS version  : 3.1.4
+    Description   : Types, Messages, Services, and Ports defintions for Search/Retrieve LEXS Webservice
+-->
+<wsdl:definitions 
+    targetNamespace="http://usdoj.gov/leisp/lexs/searchretrieve/3.1/ws" 
+    xmlns:tns="http://usdoj.gov/leisp/lexs/searchretrieve/3.1/ws"     
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+    
+    <wsdl:types>
+        <xsd:schema
+            targetNamespace="http://usdoj.gov/leisp/lexs/searchretrieve/3.1"
+            version="3.1.4"
+            xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1"    
+            xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified" 
+            attributeFormDefault="unqualified">
+            
+            <xsd:annotation>
+                <xsd:documentation>LEXS Search Retrieve Message Format Schema</xsd:documentation>
+            </xsd:annotation>
+            
+            <xsd:element name="doStructuredSearchRequest" type="lexssr:doStructuredSearchRequestType">
+                <xsd:annotation>
+                    <xsd:documentation> LEXS structured search request.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="doStructuredSearchRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS structured search request.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:StructuredSearchRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="doTextSearchRequest" type="lexssr:doTextSearchRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS text search request.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="doTextSearchRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS text search request.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:TextSearchRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>        
+            
+            <xsd:element name="doSearchResponse" type="lexssr:doSearchResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS response to structured or text search request.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="doSearchResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS response to structured or text search request.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:SearchResponseMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getDataItemRequest" type="lexssr:getDataItemRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS request for a data item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getDataItemRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS request for a data item.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:DataItemRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>      
+            
+            <xsd:element name="getDataItemResponse" type="lexssr:getDataItemResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS response to a request for a data item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getDataItemResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS response to a request for a data item.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:DataItemResponseMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getAttachmentRequest" type="lexssr:getAttachmentRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS request for attachments.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getAttachmentRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS request for attachments.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:AttachmentRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getAttachmentResponse" type="lexssr:getAttachmentResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS response to request for attachments.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getAttachmentResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS response to request for attachments.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:AttachmentResponseMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getCapabilitiesRequest" type="lexssr:getCapabilitiesRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS request for capabilities from service provider.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getCapabilitiesRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS request for capabilities from service provider.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:ServiceProviderRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getCapabilitiesResponse" type="lexssr:getCapabilitiesResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS response to request for service provider capabilities.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getCapabilitiesResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS response to request for service provider capabilities.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:CapabilitiesResponseMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getDataOwnersRequest" type="lexssr:getDataOwnersRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS request for data owners available through a service provider.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getDataOwnersRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS request for data owners available through a service provider.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:ServiceProviderRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getDataOwnersResponse" type="lexssr:getDataOwnersResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS response to request for a data owners available through a service provider.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getDataOwnersResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS response to request for a data owners available through a service provider.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:DataOwnersResponseMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getAvailabilityRequest" type="lexssr:getAvailabilityRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS availability request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getAvailabilityRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS availability request.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:ServiceProviderRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getAvailabilityResponse" type="lexssr:getAvailabilityResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS response to availability request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getAvailabilityResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes LEXS response to availability request.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- xsd:element ref="lexs:AvailabilityResponseMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+
+            <xsd:element name="getDomainRequest" type="lexssr:getDomainRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>Domain request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getDomainRequestType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes domain request.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- <xsd:element ref="lexs:DomainRequestMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+            <xsd:element name="getDomainResponse" type="lexssr:getDomainResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>Response to domain request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="getDomainResponseType">
+                <xsd:annotation>
+                    <xsd:documentation>A structure that describes response to domain request.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!-- <xsd:element ref="lexs:DomainResponseMessage"/-->
+                </xsd:sequence>
+            </xsd:complexType>
+            
+        </xsd:schema>
+    </wsdl:types>   
+    
+    <wsdl:message name="doStructuredSearchRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:doStructuredSearchRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="doTextSearchRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:doTextSearchRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="doSearchResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:doSearchResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataItemRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataItemRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataItemResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataItemResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAttachmentRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getAttachmentRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAttachmentResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getAttachmentResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getCapabilitiesRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getCapabilitiesRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getCapabilitiesResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getCapabilitiesResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataOwnersRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataOwnersRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataOwnersResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getDataOwnersResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAvailabilityRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getAvailabilityRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAvailabilityResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getAvailabilityResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getDomainRequestMsg">
+        <wsdl:part name="parameters" element="lexssr:getDomainRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDomainResponseMsg">
+        <wsdl:part name="parameters" element="lexssr:getDomainResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="LEXSSearchRetrievePortType">
+        
+        <wsdl:operation name="doStructuredSearch">
+            <wsdl:input name="doStructuredSearchRequest" message="tns:doStructuredSearchRequestMsg"/>
+            <wsdl:output name="doStructuredSearchResponse" message="tns:doSearchResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doTextSearch">
+            <wsdl:input name="doTextSearchRequest" message="tns:doTextSearchRequestMsg"/>
+            <wsdl:output name="doTextSearchResponse" message="tns:doSearchResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataItem">
+            <wsdl:input name="getDataItemRequest" message="tns:getDataItemRequestMsg"/>
+            <wsdl:output name="getDataItemResponse" message="tns:getDataItemResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAttachment">
+            <wsdl:input name="getAttachmentRequest" message="tns:getAttachmentRequestMsg"/>
+            <wsdl:output name="getAttachmentResponse" message="tns:getAttachmentResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getCapabilities">
+            <wsdl:input name="getCapabilitiesRequest" message="tns:getCapabilitiesRequestMsg"/>
+            <wsdl:output name="getCapabilitiesResponse" message="tns:getCapabilitiesResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataOwners">
+            <wsdl:input name="getDataOwnersRequest" message="tns:getDataOwnersRequestMsg"/>
+            <wsdl:output name="getDataOwnersResponse" message="tns:getDataOwnersResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAvailability">
+            <wsdl:input name="getAvailabilityRequest" message="tns:getAvailabilityRequestMsg"/>
+            <wsdl:output name="getAvailabilityResponse" message="tns:getAvailabilityResponseMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDomain">
+            <wsdl:input name="getDomainRequest" message="tns:getDomainRequestMsg"/>
+            <wsdl:output name="getDomainResponse" message="tns:getDomainResponseMsg"/>
+        </wsdl:operation>
+
+    </wsdl:portType>
+    
+    <wsdl:binding 
+        name="SRWebServiceSoapBinding" 
+        type="tns:LEXSSearchRetrievePortType">
+        
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+        <wsdl:operation name="doStructuredSearch">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/doStructuredSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doTextSearch">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/doTextSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataItem">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getDataItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAttachment">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getAttachment"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getCapabilities">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getCapabilities"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataOwners">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getDataOwners"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAvailability">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getAvailability"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDomain">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/getDomain"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+    </wsdl:binding>
+    
+</wsdl:definitions>

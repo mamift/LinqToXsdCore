@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: search-retrieve.xsd 1885 2008-12-25 03:21:12Z ys34 $
+    LEXS version  : 3.1.4
+    Namespace     : xmlns:lexs="http://usdoj.gov/leisp/lexs/searchretrieve/3.1"
+    Description      : LEXS Search and Retrieve Message Format Schema
+-->
+<xsd:schema
+    targetNamespace="http://usdoj.gov/leisp/lexs/searchretrieve/3.1"
+    version="3.1.4"
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1"    
+    xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified">
+    
+    <xsd:import
+        namespace="http://usdoj.gov/leisp/lexs/3.1"
+        schemaLocation="../../lexs/3.1/lexs.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:documentation>LEXS Search Retrieve Message Format Schema</xsd:documentation>
+    </xsd:annotation>
+    
+    <xsd:element name="doStructuredSearchRequest" type="lexssr:doStructuredSearchRequestType">
+        <xsd:annotation>
+            <xsd:documentation> LEXS structured search request.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="doStructuredSearchRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS structured search request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:StructuredSearchRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="doTextSearchRequest" type="lexssr:doTextSearchRequestType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS text search request.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="doTextSearchRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS text search request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:TextSearchRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>        
+    
+    <xsd:element name="doSearchResponse" type="lexssr:doSearchResponseType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS response to structured or text search request.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="doSearchResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS response to structured or text search request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:SearchResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getDataItemRequest" type="lexssr:getDataItemRequestType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS request for a data item.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getDataItemRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS request for a data item.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:DataItemRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>      
+    
+    <xsd:element name="getDataItemResponse" type="lexssr:getDataItemResponseType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS response to a request for a data item.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getDataItemResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS response to a request for a data item.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:DataItemResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getAttachmentRequest" type="lexssr:getAttachmentRequestType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS request for attachments.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getAttachmentRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS request for attachments.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:AttachmentRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getAttachmentResponse" type="lexssr:getAttachmentResponseType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS response to request for attachments.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getAttachmentResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS response to request for attachments.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:AttachmentResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getCapabilitiesRequest" type="lexssr:getCapabilitiesRequestType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS request for capabilities from service provider.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getCapabilitiesRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS request for capabilities from service provider.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:ServiceProviderRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getCapabilitiesResponse" type="lexssr:getCapabilitiesResponseType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS response to request for service provider capabilities.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getCapabilitiesResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS response to request for service provider capabilities.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:CapabilitiesResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getDataOwnersRequest" type="lexssr:getDataOwnersRequestType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS request for data owners available through a service provider.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getDataOwnersRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS request for data owners available through a service provider.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:ServiceProviderRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getDataOwnersResponse" type="lexssr:getDataOwnersResponseType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS response to request for a data owners available through a service provider.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getDataOwnersResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS response to request for a data owners available through a service provider.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:DataOwnersResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getAvailabilityRequest" type="lexssr:getAvailabilityRequestType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS availability request</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getAvailabilityRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS availability request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:ServiceProviderRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getAvailabilityResponse" type="lexssr:getAvailabilityResponseType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS response to availability request</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getAvailabilityResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes LEXS response to availability request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:AvailabilityResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+
+    <xsd:element name="getDomainRequest" type="lexssr:getDomainRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Domain request</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getDomainRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes domain request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:DomainRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+    <xsd:element name="getDomainResponse" type="lexssr:getDomainResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response to domain request</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="getDomainResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A structure that describes response to domain request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:DomainResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+</xsd:schema>

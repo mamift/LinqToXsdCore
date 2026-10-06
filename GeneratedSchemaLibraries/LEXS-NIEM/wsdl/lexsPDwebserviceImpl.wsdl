@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: lexsPDwebserviceImpl.wsdl 1863 2008-12-22 01:23:21Z ys34 $
+    LEXS version  : 3.1.4
+    Description   : Bindings definitions for Publish/Discover LEXS Webservice.
+-->
+<wsdl:definitions 
+    targetNamespace="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/ws" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:tns="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/ws" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+        
+    <wsdl:import 
+        namespace="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/ws" 
+        location="lexsPDwebserviceIntf.wsdl"/>
+    
+    <wsdl:service name="PDWebService">
+        <wsdl:port name="PDWebServiceBean" binding="tns:PDWebServiceSoapBinding">
+            <soap:address location="http://localhost:9080/PDWebService/services/PDWebServiceBean"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

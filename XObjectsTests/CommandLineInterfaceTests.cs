@@ -145,6 +145,52 @@ namespace Xml.Schema.Linq.Tests
         }
 
         /// <summary>
+        /// Tests that "gen '(file)' -a" removes a legacy *.xsd.cs output file before
+        /// emitting the new *.xsd-g.cs file.
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeDeletesLegacyOutputFileWithAutoConfig()
+        {
+            _copyOfSchemasFolder.Refresh();
+            var microsoftBuildXsd = "Microsoft.Build.xsd";
+            var msBuildXsd = _copyOfSchemasFolder.GetFiles(microsoftBuildXsd, SearchOption.AllDirectories).Single();
+
+            var legacyOutputFile = Path.Combine(Path.GetDirectoryName(msBuildXsd.FullName), $"{microsoftBuildXsd}.cs");
+            File.WriteAllText(legacyOutputFile, "// legacy generated code");
+            Assert.IsTrue(File.Exists(legacyOutputFile));
+
+            var genConfigResult = LinqToXsd.Program.Main(new[] { "config", "-e", _copyOfSchemasFolder.FullName });
+            Assert.IsTrue(genConfigResult == 0);
+
+            var genCodeResult = LinqToXsd.Program.Main(new[] {"gen", msBuildXsd.FullName, "-a"});
+
+            Assert.IsTrue(genCodeResult == 0);
+            Assert.IsFalse(File.Exists(legacyOutputFile));
+            Assert.IsTrue(File.Exists(Path.Combine(Path.GetDirectoryName(msBuildXsd.FullName), $"{microsoftBuildXsd}-g.cs")));
+        }
+
+        /// <summary>
+        /// Tests that "gen '(file)'" without the -a flag keeps the legacy *.xsd.cs output file.
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeWithoutAutoConfigKeepsLegacyOutputFile()
+        {
+            _copyOfSchemasFolder.Refresh();
+            var microsoftBuildXsd = "Microsoft.Build.xsd";
+            var msBuildXsd = _copyOfSchemasFolder.GetFiles(microsoftBuildXsd, SearchOption.AllDirectories).Single();
+
+            var legacyOutputFile = Path.Combine(Path.GetDirectoryName(msBuildXsd.FullName), $"{microsoftBuildXsd}.cs");
+            File.WriteAllText(legacyOutputFile, "// legacy generated code");
+            Assert.IsTrue(File.Exists(legacyOutputFile));
+
+            var genCodeResult = LinqToXsd.Program.Main(new[] {"gen", msBuildXsd.FullName});
+
+            Assert.IsTrue(genCodeResult == 0);
+            Assert.IsTrue(File.Exists(legacyOutputFile));
+            Assert.IsTrue(File.Exists(Path.Combine(Path.GetDirectoryName(msBuildXsd.FullName), $"{microsoftBuildXsd}-g.cs")));
+        }
+
+        /// <summary>
         /// Delete the test Schemas folder if it exists.
         /// </summary>
         [SetUp]

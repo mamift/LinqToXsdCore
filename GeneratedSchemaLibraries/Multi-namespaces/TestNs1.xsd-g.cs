@@ -21,7 +21,7 @@ namespace urn.test.namespace1 {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using urn.test.namespace2;
+    using global::urn.test.namespace2;
     
     
     /// <summary>
@@ -865,7 +865,7 @@ namespace urn.test.namespace2 {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using urn.test.namespace1;
+    using global::urn.test.namespace1;
     
     
     public partial class TestElement2 : XTypedElement, IXMetaData {

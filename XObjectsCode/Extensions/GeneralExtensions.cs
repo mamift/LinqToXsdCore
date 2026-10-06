@@ -4,12 +4,20 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Xml.Schema;
 using Xml.Schema.Linq;
 
 namespace XObjects
 {
     public static class GeneralExtensionMethods
     {
+        public static bool IsXmlNamespaceAttributeError(this Exception ex)
+        {
+            return ex is XmlSchemaException &&
+                   ex.Message.Contains("'http://www.w3.org/XML/1998/namespace:") &&
+                   ex.Message.Contains("attribute is not declared");
+        }
+
         #if NETSTANDARD
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source, IEqualityComparer<T>? comparer = null)
         {

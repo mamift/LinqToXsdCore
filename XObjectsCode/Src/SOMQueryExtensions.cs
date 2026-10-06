@@ -197,11 +197,9 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (simpleType.Content is XmlSchemaSimpleTypeRestriction content)
             {
-                return content.Facets
-                    .Cast<XmlSchemaEnumerationFacet>()
-                    .Select(facet => facet.Value)
-                    .Distinct()
-                    .Select(facet => new EnumFacet(facet));
+                return EnumFacet.CreateUniqueFacets(content.Facets
+                    .OfType<XmlSchemaEnumerationFacet>()
+                    .Select(facet => facet.Value));
             }
             else
             {

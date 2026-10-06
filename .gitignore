@@ -263,3 +263,4 @@ Samples/
 *.diff
 LinqToXsd.Schemas/_temp/
 .fuse/
+*.DS_Store

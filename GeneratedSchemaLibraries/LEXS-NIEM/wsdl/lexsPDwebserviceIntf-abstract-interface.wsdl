@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Document: $Id: lexsPDwebserviceIntf-abstract-interface.wsdl 1863 2008-12-22 01:23:21Z ys34 $
+	LEXS version  : 3.1.4
+	Description   : Types, Messages, Services, and Ports defintions for Publish/Discover LEXS Webservice
+-->
+<wsdl:definitions
+    targetNamespace="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/ws"
+    xmlns:tns="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/ws"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+    
+    <wsdl:types>
+        <xsd:schema
+            targetNamespace="http://usdoj.gov/leisp/lexs/publishdiscover/3.1"
+            version="3.1.4"
+            xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1"    
+            xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified" 
+            attributeFormDefault="unqualified">
+            
+            <xsd:annotation>
+                <xsd:documentation>LEXS Publish Discover Message Format Schema</xsd:documentation>
+            </xsd:annotation>
+            
+            <xsd:element name="doPublish" type="lexspd:DoPublishType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS Submission Publish Method</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:complexType name="DoPublishType">
+                <xsd:annotation>
+                    <xsd:documentation>LEXS Submission Publish Method</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:any/><!--xsd:element ref="lexs:PublishMessageContainer"/-->
+                </xsd:sequence>
+            </xsd:complexType>    
+            
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="doPublishMsg">
+        <wsdl:part name="parameters" element="lexspd:doPublish" />
+    </wsdl:message>
+    
+    <wsdl:portType name="LEXSPublishDiscoverPortType">
+        <wsdl:operation name="doPublish">
+            <wsdl:input message="tns:doPublishMsg" />
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding 
+        name="PDWebServiceSoapBinding"
+        type="tns:LEXSPublishDiscoverPortType">
+        
+        <soap:binding 
+			style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+        
+        <wsdl:operation name="doPublish">
+            <soap:operation soapAction="http://usdoj.gov/leisp/lexs/publishdiscover/3.1/doPublish"/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+        </wsdl:operation>
+        
+    </wsdl:binding>
+    
+</wsdl:definitions>
