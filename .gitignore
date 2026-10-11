@@ -264,3 +264,5 @@ Samples/
 LinqToXsd.Schemas/_temp/
 .fuse/
 *.DS_Store
+.github-issues/
+.scratch/
