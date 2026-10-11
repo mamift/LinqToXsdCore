@@ -72,12 +72,179 @@ namespace Xml.Schema.Linq
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
 
-            return xsdFilePaths
+            List<string> files = xsdFilePaths
+                .Where(f => !string.IsNullOrWhiteSpace(f))
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+
+            // When several schemas are generated together under one shared configuration, load them
+            // all into a single XmlSchemaSet and emit each schema's types exactly once. Without this,
+            // a schema that is xs:include/xs:import'd by more than one entry point is regenerated into
+            // every importing file (see GitHub issue #14).
+            if (files.Count > 1 && !settings.SplitFilesByNamespace)
+            {
+                if (TryGenerateMerged(files, settings, out var mergedWriters))
+                    return mergedWriters;
+            }
+
+            return files
                 .SelectMany(file => Generate(file, settings))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())
                 .ToDictionary(x => x.filename, x => x.writer);
+        }
+
+        /// <summary>
+        /// Key used to tag a generated <see cref="CodeTypeDeclaration"/> (via <see cref="CodeObject.UserData"/>)
+        /// with the source URI of the schema that defines it, so that a merged generation pass can be split
+        /// back into one output file per source schema.
+        /// </summary>
+        internal const string SourceSchemaUserDataKey = "LinqToXsd.SourceSchemaUri";
+
+        /// <summary>
+        /// Generates code for several schema files by loading them all into a single <see cref="XmlSchemaSet"/>,
+        /// generating the CLR type model once, and then splitting the resulting types back into one output file
+        /// per source schema. Falls back to <c>false</c> (so the caller uses per-file generation) when the schemas
+        /// cannot be merged, for example when they cannot be compiled together.
+        /// </summary>
+        private static bool TryGenerateMerged(List<string> files, LinqToXsdSettings settings, out Dictionary<string, TextWriter> writers)
+        {
+            writers = null!;
+
+            XmlSchemaSet schemaSet;
+            try
+            {
+                schemaSet = LoadMergedSchemaSet(files);
+            }
+            catch (XmlSchemaException)
+            {
+                return false;
+            }
+
+            var xsdConverter = new XsdToTypesConverter(settings);
+            ClrMappingInfo mapping = xsdConverter.GenerateMapping(schemaSet);
+            if (mapping == null)
+                return false;
+
+            var codeGenerator = new CodeDomTypesGenerator(settings);
+            List<CodeNamespace> namespaces = codeGenerator.GenerateTypes(mapping).ToList();
+
+            writers = SplitNamespacesBySourceSchema(namespaces, files, settings);
+            return writers.Count > 0;
+        }
+
+        private static XmlSchemaSet LoadMergedSchemaSet(IEnumerable<string> files)
+        {
+            var resolver = new XmlUrlResolver();
+            var schemaSet = new XmlSchemaSet {
+                XmlResolver = resolver
+            };
+
+            foreach (string file in files)
+            {
+                if (string.IsNullOrWhiteSpace(file)) continue;
+
+                // Mirror the reader settings used by the single-file path.
+                var readerSettings = new XmlReaderSettings {
+                    DtdProcessing = Defaults.DefaultXmlReaderSettings.DtdProcessing,
+                    CloseInput = Defaults.DefaultXmlReaderSettings.CloseInput
+                };
+                readerSettings.XmlResolver = resolver;
+
+                using var reader = XmlReader.Create(file, readerSettings);
+                schemaSet.Add(null, reader);
+            }
+
+            schemaSet.Compile();
+            return schemaSet;
+        }
+
+        private static Dictionary<string, TextWriter> SplitNamespacesBySourceSchema(
+            List<CodeNamespace> namespaces, List<string> inputFiles, LinqToXsdSettings settings)
+        {
+            // The TypeManager and XRoot(s) are synthetic and don't belong to a single source schema; they are
+            // hosted in the first input file so the whole set still exposes one entry point for the typed-XML
+            // infrastructure.
+            string rootBucketPath = NormalizeSourcePath(Path.GetFullPath(inputFiles[0])) ?? Path.GetFullPath(inputFiles[0]);
+
+            var buckets = new Dictionary<string, List<(CodeNamespace originalNamespace, CodeTypeDeclaration declaration)>>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (CodeNamespace ns in namespaces)
+            {
+                foreach (CodeTypeDeclaration declaration in ns.Types.Cast<CodeTypeDeclaration>().ToList())
+                {
+                    string sourcePath = NormalizeSourcePath(declaration.UserData[SourceSchemaUserDataKey] as string) ?? rootBucketPath;
+
+                    if (!buckets.TryGetValue(sourcePath, out var list))
+                    {
+                        list = new List<(CodeNamespace, CodeTypeDeclaration)>();
+                        buckets[sourcePath] = list;
+                    }
+
+                    list.Add((ns, declaration));
+                }
+            }
+
+            List<string> inputFilePaths = inputFiles
+                .Select(f => NormalizeSourcePath(Path.GetFullPath(f)) ?? Path.GetFullPath(f))
+                .ToList();
+
+            // Deterministic ordering: entry points first (in the order the user supplied them), then any
+            // additionally discovered shared schemas sorted by path.
+            List<string> orderedKeys = inputFilePaths
+                .Where(buckets.ContainsKey)
+                .Concat(buckets.Keys.Except(inputFilePaths, StringComparer.OrdinalIgnoreCase)
+                    .OrderBy(k => k, StringComparer.OrdinalIgnoreCase))
+                .ToList();
+
+            var result = new Dictionary<string, TextWriter>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (string sourcePath in orderedKeys)
+            {
+                if (!buckets.TryGetValue(sourcePath, out var entries)) continue;
+
+                var unit = new CodeCompileUnit();
+
+                // A single schema can contribute types to several CLR namespaces, so preserve one CodeNamespace
+                // per original namespace that has declarations in this bucket.
+                foreach (var nsGroup in entries.GroupBy(e => e.originalNamespace.Name ?? string.Empty))
+                {
+                    var newNamespace = new CodeNamespace(nsGroup.Key);
+                    CodeNamespace originalNamespace = nsGroup.First().originalNamespace;
+                    foreach (CodeNamespaceImport import in originalNamespace.Imports)
+                        newNamespace.Imports.Add(new CodeNamespaceImport(import.Namespace));
+
+                    foreach (var (_, declaration) in nsGroup)
+                        newNamespace.Types.Add(declaration);
+
+                    unit.Namespaces.Add(newNamespace);
+                }
+
+                var writer = unit.ToStringWriter();
+                writer.UpdateAutoGeneratedComment(assembly: typeof(XObjectsCoreGenerator).Assembly);
+                if (settings.NullableReferences)
+                    writer.InsertFilePragma("#nullable enable annotations");
+
+                result[sourcePath] = writer;
+            }
+
+            return result;
+        }
+
+        private static string? NormalizeSourcePath(string? sourceUri)
+        {
+            if (string.IsNullOrWhiteSpace(sourceUri)) return null;
+
+            string path = sourceUri;
+            if (sourceUri.StartsWith("file:", StringComparison.OrdinalIgnoreCase))
+            {
+                try { path = new Uri(sourceUri).LocalPath; }
+                catch (UriFormatException) { /* keep the raw value */ }
+            }
+
+            try { return Path.GetFullPath(path); }
+            catch { return path; }
         }
 
         /// <summary>
@@ -287,7 +454,18 @@ namespace Xml.Schema.Linq
 
             observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
 
-            return dictOfSchemasAndTheirConfigs.Except(excludeV11Xsds)
+            var pairsToProcess = dictOfSchemasAndTheirConfigs.Except(excludeV11Xsds).ToList();
+
+            // When several schemas are generated without any per-file configuration they all share the default
+            // settings, so merge them into a single pass to avoid duplicating shared schemas (see GitHub issue #14).
+            if (pairsToProcess.Count > 1 && pairsToProcess.All(pair => !pair.configFile.Exists))
+            {
+                List<string> files = pairsToProcess.Select(pair => pair.xsdFile.FullName).ToList();
+                if (TryGenerateMerged(files, new LinqToXsdSettings(), out var mergedWriters))
+                    return mergedWriters;
+            }
+
+            return pairsToProcess
                 .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName, observer))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.

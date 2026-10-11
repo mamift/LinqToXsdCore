@@ -83,6 +83,7 @@ namespace Xml.Schema.Linq.CodeGen
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
                             var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
                             codeNamespace.AddTypeWithParentNamespace(enumType);
+                            TagWithSourceSchema(enumType, type);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
                             if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
@@ -98,6 +99,7 @@ namespace Xml.Schema.Linq.CodeGen
                             listItemEnumTypeInfo.clrtypeNs = stInfo.clrtypeNs;
                             var enumType = TypeBuilder.CreateEnumType(listItemEnumTypeInfo, settings, stInfo);
                             codeNamespace.AddTypeWithParentNamespace(enumType);
+                            TagWithSourceSchema(enumType, type);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
                                 var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
@@ -107,12 +109,15 @@ namespace Xml.Schema.Linq.CodeGen
                             }
                         }
 
-                        codeNamespace.AddTypeWithParentNamespace(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
+                        var simpleTypeDeclaration = TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings);
+                        codeNamespace.AddTypeWithParentNamespace(simpleTypeDeclaration);
+                        TagWithSourceSchema(simpleTypeDeclaration, type);
                     }
                     else {
                         CodeTypeDeclaration
                             decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
                         codeNamespace.AddTypeWithParentNamespace(decl);
+                        TagWithSourceSchema(decl, type);
 
                         if (type.IsRootElement) {
                             List<CodeTypeDeclaration> types;
@@ -580,6 +585,7 @@ namespace Xml.Schema.Linq.CodeGen
                 builder.ImplementInterfaces(settings.EnableServiceReference);
                 codeNamespace = GetCodeNamespace(typeInfo.clrtypeNs);
                 codeNamespace.AddTypeWithParentNamespace(builder.TypeDeclaration);
+                TagWithSourceSchema(builder.TypeDeclaration, typeInfo);
 
                 List<CodeTypeDeclaration> types;
                 codeNamespace = GetCodeNamespace(typeInfo.clrtypeNs);
@@ -856,5 +862,13 @@ namespace Xml.Schema.Linq.CodeGen
 
             return currentCodeNamespace;
         }
+
+        /// <summary>
+        /// Records the source schema URI of a generated <see cref="CodeTypeDeclaration"/> so that a merged
+        /// generation pass (multiple entry-point schemas) can later be split back into one output file per
+        /// source schema. See <see cref="XObjectsCoreGenerator.SourceSchemaUserDataKey"/>.
+        /// </summary>
+        private static void TagWithSourceSchema(CodeTypeDeclaration declaration, ClrTypeInfo typeInfo)
+            => declaration.UserData[XObjectsCoreGenerator.SourceSchemaUserDataKey] = typeInfo.SchemaObject?.SourceUri ?? string.Empty;
     }
 }

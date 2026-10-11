@@ -30,6 +30,121 @@ namespace Xml.Schema.Linq.Tests
     {
         private const string AtomXsdFilePath = @"Atom\atom.xsd";
 
+        /// <summary>
+        /// Reproduces GitHub issue #14: two entry-point schemas that both xs:import/xs:include the same
+        /// shared schemas must not regenerate those shared schemas' types into each output file.
+        /// </summary>
+        [Test]
+        public void TestGenerateMultipleSchemasDoesNotDuplicateSharedTypes()
+        {
+            string tempDir = Path.Combine(Path.GetTempPath(), "LinqToXsdMultiFile_" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(tempDir);
+            try
+            {
+                File.WriteAllText(Path.Combine(tempDir, "Base.xsd"), """
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="C" targetNamespace="C">
+                      <xs:complexType name="FirstAbstractBase" abstract="true">
+                        <xs:sequence/>
+                        <xs:attribute name="echo" type="xs:string" use="optional"/>
+                      </xs:complexType>
+                      <xs:complexType name="SecondAbstractBase" abstract="true">
+                        <xs:complexContent>
+                          <xs:extension base="FirstAbstractBase">
+                            <xs:sequence/>
+                          </xs:extension>
+                        </xs:complexContent>
+                      </xs:complexType>
+                    </xs:schema>
+                    """);
+
+                File.WriteAllText(Path.Combine(tempDir, "Types.xsd"), """
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="C" attributeFormDefault="qualified" elementFormDefault="qualified">
+                      <xs:simpleType name="UserId">
+                        <xs:restriction base="xs:token">
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="161"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:schema>
+                    """);
+
+                File.WriteAllText(Path.Combine(tempDir, "Child1.xsd"), """
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="C" xmlns="" attributeFormDefault="qualified" elementFormDefault="qualified">
+                      <xs:import namespace="C" schemaLocation="Base.xsd"/>
+                      <xs:include schemaLocation="Types.xsd"/>
+                      <xs:complexType name="ChildType10">
+                        <xs:complexContent>
+                          <xs:extension base="core:SecondAbstractBase">
+                            <xs:sequence/>
+                          </xs:extension>
+                        </xs:complexContent>
+                      </xs:complexType>
+                      <xs:complexType name="ChildType11">
+                        <xs:complexContent>
+                          <xs:extension base="core:SecondAbstractBase">
+                            <xs:sequence>
+                              <xs:element name="userId" type="UserId"/>
+                            </xs:sequence>
+                          </xs:extension>
+                        </xs:complexContent>
+                      </xs:complexType>
+                    </xs:schema>
+                    """);
+
+                File.WriteAllText(Path.Combine(tempDir, "Child2.xsd"), """
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="C" xmlns="" attributeFormDefault="qualified" elementFormDefault="qualified">
+                      <xs:import namespace="C" schemaLocation="Base.xsd"/>
+                      <xs:include schemaLocation="Types.xsd"/>
+                      <xs:complexType name="ChildType20">
+                        <xs:complexContent>
+                          <xs:extension base="core:SecondAbstractBase">
+                            <xs:sequence/>
+                          </xs:extension>
+                        </xs:complexContent>
+                      </xs:complexType>
+                      <xs:complexType name="ChildType21">
+                        <xs:complexContent>
+                          <xs:extension base="core:SecondAbstractBase">
+                            <xs:sequence>
+                              <xs:element name="userId" type="UserId"/>
+                            </xs:sequence>
+                          </xs:extension>
+                        </xs:complexContent>
+                      </xs:complexType>
+                    </xs:schema>
+                    """);
+
+                var settings = new LinqToXsdSettings();
+
+                var writers = XObjectsCoreGenerator.Generate(
+                    new[] { Path.Combine(tempDir, "Child1.xsd"), Path.Combine(tempDir, "Child2.xsd") },
+                    settings);
+
+                // Each unique schema (including the shared Base.xsd and Types.xsd) should get its own output file.
+                Assert.That(writers.Keys.Select(Path.GetFileName), Is.EquivalentTo(new[] { "Child1.xsd", "Child2.xsd", "Base.xsd", "Types.xsd" }));
+
+                string allGenerated = string.Join(Environment.NewLine, writers.Values.Select(w => w.ToString()));
+
+                Assert.That(CountClassDeclarations(allGenerated, "UserId"), Is.EqualTo(1));
+                Assert.That(CountClassDeclarations(allGenerated, "FirstAbstractBase"), Is.EqualTo(1));
+                Assert.That(CountClassDeclarations(allGenerated, "SecondAbstractBase"), Is.EqualTo(1));
+                Assert.That(CountClassDeclarations(allGenerated, "ChildType10"), Is.EqualTo(1));
+                Assert.That(CountClassDeclarations(allGenerated, "ChildType20"), Is.EqualTo(1));
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        private static int CountClassDeclarations(string text, string typeName)
+            => Regex.Matches(text, @"class\s+" + Regex.Escape(typeName) + @"\b").Count;
+
         [Test]
         public void NamespaceCodeGenerationConventionTest()
         {
