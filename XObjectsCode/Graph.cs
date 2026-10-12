@@ -36,7 +36,9 @@ public partial class Graph
     public static Graph BuildFromFolder(DirectoryInfo dir, SearchOption searchOption = SearchOption.TopDirectoryOnly,
         bool skipSchemasWithNoImportsOrIncludes = false)
     {
-        FileInfo[] files = dir.GetFiles("*.xsd", searchOption);
+        FileInfo[] files = dir.GetFiles("*.xsd", searchOption)
+            .OrderBy(f => f.Name, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
         var graph = new Graph() {
             Folder = dir.FullName
         };

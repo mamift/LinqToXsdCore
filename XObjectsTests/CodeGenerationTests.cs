@@ -498,7 +498,10 @@ namespace Xml.Schema.Linq.Tests
             CSharpSyntaxTree tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
             NamespaceDeclarationSyntax ns1 = tree1.GetNamespaceRoot().CleanForComparison();
 
-            CSharpSyntaxTree tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd" + Program.GenerateCodeExtension).ToSyntaxTree();
+            var existingCodeFile = "atom.xsd" + Program.GenerateCodeExtension;
+            var existingAtomCsFilePath = new DirectoryInfo(Environment.CurrentDirectory)
+                .AscendToFolder("GeneratedSchemaLibraries").DescendToFolder("Atom").FindFileRecursively(existingCodeFile);
+            CSharpSyntaxTree tree2 = existingAtomCsFilePath.ToSyntaxTree();
             NamespaceDeclarationSyntax ns2 = tree2.GetNamespaceRoot().CleanForComparison();
             
             Assert.IsEmpty(ns1.CompareProperties(ns2));

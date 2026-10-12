@@ -27,7 +27,11 @@ public class FileSystemUtilitiesTests
         // which transitively covers xmldsig-core-schema.xsd via MsgHeader's import.
         Assert.AreEqual(2, entryPointSchemas.Count);
         Assert.That(entryPointSchemas.Any(f => f.EndsWith("V2G_CI_AppProtocol.xsd")), "Should include the standalone AppProtocol schema");
-        Assert.That(entryPointSchemas.Any(f => f.EndsWith("V2G_CI_MsgDataTypes.xsd")), "Should include one representative from the cyclic SCC");
+        // The cyclic SCC {MsgBody, MsgDataTypes, MsgDef, MsgHeader} has no single canonical entry
+        // point: which member is chosen depends on the file enumeration order, which differs between
+        // operating systems. Assert that any one representative of the cycle is present instead.
+        var sccMembers = new[] { "V2G_CI_MsgBody.xsd", "V2G_CI_MsgDataTypes.xsd", "V2G_CI_MsgDef.xsd", "V2G_CI_MsgHeader.xsd" };
+        Assert.That(entryPointSchemas.Any(f => sccMembers.Any(m => f.EndsWith(m))), "Should include one representative from the cyclic SCC");
     }
 
     [Test,TestCaseSource(nameof(GetPhysicalFolderPathsForGeneratedSchemaLibraries))]
