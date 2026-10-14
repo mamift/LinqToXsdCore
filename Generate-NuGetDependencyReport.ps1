@@ -7,22 +7,30 @@
     Enumerates every .csproj in the repository except those under an excluded
     directory (GeneratedSchemaLibraries by default), runs
     'dotnet list package --include-transitive --format json' against each one,
-    and unions the results into a single CSV with the columns:
+    and writes a single CSV with the columns:
 
-        PackageName,IsTransitive,Version
+        Project,PackageName,IsTransitive,Version
 
-    The file has one row per (package, version) pair. A pair is reported with
-    IsTransitive=false when that exact version is a top-level package in at
-    least one project/target framework, and true otherwise.
+    The file has one row per (project, package, version). A package referenced
+    by three projects therefore produces three rows, one per project.
 
-    Note that this means SDK-injected, auto-referenced packages
-    (NETStandard.Library, Microsoft.NET.ILLink.*) are classified as
-    non-transitive, because NuGet reports them as top-level. They are not
-    declared in any csproj.
+    IsTransitive is evaluated per project: a row is false when that exact
+    package version is a top-level package in that project (for at least one of
+    its target frameworks), and true when the project only picks it up
+    transitively. The same package can therefore be false in the project that
+    declares it and true in a project that merely consumes it.
 
-    Output is deterministic: sorted by package name, then by version in NuGet
-    precedence order, using ordinal comparison so results do not vary with the
-    machine's culture. Running the script twice produces byte-identical output.
+    Project holds the repo-relative path of the csproj, always with forward
+    slashes so output does not vary between Windows and Linux agents.
+
+    Note that SDK-injected, auto-referenced packages (NETStandard.Library,
+    Microsoft.NET.ILLink.*) are classified as non-transitive, because NuGet
+    reports them as top-level. They are not declared in any csproj.
+
+    Output is deterministic: sorted by project, then package name, then version
+    in NuGet precedence order, using ordinal comparison so results do not vary
+    with the machine's culture. Running the script twice produces
+    byte-identical output.
 
 .PARAMETER OutputPath
     Where to write the CSV. Defaults to NuGetDependencies.csv next to this script.
@@ -201,17 +209,24 @@ if ($projects.Count -eq 0) {
 Write-Host "Scanning $($projects.Count) project(s) for NuGet dependencies..."
 
 # ---------------------------------------------------------------------------
-# Build the package graph
+# Build the package graph, per project
 # ---------------------------------------------------------------------------
 
-# Keyed by "<name>`0<version>"; value is a flag for whether the pair was ever
-# seen as a top-level (direct) package.
-$directPairs = @{}
-$allPairs = @{}
+# Keyed by repo-relative project path. Each value maps "<name>`0<version>" to
+# $true for every package that project depends on. $projectDirect holds the
+# subset of those that are top-level in the project.
+$projectPackages = @{}
+$projectDirect = @{}
 
 foreach ($project in $projects) {
-    $relative = $project.FullName.Substring($RepoRoot.Length).TrimStart('\', '/')
+    # Forward slashes keep the output identical across Windows and Linux agents.
+    $relative = $project.FullName.Substring($RepoRoot.Length).TrimStart('\', '/') -replace '\\', '/'
     Write-Verbose "  $relative"
+
+    if (-not $projectPackages.ContainsKey($relative)) {
+        $projectPackages[$relative] = @{}
+        $projectDirect[$relative] = @{}
+    }
 
     $json = Get-ProjectPackageJson -ProjectPath $project.FullName -NoRestore:$NoRestore
 
@@ -225,20 +240,23 @@ foreach ($project in $projects) {
                 $version = Get-JsonMember $package 'resolvedVersion'
                 if (-not $version) { $version = Get-JsonMember $package 'requestedVersion' }
                 $key = (Get-JsonMember $package 'id') + [char]0 + $version
-                $allPairs[$key] = $true
-                $directPairs[$key] = $true
+                $projectPackages[$relative][$key] = $true
+                $projectDirect[$relative][$key] = $true
             }
             foreach ($package in (Get-JsonMember $framework 'transitivePackages')) {
                 $version = Get-JsonMember $package 'resolvedVersion'
                 if (-not $version) { $version = Get-JsonMember $package 'requestedVersion' }
                 $key = (Get-JsonMember $package 'id') + [char]0 + $version
-                $allPairs[$key] = $true
+                $projectPackages[$relative][$key] = $true
             }
         }
     }
 }
 
-if ($allPairs.Count -eq 0) {
+$totalPairs = 0
+foreach ($relative in $projectPackages.Keys) { $totalPairs += $projectPackages[$relative].Count }
+
+if ($totalPairs -eq 0) {
     throw "No NuGet packages were found across the scanned projects."
 }
 
@@ -248,18 +266,21 @@ if ($allPairs.Count -eq 0) {
 
 $records = @()
 $sortKeys = @()
-foreach ($key in $allPairs.Keys) {
-    $split = $key.IndexOf([char]0)
-    $name = $key.Substring(0, $split)
-    $version = $key.Substring($split + 1)
+foreach ($relative in $projectPackages.Keys) {
+    foreach ($key in $projectPackages[$relative].Keys) {
+        $split = $key.IndexOf([char]0)
+        $name = $key.Substring(0, $split)
+        $version = $key.Substring($split + 1)
 
-    # The NUL separator is lower than any printable character, so an ordinal
-    # sort on this composite sorts by name first, then by version.
-    $sortKeys += $name + [char]0 + (Get-NuGetVersionSortKey -Version $version)
-    $records += [pscustomobject]@{
-        Name         = $name
-        Version      = $version
-        IsTransitive = -not $directPairs.ContainsKey($key)
+        # The NUL separator is lower than any printable character, so an ordinal
+        # sort on this composite sorts by project, then name, then version.
+        $sortKeys += $relative + [char]0 + $name + [char]0 + (Get-NuGetVersionSortKey -Version $version)
+        $records += [pscustomobject]@{
+            Project      = $relative
+            Name         = $name
+            Version      = $version
+            IsTransitive = -not $projectDirect[$relative].ContainsKey($key)
+        }
     }
 }
 
@@ -270,10 +291,11 @@ foreach ($key in $allPairs.Keys) {
 )
 
 $builder = [System.Text.StringBuilder]::new()
-[void]$builder.Append("PackageName,IsTransitive,Version`r`n")
+[void]$builder.Append("Project,PackageName,IsTransitive,Version`r`n")
 foreach ($record in $records) {
     $transitive = if ($record.IsTransitive) { 'true' } else { 'false' }
     [void]$builder.Append(
+        (ConvertTo-CsvField $record.Project) + ',' +
         (ConvertTo-CsvField $record.Name) + ',' +
         $transitive + ',' +
         (ConvertTo-CsvField $record.Version) + "`r`n"
@@ -282,8 +304,8 @@ foreach ($record in $records) {
 $content = $builder.ToString()
 
 $directRows = ($records | Where-Object { -not $_.IsTransitive }).Count
-Write-Host ("Resolved {0} package/version rows ({1} distinct packages, {2} non-transitive)." -f `
-    $records.Count, ($records.Name | Sort-Object -Unique).Count, $directRows)
+Write-Host ("Resolved {0} project/package/version rows across {1} project(s) ({2} distinct packages, {3} non-transitive rows)." -f `
+    $records.Count, $projectPackages.Count, ($records.Name | Sort-Object -Unique).Count, $directRows)
 
 # ---------------------------------------------------------------------------
 # Emit
