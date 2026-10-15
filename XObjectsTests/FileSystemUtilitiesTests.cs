@@ -35,8 +35,9 @@ public class FileSystemUtilitiesTests
     }
 
     [Test,TestCaseSource(nameof(GetPhysicalFolderPathsForGeneratedSchemaLibraries))]
-    public void TestResolvePossibleFileAndFolderPathsToProcessableSchemas(object folderPath)
+    public void TestResolvePossibleFileAndFolderPathsToProcessableSchemas(object[] args)
     {
+        object folderPath = args[0];
         var dir = new DirectoryInfo((string)folderPath);
         IEnumerable<string> filesOrFolders = dir.GetFiles("*", SearchOption.AllDirectories).Select(f => f.FullName);
         List<string>? entryPointSchemas =
