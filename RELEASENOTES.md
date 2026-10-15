@@ -9,13 +9,24 @@
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.25
 * https://www.nuget.org/packages/XObjectsCore/3.4.25
-  * [#104](https://github.com/mamift/LinqToXsdCore/pull/104) The linqtoxsd CLI tool behaviour has changed:
+  * [#104](https://github.com/mamift/LinqToXsdCore/pull/104) The linqtoxsd CLI tool behaviour has changed and some bugs were fixed:
     - the `-a` flag will now delete existing files with the `.xsd.cs` extension (since v3.4.17, the default output extension is now `.xsd-g.cs`) when outputting code
     - fixed a bug with getting the actual XML Schema version, the `xs:schema\@version` attribute is a user defined attribute for the schema version, it does not specify which W3C XSD specification version to validate against (i.e. v1.0 or v1.1). This has inadvertently caused `linqtoxsd` to skip schemas that had `xs:schema\@version`  values that were v1.1 or higher.
     - the behaviour of the `-a` argument when invoking the `linqtoxsd gen` CLI tool is now always applied i.e. it now always searches for a `.xsd.config` file regardless. However, in previous versions, if a config file was not found, `linqtoxsd gen` would skip that XSD file - now `linqtoxsd gen` will simply apply default config values for those XSD files and proceed to generate code. This fixes #8.
     - added a new CLI verb `sum` that will emit a markdown file that summarises the generated code.
     - codegen: `global::` is now prefixed to the generated method `GetRootType()` when global:: is used in other places for namespaces with Xml in them.
     - Fix duplicated shared-schema types across multiple XSDs (fixes #14) - when several entry-point schemas xs:import/xs:include the same shared schemas, the shared schemas' types were regenerated into every importing file, producing duplicate (and for non-partial types, uncompilable) C#.
+  * Nuget dependency updates:
+    - `XObjectsCore` and `LinqToXsd.Schemas`: `Portable.System.DateTimeOnly` consolidates to `v9.0.2`.
+    - `Microsoft.CodeAnalysis.CSharp` and `Microsoft.CodeAnalysis.CSharp.Workspaces.` to `5.9.0`.
+    - `PolySharp` consolidated to `1.16.0`. This is a build-time only dependency (`PrivateAssets="all"`) and does not ship in any package.
+    - Test-only dependencies updated: 
+      - `ExtendedXmlSerializer` `3.9.6` to `3.10.0`
+      - `morelinq` `3.3.2` to `4.4.0`
+      - `Microsoft.NET.Test.Sdk` `17.1.0` to `17.14.1`
+      - `MSTest` to `4.5.1`
+      - `Nunit` to `v5.0.0` and `NUnit3TestAdapter` to `v6.3.1`
+  * Tooling: added `Generate-NuGetDependencyReport.ps1`, which generates `NuGetDependencies.csv` - the master list of every direct and transitive NuGet dependency in the repository (excluding `GeneratedSchemaLibraries`). It has a `-Verify` switch that fails if the CSV is out of date.
     
 ## Version 3.4.24
 
