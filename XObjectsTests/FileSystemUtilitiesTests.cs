@@ -90,13 +90,18 @@ public class FileSystemUtilitiesTests
         Assert.AreEqual("xmldsig-core-schema.xsd <- (none)", FindLine("xmldsig-core-schema.xsd"));
     }
 
+    /// <summary>
+    /// The slnf (solution filter) is a JSON file, and contains references to the project folders in the `GeneratedSchemaLibraries`,
+    /// which is why we need to use System.Text.Json here.
+    /// </summary>
+    /// <returns></returns>
     public static IEnumerable<object[]> GetPhysicalFolderPathsForGeneratedSchemaLibraries()
     {
         var cwd = new DirectoryInfo(Environment.CurrentDirectory);
         DirectoryInfo linqToXsdSlnFolder = cwd.AscendToFolder("XObjectsTests").AscendByLevel(1);
         FileInfo testingSuiteFilter = linqToXsdSlnFolder.GetFiles("LinqToXsd-TestingSuite.slnf").Single();
         using FileStream fileStream = testingSuiteFilter.OpenRead();
-        var generatedSchemaLibProjectsInSlnFilter = JsonDocument.Parse(fileStream).RootElement
+        JsonElement generatedSchemaLibProjectsInSlnFilter = JsonDocument.Parse(fileStream).RootElement
             .GetProperty("solution").GetProperty("projects");
 
         DirectoryInfo baseFolder = linqToXsdSlnFolder.DescendToFolder("GeneratedSchemaLibraries");
