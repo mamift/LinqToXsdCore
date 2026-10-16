@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;netframework472</TargetFrameworks>
+    <TargetFrameworks>net10.0;netframework472</TargetFrameworks>
     <RootNamespace>$(RootNamespace).Tests</RootNamespace>
     <IsPackable>false</IsPackable>
     <LangVersion>preview</LangVersion>
