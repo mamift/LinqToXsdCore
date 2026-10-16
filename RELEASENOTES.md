@@ -26,6 +26,10 @@ Nuget packages:
       - `Microsoft.NET.Test.Sdk` `17.1.0` to `17.14.1`
       - `MSTest` to `4.5.1`
       - `Nunit` to `v5.0.0` and `NUnit3TestAdapter` to `v6.3.1`
+      - `OneOf` to `v3.0.271`
+      - `System.CodeDom` to `10.0.13`.
+      - `System.Text.Json` to `v10.0.13`
+      - `System.IO.Abstractions` and `TestingHelpers` to `v22.3.0`.
   * Tooling: added `Generate-NuGetDependencyReport.ps1`, which generates `NuGetDependencies.csv` - the master list of every direct and transitive NuGet dependency in the repository (excluding `GeneratedSchemaLibraries`). It has a `-Verify` switch that fails if the CSV is out of date.
     
 ## Version 3.4.24
