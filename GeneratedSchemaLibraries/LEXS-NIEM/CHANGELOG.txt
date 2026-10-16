@@ -1,0 +1,417 @@
+<!--
+    Document: $Id: CHANGELOG.txt 2197 2009-02-06 18:35:41Z ys34 $
+    LEXS version  : 3.1.4
+    Description   : Change Log from previous versions
+-->
+Changes from 3.1.3
+
+    NIEM subset was migrated to reflect element cardinalities.
+
+    _LEXS Digest Changes_
+    
+    Added elements with corresponding types:
+        lexsdigest:EntityCreditCard, lexsdigest:CreditCard
+        lexsdigest:EntityHash, lexsdigest:Hash
+        lexsdigest:EntityNetworkAddress, lexsdigest:NetworkAddress
+        lexsdigest:EntityInstantMessenger, nc:ContactInstantMessenger
+        lexsdigest:EntityDocument, nc:Document
+
+    Added associations with corresponding types and element references:        
+        lexsdigest:ActivityEmailAddressAssociation
+        lexsdigest:ActivityHashAssociation
+        lexsdigest:ActivityInstantMessengerAssociation
+        lexsdigest:ActivityNetworkAddressAssociation
+        lexsdigest:ActivityPrimaryPersonAssociation
+        lexsdigest:ActivityResponsiblePersonAssociation
+        lexsdigest:ActivityTelephoneNumberAssociation
+        lexsdigest:CreditCardBillingLocationAssociation
+        lexsdigest:DocumentAuthorAssociation
+        lexsdigest:EntityInstantMessengerAssociation
+        lexsdigest:EntityNetworkAddressAssociation
+        lexsdigest:IncidentInstantMessengerAssociation
+        lexsdigest:IncidentNetworkAddressAssociation
+        lexsdigest:InstantMessengerAssociation
+        lexsdigest:ItemAssignedNetworkAddressAssociation
+        lexsdigest:ItemInstantMessengerAssociation
+        lexsdigest:ItemNetworkAddressAssociation
+        lexsdigest:NetworkAddressAssociation
+        lexsdigest:OffenseInstantMessengerAssociation
+        lexsdigest:OffenseNetworkAddressAssociation
+        lexsdigest:PersonContactAssociation
+        lexsdigest:ServiceCallInstantMessengerAssociation
+        lexsdigest:ServiceCallNetworkAddressAssociation
+    
+    Added following association types:
+        lexsdigest:ActivityHashAssociationType
+        lexsdigest:ActivityInstantMessengerAssociationType
+        lexsdigest:ActivityNetworkAddressAssociationType
+        lexsdigest:EntityInstantMessengerAssociationType
+        lexsdigest:EntityNetworkAddressAssociationType
+        lexsdigest:InstantMessengerAssociationType
+        lexsdigest:ItemInstantMessengerAssociationType
+        lexsdigest:ItemNetworkAddressAssociationType
+        lexsdigest:NetworkAddressAssociationType
+
+    Added following elements to NIEM subset:
+        nc:IdentificationCategory and nc:IdentificationCategoryText to nc:IdentificationType
+        nc:PersonOtherIdentification to PersonType (0-n)
+        nc:PersonPrimaryLanguage to nc:PersonType
+        iso_639-3 : "http://niem.gov/niem/iso_639-3/2.0"
+
+    Changed cardinality from maximum occurs 1 to unbounded for 
+        lexsdigest:BailingPersonReference and lexsdigest:BailingOrganizationReference in lexsdigest:BailBondAssociationType.
+        lexsdigest:ReceiverPersonReference in lexsdigest:EmailMessageAssociationType
+        lexsdigest:ReceiverOrganizationReference in lexsdigest:EmailMessageAssociationType
+        lexsdigest:Receiver*References in lexsdigest:TelephoneCallAssociationType
+        nc:ActivityDescriptionText in nc:ActivityType
+        nc:ConveyanceRegistrationPlateIdentification in nc:ConveyanceType
+        nc:PersonMiddleName in nc:PersonNameType
+        
+    Changed cardinality from min occurs 1 to 0 for
+        nc:OrganizationCategory
+        nc:OrganizationName
+    
+    _LEXS Framework Changes_
+    
+    Added optional lexs:DataItemLEXSVersion to lexs:PackageMetadata
+    
+    Added DisseminationCriteriaValue complex element consisting of DisseminationCriteriaDomainText and DisseminationCriteriaText 
+        to preserve compatibility with previous LEXS releases and allow domains to specify LEXS independent dissemination criteria.
+        
+    Changed type for lexs:DataItemPublishInstruction from lexscodes:DataItemPublishInstructionCodeSimpleType to lexscodes:DataItemPublishInstructionCodeType
+    
+    Changed extension base for lexsdigest:EntityAttachmentLinkAssociationType from s:ComplexObjectType to nc:AssociationType
+
+    Changed cardinality from min occurs 1 to 0 for
+        lexs:Attachment in lexs:AttachmentResponseMessageType
+        lexs:DataItemPackage in lexs:DataItemPackageResponseMessageType
+    
+    Corrected documentation for multiple elements.
+    
+    Removed unused deprecated namespaces from lexs.xsd
+        xmlns:fips_10-4="http://niem.gov/niem/fips_10-4/1.0"
+        xmlns:nonauth="http://niem.gov/niem/nonauthoritative-code/1.0"
+    
+    Added to strict and flexible LEXS WSDL/Schema's non-normative getDomainRequest/getDomainResponse messages with corresponding schema types.
+    Those messages could be used for out-of-bound non LEXS conformant information exchanges between systems.
+    Use of those structures by no means classifies any system as LEXS Conformant and should be reserved for functionality not supported by LEXS.
+
+Changes from 3.1.2
+    Added lexslib:AttachmentLinkReference which is of lexslib:ReferenceType.
+    
+    Added lexs:DataOwnerMetadata with minOccurs="0" to lexs:AttachmentType
+    
+    Added lexs:DomainAttribute to lexs:DataContactType.
+        
+    Changed lexs:CommunityPedigreeURIType from xsd:complexContent to xsd:simpleContent.
+
+Changes from 3.1.1
+    Removed unused namespace xmlns:eo-12958="http://niem.gov/niem/eo-12958/1.0" from lexs.xsd
+    
+    Changed cardinality of SearchResultPackage in SearchResponseMessage from minOccurs=1 to minOccurs=0
+    
+    Added PD/SR *-abstract-interface.wsdl file set. WSDL files embed corresponding abstract-interface publish-discover and search-retrieve schemas.
+
+    Example xml/PD-samples/Sample-9-all-fields.xml contained invalid values for "<nc:Date> 2001-08-13</nc:Date>",
+    values were corrected to "<nc:Date>2001-08-13</nc:Date>" ( no space before the year ).
+
+Changes from 3.1.0
+
+    Removed <i:ConformantIndicator>true<i:ConformantIndicator> from lexs.xsd
+
+    Added lexslib:SameAsPayloadReference to LEXS library (xsd\library\3.1\library.xsd)
+
+    Changed cardinality for lexs:RequestedData in lexs:SearchRequestMetadataType to allow multiple values
+
+    Added lexs:DataItemCompleteIndicator to lexs:PackageMetadataType
+
+    Changed cardinality of lexs:StructuredQuery in lexs:StructuredSearchRequestMessageType to allow multiple values
+
+    Added nc:IdentificationJurisdiction of FIPS 10-4 to nc:IdentificationType
+
+    Added IntangibleItem enumeration to LEXS codes.xsd for DataCategoryCode
+
+    Added IntangibleItem entity
+
+    Added Lessee and Lessor roles
+
+    Added associations to LEXS Digest:
+        lexsdigest:BailBondAssociation
+        lexsdigest:CellmateAssociation
+        lexsdigest:DeclarationPersonAssociation
+        lexsdigest:IncidentEmailAddressAssociation
+        lexsdigest:IncidentEvidenceAssociation
+        lexsdigest:IncidentTelephoneNumberAssociation
+        lexsdigest:ItemAssignedTelephoneNumberAssociation
+        lexsdigest:ItemEmailAddressAssociation
+        lexsdigest:ItemTelephoneNumberAssociation
+        lexsdigest:OffenseTelephoneNumberAssociation
+        lexsdigest:OffenseEmailAddressAssociation
+        lexsdigest:PersonFoundLocationAssociation
+        lexsdigest:PersonLastSeenWitnessAssociation
+        lexsdigest:PhysicalMailAssociation
+        lexsdigest:VisitorAssociation
+        nc:ActivityItemAssociation
+        nc:ItemContainerAssociation
+
+=================================================================================
+
+New Features for 3.1:
+     - LEXS Search and Retrieve
+     - NIEM 2.0
+     - WSDL Files
+             
+Changes from 3.0.4:
+
+     - NIEM 1.0 to NIEM 2.0 migration outlined in "docs \ digest-and-subset-changes.pdf", including elements that
+            were originally LEXS 3.0 extensions but that have been incorporated into NIEM 2.0        
+    
+     - File name and location change for 
+            LEXS, LEXS Codes, LEXS Digest, LEXS Library, LEXS Publish Discover
+    
+     - Namespaces and schema location change ( please note prefix stayed the same )
+
+            LEXS
+                xmlns:lexs="http://usdoj.gov/leisp/lexs/3.0"
+                    to
+                xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1"
+                
+            LEXS Codes
+                xmlns:lexs="http://usdoj.gov/leisp/lexs/3.0/codes"
+                    to
+                xmlns:lexs="http://usdoj.gov/leisp/lexs/codes/3.1"
+                
+            LEXS Digest
+                xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/3.0/digest"
+                    to
+                xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+                
+            LEXS Library
+                xmlns:lexslib="http://usdoj.gov/leisp/lexs/3.0/library"
+                    to
+                xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1"
+                
+            LEXS Publish Discover
+                http://usdoj.gov/leisp/lexs/3.0/publishdiscover
+                    to 
+                http://usdoj.gov/leisp/lexs/publishdiscover/3.1
+                
+            NIEM APPINFO
+                xmlns:i="http://niem.gov/niem/appinfo/1.0"
+                    to
+                xmlns:i="http://niem.gov/niem/appinfo/2.0"
+                
+            NIEM COMMON and UNIVERSAL
+                xmlns:u="http://niem.gov/niem/universal/1.0"
+                    and
+                xmlns:c="http://niem.gov/niem/common/1.0"
+                    to
+                xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+                
+            NIEM STRUCTURES
+                xmlns:s="http://niem.gov/niem/structures/1.0"
+                    to
+                xmlns:s="http://niem.gov/niem/structures/2.0"
+                
+            NIEM JUSTICE
+                xmlns:j="http://niem.gov/niem/domains/justice/1.0"
+                    to
+                xmlns:j="http://niem.gov/niem/domains/jxdm/4.0"
+                
+    
+        - Moved all LEXS digest entities ( substitutionGroup="lexs:Entity")
+        from "lexs" namespace to "lexsdigest" namespace.
+
+      - Moved lexs:AttachmentLinkReference to lexsdigest:AttachmentLinkReference
+
+      - Renamed lexs:Submission to lexs:PublishMessageContainer
+
+      - Renamed lexs:Message element renamed lexs:PublishMessage.
+
+        - Split lexs:MessageMetadata into lexs:PDMessageMetadata and lexs:DataSubmitterMetadata.
+
+        - Renamed lexs:DataSourceContact to lexs:SystemContact and moved element from lexs:PDMessageMetadata to lexs:DataSubmitterMetadata
+        
+        - Changed lexs:DataContactType to be composition of the required elements and have a flat form (see schema for details).
+        
+      - Removed lexs:DataSourceOrganizationAbbreviation and lexs:DataSourceSystemInformation from lexs:MessageMetadata and replaced them with lexs:SystemIdentifier
+
+      - Renamed lexs:Package to lexs:DataItemPackage
+
+      - Renamed lexs:PackageDigest to lexs:Digest
+
+      - Renamed lexs:PackageStructuredPayload to lexs:StructuredPayload
+
+      - Renamed lexs:Submission to lexs:PublishMessageContainer.
+      
+      - Renamed lexs:DataItemIDText to lexs:DataItemID
+      
+      - Renamed lexs:DataItemReferenceIDText to lexs:DataItemReferenceID
+      
+      - Removed lexs:DataItemOrginatingAgencyIDText and added lexs:DataOwnerMetadata
+      
+      - Added lexs:DiseminationCriteria
+      
+      - Added lexs:DataItemCategory
+      
+      - Refactored DataSource into Data Owner, Data Submitter, Message Origin, and Message Destination       
+
+=================================================================================
+    
+Changes from 3.0.3
+      - Replaced 
+            <i:ReferenceTarget i:name="u:
+            with
+            <i:ReferenceTarget i:namespace="http://niem.gov/niem/universal/1.0" i:name="
+      - Replaced
+              <i:ReferenceTarget i:name="c:
+              with
+              <i:ReferenceTarget i:namespace="http://niem.gov/niem/common/1.0" i:name="
+      - Fixed lexslib:SameAsDigestReference
+      
+      - Added following associations :
+                        ServiceCallCallerAssociation 
+            PersonOfInterestAssociation
+            BoyfriendGirlfriendAssociation
+            HomosexualAssociation
+            ClientAssociation
+            StudentAssociation
+            DeliveryAssociation
+            CaregiverAssociation
+            PatientAssociation
+                        OffenseLocationAssociation 
+                        ServiceCallLocationAssociation 
+                        ServiceCallDispatchLocationAssociation 
+                        ServiceCallTelephoneNumberAssociation 
+                        ServiceCallEmailAddressAssociation 
+
+      - Added following roles :
+            OtherInvolvedPerson 
+            Informant
+            Inmate
+            Parolee 
+            Prisoner 
+            Probationer 
+            ProtectedParty
+
+      - Replaced lexsdigest:PersonReference with u:PersonReference
+
+      - Replaced lexsdigest:OrganizationReference with u:OrganizationReference
+
+      - Renamed TelephoneNumberTypeCode to TelephoneNumberCategoryCode
+
+      - Removed "LEXS" out of code element names and code type names.
+
+      - Changed nillable="false" to nillable="true" on all elements.
+     
+      - Removed AircraftFuselageColorText and AircraftWingColorText 
+        
+      - Removed MissingPersonDeclarationPerson from j:MissingPerson
+
+      - Removed census namespace from lexs-digest.xsd
+       
+      - Removed DrugCategoryNIBRSCode
+      
+      - Corrected lexscodes:DrugCategoryDEACodeType.
+      
+      - Added enumeration codes for the following types:
+          ncic:HULCodeSimpleType
+          ncic:LISCodeSimpleType
+          ncic:RESCodeSimpleType
+          nonauth:FamilyKinshipCodeSimpleType
+          
+      - Changed lexsdigest:SubjectType to extend j:SubjectType so new SubjectType 
+          will contain references to the person as well as organization.
+          
+      - Changed name for the following elements 
+            ExplosiveComponentCategoryLEXSCode to ExplosiveComponentCategoryCode
+            ExplosiveContainerCategoryLEXSCode to ExplosiveContainerCategoryCode
+            ExplosiveFillerCategoryLEXSCode to ExplosiveFillerCategoryCode
+            ExplosiveIgnitionCategoryLEXSCode to ExplosiveIgnitionCategoryCode
+
+      - Removed unused namespaces from lexs-digest.xsd and lexs-library.xsd
+            xmlns:fips_5-2="http://niem.gov/niem/fips_5-2/1.0"
+            xmlns:fips_6-4="http://niem.gov/niem/fips_6-4/1.0"    
+            
+      - Following elements were moved from j:SubjectType to lexsdigest:SubjectType
+            ArrestSubject
+            BailSubject
+            BookingSubject
+            ChargeSubject
+            CitationSubject
+            ConvictionSubject
+            CourtOrderDesignatedSubject
+            CustodyTransferSubject
+            ForceSubject
+            IncidentSubject
+            SentenceSubject
+            Subject
+            SupervisionSubject
+            Suspect
+            VerdictSubject        
+     
+       - Set "ref" attribute in ReferenceType to be required ( both LEXS and NIEM )
+
+Changes from 3.0
+
+      - Removed lexsdigest:DrugCategoryCode from c:PropertyCategory, 
+            set multiplicity for c:PropertyCategory to maxOccurence=1
+
+      - Created lexsdigest:DrugAugmentation that includes DrugCategory (abstract), 
+            with substitution for lexsdigest:DrugCategoryNIBRS, lexsdigest:DrugCategoryDEA, 
+            and lexsdigest:DrugCategoryText
+        
+      - Fixed nillables on Contact Phone Number and Surname
+      
+      - Fixed lexslib:SameAsPayloadAssociationType to allow "downpointing" from digest to the 
+            payload that does not have schema available.
+
+      - Removed LEXS lexsdigest:IncidentOtherInvolvedPersonAssociation ( duplicate of the 
+            j:IncidentUnknownAssociationPersonAssociation )
+      
+      - Corrected type for lexsdigest:IncidentLocationAssociation
+      
+      - Removed lexsdigest:PersonOwnsProperty, lexsdigest:PersonPossessesProperty, 
+            lexsdigest:OrganizationOwnsProperty, and lexsdigest:OrganizationPossessesProperty associations
+      
+      - Replaced lexsdigest:VictimReference definition with one for lexsdigest:VictimPersonReference 
+            referring to c:PersonType, and one for lexsdigest:VictimOrganizationReference referring to OrganizationType. 
+      
+      - Replaced lexsdigest:WitnessReference definition with one for lexsdigest:WitnessPersonReference 
+            referring to c:PersonType.
+
+      - Defined a new lexsdigest:SubjectPersonReference definition referring to PersonType, and one for
+            lexsdigest:SubjectOrganizationReference referring to c:OrganizationType
+      
+      - Changed lexsdigest:SubjectVictimAssociationType, lexsdigest:SubjectWitnessAssociationType, and
+            lexsdigest:VictimWitnessAssociationType to use updated references ( point to NIEM base objects rather then roles )
+                      
+      - Changed type of Incident and Offense to Victim Association
+      
+      - Changed type of Incident and Offense to Witness Association
+
+      - Following elements were changed:
+              Type for lexsdigest:ArrestSubjectAssociation was changed from lexsdigest:ActivitySubjectAssociationType
+            to c:ActivityInvolvedPersonAssociationType
+
+            Type for lexsdigest:IncidentReportingOfficialAssociation was changed from
+                        lexsdigest:ActivityEnforcementOfficialAssociationType to c:ActivityInvolvedPersonAssociationType
+
+            Type for lexsdigest:IncidentWitnessAssociation    was changed from lexsdigest:ActivitySubjectAssociationType
+            to c:ActivityInvolvedPersonAssociationType
+
+            Type for lexsdigest:OffenseWitnessAssociation was changed from lexsdigest:ActivitySubjectAssociationType
+            to c:ActivityInvolvedPersonAssociationType
+
+            Element lexsdigest:IncidentSubjectAssociation was split into 
+                lexsdigest:IncidentSubjectOrganizationAssociation and lexsdigest:IncidentSubjectPersonAssociation
+
+            Element lexsdigest:IncidentVictimAssociation was split into 
+                lexsdigest:IncidentVictimOrganizationAssociation and lexsdigest:IncidentVictimPersonAssociation
+
+            Element lexsdigest:OffenseSubjectAssociation was split into 
+                lexsdigest:OffenseSubjectOrganizationAssociation and lexsdigest:OffenseSubjectPersonAssociation
+
+            Element lexsdigest:OffenseVictimAssociation was split into 
+                lexsdigest:OffenseVictimOrganizationAssociation and OffenseVictimPersonAssociation
+

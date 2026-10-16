@@ -22,11 +22,26 @@ namespace Xml.Schema.Linq
         /// Creates a new instance of <see cref="LinqToXsdSettings"/>, optionally by loading from an XML file.
         /// </summary>
         /// <param name="fromXmlFile">Null, empty or non-existent file path value will simply return a default instance.</param>
+        /// <param name="observer"></param>
         /// <returns></returns>
-        public static LinqToXsdSettings LoadLinqToXsdSettings(string? fromXmlFile = null)
+        public static LinqToXsdSettings LoadLinqToXsdSettings(string? fromXmlFile = null, IWarnableObserver<string>? observer = null)
         {
             var settings = new LinqToXsdSettings();
-            if (fromXmlFile.IsNotEmpty() && File.Exists(fromXmlFile)) settings.Load(fromXmlFile);
+            if (fromXmlFile.IsNotEmpty() && File.Exists(fromXmlFile))
+            {
+                settings.Load(fromXmlFile);
+            }
+            else if (observer != null) 
+            {
+                if (fromXmlFile.IsEmpty())
+                {
+                    observer?.OnWarn("Config file not provided; using default values");
+                }
+                else
+                {
+                    observer.OnWarn($"Config file '{fromXmlFile}' did not exist; using default values");
+                }
+            }
 
             return settings;
         }
@@ -37,6 +52,7 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public static LinqToXsdSettings LoadLinqToXsdSettings(XDocument xdoc)
         {
+            if (xdoc == null) throw new ArgumentNullException(nameof(xdoc));
             var settings = new LinqToXsdSettings();
             settings.Load(xdoc);
 
@@ -54,8 +70,24 @@ namespace Xml.Schema.Linq
             LinqToXsdSettings settings, IWarnableObserver<string>? programObserver = null)
         {
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
-            return xsdFilePaths
+            List<string> files = xsdFilePaths
+                .Where(f => !string.IsNullOrWhiteSpace(f))
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+
+            // When several schemas are generated together under one shared configuration, load them
+            // all into a single XmlSchemaSet and emit each schema's types exactly once. Without this,
+            // a schema that is xs:include/xs:import'd by more than one entry point is regenerated into
+            // every importing file (see GitHub issue #14).
+            if (files.Count > 1 && !settings.SplitFilesByNamespace)
+            {
+                if (TryGenerateMerged(files, settings, out var mergedWriters))
+                    return mergedWriters;
+            }
+
+            return files
                 .SelectMany(file => Generate(file, settings))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
@@ -64,16 +96,170 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
+        /// Key used to tag a generated <see cref="CodeTypeDeclaration"/> (via <see cref="CodeObject.UserData"/>)
+        /// with the source URI of the schema that defines it, so that a merged generation pass can be split
+        /// back into one output file per source schema.
+        /// </summary>
+        internal const string SourceSchemaUserDataKey = "LinqToXsd.SourceSchemaUri";
+
+        /// <summary>
+        /// Generates code for several schema files by loading them all into a single <see cref="XmlSchemaSet"/>,
+        /// generating the CLR type model once, and then splitting the resulting types back into one output file
+        /// per source schema. Falls back to <c>false</c> (so the caller uses per-file generation) when the schemas
+        /// cannot be merged, for example when they cannot be compiled together.
+        /// </summary>
+        private static bool TryGenerateMerged(List<string> files, LinqToXsdSettings settings, out Dictionary<string, TextWriter> writers)
+        {
+            writers = null!;
+
+            XmlSchemaSet schemaSet;
+            try
+            {
+                schemaSet = LoadMergedSchemaSet(files);
+            }
+            catch (XmlSchemaException)
+            {
+                return false;
+            }
+
+            var xsdConverter = new XsdToTypesConverter(settings);
+            ClrMappingInfo mapping = xsdConverter.GenerateMapping(schemaSet);
+            if (mapping == null)
+                return false;
+
+            var codeGenerator = new CodeDomTypesGenerator(settings);
+            List<CodeNamespace> namespaces = codeGenerator.GenerateTypes(mapping).ToList();
+
+            writers = SplitNamespacesBySourceSchema(namespaces, files, settings);
+            return writers.Count > 0;
+        }
+
+        private static XmlSchemaSet LoadMergedSchemaSet(IEnumerable<string> files)
+        {
+            var resolver = new XmlUrlResolver();
+            var schemaSet = new XmlSchemaSet {
+                XmlResolver = resolver
+            };
+
+            foreach (string file in files)
+            {
+                if (string.IsNullOrWhiteSpace(file)) continue;
+
+                // Mirror the reader settings used by the single-file path.
+                var readerSettings = new XmlReaderSettings {
+                    DtdProcessing = Defaults.DefaultXmlReaderSettings.DtdProcessing,
+                    CloseInput = Defaults.DefaultXmlReaderSettings.CloseInput
+                };
+                readerSettings.XmlResolver = resolver;
+
+                using var reader = XmlReader.Create(file, readerSettings);
+                schemaSet.Add(null, reader);
+            }
+
+            schemaSet.Compile();
+            return schemaSet;
+        }
+
+        private static Dictionary<string, TextWriter> SplitNamespacesBySourceSchema(
+            List<CodeNamespace> namespaces, List<string> inputFiles, LinqToXsdSettings settings)
+        {
+            // The TypeManager and XRoot(s) are synthetic and don't belong to a single source schema; they are
+            // hosted in the first input file so the whole set still exposes one entry point for the typed-XML
+            // infrastructure.
+            string rootBucketPath = NormalizeSourcePath(Path.GetFullPath(inputFiles[0])) ?? Path.GetFullPath(inputFiles[0]);
+
+            var buckets = new Dictionary<string, List<(CodeNamespace originalNamespace, CodeTypeDeclaration declaration)>>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (CodeNamespace ns in namespaces)
+            {
+                foreach (CodeTypeDeclaration declaration in ns.Types.Cast<CodeTypeDeclaration>().ToList())
+                {
+                    string sourcePath = NormalizeSourcePath(declaration.UserData[SourceSchemaUserDataKey] as string) ?? rootBucketPath;
+
+                    if (!buckets.TryGetValue(sourcePath, out var list))
+                    {
+                        list = new List<(CodeNamespace, CodeTypeDeclaration)>();
+                        buckets[sourcePath] = list;
+                    }
+
+                    list.Add((ns, declaration));
+                }
+            }
+
+            List<string> inputFilePaths = inputFiles
+                .Select(f => NormalizeSourcePath(Path.GetFullPath(f)) ?? Path.GetFullPath(f))
+                .ToList();
+
+            // Deterministic ordering: entry points first (in the order the user supplied them), then any
+            // additionally discovered shared schemas sorted by path.
+            List<string> orderedKeys = inputFilePaths
+                .Where(buckets.ContainsKey)
+                .Concat(buckets.Keys.Except(inputFilePaths, StringComparer.OrdinalIgnoreCase)
+                    .OrderBy(k => k, StringComparer.OrdinalIgnoreCase))
+                .ToList();
+
+            var result = new Dictionary<string, TextWriter>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (string sourcePath in orderedKeys)
+            {
+                if (!buckets.TryGetValue(sourcePath, out var entries)) continue;
+
+                var unit = new CodeCompileUnit();
+
+                // A single schema can contribute types to several CLR namespaces, so preserve one CodeNamespace
+                // per original namespace that has declarations in this bucket.
+                foreach (var nsGroup in entries.GroupBy(e => e.originalNamespace.Name ?? string.Empty))
+                {
+                    var newNamespace = new CodeNamespace(nsGroup.Key);
+                    CodeNamespace originalNamespace = nsGroup.First().originalNamespace;
+                    foreach (CodeNamespaceImport import in originalNamespace.Imports)
+                        newNamespace.Imports.Add(new CodeNamespaceImport(import.Namespace));
+
+                    foreach (var (_, declaration) in nsGroup)
+                        newNamespace.Types.Add(declaration);
+
+                    unit.Namespaces.Add(newNamespace);
+                }
+
+                var writer = unit.ToStringWriter();
+                writer.UpdateAutoGeneratedComment(assembly: typeof(XObjectsCoreGenerator).Assembly);
+                if (settings.NullableReferences)
+                    writer.InsertFilePragma("#nullable enable annotations");
+
+                result[sourcePath] = writer;
+            }
+
+            return result;
+        }
+
+        private static string? NormalizeSourcePath(string? sourceUri)
+        {
+            if (string.IsNullOrWhiteSpace(sourceUri)) return null;
+
+            string path = sourceUri;
+            if (sourceUri.StartsWith("file:", StringComparison.OrdinalIgnoreCase))
+            {
+                try { path = new Uri(sourceUri).LocalPath; }
+                catch (UriFormatException) { /* keep the raw value */ }
+            }
+
+            try { return Path.GetFullPath(path); }
+            catch { return path; }
+        }
+
+        /// <summary>
         /// Generates code using a given <see cref="xsdFilePath"/>, and an optionally, the file path to a configuration file.
         /// </summary>
         /// <param name="xsdFilePath"></param>
         /// <param name="linqToXsdSettingsFilePath"></param>
+        /// <param name="observer"></param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, string? linqToXsdSettingsFilePath = null)
+        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, string? linqToXsdSettingsFilePath = null,
+            IWarnableObserver<string>? observer = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
-            var settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath);
+            LinqToXsdSettings settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath, observer);
 
             return Generate(xsdFilePath, settings);
         }
@@ -90,10 +276,53 @@ namespace Xml.Schema.Linq
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
 
-            var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
+            // Create a fresh XmlReaderSettings per invocation: Defaults.DefaultXmlReaderSettings is a
+            // process-wide static that callers (e.g. unit tests) can mutate, which would change the
+            // BaseURI resolution of schemas read here.
+            var resolver = new XmlUrlResolver();
+            var readerSettings = new XmlReaderSettings() {
+                DtdProcessing = Defaults.DefaultXmlReaderSettings.DtdProcessing,
+                CloseInput = Defaults.DefaultXmlReaderSettings.CloseInput
+            };
+            readerSettings.XmlResolver = resolver;
+            var xmlReader = XmlReader.Create(xsdFilePath, readerSettings);
+            List<string> preloadedFileNames = new();
 
             using (xmlReader) {
-                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet();
+                XmlSchemaSet? schemaSet = null;
+                // Pass the resolver explicitly so xs:import/xs:include resolution uses the reader's
+                // resolver and BaseURI rather than anything inherited from shared/global state.
+                try
+                {
+                    schemaSet = xmlReader.ToXmlSchemaSet(resolver);
+                }
+                catch (XmlSchemaException xse) when (xse.IsXmlNamespaceAttributeError())
+                {
+                    readerSettings.XmlResolver = null;
+                    using var xmlReader2 = XmlReader.Create(xsdFilePath, readerSettings);
+                    schemaSet = xmlReader2.CompileXmlSchemaSetWithPreloadedXsds(out preloadedFileNames);
+                }
+
+                // the compilation of XSDs resulted in using preloaded schemas, then use preloaded XSD configuration so
+                // generated code is emitted in a user-friendly namespace
+                if (preloadedFileNames.Any()) {
+                    var assembly = typeof(XmlReaderExtensions).Assembly;
+                    var names = assembly.GetManifestResourceNames();
+                    bool isAnEmbeddedXmlSchema = false;
+                    foreach (var fileName in preloadedFileNames) {
+                        int findIndex = Array.FindIndex(names, n => n.EndsWith(fileName));
+                        if (findIndex == -1)
+                            throw new InvalidOperationException($"File name not found embedded in assembly: {fileName}");
+                        isAnEmbeddedXmlSchema = true;
+                        break;
+                    }
+
+                    if (isAnEmbeddedXmlSchema) {
+                        var configFileName = Array.Find(names, n => n.EndsWith(PreloadedXsdsResolver.EmbeddedXsdFileNames.XmlXsdConfig));
+                        var streamForFilename = assembly.GetManifestResourceStream(configFileName ?? throw new InvalidOperationException("Unable to find xml.xsd.config"));
+                        settings.AppendFromAdditionalConfigFile(streamForFilename);
+                    }
+                }
 
                 string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
 
@@ -198,7 +427,7 @@ namespace Xml.Schema.Linq
 
         /// <summary>
         /// Generates code by searching for an accompanying configuration file, whereby each configuration file is named the same as the XSD file, but with an
-        /// .config extension (i.e. schemaFileName.xsd.config). Will skip over XSDs that have no accompanying .config file.
+        /// .config extension (i.e. schemaFileName.xsd.config). Will skip v1.1 XSDs; XSDs that have no config file will be generated with default settings.
         /// </summary>
         /// <param name="schemaFiles"></param>
         /// <param name="observer"></param>
@@ -216,17 +445,28 @@ namespace Xml.Schema.Linq
                 .ToList();
             
             var excludeV11Xsds = dictOfSchemasAndTheirConfigs
-                .Where(filePairs => filePairs.xsdFile.Exists && filePairs.xsdFile.GetXmlSchemaVersion() != XmlSchemaVersion.Version1_1)
+                .Where(filePairs => filePairs.xsdFile.Exists && filePairs.xsdFile.GetXmlSchemaVersion() == XmlSchemaVersion.Version1_1)
                 .ToList();
 
-            if (excludeV11Xsds.Count != dictOfSchemasAndTheirConfigs.Count) {
+            if (excludeV11Xsds.Count > 0) {
                 observer?.OnWarn("Found some XSD v1.1 schemas: this tool does not support XSD v1.1. and will ignore those.");
             }
 
             observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
 
-            return excludeV11Xsds
-                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName))
+            var pairsToProcess = dictOfSchemasAndTheirConfigs.Except(excludeV11Xsds).ToList();
+
+            // When several schemas are generated without any per-file configuration they all share the default
+            // settings, so merge them into a single pass to avoid duplicating shared schemas (see GitHub issue #14).
+            if (pairsToProcess.Count > 1 && pairsToProcess.All(pair => !pair.configFile.Exists))
+            {
+                List<string> files = pairsToProcess.Select(pair => pair.xsdFile.FullName).ToList();
+                if (TryGenerateMerged(files, new LinqToXsdSettings(), out var mergedWriters))
+                    return mergedWriters;
+            }
+
+            return pairsToProcess
+                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName, observer))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())

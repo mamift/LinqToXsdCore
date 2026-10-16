@@ -15490,7 +15490,6 @@ namespace cidx.names.specification.ces.schema.all {
                         "Tin (Tinplate):Tin__Tinplate_",
                         "Stainless steel 1.4306 (V2A):Stainless_steel_1_4306__V2A_",
                         "Polyethylenetherephtalate (PET):Polyethylenetherephtalate__PET_",
-                        "Stainless Steel 1.4401:Stainless_Steel_1_4401",
                         "High-Purity Polymer:High_Purity_Polymer"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
     }
     

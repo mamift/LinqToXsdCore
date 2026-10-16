@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;netframework472</TargetFrameworks>
+    <TargetFrameworks>net10.0;netframework472</TargetFrameworks>
     <RootNamespace>$(RootNamespace).Tests</RootNamespace>
     <IsPackable>false</IsPackable>
     <LangVersion>preview</LangVersion>
@@ -9,34 +9,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtendedXmlSerializer" Version="3.9.6" />
+    <PackageReference Include="ExtendedXmlSerializer" Version="3.10.0" />
     <PackageReference Include="fasterflect" Version="3.0.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.1.0" />
-    <PackageReference Include="morelinq" Version="3.3.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
-    <PackageReference Include="nunit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.9.0" />
+    <PackageReference Include="morelinq" Version="4.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="4.5.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="4.5.1" />
+    <PackageReference Include="nunit" Version="5.0.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="6.3.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="ObjectsComparer" Version="1.4.1" />
-    <PackageReference Include="OneOf" Version="3.0.263" />
-    <PackageReference Include="PolySharp" Version="1.15.0">
+    <PackageReference Include="OneOf" Version="3.0.271" />
+    <PackageReference Include="PolySharp" Version="1.16.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.IO.Abstractions" Version="19.2.29" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="19.2.29" />
-    <PackageReference Include="System.Text.Json" Version="10.0.10" />
-    <PackageReference Include="TestableIO.System.IO.Abstractions.Extensions" Version="1.0.42" />
+    <PackageReference Include="System.IO.Abstractions" Version="22.3.0" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="22.3.0" />
+    <PackageReference Include="System.Text.Json" Version="10.0.13" />
+    <PackageReference Include="TestableIO.System.IO.Abstractions.Extensions" Version="22.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'net8.0'">
-      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
+    <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'net10.0'">
+      <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
     </ProjectReference>
     <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'netframework472'">
       <SetTargetFramework>TargetFramework=netframework472</SetTargetFramework>
@@ -44,15 +43,15 @@
     
     <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
     
-    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'net8.0'">
-      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
+    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'net10.0'">
+      <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
     </ProjectReference>
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'netframework472'">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
 
-    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'net8.0'">
-      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'net10.0'">
+      <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
     </ProjectReference>
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'netframework472'">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>

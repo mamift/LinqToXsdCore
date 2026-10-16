@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: Sample-12-getCapabilitiesResponse.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original : 7/13/2007
+    LEXS version  : 3.1.4
+    Description   : 
+        Sample XML instance for the get capabilities response message.
+-->
+<lexssr:getCapabilitiesResponse 
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0" 
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/searchretrieve/3.1 ../../xsd/search-retrieve/3.1/search-retrieve.xsd">
+    <lexs:CapabilitiesResponseMessage>
+        <lexs:SRMessageMetadata>
+            <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+            <lexs:MessageDateTime>2006-12-01T09:30:47.0Z</lexs:MessageDateTime>
+            <lexs:MessageSequenceNumber>12</lexs:MessageSequenceNumber>
+            <!--=======================  Message Origin  =======================-->
+            <lexs:MessageOriginMetadata>
+                <lexs:SystemIdentifier>
+                    <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                    <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                    <lexs:SystemID>SysE</lexs:SystemID>
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Jim</nc:PersonGivenName>
+                    <nc:PersonSurName>West</nc:PersonSurName>
+                    <nc:ContactTelephoneNumber>
+                        <nc:FullTelephoneNumber>
+                            <nc:TelephoneNumberFullID>770-555-1212</nc:TelephoneNumberFullID>
+                        </nc:FullTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:MessageOriginMetadata>
+            <!--====================== Message Destination ==========================-->
+            <lexs:MessageDestinationIdentifier>
+                <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                <lexs:SystemID>SysF</lexs:SystemID>
+            </lexs:MessageDestinationIdentifier>
+        </lexs:SRMessageMetadata>
+        <lexs:ResponseMetadata>
+            <lexs:ResultCode>Success</lexs:ResultCode>
+            <lexs:InResponseToMessageSequenceNumber>11</lexs:InResponseToMessageSequenceNumber>
+        </lexs:ResponseMetadata>
+        <lexs:Capabilities>
+            <lexs:DataItemCategory>
+                <lexs:DataItemCategoryText>Incident</lexs:DataItemCategoryText>
+                <lexs:DataItemCategoryDescription>Incident Reports</lexs:DataItemCategoryDescription>
+            </lexs:DataItemCategory>
+            <lexs:DataItemCategory>
+                <lexs:DataItemCategoryText>Arrest</lexs:DataItemCategoryText>
+                <lexs:DataItemCategoryDescription>Arrest Reports</lexs:DataItemCategoryDescription>
+            </lexs:DataItemCategory>
+            <lexs:PagingIndicator>true</lexs:PagingIndicator>
+            <lexs:MaxHitsReturned>100</lexs:MaxHitsReturned>
+            <lexs:StructuredSearch>
+                <lexs:MultipleValueIndicator>true</lexs:MultipleValueIndicator>
+                <lexs:WildcardIndicator>true</lexs:WildcardIndicator>
+                <lexs:FuzzySearchIndicator>true</lexs:FuzzySearchIndicator>
+                <lexs:DateRangeIndicator>true</lexs:DateRangeIndicator>
+                <lexs:NumericRangeIndicator>true</lexs:NumericRangeIndicator>
+            </lexs:StructuredSearch>
+            <lexs:TextSearch>
+                <lexs:ExactPhraseIndicator>true</lexs:ExactPhraseIndicator>
+                <lexs:LogicalOperatorIndicator>true</lexs:LogicalOperatorIndicator>
+                <lexs:WildcardIndicator>true</lexs:WildcardIndicator>
+            </lexs:TextSearch>
+        </lexs:Capabilities>
+    </lexs:CapabilitiesResponseMessage>
+</lexssr:getCapabilitiesResponse>

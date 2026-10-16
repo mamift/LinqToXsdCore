@@ -10,6 +10,7 @@
   <xs:element name="Element3" type="NestedEnumElementType" />
   <xs:element name="Element4" type="NestedEnumAttributeType" />
   <xs:element name="Element5" type="NestedDerivedEnumAttributeType" />
+  <xs:element name="OperatorElement" type="OperatorElementType" />
 
   <xs:simpleType name="VersionType">
     <xs:restriction base="xs:decimal">
@@ -29,13 +30,48 @@
       <xs:enumeration value="fr"/>
     </xs:restriction>
   </xs:simpleType>
-  
+
   <xs:simpleType name="InvalidCharEnum">
     <xs:restriction base="xs:NMTOKEN">
       <xs:enumeration value="en-fr"/>
       <xs:enumeration value="fr-de-it"/>
     </xs:restriction>
   </xs:simpleType>
+
+  <xs:simpleType name="OperatorEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="=="/>
+      <xs:enumeration value="!="/>
+      <xs:enumeration value="&lt;"/>
+      <xs:enumeration value="&lt;="/>
+      <xs:enumeration value=">"/>
+      <xs:enumeration value=">="/>
+      <xs:enumeration value="&amp;&amp;"/>
+      <xs:enumeration value="||"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ColonContainingEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="12:30"/>
+      <xs:enumeration value="23:59"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CollisionEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="*"/>
+      <xs:enumeration value="Asterisk"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="OperatorElementType">
+    <xs:sequence>
+      <xs:element name="Operator" type="OperatorEnum" />
+      <xs:element name="Time" type="ColonContainingEnum" />
+      <xs:element name="Shape" type="CollisionEnum" />
+    </xs:sequence>
+  </xs:complexType>
 
   <xs:complexType name="GlobalEnumElementType">
     <xs:sequence>

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2023, FIRST.ORG, INC.
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+  following conditions are met:
+  1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+     disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+     following disclaimer in the documentation and/or other materials provided with the distribution.
+  3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote
+     products derived from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!--
+== Package: cvss-v4.0
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="https://www.first.org/cvss/cvss-v4.0.xsd"
+  targetNamespace="https://www.first.org/cvss/cvss-v4.0.xsd"
+  elementFormDefault="qualified" attributeFormDefault="unqualified"
+  version="1.0">
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                               Attack Vector Enumeration (and Modified variant)                               -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="attackVectorType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NETWORK"/>
+      <xsd:enumeration value="ADJACENT"/>
+      <xsd:enumeration value="LOCAL"/>
+      <xsd:enumeration value="PHYSICAL"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedAttackVectorType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NETWORK"/>
+      <xsd:enumeration value="ADJACENT"/>
+      <xsd:enumeration value="LOCAL"/>
+      <xsd:enumeration value="PHYSICAL"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                             Attack Complexity Enumeration (and Modified variant)                             -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="attackComplexityType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="LOW"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedAttackComplexityType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                          Attack Requirements Enumeration (and Modified variant)                              -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="attackRequirementsType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="PRESENT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedAttackRequirementsType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="PRESENT"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                            Privileges Required Enumeration (and Modified variant)                            -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="privilegesRequiredType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="NONE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedPrivilegesRequiredType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                              User Interaction Enumeration (and Modified variant)                             -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="userInteractionType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="PASSIVE"/>
+      <xsd:enumeration value="ACTIVE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedUserInteractionType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="PASSIVE"/>
+      <xsd:enumeration value="ACTIVE"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                  Vulnerable System CIA Enumeration (and Modified variant)                                    -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="vulnCiaType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="HIGH"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedVulnCiaType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                    Subsequent System CIA Enumeration (and Modified variant)                  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="subCiaType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="HIGH"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedSubCType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="modifiedSubIaType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="SAFETY"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                      Exploit Maturity Enumeration                                            -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="exploitMaturityType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="UNREPORTED"/>
+      <xsd:enumeration value="PROOF_OF_CONCEPT"/>
+      <xsd:enumeration value="ATTACKED"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                         CIA Requirements Enumeration                                         -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="ciaRequirementType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="MEDIUM"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                         Safety Enumeration                                                   -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="safetyType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NEGLIGIBLE"/>
+      <xsd:enumeration value="PRESENT"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                         Automatable Enumeration                                              -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="automatableType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NO"/>
+      <xsd:enumeration value="YES"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                         Recovery Enumeration                                                 -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="recoveryType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="AUTOMATIC"/>
+      <xsd:enumeration value="USER"/>
+      <xsd:enumeration value="IRRECOVERABLE"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                         Value Density Enumeration                                            -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="valueDensityType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="DIFFUSE"/>
+      <xsd:enumeration value="CONCENTRATED"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                         Vulnerability Response Effort Enumeration                            -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="vulnerabilityResponseEffortType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="LOW"/>
+      <xsd:enumeration value="MODERATE"/>
+      <xsd:enumeration value="HIGH"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                         Provider Urgency Enumeration                                         -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="providerUrgencyType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="CLEAR"/>
+      <xsd:enumeration value="GREEN"/>
+      <xsd:enumeration value="AMBER"/>
+      <xsd:enumeration value="RED"/>
+      <xsd:enumeration value="NOT_DEFINED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                               Zero To Ten - to record scores from 0.0 to 10.0                                -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="zeroToTenDecimalType">
+    <xsd:annotation>
+      <xsd:documentation>Value restriction to single decimal values from 0.0 to 10.0, as used in CVSS scores</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:decimal">
+      <xsd:minInclusive value="0"/>
+      <xsd:maxInclusive value="10"/>
+      <xsd:fractionDigits value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                             Severity Enumeration                                             -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="severityType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NONE"/>      <!-- Base score is 0.0 -->
+      <xsd:enumeration value="LOW"/>       <!-- Base scores from 0.1 to  3.9 -->
+      <xsd:enumeration value="MEDIUM"/>    <!-- Base scores from 4.0 to  6.9 -->
+      <xsd:enumeration value="HIGH"/>      <!-- Base scores from 7.0 to  8.9 -->
+      <xsd:enumeration value="CRITICAL"/>  <!-- Base scores from 9.0 to 10.0 -->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                              Base, Threat, Environmental and Supplemental Group Definitions                  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="baseGroup">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="attack-vector" type="attackVectorType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="attack-complexity" type="attackComplexityType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="attack-requirements" type="attackRequirementsType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="privileges-required" type="privilegesRequiredType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="user-interaction" type="userInteractionType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="confidentiality-of-vulnerable-system" type="vulnCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="integrity-of-vulnerable-system" type="vulnCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="availability-of-vulnerable-system" type="vulnCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="confidentiality-of-subsequent-system" type="subCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="integrity-of-subsequent-system" type="subCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="availability-of-subsequent-system" type="subCiaType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="base-score" type="zeroToTenDecimalType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="base-severity" type="severityType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="threatGroup">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="exploit-maturity" type="exploitMaturityType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="environmentalGroup">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="confidentiality-requirement" type="ciaRequirementType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="integrity-requirement" type="ciaRequirementType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="availability-requirement" type="ciaRequirementType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-attack-vector" type="modifiedAttackVectorType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-attack-complexity" type="modifiedAttackComplexityType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-attack-requirements" type="modifiedAttackRequirementsType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-privileges-required" type="modifiedPrivilegesRequiredType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-user-interaction" type="modifiedUserInteractionType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-confidentiality-of-vulnerable-system" type="modifiedVulnCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-integrity-of-vulnerable-system" type="modifiedVulnCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-availability-of-vulnerable-system" type="modifiedVulnCiaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-confidentiality-of-subsequent-system" type="modifiedSubCType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-integrity-of-subsequent-systemt" type="modifiedSubIaType"/>
+      <xsd:element minOccurs="1" maxOccurs="1" name="modified-availability-of-subsequent-system" type="modifiedSubIaType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="environmental-score" type="zeroToTenDecimalType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="environmental-severity" type="severityType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="supplementallGroup">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="safety" type="safetyType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="automatable" type="automatableType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="recovery" type="recoveryType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value-density" type="valueDensityType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="vulnerability-response-effort" type="vulnerabilityResponseEffortType"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="provider-urgency" type="providerUrgencyType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--                                            CVSS Version 4.0 Type                                             -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="cvssType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="base_metrics" type="baseGroup"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="threat_metrics" type="threatGroup"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="environmental_metrics" type="environmentalGroup"/>
+      <xsd:element minOccurs="0" maxOccurs="1" name="supplemental_metrics" type="supplementallGroup"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="cvssv4.0" type="cvssType"/>
+
+</xsd:schema>

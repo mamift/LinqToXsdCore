@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document: $Id: Sample-10-two-payloads.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original: 1/17/2008
+    LEXS version  : 3.1.4
+    Description   :
+        Sample XML instance for the publish message that illustrates a Structured Payload that builds on the Digest, along with a 2nd Structured Payload that builds upon the 1st Structured Payload as well as the Digest.
+        In this example, the Digest includes a person with multiple alternate names.  
+        Note that AlternateName has an "s:id" referenced by the 1st Structured Payload rather than using a reference to the Person element itself; this is because AlternateName is a multiply occurring element, 
+        so any Structured Payload that builds upon it must be able to reference the proper AlternateName element.
+        The 1st Structured Payload builds upon the alternate name to add a name prefix, and also adds a Structured Payload object (an IRC chat address) that does not correspond to any LEXS entity.  
+        The 2nd Structured Payload builds upon the name prefix in the 1st Structured Payload to indicate whether the name prefix is honorary, builds up on the person in the digest to add a hacker name, and builds upon the 1st Structured Payload's IRC chat address to add the first use date.
+        Layering is illustrated below
+SP2__________HonoraryIndicator_____HackerName_______FirstUseDate
+___________________!!_________________//________________!!
+___________________!!________________//_________________!!
+___________________\/_______________//__________________\/
+SP1__________AlternateNamePrefix___//________________IRC_Address
+___________________!!_____________//
+___________________!!____________//
+___________________!!___________//
+___________________!!__________//
+___________________!!_________//
+___________________!!________//
+___________________!!_______//
+___________________!!______//
+___________________!!_____//
+___________________\/____//
+Digest_____________Person______________________________N/A
+-->
+<lexspd:doPublish 
+    xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1" 
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.0"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0" 
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1" 
+    xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/publishdiscover/3.1 ../../xsd/publish-discover/3.1/publish-discover.xsd">
+    <lexs:PublishMessageContainer>
+        <lexs:PublishMessage>
+            <lexs:PDMessageMetadata>
+                <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+                <lexs:MessageDateTime>2006-12-01T09:30:47.0Z</lexs:MessageDateTime>
+                <lexs:MessageSequenceNumber>10</lexs:MessageSequenceNumber>
+                <lexs:DataSensitivity>SBU</lexs:DataSensitivity>
+            </lexs:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+            <lexs:DataSubmitterMetadata>
+                <lexs:SystemIdentifier>
+                    <nc:OrganizationName>Hypothetical Organization C</nc:OrganizationName>
+                    <lexs:SystemID>SysC</lexs:SystemID>
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Michael</nc:PersonGivenName>
+                    <nc:PersonSurName>Park</nc:PersonSurName>
+                    <!-- Contact telephone number is required, other kinds of numbers optional -->
+                    <nc:ContactTelephoneNumber>
+                        <!-- Phone number listed here split into parts, although the full phone number field could be used instead or in addition to the parts -->
+                        <nc:NANPTelephoneNumber>
+                            <nc:TelephoneAreaCodeID>202</nc:TelephoneAreaCodeID>
+                            <nc:TelephoneExchangeID>555</nc:TelephoneExchangeID>
+                            <nc:TelephoneLineID>1212</nc:TelephoneLineID>
+                        </nc:NANPTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:DataSubmitterMetadata>
+            <!-- A message may include one or more packages -->
+            <lexs:DataItemPackage>
+                <lexs:PackageMetadata>
+                    <lexs:DataItemID>12345678</lexs:DataItemID>
+                    <lexs:DataItemCompleteIndicator>false</lexs:DataItemCompleteIndicator>
+                    <!-- DataItemContact is the person(s) who can be contacted about the data item  -->
+                    <!-- DataItemContact is optional, and there can be more than one -->
+                    <lexs:DataItemContact>
+                        <!-- PersonName may be a split out name, or both a split out name and a full name.  Last name is required. -->
+                        <nc:PersonSurName>Smith</nc:PersonSurName>
+                        <nc:PersonFullName>Mary Jones-Smith</nc:PersonFullName>
+                        <!-- Contact telephone number is required, other kinds of numbers optional -->
+                        <nc:ContactTelephoneNumber>
+                            <!-- Full phone number listed here, although the phone number could be split into parts -->
+                            <nc:FullTelephoneNumber>
+                                <nc:TelephoneNumberFullID>333-444-5555 x6</nc:TelephoneNumberFullID>
+                            </nc:FullTelephoneNumber>
+                        </nc:ContactTelephoneNumber>
+                    </lexs:DataItemContact>
+                    <lexs:DataItemDate>1967-08-13</lexs:DataItemDate>
+                    <!-- DataItemReferenceID may be the same as the DataItemID, or may be a more human-readable version of DataItemID -->
+                    <lexs:DataItemReferenceID>12345678</lexs:DataItemReferenceID>
+                    <lexs:DataItemPublishInstruction>Insert</lexs:DataItemPublishInstruction>
+                    <lexs:DataItemStatus>Valid</lexs:DataItemStatus>
+                    <!--=======================  Data Owner Metadata  =======================-->
+                    <lexs:DataOwnerMetadata>
+                        <lexs:DataOwnerIdentifier>
+                            <lexs:OriginatingAgencyID>AA1234567</lexs:OriginatingAgencyID>
+                            <nc:OrganizationName>Hypothetical Agency A</nc:OrganizationName>
+                            <lexs:SystemID>SysA</lexs:SystemID>
+                        </lexs:DataOwnerIdentifier>
+                        <lexs:DataOwnerContact>
+                            <nc:PersonGivenName>Will</nc:PersonGivenName>
+                            <nc:PersonSurName>Jones</nc:PersonSurName>
+                            <nc:ContactTelephoneNumber>
+                                <nc:FullTelephoneNumber>
+                                    <nc:TelephoneNumberFullID>111-222-3333</nc:TelephoneNumberFullID>
+                                </nc:FullTelephoneNumber>
+                            </nc:ContactTelephoneNumber>
+                        </lexs:DataOwnerContact>
+                    </lexs:DataOwnerMetadata>
+                    <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <lexs:Digest>
+                    <!--=======================  Person  =======================-->
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person s:id="Person1">
+                            <nc:PersonAlternateName s:id="AltName1">
+                                <nc:PersonGivenName>Bill</nc:PersonGivenName>
+                                <nc:PersonSurName>Smith</nc:PersonSurName>
+                            </nc:PersonAlternateName>
+                            <nc:PersonAlternateName s:id="AltName2">
+                                <nc:PersonGivenName>John</nc:PersonGivenName>
+                                <nc:PersonSurName>Doe</nc:PersonSurName>
+                            </nc:PersonAlternateName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:Digest>
+                <!--======================= Structured Payload #1 ======================-->
+                <lexs:StructuredPayload s:id="SP1">
+                    <lexs:StructuredPayloadMetadata>
+                        <lexs:CommunityURI>http://somewhere.gov/new-community1</lexs:CommunityURI>
+                        <lexs:CommunityDescription>New Community 1</lexs:CommunityDescription>
+                        <lexs:CommunityVersion>1.0</lexs:CommunityVersion>
+                    </lexs:StructuredPayloadMetadata>
+                    <new1:Report xmlns:new1="http://somewhere.gov/new-community1">
+                        <new1:Person>
+                            <new1:PersonAlternateName s:id="SP1AltName1">
+                                <nc:PersonPrefixNameText>Dr.</nc:PersonPrefixNameText>
+                                <!-- Augmentation element used here since augmenting a NIEM Person element -->
+                                <new1:PersonNameAugmentation>
+                                    <lexslib:SameAsDigestReference lexslib:ref="AltName1"/>
+                                </new1:PersonNameAugmentation>
+                            </new1:PersonAlternateName>
+                        </new1:Person>
+                        <!-- IRC Address is an element for which there is no corresponding Digest element, so no reference to Digest -->
+                        <new1:IRCAddress s:id="IRC1">
+                            <new1:UserName>xyz</new1:UserName>
+                            <new1:System>abc</new1:System>
+                        </new1:IRCAddress>
+                    </new1:Report>
+                </lexs:StructuredPayload>
+                <!--======================= Structured Payload #2 ======================-->
+                <lexs:StructuredPayload>
+                    <lexs:StructuredPayloadMetadata>
+                        <lexs:CommunityURI>http://somewhere.gov/new-community2</lexs:CommunityURI>
+                        <lexs:CommunityDescription>New Community 2</lexs:CommunityDescription>
+                        <lexs:CommunityVersion>1.0</lexs:CommunityVersion>
+                    </lexs:StructuredPayloadMetadata>
+                    <new2:Report xmlns:new2="http://somewhere.gov/new-community2">
+                        <new2:Person>
+                            <new2:PersonAlternateName>
+                                <new2:PersonPrefixNameHonoraryIndicator>true</new2:PersonPrefixNameHonoraryIndicator>
+                                <!-- Augmentation not used here since PersonAlternateName doesn't include any NIEM elements -->
+                                <lexslib:SameAsPayloadReference lexslib:ref="SP1AltName1" lexslib:pref="SP1"/>
+                            </new2:PersonAlternateName>
+                            <new2:HackerName>The Doctor</new2:HackerName>
+                            <!-- Augmentation element used here assuming the new2:Person includes NIEM elements -->
+                            <new2:PersonAugmentation>
+                                <lexslib:SameAsDigestReference lexslib:ref="Person1"/>
+                            </new2:PersonAugmentation>
+                        </new2:Person>
+                        <new2:IRCAddress>
+                            <new2:FirstUseDate>2000-01-01</new2:FirstUseDate>
+                            <!-- Augmentation not used here assuming IRCAddress doesn't include any NIEM elements -->
+                            <lexslib:SameAsPayloadReference lexslib:ref="IRC1" lexslib:pref="SP1"/>
+                        </new2:IRCAddress>
+                    </new2:Report>
+                </lexs:StructuredPayload>
+            </lexs:DataItemPackage>	
+        </lexs:PublishMessage>
+    </lexs:PublishMessageContainer>
+</lexspd:doPublish>

@@ -229,14 +229,42 @@ namespace Xml.Schema.Linq.Tests
             return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs);
         }
 
+        /// <summary>
+        /// Enumerates the sibling .xsd files that share the same directory as <paramref name="xsdFile"/> within the
+        /// <paramref name="fs"/> mock file system.
+        /// <para>The mock file system builds its keys with '\' directory separators regardless of the host OS (see
+        /// <see cref="GetAssemblyTextFilesDictionary"/>). On Unix hosts '\' is not a path separator, so relying on
+        /// <see cref="IFileInfo.DirectoryName"/> points at the wrong directory and a directory enumeration returns every
+        /// schema in the aggregate mock file system. Matching on normalised directory prefixes keeps the sibling set
+        /// correct on all platforms.</para>
+        /// </summary>
+        private static IEnumerable<IFileInfo> EnumerateSiblingXsds(IFileInfo xsdFile, IMockFileDataAccessor fs)
+        {
+            static string NormalisePath(string path) => path.Replace('\\', '/');
+
+            string targetDirectory = NormalisePath(xsdFile.FullName);
+            int targetSeparatorIndex = targetDirectory.LastIndexOf('/');
+            targetDirectory = targetSeparatorIndex >= 0 ? targetDirectory.Substring(0, targetSeparatorIndex + 1) : string.Empty;
+
+            foreach (string path in fs.AllFiles)
+            {
+                string normalised = NormalisePath(path);
+                int fileSeparatorIndex = normalised.LastIndexOf('/');
+                string fileDirectory = fileSeparatorIndex >= 0 ? normalised.Substring(0, fileSeparatorIndex + 1) : string.Empty;
+
+                if (!string.Equals(fileDirectory, targetDirectory, StringComparison.OrdinalIgnoreCase)) continue;
+                if (!normalised.EndsWith(".xsd", StringComparison.OrdinalIgnoreCase)) continue;
+
+                yield return new MockFileInfo(fs, path);
+            }
+        }
+
         public static XmlSchemaSet GetXmlSchemaSetAndPreload(IFileInfo xsdFile, IMockFileDataAccessor fs)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
             if (fs == null) throw new ArgumentNullException(nameof(fs));
 
-            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
-            MockDirectoryInfo directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
-            var allXsds = directoryInfo.GetFiles("*.xsd").ToArray();
+            var allXsds = EnumerateSiblingXsds(xsdFile, fs).ToArray();
 
             var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
             var xmlReaderSettings = new XmlReaderSettings() {
@@ -309,9 +337,7 @@ namespace Xml.Schema.Linq.Tests
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
             if (fs == null) throw new ArgumentNullException(nameof(fs));
 
-            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
-            MockDirectoryInfo directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
-            var additionalXsds = directoryInfo.GetFiles("*.xsd").Where(f => f.FullName != xsdFile.FullName).ToArray();
+            var additionalXsds = EnumerateSiblingXsds(xsdFile, fs).Where(f => f.FullName != xsdFile.FullName).ToArray();
 
             var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
 

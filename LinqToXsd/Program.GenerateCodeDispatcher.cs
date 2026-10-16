@@ -61,8 +61,20 @@ namespace LinqToXsd
 
                     if (File.Exists(legacyOutputFilePath))
                     {
-                        PrintLn("NOTE: Since v3.4.17, the default output file extension has changed. ".Yellow());
-                        PrintLn($"You should delete the existing source code file: {legacyOutputFileName}".DarkYellow());
+                        if (options.AutoConfig)
+                        {
+                            // With the -a flag, remove the legacy output file automatically
+                            // before emitting the new one so they don't end up defining
+                            // the same types in the same assembly.
+                            File.Delete(legacyOutputFilePath);
+                            PrintLn($"NOTE: Since v3.4.24, this CLI tool now automatically deletes existing files with the .xsd.cs file extension.".Yellow());
+                            PrintLn($"Removed legacy generated code file: {legacyOutputFileName}".Yellow());
+                        }
+                        else
+                        {
+                            PrintLn("NOTE: Since v3.4.17, the default output file extension has changed. ".Yellow());
+                            PrintLn($"You should delete the existing source code file: {legacyOutputFileName}".DarkYellow());
+                        }
                     }
 
                     var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);

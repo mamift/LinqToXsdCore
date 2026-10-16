@@ -112,7 +112,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsNotEmpty(allElements);
         }
 
-        [Test, TestCase("StuDateAndTime.xsd"), TestCase("\\AkomaNtoso\\akomantoso30.xsd"), TestCase("Opml\\opml2.xsd")]
+        [Test, TestCase("StuDateAndTime.xsd"), TestCase("AkomaNtoso\\akomantoso30.xsd"), TestCase("Opml\\opml2.xsd")]
         public void TestRetrieveAllAnonymousSimpleTypes(string endsWithFilePattern)
         {
             var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
@@ -123,7 +123,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsNotEmpty(anonTypes);
         }
 
-        [Test, TestCase("\\AkomaNtoso\\akomantoso30.xsd"), TestCase("StuDateAndTime.xsd")]
+        [Test, TestCase("AkomaNtoso\\akomantoso30.xsd"), TestCase("StuDateAndTime.xsd")]
         public void TestRetrieveAllAnonymousSimpleUnionTypes(string endsWithFilePattern)
         {
             var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
@@ -134,7 +134,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsNotEmpty(anonUnionTypes);
         }
 
-        [Test, TestCase("\\AkomaNtoso\\akomantoso30.xsd")]
+        [Test, TestCase("AkomaNtoso\\akomantoso30.xsd")]
         public void TestRetrieveAllSimpleTypes(string endsWithFilePattern)
         {
             var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);

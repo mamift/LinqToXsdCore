@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: publish-discover.xsd 1867 2008-12-22 01:31:55Z ys34 $
+    LEXS version  : 3.1.4
+    Namespace     : xmlns:lexs="http://usdoj.gov/leisp/lexs/publishdiscover/3.1"
+    Description   : LEXS Publish and Discover Message Format Schema
+-->
+<xsd:schema
+    targetNamespace="http://usdoj.gov/leisp/lexs/publishdiscover/3.1"
+    version="3.1.4"
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1"    
+    xmlns:lexspd="http://usdoj.gov/leisp/lexs/publishdiscover/3.1"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified">
+    
+    <xsd:import
+        namespace="http://usdoj.gov/leisp/lexs/3.1"
+        schemaLocation="../../lexs/3.1/lexs.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:documentation>LEXS Publish Discover Message Format Schema</xsd:documentation>
+    </xsd:annotation>
+    
+    <xsd:element name="doPublish" type="lexspd:DoPublishType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS Submission Publish Method</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="DoPublishType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS Submission Publish Method</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="lexs:PublishMessageContainer"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+</xsd:schema>

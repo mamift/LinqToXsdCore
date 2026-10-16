@@ -20,7 +20,7 @@ namespace W3C.XSD {
     using global::System.Xml.Schema;
     using global::System.Xml.Linq;
     using global::Xml.Schema.Linq;
-    using W3C;
+    using global::W3C;
     
     
     /// <summary>
@@ -15973,7 +15973,7 @@ namespace W3C {
     using global::System.Xml.Schema;
     using global::System.Xml.Linq;
     using global::Xml.Schema.Linq;
-    using W3C.XSD;
+    using global::W3C.XSD;
     
     
     public sealed class lang {

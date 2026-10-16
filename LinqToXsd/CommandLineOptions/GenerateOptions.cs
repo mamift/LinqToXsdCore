@@ -40,16 +40,17 @@ namespace LinqToXsd
         /// instance of that configuration file.
         /// <para>If this resolves to a folder, then all those configuration files are merged into a single instance.</para>
         /// </summary>
-        public LinqToXsdSettings GetConfigInstance(IProgress<string> progress = null)
+        public LinqToXsdSettings? GetConfigInstance(IProgress<string> progress = null)
         {
             if (linqToXsdSettings != null) return linqToXsdSettings; // don't run twice
             if (Config.IsEmpty()) return null;
             if (!File.Exists(Config) && !Directory.Exists(Config)) return null;
 
             var fileInfo = new FileInfo(Config);
-            linqToXsdSettings = fileInfo.Attributes.HasFlag(FileAttributes.Directory)
-                ? ConfigurationProvider.Load(new DirectoryInfo(fileInfo.FullName), progress) // load directory
-                : XObjectsCoreGenerator.LoadLinqToXsdSettings(Config); // load file
+            if (fileInfo.Attributes.HasFlag(FileAttributes.Directory))
+                linqToXsdSettings = ConfigurationProvider.Load(new DirectoryInfo(fileInfo.FullName), progress);
+            else
+                linqToXsdSettings = XObjectsCoreGenerator.LoadLinqToXsdSettings(Config);
 
             return linqToXsdSettings;
         }
@@ -64,7 +65,7 @@ namespace LinqToXsd
 
         [Option('a', nameof(AutoConfig), HelpText =
             "(bool) Specify this with a folder containing XSDs and accompanying configuration files. This argument associate a configuration file with an XSD when one follows the naming convention: 'schema.xsd' + 'schema.xsd.config' - this is the default convention used by the 'config -e' verb when you specify a folder. Use this parameter to associate an XSD with its own configuration settings to prevent those settings being overriden or merged as the -" +
-            nameof(Config) + " argument would do. Only accepts folder paths. Incompatible with -" + nameof(Config) + ". Will only generate code for XSDs that have an accompanying .config file. If no output is generated, run the 'config' verb on the folder first.")]
+            nameof(Config) + " argument would do. Only accepts folder paths. Incompatible with -" + nameof(Config) + ". Will only generate code for XSDs that have an accompanying .config file. If no output is generated, run the 'config' verb on the folder first. Any legacy output files (e.g. 'schema.xsd.cs') found next to the XSDs are deleted automatically before the new output ('schema.xsd-g.cs') is written.")]
         public bool AutoConfig
         {
             get => autoConfig;

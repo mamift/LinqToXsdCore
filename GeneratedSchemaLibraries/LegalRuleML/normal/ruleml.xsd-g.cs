@@ -20,7 +20,7 @@ namespace www.w3.org.XML.Item1998.@namespace {
     using global::System.Xml.Schema;
     using global::System.Xml.Linq;
     using global::Xml.Schema.Linq;
-    using ruleml.org.spec;
+    using global::ruleml.org.spec;
     
     
     public sealed class lang {
@@ -47,9 +47,9 @@ namespace ruleml.org.spec {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using www.w3.org.XML.Item1998.@namespace;
-    using docs.oasis.open.org.legalruleml.ns.v1.Item0;
-    using www.w3.org.Item2001.XMLSchema.datatypes;
+    using global::www.w3.org.XML.Item1998.@namespace;
+    using global::docs.oasis.open.org.legalruleml.ns.v1.Item0;
+    using global::www.w3.org.Item2001.XMLSchema.datatypes;
     
     
     public partial class duration : XTypedElement, IXMetaData {
@@ -46117,7 +46117,7 @@ namespace docs.oasis.open.org.legalruleml.ns.v1.Item0 {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using ruleml.org.spec;
+    using global::ruleml.org.spec;
     
     
     /// <summary>
@@ -141683,7 +141683,7 @@ namespace www.w3.org.Item2001.XMLSchema.datatypes {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using ruleml.org.spec;
+    using global::ruleml.org.spec;
     
     
     public sealed class @string {

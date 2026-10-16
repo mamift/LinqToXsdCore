@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document      : $Id: codes.xsd 2023 2009-01-23 20:54:43Z ys34 $
+    LEXS version  : 3.1.4
+    Namespace     : xmlns:lexs="http://usdoj.gov/leisp/lexs/codes/3.1"
+    Description   : LEXS Codes
+-->
+<xsd:schema
+    targetNamespace="http://usdoj.gov/leisp/lexs/codes/3.1"
+    version="3.1.4"
+    xmlns:i="http://niem.gov/niem/appinfo/2.0"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:lexscodes="http://usdoj.gov/leisp/lexs/codes/3.1"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+    <xsd:annotation>
+        <xsd:documentation>LEXS code lists.</xsd:documentation>
+        <xsd:appinfo>
+            <i:ConformantIndicator>true</i:ConformantIndicator>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+    <xsd:import
+        namespace="http://niem.gov/niem/structures/2.0"
+        schemaLocation="../../niem-constrained/structures/2.0/structures.xsd"/>
+    <xsd:import
+        namespace="http://niem.gov/niem/appinfo/2.0"
+        schemaLocation="../../niem-constrained/appinfo/2.0/appinfo.xsd"/>
+    
+    <!-- LEXS Data Extension Schema Codes -->
+    <xsd:simpleType name="TelephoneNumberCategoryCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>A code list that enumerates telephone number type.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Facsimile">
+                <xsd:annotation>
+                    <xsd:documentation>Fax telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Mobile">
+                <xsd:annotation>
+                    <xsd:documentation>Mobile telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Pager">
+                <xsd:annotation>
+                    <xsd:documentation>Pager telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VoIP">
+                <xsd:annotation>
+                    <xsd:documentation>VoIP telephone number ( such as Skype, Vonage )</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LandLine">
+                <xsd:annotation>
+                    <xsd:documentation>Landline telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Other">
+                <xsd:annotation>
+                    <xsd:documentation>Other telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="TelephoneNumberCategoryCodeType">
+        <xsd:annotation>
+            <xsd:documentation>A code list that enumerates telephone number type.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:TelephoneNumberCategoryCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <!-- LEXS Organizational Schema Codes -->
+    <xsd:simpleType name="AdvisoryCategoryCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS Warning and Error categories list.  Note that some warnings might become errors.  For example, if an unsupported element is provided in a search query and that is the only element provided, the query cannot be processed and the result should be an error; versus an unsupported element that can be ignored with the result based on remaining elements.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="NetworkFailure">
+                <xsd:annotation>
+                    <xsd:documentation>Network failure (e.g.. cannot contact service provider)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InvalidResponse">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid Response (response from service provider cannot be processed)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InvalidRequest">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid Request (service provider could not process incoming request)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Timeout">
+                <xsd:annotation>
+                    <xsd:documentation>Timeout (service provider did not respond in allotted time)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BusinessRuleNotMet">
+                <xsd:annotation>
+                    <xsd:documentation>Business Rules Not Met (e.g. service provider requires SSN in query, but query did not provide SSN value)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NextPreviousNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Next/Previous Not Supported</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="StructuredSearchNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Structured Search Not Supported (structured search submitted, but service provider or data source only support unstructured searches)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UnstructuredSearchNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Unstructured Search Not Supported (unstructured search submitted, but service provider or data source only support structured searches)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FuzzyMatchNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Fuzzy Match Not Supported</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WildcardNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Wildcards Not Supported (service provider does not support wildcard queries in unstructured searches)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LogicalOperatorsNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Logical Operators Not Supported (service provider does not support logical AND/OR queries in unstructured searches)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PhrasesNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Phrases Not Supported (service provider does not support exact phrase queries in unstructured searches)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InvalidAttachmentRequested">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid Attachment Requested (service provider received request for invalid attachment)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InvalidDataItemRequested">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid Data Item Requested (service provider received getDataItem request for data item that does not exist)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OtherError">
+                <xsd:annotation>
+                    <xsd:documentation>Other Error (for errors that don't fall into categories above)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="QueryObjectNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Unsupported Query Object (e.g. query was on vehicle and service provider doesn't handle vehicles)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="QueryFieldNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Unsupported Query Field (e.g. query was on SSN and service provider doesn't include SSN)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="QueryOperatorNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Unsupported Query Operator (e.g. query included a wildcard and service provider only does exact)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="QuantityMismatch">
+                <xsd:annotation>
+                    <xsd:documentation>Quantity Mismatch (user asked for maximum # of hits, service provider supplied different #)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PointerInformationOnly">
+                <xsd:annotation>
+                    <xsd:documentation>Pointer Information Only (service provider can only return contact information for follow-up, but no data)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MultipleValuesNotSupported">
+                <xsd:annotation>
+                    <xsd:documentation>Multiple Values Not Supported (search query included multiple values for a search field, but service provider only supports single values)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OtherWarning">
+                <xsd:annotation>
+                    <xsd:documentation>Other Warning (other issues that don't fall into above categories)  </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="AdvisoryCategoryCodeType">
+        <xsd:annotation>
+            <xsd:documentation>LEXS Warning and Error categories list.  Note that some warnings might become errors.  For example, if an unsupported element is provided in a search query and that is the only element provided, the query cannot be processed and the result should be an error; versus an unsupported element that can be ignored with the result based on remaining elements.
+            </xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:AdvisoryCategoryCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="DataCategoryCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>Indicates what kind of data the requester wants back in a response.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="All">
+                <xsd:annotation>
+                    <xsd:documentation>Return all available entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Activity">
+                <xsd:annotation>
+                    <xsd:documentation>Return activity entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Aircraft">
+                <xsd:annotation>
+                    <xsd:documentation>Return aircraft entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CreditCard">
+                <xsd:annotation>
+                    <xsd:documentation>Return credit card entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Document">
+                <xsd:annotation>
+                    <xsd:documentation>Return document entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Drug">
+                <xsd:annotation>
+                    <xsd:documentation>Return drug entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Email">
+                <xsd:annotation>
+                    <xsd:documentation>Return email entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Explosive">
+                <xsd:annotation>
+                    <xsd:documentation>Return explosive entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Firearm">
+                <xsd:annotation>
+                    <xsd:documentation>Return firearm entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Hash">
+                <xsd:annotation>
+                    <xsd:documentation>Return hash entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IntangibleItem">
+                <xsd:annotation>
+                    <xsd:documentation>Return intangible item entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InstantMessenger">
+                <xsd:annotation>
+                    <xsd:documentation>Return instant messenger entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NetworkAddress">
+                <xsd:annotation>
+                    <xsd:documentation>Return network address entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Location">
+                <xsd:annotation>
+                    <xsd:documentation>Return location entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Organization">
+                <xsd:annotation>
+                    <xsd:documentation>Return organization entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Person">
+                <xsd:annotation>
+                    <xsd:documentation>Return person entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Snippet">
+                <xsd:annotation>
+                    <xsd:documentation>Return snippets</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Substance">
+                <xsd:annotation>
+                    <xsd:documentation>Return substance entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TangibleItem">
+                <xsd:annotation>
+                    <xsd:documentation>Return tangible item entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TelephoneNumber">
+                <xsd:annotation>
+                    <xsd:documentation>Return telephone number entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Vehicle">
+                <xsd:annotation>
+                    <xsd:documentation>Return vehicle entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Vessel">
+                <xsd:annotation>
+                    <xsd:documentation>Return vessel entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="DataCategoryCodeType">
+        <xsd:annotation>
+            <xsd:documentation>Indicates what kind of data the requester wants back in a response.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:DataCategoryCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="DataItemPublishInstructionCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>A code list that enumerates DataItem Publish Instruction options</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Insert">
+                <xsd:annotation>
+                    <xsd:documentation>Insert Data Item</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Delete">
+                <xsd:annotation>
+                    <xsd:documentation>Delete Data Item</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="DataItemPublishInstructionCodeType">
+        <xsd:annotation>
+            <xsd:documentation>A code list that enumerates DataItem Publish Instruction options</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:DataItemPublishInstructionCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="DisseminationCriteriaCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>This information is provided by the data owner to indicate who is allowed to see the information.  For publish it provides information to the service provider about what can be returned as the result of a search. For search or get results, it provides information to the user so they know the criteria for this information.  Note that this is different from the data sensitivity included at the message level.  The values and their meanings for dissemination criteria are shown below.
+            </xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="white">
+                <xsd:annotation>
+                    <xsd:documentation>all users are allowed access</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="gray">
+                <xsd:annotation>
+                    <xsd:documentation>the data owner has full access; all other users are provided pointer (i.e. who to contact and how) information only</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="black">
+                <xsd:annotation>
+                    <xsd:documentation>the data owner has full access; all other users receive no information and no indication that there was a hit when performing searches</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="DisseminationCriteriaCodeType">
+        <xsd:annotation>
+            <xsd:documentation>This information is provided by the data owner to indicate who is allowed to see the information.  For publish it provides information to the service provider about what can be returned as the result of a search. For search or get results, it provides information to the user so they know the criteria for this information.  Note that this is different from the data sensitivity included at the message level.  The values and their meanings for dissemination criteria are shown below.
+            </xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:DisseminationCriteriaCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="QueryMatchCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies what kind of match the query requests.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="fuzzy">
+                <xsd:annotation>
+                    <xsd:documentation>fuzzy match</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="exact">
+                <xsd:annotation>
+                    <xsd:documentation>exact match</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="gt">
+                <xsd:annotation>
+                    <xsd:documentation>greater than</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ge">
+                <xsd:annotation>
+                    <xsd:documentation>greater or equal to</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="lt">
+                <xsd:annotation>
+                    <xsd:documentation>less than</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="le">
+                <xsd:annotation>
+                    <xsd:documentation>less than or equal to</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="wildcard">
+                <xsd:annotation>
+                    <xsd:documentation>wildcard match</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="QueryMatchCodeType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies what kind of match the query requests.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:QueryMatchCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="RenderingMethodCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>A code list that enumerates possible rendering methods.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="XHTMLStyleSheet">
+                <xsd:annotation>
+                    <xsd:documentation>XSTL Transformation results in XHTML</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HTMLStyleSheet">
+                <xsd:annotation>
+                    <xsd:documentation>XSTL Transformation results in HTML</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PDFStyleSheet">
+                <xsd:annotation>
+                    <xsd:documentation>XSLT Transformation results in PDF ( XSL-FO ) </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TextStyleSheet">
+                <xsd:annotation>
+                    <xsd:documentation>XSLT Transformation results in TXT</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OtherStyleSheet">
+                <xsd:annotation>
+                    <xsd:documentation>Other Stylesheet Transformation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RenderedBinary">
+                <xsd:annotation>
+                    <xsd:documentation>Attachment was prerendered into a binary</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Narrative">
+                <xsd:annotation>
+                    <xsd:documentation>Attachment was prerendered into unstructured narrative text</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="RenderingMethodCodeType">
+        <xsd:annotation>
+            <xsd:documentation>A code list that enumerates possible rendering methods.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:RenderingMethodCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="ResultCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>Response status codes</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Success">
+                <xsd:annotation>
+                    <xsd:documentation>Execution of the request was successful</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Warning">
+                <xsd:annotation>
+                    <xsd:documentation>Execution of the request produced warnings</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Error">
+                <xsd:annotation>
+                    <xsd:documentation>Execution of the request produced errors</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="ResultCodeType">
+        <xsd:annotation>
+            <xsd:documentation>Response status codes</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:ResultCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="RoleTypeCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>All role types defined in the LEXS 3.1 data schema.  Queries can specify that structured searches should only match certain roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="CriminalOrganizationType">
+                <xsd:annotation>
+                    <xsd:documentation>Criminal Organization role type, applies to Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EnforcementOfficialType">
+                <xsd:annotation>
+                    <xsd:documentation>Enforcement Official role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JudicialOfficialType">
+                <xsd:annotation>
+                    <xsd:documentation>Judicial role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JurorType">
+                <xsd:annotation>
+                    <xsd:documentation>Juror role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MissingPersonType">
+                <xsd:annotation>
+                    <xsd:documentation>Missing Person role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OtherInvolvedPersonType">
+                <xsd:annotation>
+                    <xsd:documentation>Other Involved Person role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PropertyType">
+                <xsd:annotation>
+                    <xsd:documentation>Property role type, applies to Aircraft, Drug, Explosive, Firearm, Tangible Item, Vehicle, and Vessel</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RegisteredOffenderType">
+                <xsd:annotation>
+                    <xsd:documentation>Registered Offender role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ResourceType">
+                <xsd:annotation>
+                    <xsd:documentation>Resource role type, applies to Person and Tangible Item</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SubjectType">
+                <xsd:annotation>
+                    <xsd:documentation>Subject role type, applies to Person and Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VehicleBranderType">
+                <xsd:annotation>
+                    <xsd:documentation>Vehicle Brander role type, applies to Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VictimType">
+                <xsd:annotation>
+                    <xsd:documentation>Victim role type, applies to Person and Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WeaponType">
+                <xsd:annotation>
+                    <xsd:documentation>Weapon role type, applies to Aircraft, Drug, Explosive, Firearm, Tangible Item, Vehicle, and Vessel</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WitnessType">
+                <xsd:annotation>
+                    <xsd:documentation>Witness role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="RoleTypeCodeType">
+        <xsd:annotation>
+            <xsd:documentation>All role types defined in the LEXS 3.1 data schema.  Queries can specify that structured searches should only match certain roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:RoleTypeCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="SortOrderCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>Code indicating what data should be returned if there are more hits than the responder can include in a response.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Date">
+                <xsd:annotation>
+                    <xsd:documentation>Return most recent data first.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Relevance">
+                <xsd:annotation>
+                    <xsd:documentation>Return most relevant data first.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="SortOrderCodeType">
+        <xsd:annotation>
+            <xsd:documentation>Code indicating what data should be returned if there are more hits than the responder can include in a response.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:SortOrderCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="StructuredPayloadsRequestedCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>Indicates whether responses should include all available structured payloads, or no structured payloads.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="all">
+                <xsd:annotation>
+                    <xsd:documentation>all payloads should be returned</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="none">
+                <xsd:annotation>
+                    <xsd:documentation>no payloads should be returned</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="StructuredPayloadsRequestedCodeType">
+        <xsd:annotation>
+            <xsd:documentation>Indicates whether responses should include all available structured payloads, or no structured payloads.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:StructuredPayloadsRequestedCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+</xsd:schema>

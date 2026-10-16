@@ -3,8 +3,10 @@
 using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Xml.Schema.Linq.CodeGen;
+using XObjects;
 
 namespace Xml.Schema.Linq
 {
@@ -64,9 +66,9 @@ namespace Xml.Schema.Linq
                 throw new InvalidOperationException("The configuration document does not contain a Namespaces element.");
             }
 
-            GenerateNamespaceMapping(namespacesElement);
-            GenerateNamespaceVisibilityMapping(namespacesElement);
-            GenerateNamespaceFileMapping(namespacesElement);
+            AddToNamespaceMapping(namespacesElement);
+            AddToNamespaceVisibilityMapping(namespacesElement);
+            AddToNamespaceFileMapping(namespacesElement);
 
             var codegenElement = rootElement.Element(XName.Get("CodeGeneration", Constants.TypedXLinqNs));
 
@@ -92,6 +94,20 @@ namespace Xml.Schema.Linq
                 verifyRequired =
                     (string)validationSettings.Element(XName.Get("VerifyRequired", Constants.TypedXLinqNs)) == "true";
             }
+        }
+
+        public void AppendFromAdditionalConfigFile(Stream stream)
+        {
+            XDocument xDoc = XDocument.Load(stream);
+            XElement rootElement = xDoc.Root;
+            if (rootElement == null) throw new InvalidOperationException("No config root element!");
+            XElement namespacesElement = rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs)) ??
+                                         throw new ArgumentNullException(
+                                             "rootElement.Element(XName.Get(\"Namespaces\", Constants.TypedXLinqNs))");
+
+            AddToNamespaceMapping(namespacesElement);
+            AddToNamespaceVisibilityMapping(namespacesElement);
+            AddToNamespaceFileMapping(namespacesElement);
         }
 
         public string GetClrNamespace(string xmlNamespace)
@@ -134,7 +150,7 @@ namespace Xml.Schema.Linq
         public bool PrefixGlobalNsWhenReferencingXmlSchemaLinqNs { get; set; }
         public bool AlwaysPrefixGlobalInUsingDirectives { get; set; }
 
-        private void GenerateNamespaceMapping(XElement namespaces)
+        private void AddToNamespaceMapping(XElement namespaces)
         {
             if (namespaces == null) return;
             foreach (XElement ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs))) {
@@ -145,11 +161,11 @@ namespace Xml.Schema.Linq
                     schema = string.Empty;
                 }
                 var clr = (string) ns.Attribute(XName.Get("Clr"));
-                namespaceMapping.Add(schema, clr);
+                namespaceMapping.AddIfNotAlreadyExists(schema, clr);
             }
         }
 
-        private void GenerateNamespaceVisibilityMapping(XElement namespaces)
+        private void AddToNamespaceVisibilityMapping(XElement namespaces)
         {
             if (namespaces == null) return;
             foreach (var ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs))) {
@@ -159,11 +175,11 @@ namespace Xml.Schema.Linq
                     ? GeneratedTypesVisibility.Internal
                     : GeneratedTypesVisibility.Public;
 
-                NamespaceTypesVisibilityMap.Add(clrNs, visibility);
+                NamespaceTypesVisibilityMap.AddIfNotAlreadyExists(clrNs, visibility);
             }
         }
 
-        private void GenerateNamespaceFileMapping(XElement namespaces)
+        private void AddToNamespaceFileMapping(XElement namespaces)
         {
             if (namespaces == null) return;
             foreach (var ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs)))
@@ -171,7 +187,7 @@ namespace Xml.Schema.Linq
                 var file = ns.Attribute(XName.Get("File"))?.Value;
                 if (file == null) continue;
                 var clrNs = ns.Attribute(XName.Get("Clr"))?.Value;
-                NamespaceFileMap.Add(clrNs, file);
+                NamespaceFileMap.AddIfNotAlreadyExists(clrNs, file);
             }
         }
     }
