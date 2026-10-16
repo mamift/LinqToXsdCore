@@ -4,11 +4,11 @@
 - **Also important:** any generated code **should be tracked in git**. Please see [this section in the readme](https://github.com/mamift/LinqToXsdCore#best-practices) for more information.
 - All releases are cumulative - for e.g. v3.4.24 includes all the changes/fixes described in all previous releases. Some releases are not publicly published to nuget.org, so upgrading via `dotnet tool update -g linqtoxsdcore`, you may notice version number skips (and that certain version numbers are not visible on nuget.org) - this is intentional and expected due to the simplified release management strategy employed. If something genuinely seems out of place, please file an issue on GitHub: https://github.com/mamift/LinqToXsdCore
 
-## Version 3.4.25
+## Version 3.5.0
 
 Nuget packages:
-* https://www.nuget.org/packages/LinqToXsdCore/3.4.25
-* https://www.nuget.org/packages/XObjectsCore/3.4.25
+* https://www.nuget.org/packages/LinqToXsdCore/3.5.0
+* https://www.nuget.org/packages/XObjectsCore/3.5.0
   * [#104](https://github.com/mamift/LinqToXsdCore/pull/104) The linqtoxsd CLI tool behaviour has changed and some bugs were fixed:
     - the `-a` flag will now delete existing files with the `.xsd.cs` extension (since v3.4.17, the default output extension is now `.xsd-g.cs`) when outputting code
     - fixed a bug with getting the actual XML Schema version, the `xs:schema\@version` attribute is a user defined attribute for the schema version, it does not specify which W3C XSD specification version to validate against (i.e. v1.0 or v1.1). This has inadvertently caused `linqtoxsd` to skip schemas that had `xs:schema\@version`  values that were v1.1 or higher.
@@ -29,8 +29,7 @@ Nuget packages:
       - `OneOf` to `v3.0.271`
       - `System.CodeDom` to `10.0.13`.
       - `System.Text.Json` to `v10.0.13`
-      - `System.IO.Abstractions` and `TestingHelpers` to `v22.3.0`.
-  * Tooling: added `Generate-NuGetDependencyReport.ps1`, which generates `NuGetDependencies.csv` - the master list of every direct and transitive NuGet dependency in the repository (excluding `GeneratedSchemaLibraries`). It has a `-Verify` switch that fails if the CSV is out of date.
+      - `System.IO.Abstractions` and `TestingHelpers` to `v22.3.0`
     
 ## Version 3.4.24
 
