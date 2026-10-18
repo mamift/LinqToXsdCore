@@ -417,17 +417,26 @@ namespace Xml.Schema.Linq.Tests
         public void EnumAtNamespaceLevelGenerationTest()
         {
             const string wssXsdFilePath = @"SharePoint2010\wss.xsd";
-            var wssXsdFileInfo = new MockFileInfo(AllTestFiles, wssXsdFilePath);
-            var tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo, AllTestFiles);
-            var root = tree.GetNamespaceRoot();
+            MockFileInfo wssXsdFileInfo = new MockFileInfo(AllTestFiles, wssXsdFilePath);
+            CSharpSyntaxTree tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo, AllTestFiles);
+            NamespaceDeclarationSyntax root = tree.GetNamespaceRoot();
 
-            var namespaceScopedEnums = root.DescendantNodes().OfType<EnumDeclarationSyntax>().ToList();
+            List<EnumDeclarationSyntax> namespaceScopedEnums = root.DescendantNodes().OfType<EnumDeclarationSyntax>().ToList();
 
             Assert.IsNotEmpty(namespaceScopedEnums);
-            const int expected = 46;
-            var actual = namespaceScopedEnums.Count;
-            var isExpected = actual == expected;
-            if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
+            const int expected = 53;
+            int actual = namespaceScopedEnums.Count;
+            bool isExpected = actual == expected;
+
+            Assert.True(isExpected);
+
+            // workflowActions.xsd has two inline defined attribute enums  called 'DesignerTypeEnum'
+            var thereAre2DesignerTypeEnums =
+                namespaceScopedEnums.Select(i => i.Identifier.ToFullString().Trim()).GroupBy(i => i).ToList();
+
+            Assert.True(thereAre2DesignerTypeEnums.Count(g => g.Count() > 1) == 1);
+            IGrouping<string, string> theOneExpectedDupe = thereAre2DesignerTypeEnums.Single(g => g.Count() > 1);
+            Assert.True(theOneExpectedDupe.Key == "DesignerTypeEnum");
         }
 
         /// <summary>
