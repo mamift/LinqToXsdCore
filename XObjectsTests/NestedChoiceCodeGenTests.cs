@@ -20,7 +20,9 @@ namespace Xml.Schema.Linq.Tests
         {
             const string XsdFilePath = @"NestedChoiceTest\NestedChoiceTest.xsd";
             TestFiles = Utilities.GetAssemblyFileSystem(typeof(LinqToXsd.Schemas.Test.NestedChoiceTypes.NestedChoiceType).Assembly);
-            Tree = Utilities.GenerateSyntaxTree(XsdFilePath, TestFiles);
+            Tree = Utilities.GenerateSyntaxTree(XsdFilePath, TestFiles, new LinqToXsdSettings() {
+                AlwaysPrefixGlobalInUsingDirectives = true
+            });
 
             Diagnostic[] diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
             //Assert.AreEqual(0, diags.Length);

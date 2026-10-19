@@ -224,9 +224,9 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFile, IMockFileDataAccessor fs)
+        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFile, IMockFileDataAccessor fs, LinqToXsdSettings? linqToXsdSettings = null)
         {
-            return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs);
+            return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs, linqToXsdSettings);
         }
 
         /// <summary>
@@ -361,11 +361,11 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs)
+        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs, LinqToXsdSettings? linqToXsdSettings = null)
         {
             var schemaSet = GetXmlSchemaSetAndPreload(xsdFile, mfs);
 
-            var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName, mfs);
+            var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName, mfs, linqToXsdSettings);
             var stringBuilder = new StringBuilder();
             using var writer = new StringWriter(stringBuilder);
             sourceText.Write(writer);
