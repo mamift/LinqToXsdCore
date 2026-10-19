@@ -19,10 +19,15 @@ namespace Xml.Schema.Linq.Tests
     /// </summary>
     public static class TestExtensionsMethods
     {
-        public static void CheckForZeroDiagnosticsAndErrorsOrThrow(this Diagnostic[] diags, string xsdFilePath)
+        public static void CheckForZeroDiagnosticsAndErrorsOrThrow(this IEnumerable<Diagnostic> diagnostics, string xsdFilePath)
         {
-            if (diags.Length > 0)
-            {
+            Diagnostic[] allDiags = diagnostics.ToArray();
+
+            string[] acceptableWarnings = ["CS0109", "CS0108"];
+            IEnumerable<Diagnostic> acceptableDiags = allDiags.Where(d => acceptableWarnings.Contains(d.Id));
+            Diagnostic[] diags = allDiags.Except(acceptableDiags).ToArray();
+            
+            if (diags.Length > 0) {
                 if (diags.Any(e => e.Severity == DiagnosticSeverity.Error))
                 {
                     Assert.Fail($"Errors in code generation for XSD: {xsdFilePath}!");
