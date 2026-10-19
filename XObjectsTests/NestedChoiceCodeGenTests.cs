@@ -22,25 +22,28 @@ namespace Xml.Schema.Linq.Tests
             TestFiles = Utilities.GetAssemblyFileSystem(typeof(LinqToXsd.Schemas.Test.NestedChoiceTypes.NestedChoiceType).Assembly);
             Tree = Utilities.GenerateSyntaxTree(XsdFilePath, TestFiles);
 
-            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
+            Diagnostic[] diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
             //Assert.AreEqual(0, diags.Length);
             if (diags.Length > 0) {
                 Assert.Warn("Diagnostics for this test class's Tree should be 0");
+
+                if (diags.Any(e => e.Severity == DiagnosticSeverity.Error)) {
+                    Assert.Fail($"Errors in code generation for XSD: {XsdFilePath}!");
+                }
             }
 
-            var nodes = Tree.GetNamespaceRoot().DescendantNodes();
-            GeneratedTypes = nodes.OfType<ClassDeclarationSyntax>().ToList();
+            GeneratedTypes = Tree.GetNamespaceRoot().DescendantNodes().OfType<ClassDeclarationSyntax>().ToList();
         }
 
         [Test]
         public void T1_NestedChoiceShouldHaveNullableValueReturnType()
         {
-            var type   = GeneratedTypes.Single(type => type.Identifier.Text == "NestedChoiceType");
-            var prop1 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Prop1");
-            var prop2 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Prop2");
-            var choice1Prop = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Choice1Prop");
-            var choice2Prop1 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Choice2Prop1");
-            var choice2Prop2 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Choice2Prop2");
+            ClassDeclarationSyntax type   = GeneratedTypes.Single(type => type.Identifier.Text == "NestedChoiceType");
+            PropertyDeclarationSyntax prop1 = type.Members.OfType<PropertyDeclarationSyntax>().Single(prop => prop.Identifier.Text == "Prop1");
+            PropertyDeclarationSyntax prop2 = type.Members.OfType<PropertyDeclarationSyntax>().Single(prop => prop.Identifier.Text == "Prop2");
+            PropertyDeclarationSyntax choice1Prop = type.Members.OfType<PropertyDeclarationSyntax>().Single(prop => prop.Identifier.Text == "Choice1Prop");
+            PropertyDeclarationSyntax choice2Prop1 = type.Members.OfType<PropertyDeclarationSyntax>().Single(prop => prop.Identifier.Text == "Choice2Prop1");
+            PropertyDeclarationSyntax choice2Prop2 = type.Members.OfType<PropertyDeclarationSyntax>().Single(prop => prop.Identifier.Text == "Choice2Prop2");
             Assert.IsTrue(prop1.Type is PredefinedTypeSyntax);
             Assert.IsTrue(prop2.Type is NullableTypeSyntax);
             Assert.IsTrue(choice1Prop.Type is NullableTypeSyntax);
