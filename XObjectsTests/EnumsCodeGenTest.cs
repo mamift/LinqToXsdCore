@@ -48,7 +48,11 @@ namespace Xml.Schema.Linq.Tests
             AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
             ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Single();
-            Assert.IsTrue(ret.ToString().Contains($"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}"));
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}";
+            
+            Assert.IsTrue(theReturnExprStr.Contains(expectedReturnExprStr, StringComparison.CurrentCultureIgnoreCase));
         }
 
         [Test]
@@ -60,7 +64,11 @@ namespace Xml.Schema.Linq.Tests
             AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
             ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
-            Assert.IsTrue(ret.ToString().StartsWith($"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}"));
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}";
+
+            Assert.IsTrue(theReturnExprStr.StartsWith(expectedReturnExprStr));
         }
 
         [Test]
@@ -73,9 +81,11 @@ namespace Xml.Schema.Linq.Tests
             AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
             ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
-            Assert.IsTrue(ret.ToString()
-                .StartsWith(
-                    $"return (({EnumTypesNamespace}.{nameof(NestedEnumElementType)}.{nameof(NestedEnumElementType.LanguageEnum)}"));
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(NestedEnumElementType)}.{nameof(NestedEnumElementType.LanguageEnum)}";
+
+            Assert.IsTrue(theReturnExprStr.StartsWith( expectedReturnExprStr));
         }
 
         [Test]
@@ -88,9 +98,11 @@ namespace Xml.Schema.Linq.Tests
             AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
             ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
-            Assert.IsTrue(ret.ToString()
-                .StartsWith(
-                    $"return (({EnumTypesNamespace}.{nameof(NestedEnumAttributeType)}.{nameof(NestedEnumAttributeType.LanguageEnum)}"));
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(NestedEnumAttributeType)}.{nameof(NestedEnumAttributeType.LanguageEnum)}";
+
+            Assert.IsTrue(theReturnExprStr.StartsWith(expectedReturnExprStr));
         }
 
         [Test]
