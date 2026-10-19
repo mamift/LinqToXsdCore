@@ -11,5 +11,6 @@
     <!-- This file shadows the root Directory.Build.props, so the restore switch defined
          there must be repeated here for these projects (see that file for an explanation). -->
     <_DisableNuGetRestoreTargetFrameworksOverride>true</_DisableNuGetRestoreTargetFrameworksOverride>
+	<NoWarn>$(NoWarn)0108;0114</NoWarn>
   </PropertyGroup>
 </Project>
