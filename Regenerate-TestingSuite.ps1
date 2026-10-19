@@ -9,11 +9,16 @@
     with 'gen -a .' in each project directory. Also invokes 'gen -a .' in
     each top-level folder under LinqToXsd.Schemas that contains XSDs (the
     CLI recurses into subfolders, so one run covers the whole tree below it).
+.PARAMETER FolderName
+    Optionally filters target directories by their folder name. Supports
+    PowerShell wildcards, for example -FolderName '*Orders*'. When omitted,
+    all target directories are processed.
 #>
 
 param(
     [string]$Configuration = 'release',
-    [string]$SolutionFile = 'LinqToXsd-TestingSuite.slnf'
+    [string]$SolutionFile = 'LinqToXsd-TestingSuite.slnf',
+    [string]$FolderName = '*'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -193,8 +198,10 @@ $schemaDirs = Get-ChildItem -LiteralPath $schemasProjectRoot -Directory |
 # Every directory to run 'gen -a .' in: one per GeneratedSchemaLibraries project
 # (from the solution filter) plus one per LinqToXsd.Schemas XSD folder.
 $targetDirs = @($projectDirs | ForEach-Object { Join-Path $repoRoot $_ }) + @($schemaDirs)
+$targetDirs = @($targetDirs | Where-Object { (Split-Path -Path $_ -Leaf) -like $FolderName })
 
 Write-Host "Found $($projectDirs.Count) projects in GeneratedSchemaLibraries and $($schemaDirs.Count) XSD folders in LinqToXsd.Schemas." -ForegroundColor Cyan
+Write-Host "Selected $($targetDirs.Count) target directories matching folder name '$FolderName'." -ForegroundColor Cyan
 
 $failed = @()
 $succeeded = 0
