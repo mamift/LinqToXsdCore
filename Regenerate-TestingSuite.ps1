@@ -106,9 +106,13 @@ public static class AssertDialogSweeper
 function Start-AssertDialogWatcher {
     param(
         [Parameter(Mandatory)][string]$LogPath,
-        [Parameter(Mandatory)][string]$Source,
+        [string]$Source,
         [int]$PollMilliseconds = 400
     )
+
+    if ([string]::IsNullOrEmpty($Source)) {
+        $Source = $assertDialogSource;
+    }
 
     $state = [hashtable]::Synchronized(@{ Stop = $false; Count = 0 })
     $runspace = [runspacefactory]::CreateRunspace()
@@ -196,6 +200,7 @@ $failed = @()
 $succeeded = 0
 try {
 foreach ($targetDir in $targetDirs) {
+    $assertWatcher = Start-AssertDialogWatcher -LogPath .\debug_watcher.log;
     $dirLabel = [System.IO.Path]::GetRelativePath($repoRoot, $targetDir)
 
         Write-Host "`n[$($succeeded + $failed.Count + 1)/$($targetDirs.Count)] $dirLabel" -ForegroundColor Yellow
