@@ -83,7 +83,6 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\AbstractTypeTest\AbstractTypeTest.csproj" />
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\AIXM\AIXM.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso\AkomaNtoso.csproj" />
-    <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso30-CSD13-D2f\AkomaNtoso30-CSD13-D2f.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\AspNetSiteMaps\AspNetSiteMaps.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Atom\Atom.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\BasePropsTest\BasePropsTest.csproj" />
