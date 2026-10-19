@@ -52,18 +52,18 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotEmpty(GeneratedTypes);
             Assert.IsTrue(GeneratedTypes.Count == 403);
 
-            var sealedTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.SealedKeyword)))
+            List<ClassDeclarationSyntax> sealedTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.SealedKeyword)))
                                                .ToList();
             Assert.IsNotEmpty(sealedTypes);
             Assert.IsTrue(sealedTypes.Count == 93);
 
-            var partialTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.PartialKeyword)) &&
-                                                            t.Modifiers.All(c => !c.IsKind(SyntaxKind.SealedKeyword)))
+            List<ClassDeclarationSyntax> partialTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.PartialKeyword)) &&
+                                                                                  t.Modifiers.All(c => !c.IsKind(SyntaxKind.SealedKeyword)))
                                                 .ToList();
             Assert.IsNotEmpty(partialTypes);
             Assert.IsTrue(partialTypes.Count == 309);
 
-            var others = GeneratedTypes.Except(sealedTypes).Except(partialTypes).ToList();
+            List<ClassDeclarationSyntax> others = GeneratedTypes.Except(sealedTypes).Except(partialTypes).ToList();
             Assert.IsNotEmpty(others);
             Assert.IsTrue(others.Count == 1);
             Assert.IsTrue(others.First().Identifier.Value as string == Constants.LinqToXsdTypeManager);
@@ -75,7 +75,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotEmpty(TypesThatInheritFromXTypedElement);
             Assert.IsTrue(TypesThatInheritFromXTypedElement.Count == 279);
 
-            var typesWithGeneratedProperties = (from cds in TypesThatInheritFromXTypedElement
+            List<ClassDeclarationSyntax> typesWithGeneratedProperties = (from cds in TypesThatInheritFromXTypedElement
                                                 where
                                                     (from pds in cds.Members.OfType<PropertyDeclarationSyntax>()
                                                      where pds.Modifiers.Any(m => m.ToFullString().Contains("virtual"))
@@ -84,7 +84,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotEmpty(typesWithGeneratedProperties);
             Assert.IsTrue(typesWithGeneratedProperties.Count == 275);
 
-            var typesWithoutGeneratedProperties =
+            List<ClassDeclarationSyntax> typesWithoutGeneratedProperties =
                 TypesThatInheritFromXTypedElement.Except(typesWithGeneratedProperties).ToList();
             Assert.IsNotEmpty(typesWithoutGeneratedProperties);
             Assert.IsTrue(typesWithoutGeneratedProperties.Count == 4);
@@ -93,21 +93,21 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void TypesThatInheritFromXTypedElementTestAndTheirMembers()
         {
-            var members = TypesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
-            var actual = members.Count;
+            List<MemberDeclarationSyntax> members = TypesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
+            int actual = members.Count;
             const int expected = 7184;
             if (actual != expected) Assert.Warn(Utilities.WarningMessage(expected, actual));
 
-            var propertyMembers = members.OfType<PropertyDeclarationSyntax>().ToList();
+            List<PropertyDeclarationSyntax> propertyMembers = members.OfType<PropertyDeclarationSyntax>().ToList();
             Assert.IsTrue(propertyMembers.Count == 2939);
 
-            var virtualPropertyMembers = propertyMembers
+            List<PropertyDeclarationSyntax> virtualPropertyMembers = propertyMembers
                 .Where(p => p.Modifiers.Any(m => m.ToFullString().Contains("virtual")))
                 .ToList();
             Assert.IsNotEmpty(virtualPropertyMembers);
             Assert.IsTrue(virtualPropertyMembers.Count == 1923);
 
-            var typesWhoseMembersAreVirtual =
+            List<ClassDeclarationSyntax?> typesWhoseMembersAreVirtual =
                 virtualPropertyMembers.Select(vpm => vpm.Parent as ClassDeclarationSyntax).Distinct().ToList();
             Assert.IsNotEmpty(typesWhoseMembersAreVirtual);
             Assert.IsTrue(typesWhoseMembersAreVirtual.Count == 275);
@@ -121,7 +121,7 @@ namespace Xml.Schema.Linq.Tests
 
             Assert.IsNotNull(xRootClass);
 
-            var xRootClassMembers = xRootClass.DescendantNodes().OfType<PropertyDeclarationSyntax>().ToList();
+            List<PropertyDeclarationSyntax> xRootClassMembers = xRootClass.DescendantNodes().OfType<PropertyDeclarationSyntax>().ToList();
 
             Assert.IsNotEmpty(xRootClassMembers);
 
@@ -133,12 +133,12 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void ClassesWithInlineEnumsGenerationTest()
         {
-            var typesWithEnumsDefined = GeneratedTypes.Where(t => t.Members.OfType<EnumDeclarationSyntax>().Any()).ToList();
+            List<ClassDeclarationSyntax> typesWithEnumsDefined = GeneratedTypes.Where(t => t.Members.OfType<EnumDeclarationSyntax>().Any()).ToList();
 
             Assert.IsNotEmpty(typesWithEnumsDefined);
-            var expected = 3;
-            var actual = typesWithEnumsDefined.Count;
-            var isExpected = actual == expected;
+            int expected = 3;
+            int actual = typesWithEnumsDefined.Count;
+            bool isExpected = actual == expected;
             
             if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
         }
@@ -146,12 +146,12 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void GenerateInlineDeclaredEnumsTest()
         {
-            var inlineDeclaredEnums = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>()).ToList();
+            List<EnumDeclarationSyntax> inlineDeclaredEnums = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>()).ToList();
 
             Assert.IsNotEmpty(inlineDeclaredEnums);
             const int expected = 4;
-            var actual = inlineDeclaredEnums.Count;
-            var isExpected = actual == expected;
+            int actual = inlineDeclaredEnums.Count;
+            bool isExpected = actual == expected;
             if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
             else Assert.Pass();
         }
@@ -161,7 +161,7 @@ namespace Xml.Schema.Linq.Tests
         {
             // multiple inline defined enum types can be declared with the same name so long as they exist in
             // different complex types or elements.
-            var inlineDeclaredEnumsWithSameName = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>())
+            List<EnumDeclarationSyntax> inlineDeclaredEnumsWithSameName = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>())
                 .Where(c => c.Identifier.ValueText == nameof(parametersType.ParameterLocalType.DesignerTypeEnum)).ToList();
 
             Assert.IsNotEmpty(inlineDeclaredEnumsWithSameName);
@@ -173,10 +173,10 @@ namespace Xml.Schema.Linq.Tests
         {
             // multiple inline defined enum types can be declared with the same name so long as they exist in
             // different complex types or elements.
-            var inlineDeclaredEnumsWithSameName = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>())
+            List<EnumDeclarationSyntax> inlineDeclaredEnumsWithSameName = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>())
                 .Where(c => c.Identifier.ValueText == nameof(parametersType.ParameterLocalType.DesignerTypeEnum)).ToList();
 
-            var membersGroupedByParentId = inlineDeclaredEnumsWithSameName.SelectMany(e => e.Members)
+            List<IGrouping<SyntaxToken, EnumMemberDeclarationSyntax>> membersGroupedByParentId = inlineDeclaredEnumsWithSameName.SelectMany(e => e.Members)
                 .GroupBy(k => ((EnumDeclarationSyntax) k.Parent).Identifier)
                 .ToList();
 
