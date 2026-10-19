@@ -202,8 +202,6 @@ namespace Xml.Schema.Linq.Tests
                 ? Configuration.Load(new StringReader(mfs.GetFile(possibleSettingsFile).TextContents))
                 : Configuration.LoadForSchema(XDocument.Parse(mfs.GetFile(xsdFileName).TextContents));
 
-            var ns = config.Namespaces.Untyped;
-
             settings ??= config.ToLinqToXsdSettings();
             var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
             var writerText = code.Select(t => t.writer.ToString());
