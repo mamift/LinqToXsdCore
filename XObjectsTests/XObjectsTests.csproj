@@ -29,8 +29,12 @@
     </PackageReference>
     <PackageReference Include="System.IO.Abstractions" Version="22.3.0" />
     <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="22.3.0" />
-    <PackageReference Include="System.Text.Json" Version="10.0.13" />
     <PackageReference Include="TestableIO.System.IO.Abstractions.Extensions" Version="22.0.4" />
+    <PackageReference Include="Xunit.Priority" Version="1.1.6" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netframework472'">
+	<PackageReference Include="System.Text.Json" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>
