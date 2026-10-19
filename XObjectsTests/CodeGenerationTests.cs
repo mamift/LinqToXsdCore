@@ -281,7 +281,7 @@ namespace Xml.Schema.Linq.Tests
                 Assert.IsNotEmpty(nonVoidTypeOfExpressions);
 
                 if (voidTypeOfExpressions.Any()) {
-                    Assert.Warn($"Some typeof(void) expressions found! Warning generated for XSD: " + xsd.FullName);
+                    Assert.Fail("Some typeof(void) expressions found! Warning generated for XSD: " + xsd.FullName);
                 }
             }
 
@@ -335,7 +335,7 @@ namespace Xml.Schema.Linq.Tests
                 Assert.IsNotEmpty(nonVoidTypeOfExpressions);
 
                 if (voidTypeOfExpressions.Any()) {
-                    Assert.Warn($"Some typeof(void) expressions found! Warning generated for XSD: " + xsd.FullName);
+                    Assert.Fail($"Some typeof(void) expressions found! Warning generated for XSD: " + xsd.FullName);
                 }
             }
 

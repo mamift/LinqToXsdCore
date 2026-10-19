@@ -23,7 +23,7 @@ namespace Xml.Schema.Linq.Tests
         {
             if (diags.Length > 0)
             {
-                Assert.Warn("Diagnostics for this test class's Tree should be 0");
+                Assert.Fail("Diagnostics for this test class's Tree should be 0");
 
                 if (diags.Any(e => e.Severity == DiagnosticSeverity.Error))
                 {

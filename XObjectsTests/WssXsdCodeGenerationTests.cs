@@ -99,7 +99,7 @@ namespace Xml.Schema.Linq.Tests
             List<MemberDeclarationSyntax> members = TypesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
             int actual = members.Count;
             const int expected = 7184;
-            if (actual != expected) Assert.Warn(Utilities.WarningMessage(expected, actual));
+            if (actual != expected) Assert.Fail(Utilities.WarningMessage(expected, actual));
 
             List<PropertyDeclarationSyntax> propertyMembers = members.OfType<PropertyDeclarationSyntax>().ToList();
             Assert.IsTrue(propertyMembers.Count == 2939);
@@ -143,7 +143,7 @@ namespace Xml.Schema.Linq.Tests
             int actual = typesWithEnumsDefined.Count;
             bool isExpected = actual == expected;
             
-            if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
+            if (!isExpected) Assert.Fail(Utilities.WarningMessage(expected, actual));
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace Xml.Schema.Linq.Tests
             const int expected = 4;
             int actual = inlineDeclaredEnums.Count;
             bool isExpected = actual == expected;
-            if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
+            if (!isExpected) Assert.Fail(Utilities.WarningMessage(expected, actual));
             else Assert.Pass();
         }
 

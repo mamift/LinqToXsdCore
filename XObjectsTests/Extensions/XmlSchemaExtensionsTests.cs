@@ -148,7 +148,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
             var attrTypes = simpleTypes.Where(e => e.Key.IsT1).ToList();
 
             if (!(attrTypes.Count > elementTypes.Count)) {
-                Assert.Warn("That's weird, a schema with more elements whose type is simple than attributes?!");
+                Assert.Fail("That's weird, a schema with more elements whose type is simple than attributes?!");
             }
         }
     }
