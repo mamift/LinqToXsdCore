@@ -32,6 +32,9 @@ namespace Xml.Schema.Linq.Tests
             MockFileData mockFile = WssFiles.GetFile(wssXsdFilePath);
             Tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo, WssFiles);
 
+            Diagnostic[] diagnotics = Tree.GetDiagnostics().ToArray();
+            diagnotics.CheckForZeroDiagnosticsAndErrorsOrThrow(wssXsdFilePath);
+
             GeneratedTypes = Tree
                              .GetNamespaceRoot()
                              .DescendantNodes()
