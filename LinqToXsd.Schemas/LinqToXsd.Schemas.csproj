@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <!--
+      Use the plural TargetFrameworks property even though there is only one TFM.
+      When `dotnet build/test -f <tfm>` supplies TargetFramework as a global property,
+      NuGet restore would otherwise restore this project for that TFM instead of its
+      declared netstandard2.0 (see Directory.Build.props).
+    -->
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <!-- Avoid being overrun by warnings -->

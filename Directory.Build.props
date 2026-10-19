@@ -4,6 +4,16 @@
   <!-- Build and design defaults -->
   <PropertyGroup>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
+    <!--
+      `dotnet build/test -f <tfm>` passes TargetFramework as a global property. By default
+      NuGet restore treats that as a request to restore only that TFM for every project in
+      the graph, so multi-targeted projects (XObjectsCore, XObjectsCodeGen) end up with an
+      assets file containing just that TFM. They are still referenced via SetTargetFramework
+      for their other TFMs (e.g. netstandard2.0) from projects such as LinqToXsd and
+      LinqToXsd.Schemas, which then fails with NETSDK1005.
+      Disabling NuGet's TFM override makes restore always cover all TargetFrameworks.
+    -->
+    <_DisableNuGetRestoreTargetFrameworksOverride>true</_DisableNuGetRestoreTargetFrameworksOverride>
     <!-- This is an opt-in feature of .NET SDK 10 that allows the LinqToXsd CLI tool to be packaged AOT; turned off for now as it triples the nupkg size -->
     <!-- <RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers> -->
   </PropertyGroup>
