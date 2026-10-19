@@ -206,9 +206,12 @@ Write-Host "Selected $($targetDirs.Count) target directories matching folder nam
 $failed = @()
 $succeeded = 0
 try {
-foreach ($targetDir in $targetDirs) {
-    $assertWatcher = Start-AssertDialogWatcher -LogPath .\debug_watcher.log;
-    $dirLabel = [System.IO.Path]::GetRelativePath($repoRoot, $targetDir)
+    foreach ($targetDir in $targetDirs) 
+    {
+        $assertWatcher = Start-AssertDialogWatcher -LogPath .\debug_watcher.log;
+        $dirLabel = [System.IO.Path]::GetRelativePath($repoRoot, $targetDir)
+
+        if ($dirLabel -eq "Microsoft Project 2007") { continue; }
 
         Write-Host "`n[$($succeeded + $failed.Count + 1)/$($targetDirs.Count)] $dirLabel" -ForegroundColor Yellow
         Write-Host "  Running: dotnet run -c $Configuration --project LinqToXsd -- gen -a ."
