@@ -18,21 +18,14 @@ namespace Xml.Schema.Linq.Tests
         [SetUp]
         public void GenerateCode()
         {
-            const string XsdFilePath = @"NestedChoiceTest\NestedChoiceTest.xsd";
+            const string xsdFilePath = @"NestedChoiceTest\NestedChoiceTest.xsd";
             TestFiles = Utilities.GetAssemblyFileSystem(typeof(LinqToXsd.Schemas.Test.NestedChoiceTypes.NestedChoiceType).Assembly);
-            Tree = Utilities.GenerateSyntaxTree(XsdFilePath, TestFiles, new LinqToXsdSettings() {
+            Tree = Utilities.GenerateSyntaxTree(xsdFilePath, TestFiles, new LinqToXsdSettings() {
                 AlwaysPrefixGlobalInUsingDirectives = true
             });
 
             Diagnostic[] diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
-            //Assert.AreEqual(0, diags.Length);
-            if (diags.Length > 0) {
-                Assert.Warn("Diagnostics for this test class's Tree should be 0");
-
-                if (diags.Any(e => e.Severity == DiagnosticSeverity.Error)) {
-                    Assert.Fail($"Errors in code generation for XSD: {XsdFilePath}!");
-                }
-            }
+            diags.CheckForZeroDiagnosticsAndErrorsOrThrow(xsdFilePath);
 
             GeneratedTypes = Tree.GetNamespaceRoot().DescendantNodes().OfType<ClassDeclarationSyntax>().ToList();
         }

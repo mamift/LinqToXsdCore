@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Xml.Linq;
@@ -28,16 +29,10 @@ namespace Xml.Schema.Linq.Tests
             const string xsdFilePath = @"EnumsTest\EnumsTest.xsd";
             TestFiles = Utilities.GetAssemblyFileSystem(typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum).Assembly);
 
-            this.Tree = Utilities.GenerateSyntaxTree(xsdFilePath, TestFiles, new LinqToXsdSettings() {
-                AlwaysPrefixGlobalInUsingDirectives = true
-            });
+            this.Tree = Utilities.GenerateSyntaxTree(xsdFilePath, TestFiles);
 
             Diagnostic[] diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
-            //Assert.AreEqual(0, diags.Length);
-            if (diags.Length > 0)
-            {
-                Assert.Warn("Diagnostics for this test class's Tree should be 0");
-            }
+            diags.CheckForZeroDiagnosticsAndErrorsOrThrow(xsdFilePath);
 
             IEnumerable<SyntaxNode> nodes = this.Tree.GetNamespaceRoot().DescendantNodes();
             this.GeneratedTypes = nodes.OfType<ClassDeclarationSyntax>().ToList();
