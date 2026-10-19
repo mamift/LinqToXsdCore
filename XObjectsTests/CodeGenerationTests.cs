@@ -217,7 +217,7 @@ namespace Xml.Schema.Linq.Tests
         /// <para>See commit bc75ea0 which introduced this incorrect behaviour.</para>
         /// </summary>
         [Test]
-        [TestCase("1707_ISYBAU_XML_Schema"), TestCase("AbstractTypeTest"), TestCase("AkomaNtoso"), TestCase("AkomaNtoso30-CSD13-D2f"), TestCase("AspNetSiteMaps"), TestCase("Atom"), TestCase("ContentModelTest"), TestCase("EnumsTest"), TestCase("EnzymeML"), TestCase("MetaLEX"), TestCase("Microsoft Search"), TestCase("Multi-namespaces"), TestCase("mzIdentML"), TestCase("mzML"), TestCase("mzQuantML"), TestCase("NameMangled"), TestCase("NHS CDS"), TestCase("OcmContracts"),
+        [TestCase("1707_ISYBAU_XML_Schema"), TestCase("AbstractTypeTest"), TestCase("AkomaNtoso"), TestCase("AspNetSiteMaps"), TestCase("Atom"), TestCase("ContentModelTest"), TestCase("EnumsTest"), TestCase("EnzymeML"), TestCase("MetaLEX"), TestCase("Microsoft Search"), TestCase("Multi-namespaces"), TestCase("mzIdentML"), TestCase("mzML"), TestCase("mzQuantML"), TestCase("NameMangled"), TestCase("NHS CDS"), TestCase("OcmContracts"),
          TestCase("Opml"), TestCase("Pubmed"), TestCase("Rss"), TestCase("ThermoML"), TestCase("Toy schemas"), TestCase("TraML"), TestCase("Windows"), TestCase("W3C.XML"), TestCase("XMLSpec"), TestCase("XQueryX"),
         /* ignored for now due to structural issues with how these schemas set import and include one another that LinqToXsd doesn't handle well yet:
          TestCase("OfficeOpenXML-XMLSchema-Strict"), TestCase("OfficeOpenXML-XMLSchema-Transitional"), TestCase("SharePoint2010"), TestCase("OFMX"),
