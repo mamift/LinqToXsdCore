@@ -497,22 +497,22 @@ namespace Xml.Schema.Linq.Tests
 
         private static readonly Lazy<CSharpCompilation> Compilation = new(() =>
         {
-            var options = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
-            var references = GetReferencePaths();
+            CSharpCompilationOptions options = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
+            List<string> references = GetReferencePaths();
             return CSharpCompilation.Create(Guid.NewGuid().ToString("N"), options: options)
                 .AddReferences(references.Select(path => MetadataReference.CreateFromFile(path)));
 
-            static IEnumerable<string> GetReferencePaths()
+            static List<string> GetReferencePaths()
             {
                 // do not reference 'GeneratedSchemaLibraries' as they potentially contains the types we are currently compiling.
                 // assume that the assemblies have the same name as the folder they are in.
-                var generatedSchemasRootDir = GetDirectoryNameOfFolderAbove(AppContext.BaseDirectory, "GeneratedSchemaLibraries");
-                var excludedFileNames = Directory
+                string generatedSchemasRootDir = GetDirectoryNameOfFolderAbove(AppContext.BaseDirectory, "GeneratedSchemaLibraries");
+                string[] excludedFileNames = Directory
                     .EnumerateDirectories(generatedSchemasRootDir, "*", SearchOption.TopDirectoryOnly)
                     .Select(path => Path.GetFileName(path))
                     .ToArray();
 
-                var appCtxData = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
+                string? appCtxData = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
                 
                 #if !NET6_0
                 if (appCtxData == null) {
@@ -521,7 +521,7 @@ namespace Xml.Schema.Linq.Tests
                 }
                 #endif
 
-                var referencePaths = appCtxData
+                string[] referencePaths = appCtxData
                     .Split(Path.PathSeparator)
                     .Where(path => !excludedFileNames.Contains(Path.GetFileNameWithoutExtension(path)))
                     .OrderBy(_ => _)
@@ -529,10 +529,10 @@ namespace Xml.Schema.Linq.Tests
 
                 return GetRuntimeReferences(referencePaths);
 
-                static IEnumerable<string> GetRuntimeReferences(params string[] fileNames)
+                static List<string> GetRuntimeReferences(string[] fileNames)
                 {
-                    var runtimeDirectory = System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
-                    return fileNames.Select(fileName => Path.Combine(runtimeDirectory, fileName));
+                    string runtimeDirectory = System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
+                    return fileNames.Select(fileName => Path.Combine(runtimeDirectory, fileName)).ToList();
                 }
             }
         });
