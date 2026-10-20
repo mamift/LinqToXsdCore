@@ -444,7 +444,7 @@ namespace Xml.Schema.Linq
                 })
                 .ToList();
             
-            var excludeV11Xsds = dictOfSchemasAndTheirConfigs
+            List<(FileInfo xsdFile, FileInfo configFile)> excludeV11Xsds = dictOfSchemasAndTheirConfigs
                 .Where(filePairs => filePairs.xsdFile.Exists && filePairs.xsdFile.GetXmlSchemaVersion() == XmlSchemaVersion.Version1_1)
                 .ToList();
 
@@ -452,9 +452,9 @@ namespace Xml.Schema.Linq
                 observer?.OnWarn("Found some XSD v1.1 schemas: this tool does not support XSD v1.1. and will ignore those.");
             }
 
-            observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
-
-            var pairsToProcess = dictOfSchemasAndTheirConfigs.Except(excludeV11Xsds).ToList();
+            List<(FileInfo xsdFile, FileInfo configFile)> pairsToProcess = dictOfSchemasAndTheirConfigs.Except(excludeV11Xsds).ToList();
+            
+            observer?.OnNext($"Schemas to process: {pairsToProcess.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
 
             // When several schemas are generated without any per-file configuration they all share the default
             // settings, so merge them into a single pass to avoid duplicating shared schemas (see GitHub issue #14).
