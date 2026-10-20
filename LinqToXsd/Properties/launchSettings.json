@@ -6,7 +6,7 @@
     },
     "W3C XSD": {
       "commandName": "Project",
-      "commandLineArgs": "gen \"W3C XMLSchema v1.xsd\" -a",
+      "commandLineArgs": "gen -a .",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\XSD",
       "hotReloadEnabled": false
     },
