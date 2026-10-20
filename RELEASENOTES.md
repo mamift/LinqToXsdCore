@@ -16,6 +16,7 @@ Nuget packages:
     - added a new CLI verb `sum` that will emit a markdown file that summarises the generated code.
     - codegen: `global::` is now prefixed to the generated method `GetRootType()` when global:: is used in other places for namespaces with Xml in them.
     - Fix duplicated shared-schema types across multiple XSDs (fixes #14) - when several entry-point schemas xs:import/xs:include the same shared schemas, the shared schemas' types were regenerated into every importing file, producing duplicate (and for non-partial types, uncompilable) C#.
+    - This version has also reached a milestone where all schemas for UPC-OAG generate compilable C# code.
   * Nuget dependency updates:
     - `XObjectsCore` and `LinqToXsd.Schemas`: `Portable.System.DateTimeOnly` consolidates to `v9.0.2`.
     - `Microsoft.CodeAnalysis.CSharp` and `Microsoft.CodeAnalysis.CSharp.Workspaces.` to `5.9.0`.
