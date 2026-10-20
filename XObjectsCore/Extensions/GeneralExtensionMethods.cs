@@ -11,9 +11,9 @@ namespace Xml.Schema.Linq.Extensions
 {
     public static class GeneralExtensionMethods
     {
-        private static string XmlSchemaDefaultNamespace = "http://www.w3.org/2001/XMLSchema";
-        public static string XmlSchemaVersioningNamespace = "http://www.w3.org/2007/XMLSchema-versioning";
-        public static string XsdV1_1 = "1.1";
+        private const string XmlSchemaDefaultNamespace = "http://www.w3.org/2001/XMLSchema";
+        public const string XmlSchemaVersioningNamespace = "http://www.w3.org/2007/XMLSchema-versioning";
+        public const string XsdV1_1 = "1.1";
 
         /// <summary>
         /// Assuming the file is an XML schema, will return the XML schema version (<see cref="XmlSchemaVersion"/>).
