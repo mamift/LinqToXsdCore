@@ -53,7 +53,12 @@ public class ContentPropertyNameClashTests: BaseTester
                         </Comment>
                         """.Trim();
 
-        Assert.AreEqual(xmlString, comment.Untyped.ToString(SaveOptions.None));
-        Assert.True(string.Equals(xmlString, comment.Untyped.ToString(SaveOptions.None)));
+        // The raw string literal inherits the source file's CRLF line endings, whereas
+        // XElement.ToString() emits the platform's newline character. Normalise both sides so the
+        // comparison is independent of the host OS and of how the file was checked out.
+        static string NormaliseLineEndings(string s) => s.Replace("\r\n", "\n").Replace('\r', '\n');
+
+        Assert.AreEqual(NormaliseLineEndings(xmlString), NormaliseLineEndings(comment.Untyped.ToString(SaveOptions.None)));
+        Assert.True(string.Equals(NormaliseLineEndings(xmlString), NormaliseLineEndings(comment.Untyped.ToString(SaveOptions.None))));
     }
 }

@@ -1,5 +1,16 @@
 <Project>
   <PropertyGroup>
     <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <!--
+      Use the plural TargetFrameworks property even though there is only one TFM.
+      When `dotnet build/test -f <tfm>` supplies TargetFramework as a global property,
+      NuGet restore would otherwise restore these projects for that TFM instead of their
+      declared netstandard2.0 (see the root Directory.Build.props).
+    -->
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <!-- This file shadows the root Directory.Build.props, so the restore switch defined
+         there must be repeated here for these projects (see that file for an explanation). -->
+    <_DisableNuGetRestoreTargetFrameworksOverride>true</_DisableNuGetRestoreTargetFrameworksOverride>
+	<NoWarn>$(NoWarn)0108;0114</NoWarn>
   </PropertyGroup>
 </Project>

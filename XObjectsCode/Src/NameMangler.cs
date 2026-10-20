@@ -133,43 +133,88 @@ namespace Xml.Schema.Linq.CodeGen
             return keywords.Contains(identifier);
         }
 
+        // Maps symbol characters that cannot appear in a C# identifier to a readable
+        // English word name, e.g. '<' becomes "LessThan". Used to build enum member names.
+        private static readonly Dictionary<char, string> SymbolFullWords = new Dictionary<char, string>
+        {
+            ['!'] = "ExclamationMark",
+            ['?'] = "QuestionMark",
+            ['.'] = "Period",
+            [','] = "Comma",
+            [';'] = "Semicolon",
+            [':'] = "Colon",
+            ['\''] = "Apostrophe",
+            ['"'] = "QuotationMark",
+            ['('] = "LeftParenthesis",
+            [')'] = "RightParenthesis",
+            ['['] = "LeftBracket",
+            [']'] = "RightBracket",
+            ['{'] = "LeftBrace",
+            ['}'] = "RightBrace",
+            ['-'] = "Hyphen",
+            ['_'] = "Underscore",
+            ['+'] = "Plus",
+            ['='] = "Equals",
+            ['*'] = "Asterisk",
+            ['/'] = "Slash",
+            ['\\'] = "Backslash",
+            ['&'] = "Ampersand",
+            ['%'] = "Percent",
+            ['$'] = "DollarSign",
+            ['#'] = "Hash",
+            ['@'] = "AtSymbol",
+            ['^'] = "Caret",
+            ['~'] = "Tilde",
+            ['`'] = "Backtick",
+            ['<'] = "LessThan",
+            ['>'] = "GreaterThan",
+            ['|'] = "Pipe",
+            [' '] = "Space",
+            ['\t'] = "Tab",
+            ['\n'] = "NewLine",
+            ['\r'] = "CarriageReturn",
+            ['\f'] = "FormFeed",
+            ['±'] = "PlusMinusSign",
+            ['−'] = "MinusSign",
+            ['×'] = "MultiplicationSign",
+            ['÷'] = "DivisionSign",
+            ['≠'] = "NotEqualsSign",
+            ['≤'] = "LessThanOrEqualSign",
+            ['≥'] = "GreaterThanOrEqualSign",
+            ['√'] = "SquareRoot",
+            ['∞'] = "Infinity",
+            ['§'] = "SectionSign",
+            ['¶'] = "PilcrowSign",
+            ['©'] = "CopyrightSign",
+            ['®'] = "RegisteredSign",
+            ['™'] = "TrademarkSign",
+            ['°'] = "DegreeSign",
+            ['·'] = "MiddleDot",
+            ['…'] = "Ellipsis",
+            ['–'] = "EnDash",
+            ['—'] = "EmDash",
+            ['«'] = "LeftDoubleAngleQuote",
+            ['»'] = "RightDoubleAngleQuote",
+        };
+
+        /// <summary>
+        /// Attempts to expand a symbol character to its full English word name, e.g. '&lt;' becomes "LessThan".
+        /// Returns false for characters that have no known word name, so callers can fall back to
+        /// underscore replacement instead of failing code generation.
+        /// </summary>
+        public static bool TryExpandSymbolToFullWord(char ch, out string word)
+        {
+            return SymbolFullWords.TryGetValue(ch, out word);
+        }
+
         public static string ExpandSymbolToFullWord(char ch)
         {
-            return ch switch {
-                '!' => "ExclamationMark",
-                '?' => "QuestionMark",
-                '.' => "Period",
-                ',' => "Comma",
-                ';' => "Semicolon",
-                ':' => "Colon",
-                '\'' => "Apostrophe",
-                '"' => "QuotationMark",
-                '(' => "LeftParenthesis",
-                ')' => "RightParenthesis",
-                '[' => "LeftBracket",
-                ']' => "RightBracket",
-                '{' => "LeftBrace",
-                '}' => "RightBrace",
-                '-' => "Hyphen",
-                '_' => "Underscore",
-                '+' => "Plus",
-                '=' => "Equals",
-                '*' => "Asterisk",
-                '/' => "Slash",
-                '\\' => "Backslash",
-                '&' => "Ampersand",
-                '%' => "Percent",
-                '$' => "DollarSign",
-                '#' => "Hash",
-                '@' => "AtSymbol",
-                '^' => "Caret",
-                '~' => "Tilde",
-                '`' => "Backtick",
-                '<' => "LessThan",
-                '>' => "GreaterThan",
-                '|' => "Pipe",
-                _ => throw new InvalidOperationException($"__UnknownSymbol__PLEASE_IMPLEMENT_IN_{nameof(ExpandSymbolToFullWord)}_METHOD")
-            };
+            if (TryExpandSymbolToFullWord(ch, out string word))
+            {
+                return word;
+            }
+
+            throw new InvalidOperationException($"__UnknownSymbol__PLEASE_IMPLEMENT_IN_{nameof(ExpandSymbolToFullWord)}_METHOD");
         }
     }
 

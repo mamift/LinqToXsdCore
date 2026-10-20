@@ -1,1 +1,1 @@
-﻿This schema was reverse-engineered from an existing instance of an Expression Media Catalog file, and informed by the official Microsoft help documentation that shipped with the app.
+﻿This schema was reverse-engineered from an existing instance of an Expression Media Catalog file, and informed by the official Microsoft help documentation that shipped with the app. When you export an Expression Media Catalog file, the app also produces a DTD file which also informed the reverse engineering of the XSD.

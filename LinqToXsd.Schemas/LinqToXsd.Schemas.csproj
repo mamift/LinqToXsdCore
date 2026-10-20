@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <!--
+      Use the plural TargetFrameworks property even though there is only one TFM.
+      When `dotnet build/test -f <tfm>` supplies TargetFramework as a global property,
+      NuGet restore would otherwise restore this project for that TFM instead of its
+      declared netstandard2.0 (see Directory.Build.props).
+    -->
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <!-- Avoid being overrun by warnings -->
@@ -69,12 +75,12 @@
     <EmbeddedResource Include="XsdFeatureTests\SimpleTypeUnion\StuDateAndTime.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="PolySharp" Version="1.15.0">
+    <PackageReference Include="PolySharp" Version="1.16.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </PackageReference>
-    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'">
+    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.2" Condition="$(TargetFramework) == 'netstandard2.0'">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </PackageReference>
   </ItemGroup>
@@ -83,7 +89,6 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\AbstractTypeTest\AbstractTypeTest.csproj" />
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\AIXM\AIXM.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso\AkomaNtoso.csproj" />
-    <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso30-CSD13-D2f\AkomaNtoso30-CSD13-D2f.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\AspNetSiteMaps\AspNetSiteMaps.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Atom\Atom.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\BasePropsTest\BasePropsTest.csproj" />
@@ -144,6 +149,8 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\ALTO\ALTO.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\GraffitiMarkupLanguage\GraffitiMarkupLanguage.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\SOAP-WSDL\SOAP-WSDL.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\ORMML\ORMML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\XTCE\XTCE.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">

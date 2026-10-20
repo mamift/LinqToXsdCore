@@ -1,8 +1,10 @@
 <?xml version='1.0'?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           elementFormDefault="qualified" xml:lang="EN"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+           elementFormDefault="qualified"
+           xml:lang="EN"
            targetNamespace="http://www.w3.org/2001/XMLSchema"
-           version="1.1">
+           vc:minVersion="1.1">
  <xs:annotation>
   <xs:documentation>
     Part 1 version: structures.xsd (rec-20120405)

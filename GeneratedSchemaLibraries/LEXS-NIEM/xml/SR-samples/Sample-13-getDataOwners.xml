@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: Sample-13-getDataOwners.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original : 7/15/2007
+    LEXS version  : 3.1.4
+    Description   : 
+        Sample XML instance for the get data owners request message.
+-->
+<lexssr:getDataOwnersRequest 
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0" 
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/searchretrieve/3.1 ../../xsd/search-retrieve/3.1/search-retrieve.xsd">
+    <lexs:ServiceProviderRequestMessage>
+        <lexs:SRMessageMetadata>
+            <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+            <lexs:MessageDateTime>2006-12-01T09:30:47.0Z</lexs:MessageDateTime>
+            <lexs:MessageSequenceNumber>13</lexs:MessageSequenceNumber>
+            <!--====================== Message Origin ==========================-->
+            <lexs:MessageOriginMetadata>
+                <lexs:SystemIdentifier>
+                    <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                    <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                    <lexs:SystemID>SysF</lexs:SystemID>				
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Bob</nc:PersonGivenName>
+                    <nc:PersonSurName>Jones</nc:PersonSurName>
+                    <nc:ContactTelephoneNumber>
+                        <nc:FullTelephoneNumber>
+                            <nc:TelephoneNumberFullID>404-555-1212</nc:TelephoneNumberFullID>
+                        </nc:FullTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:MessageOriginMetadata>
+            <!--====================== Message Destination ==========================-->
+            <lexs:MessageDestinationIdentifier>
+                <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                <lexs:SystemID>SysE</lexs:SystemID>
+            </lexs:MessageDestinationIdentifier>
+        </lexs:SRMessageMetadata>
+    </lexs:ServiceProviderRequestMessage>
+</lexssr:getDataOwnersRequest>

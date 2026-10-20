@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
     <Description>This $(MSBuildProjectName) library provides an API for generated code and projects that use said generated code. Use this library in shipping apps + libraries; use LinqToXsdCore to generate code. Original Authors: Microsoft Corporation.</Description>
     <PackageReadmeFile>RELEASENOTES.md</PackageReadmeFile>
   </PropertyGroup>
@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PolySharp" Version="1.15.0">
+    <PackageReference Include="PolySharp" Version="1.16.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </PackageReference>
-	  <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'">
+	  <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.2" Condition="$(TargetFramework) == 'netstandard2.0'">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
 	  </PackageReference>
 	  <PackageReference Include="System.Memory" Version="4.6.3" Condition="$(TargetFramework) == 'netstandard2.0'">

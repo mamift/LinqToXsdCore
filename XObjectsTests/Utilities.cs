@@ -202,8 +202,6 @@ namespace Xml.Schema.Linq.Tests
                 ? Configuration.Load(new StringReader(mfs.GetFile(possibleSettingsFile).TextContents))
                 : Configuration.LoadForSchema(XDocument.Parse(mfs.GetFile(xsdFileName).TextContents));
 
-            var ns = config.Namespaces.Untyped;
-
             settings ??= config.ToLinqToXsdSettings();
             var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
             var writerText = code.Select(t => t.writer.ToString());
@@ -224,9 +222,39 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFile, IMockFileDataAccessor fs)
+        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFile, IMockFileDataAccessor fs, LinqToXsdSettings? linqToXsdSettings = null)
         {
-            return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs);
+            return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs, linqToXsdSettings);
+        }
+
+        /// <summary>
+        /// Enumerates the sibling .xsd files that share the same directory as <paramref name="xsdFile"/> within the
+        /// <paramref name="fs"/> mock file system.
+        /// <para>The mock file system builds its keys with '\' directory separators regardless of the host OS (see
+        /// <see cref="GetAssemblyTextFilesDictionary"/>). On Unix hosts '\' is not a path separator, so relying on
+        /// <see cref="IFileInfo.DirectoryName"/> points at the wrong directory and a directory enumeration returns every
+        /// schema in the aggregate mock file system. Matching on normalised directory prefixes keeps the sibling set
+        /// correct on all platforms.</para>
+        /// </summary>
+        private static IEnumerable<IFileInfo> EnumerateSiblingXsds(IFileInfo xsdFile, IMockFileDataAccessor fs)
+        {
+            static string NormalisePath(string path) => path.Replace('\\', '/');
+
+            string targetDirectory = NormalisePath(xsdFile.FullName);
+            int targetSeparatorIndex = targetDirectory.LastIndexOf('/');
+            targetDirectory = targetSeparatorIndex >= 0 ? targetDirectory.Substring(0, targetSeparatorIndex + 1) : string.Empty;
+
+            foreach (string path in fs.AllFiles)
+            {
+                string normalised = NormalisePath(path);
+                int fileSeparatorIndex = normalised.LastIndexOf('/');
+                string fileDirectory = fileSeparatorIndex >= 0 ? normalised.Substring(0, fileSeparatorIndex + 1) : string.Empty;
+
+                if (!string.Equals(fileDirectory, targetDirectory, StringComparison.OrdinalIgnoreCase)) continue;
+                if (!normalised.EndsWith(".xsd", StringComparison.OrdinalIgnoreCase)) continue;
+
+                yield return new MockFileInfo(fs, path);
+            }
         }
 
         public static XmlSchemaSet GetXmlSchemaSetAndPreload(IFileInfo xsdFile, IMockFileDataAccessor fs)
@@ -234,9 +262,7 @@ namespace Xml.Schema.Linq.Tests
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
             if (fs == null) throw new ArgumentNullException(nameof(fs));
 
-            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
-            MockDirectoryInfo directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
-            var allXsds = directoryInfo.GetFiles("*.xsd").ToArray();
+            var allXsds = EnumerateSiblingXsds(xsdFile, fs).ToArray();
 
             var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
             var xmlReaderSettings = new XmlReaderSettings() {
@@ -309,9 +335,7 @@ namespace Xml.Schema.Linq.Tests
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
             if (fs == null) throw new ArgumentNullException(nameof(fs));
 
-            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
-            MockDirectoryInfo directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
-            var additionalXsds = directoryInfo.GetFiles("*.xsd").Where(f => f.FullName != xsdFile.FullName).ToArray();
+            var additionalXsds = EnumerateSiblingXsds(xsdFile, fs).Where(f => f.FullName != xsdFile.FullName).ToArray();
 
             var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
 
@@ -335,11 +359,11 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs)
+        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs, LinqToXsdSettings? linqToXsdSettings = null)
         {
             var schemaSet = GetXmlSchemaSetAndPreload(xsdFile, mfs);
 
-            var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName, mfs);
+            var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName, mfs, linqToXsdSettings);
             var stringBuilder = new StringBuilder();
             using var writer = new StringWriter(stringBuilder);
             sourceText.Write(writer);
@@ -473,22 +497,22 @@ namespace Xml.Schema.Linq.Tests
 
         private static readonly Lazy<CSharpCompilation> Compilation = new(() =>
         {
-            var options = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
-            var references = GetReferencePaths();
+            CSharpCompilationOptions options = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
+            List<string> references = GetReferencePaths();
             return CSharpCompilation.Create(Guid.NewGuid().ToString("N"), options: options)
                 .AddReferences(references.Select(path => MetadataReference.CreateFromFile(path)));
 
-            static IEnumerable<string> GetReferencePaths()
+            static List<string> GetReferencePaths()
             {
                 // do not reference 'GeneratedSchemaLibraries' as they potentially contains the types we are currently compiling.
                 // assume that the assemblies have the same name as the folder they are in.
-                var generatedSchemasRootDir = GetDirectoryNameOfFolderAbove(AppContext.BaseDirectory, "GeneratedSchemaLibraries");
-                var excludedFileNames = Directory
+                string generatedSchemasRootDir = GetDirectoryNameOfFolderAbove(AppContext.BaseDirectory, "GeneratedSchemaLibraries");
+                string[] excludedFileNames = Directory
                     .EnumerateDirectories(generatedSchemasRootDir, "*", SearchOption.TopDirectoryOnly)
                     .Select(path => Path.GetFileName(path))
                     .ToArray();
 
-                var appCtxData = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
+                string? appCtxData = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
                 
                 #if !NET6_0
                 if (appCtxData == null) {
@@ -497,7 +521,7 @@ namespace Xml.Schema.Linq.Tests
                 }
                 #endif
 
-                var referencePaths = appCtxData
+                string[] referencePaths = appCtxData
                     .Split(Path.PathSeparator)
                     .Where(path => !excludedFileNames.Contains(Path.GetFileNameWithoutExtension(path)))
                     .OrderBy(_ => _)
@@ -505,10 +529,10 @@ namespace Xml.Schema.Linq.Tests
 
                 return GetRuntimeReferences(referencePaths);
 
-                static IEnumerable<string> GetRuntimeReferences(params string[] fileNames)
+                static List<string> GetRuntimeReferences(string[] fileNames)
                 {
-                    var runtimeDirectory = System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
-                    return fileNames.Select(fileName => Path.Combine(runtimeDirectory, fileName));
+                    string runtimeDirectory = System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
+                    return fileNames.Select(fileName => Path.Combine(runtimeDirectory, fileName)).ToList();
                 }
             }
         });

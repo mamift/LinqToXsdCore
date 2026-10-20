@@ -681,7 +681,7 @@ namespace Xml.Schema.Linq.CodeGen
             CodeMemberMethod getRootType = new CodeMemberMethod();
             getRootType.Attributes = MemberAttributes.Static | memberVisibility;
             getRootType.Name = Constants.GetRootType;
-            getRootType.ReturnType = new CodeTypeReference(Constants.SystemTypeName);
+            getRootType.ReturnType = new CodeTypeReference(Constants.SystemTypeName.PrefixIf(prefixGlobalNsWhenReferringToXmlSchemaLinqNs, "global::"));
             if (rootElementName.IsEmpty) 
             {
                 string xTypedElementClass = Constants.FullXTypedElement.PrefixIf(prefixGlobalNsWhenReferringToXmlSchemaLinqNs, "global::");

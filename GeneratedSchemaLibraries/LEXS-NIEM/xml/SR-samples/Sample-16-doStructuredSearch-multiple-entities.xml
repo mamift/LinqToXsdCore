@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: Sample-16-doStructuredSearch-multiple-entities.xml 2124 2009-01-30 20:22:20Z ys34 $
+    Original : 7/15/2007
+    LEXS version  : 3.1.4
+    Description   :
+        Sample XML instance for the structured search request message that illustrates multiple entities search.
+            Search is for data item that contains following 3 entities:
+            (Jane or Janice) Doe
+                and
+            John Lewis born after 01/01/1974 and before 01/01/1980
+                and 
+            Chevrolet.
+-->
+<lexssr:doStructuredSearchRequest 
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.0" 
+    xmlns:scr="http://niem.gov/niem/domains/screening/2.0" 
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0" 
+    xmlns:s="http://niem.gov/niem/structures/2.0" 
+    xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+    xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1" 
+    xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1" 
+    xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://usdoj.gov/leisp/lexs/searchretrieve/3.1 ../../xsd/search-retrieve/3.1/search-retrieve.xsd">
+    <lexs:StructuredSearchRequestMessage>
+        <lexs:SRMessageMetadata>
+            <lexs:LEXSVersion>3.1.4</lexs:LEXSVersion>
+            <lexs:MessageDateTime>2006-12-01T09:30:47.0Z</lexs:MessageDateTime>
+            <lexs:MessageSequenceNumber>16</lexs:MessageSequenceNumber>
+            <!--====================== Message Origin ==========================-->
+            <lexs:MessageOriginMetadata>
+                <lexs:SystemIdentifier>
+                    <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                    <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                    <lexs:SystemID>SysF</lexs:SystemID>				
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Bob</nc:PersonGivenName>
+                    <nc:PersonSurName>Jones</nc:PersonSurName>
+                    <nc:ContactTelephoneNumber>
+                        <nc:FullTelephoneNumber>
+                            <nc:TelephoneNumberFullID>404-555-1212</nc:TelephoneNumberFullID>
+                        </nc:FullTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </lexs:MessageOriginMetadata>
+            <!--====================== Message Destination ==========================-->
+            <lexs:MessageDestinationIdentifier>
+                <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                <lexs:SystemID>SysE</lexs:SystemID>
+            </lexs:MessageDestinationIdentifier>
+        </lexs:SRMessageMetadata>
+        <lexs:UserAssertion>
+            <lexs:UserID>ABC123</lexs:UserID>
+            <nc:PersonGivenName>Bill</nc:PersonGivenName>
+            <nc:PersonSurName>Jones</nc:PersonSurName>
+            <nc:ContactTelephoneNumber>
+                <nc:NANPTelephoneNumber>
+                    <nc:TelephoneAreaCodeID>111</nc:TelephoneAreaCodeID>
+                    <nc:TelephoneExchangeID>222</nc:TelephoneExchangeID>
+                    <nc:TelephoneLineID>3333</nc:TelephoneLineID>
+                </nc:NANPTelephoneNumber>
+            </nc:ContactTelephoneNumber>
+            <nc:OrganizationName>ATF</nc:OrganizationName>
+        </lexs:UserAssertion>
+        <lexs:SearchRequestMetadata>
+            <lexs:RequestedData>Person</lexs:RequestedData>
+            <lexs:MaxItemMatches>10</lexs:MaxItemMatches>
+            <lexs:SortOrder>Date</lexs:SortOrder>
+            <lexs:StructuredPayloadsRequestedCode>none</lexs:StructuredPayloadsRequestedCode>
+        </lexs:SearchRequestMetadata>
+        <!-- StructuredQuery for (Jane or Janice) Doe -->
+        <lexs:StructuredQuery>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person>
+                            <nc:PersonName>
+                                <nc:PersonGivenName>Jane</nc:PersonGivenName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>exact</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person>
+                            <nc:PersonName>
+                                <nc:PersonGivenName>Janice</nc:PersonGivenName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>exact</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person>
+                            <nc:PersonName>
+                                <nc:PersonSurName>Doe</nc:PersonSurName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>exact</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+        </lexs:StructuredQuery>
+        <!-- StructuredQuery for John Lewis born after 01/01/1974 and before 01/01/1980-->
+        <lexs:StructuredQuery>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person>
+                            <nc:PersonName>
+                                <nc:PersonGivenName>John</nc:PersonGivenName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>exact</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person>
+                            <nc:PersonName>
+                                <nc:PersonSurName>Lewis</nc:PersonSurName>
+                            </nc:PersonName>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>exact</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person>
+                            <nc:PersonBirthDate><nc:Date>1974-01-01</nc:Date></nc:PersonBirthDate>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>gt</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityPerson>
+                        <lexsdigest:Person>
+                            <nc:PersonBirthDate><nc:Date>1980-01-01</nc:Date></nc:PersonBirthDate>
+                        </lexsdigest:Person>
+                    </lexsdigest:EntityPerson>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>lt</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+        </lexs:StructuredQuery>
+        <!-- StructuredQueyr for Chevrolet vehicle -->
+        <lexs:StructuredQuery>
+            <lexs:DigestQueryStatement>
+                <lexs:DigestQueryField>
+                    <lexsdigest:EntityVehicle>
+                        <nc:Vehicle>
+                            <nc:VehicleMakeCode>CHEV</nc:VehicleMakeCode>
+                        </nc:Vehicle>
+                    </lexsdigest:EntityVehicle>
+                </lexs:DigestQueryField>
+                <lexs:QueryMatch>exact</lexs:QueryMatch>
+            </lexs:DigestQueryStatement>
+        </lexs:StructuredQuery>
+    </lexs:StructuredSearchRequestMessage>
+</lexssr:doStructuredSearchRequest>

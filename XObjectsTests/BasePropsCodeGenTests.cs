@@ -18,26 +18,23 @@ namespace Xml.Schema.Linq.Tests
         [SetUp]
         public void GenerateCode()
         {
-            const string XsdFilePath = @"BasePropsTest\BasePropsTest.xsd";
+            const string xsdFilePath = @"BasePropsTest\BasePropsTest.xsd";
             TestFiles = Utilities.GetAssemblyFileSystem(typeof(LinqToXsd.Schemas.Test.BasePropsTypes.Wrapper).Assembly);
-            Tree = Utilities.GenerateSyntaxTree(XsdFilePath, TestFiles);
+            Tree = Utilities.GenerateSyntaxTree(xsdFilePath, TestFiles);
 
-            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
-            //Assert.AreEqual(0, diags.Length);
-            if (diags.Length > 0) {
-                Assert.Warn("Diagnostics for this test class's Tree should be 0");
-            }
+            Diagnostic[] diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
+            diags.CheckForZeroDiagnosticsAndErrorsOrThrow(xsdFilePath);
 
-            var nodes = Tree.GetNamespaceRoot().DescendantNodes();
+            IEnumerable<SyntaxNode> nodes = Tree.GetNamespaceRoot().DescendantNodes();
             GeneratedTypes = nodes.OfType<ClassDeclarationSyntax>().ToList();
         }
 
         [Test]
         public void T1_WrapperShouldDeclarePropertiesOfBasesOfContentType()
         {
-            var type   = GeneratedTypes.Single(type => type.Identifier.Text == "Wrapper");
-            var prop1 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Base1Prop");
-            var prop2 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Base2Prop");
+            ClassDeclarationSyntax type   = GeneratedTypes.Single(type => type.Identifier.Text == "Wrapper");
+            PropertyDeclarationSyntax? prop1 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Base1Prop");
+            PropertyDeclarationSyntax? prop2 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Base2Prop");
             Assert.IsNotNull(prop1);
             Assert.IsNotNull(prop2);
         }
@@ -50,12 +47,12 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void T2_WhenContentTypeRedeclaresBaseElementThenWrapperForwardsItOnce()
         {
-            var type = GeneratedTypes.Single(type => type.Identifier.Text == "RedeclaringWrapper");
-            var props = type.Members.OfType<PropertyDeclarationSyntax>().Where(prop => prop.Identifier.Text == "Base1Prop").ToList();
+            ClassDeclarationSyntax type = GeneratedTypes.Single(type => type.Identifier.Text == "RedeclaringWrapper");
+            List<PropertyDeclarationSyntax> props = type.Members.OfType<PropertyDeclarationSyntax>().Where(prop => prop.Identifier.Text == "Base1Prop").ToList();
             Assert.AreEqual(1, props.Count);
             Assert.AreEqual("IList<string>", props[0].Type.ToString());
 
-            var duplicateMemberErrors = Utilities.GetSyntaxAndCompilationDiagnostics(Tree).Where(d => d.Id == "CS0102").ToArray();
+            Diagnostic[] duplicateMemberErrors = Utilities.GetSyntaxAndCompilationDiagnostics(Tree).Where(d => d.Id == "CS0102").ToArray();
             Assert.IsEmpty(duplicateMemberErrors, string.Join("\n", duplicateMemberErrors.Select(d => d.ToString())));
         }
     }

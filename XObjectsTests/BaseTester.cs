@@ -8,6 +8,7 @@ using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Schema;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
 using Xml.Schema.Linq.Tests.Extensions;
@@ -44,9 +45,14 @@ public class BaseTester
         MockXmlFileResolver = new MockXmlUrlResolver(AllTestFiles);
     }
 
-    public CSharpSyntaxTree GenerateSyntaxTree(IFileInfo mfi)
+    public CSharpSyntaxTree GenerateSyntaxTreeAndCheckForDiagnostics(IFileInfo mfi, IMockFileDataAccessor? ifs = null)
     {
-        return Utilities.GenerateSyntaxTree(mfi, AllTestFiles);
+        CSharpSyntaxTree tree = Utilities.GenerateSyntaxTree(mfi, ifs ?? AllTestFiles);
+
+        Diagnostic[] diagnostics = tree.GetDiagnostics().ToArray();
+        diagnostics.CheckForZeroDiagnosticsAndErrorsOrThrow(mfi.Name);
+
+        return tree;
     }
 
     public IEnumerable<MockFileSystem> GetFileSystemForAssemblyNames(IEnumerable<string> assemblyNames)

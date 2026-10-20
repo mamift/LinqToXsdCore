@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Xml.Linq;
-
+using LibraryOfCongress.ALTO;
 using LinqToXsd.Schemas.Test.EnumsTypes;
 
 using Microsoft.CodeAnalysis;
@@ -30,14 +31,10 @@ namespace Xml.Schema.Linq.Tests
 
             this.Tree = Utilities.GenerateSyntaxTree(xsdFilePath, TestFiles);
 
-            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
-            //Assert.AreEqual(0, diags.Length);
-            if (diags.Length > 0)
-            {
-                Assert.Warn("Diagnostics for this test class's Tree should be 0");
-            }
+            Diagnostic[] diags = Utilities.GetSyntaxAndCompilationDiagnostics(Tree);
+            diags.CheckForZeroDiagnosticsAndErrorsOrThrow(xsdFilePath);
 
-            var nodes = this.Tree.GetNamespaceRoot().DescendantNodes();
+            IEnumerable<SyntaxNode> nodes = this.Tree.GetNamespaceRoot().DescendantNodes();
             this.GeneratedTypes = nodes.OfType<ClassDeclarationSyntax>().ToList();
             this.GeneratedEnums = nodes.OfType<EnumDeclarationSyntax>().ToList();
         }
@@ -45,68 +42,80 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void T1_UseGlobalEnumForGlobalEnumElement()
         {
-            var type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(GlobalEnumElementType));
-            var prop = type.Members.OfType<PropertyDeclarationSyntax>()
+            ClassDeclarationSyntax type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(GlobalEnumElementType));
+            PropertyDeclarationSyntax? prop = type.Members.OfType<PropertyDeclarationSyntax>()
                 .SingleOrDefault(prop => prop.Identifier.Text == "Language");
-            var getter =
+            AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
-            var ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Single();
-            Assert.IsTrue(ret.ToString().Contains($"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}"));
+            ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Single();
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}";
+            
+            Assert.IsTrue(theReturnExprStr.Contains(expectedReturnExprStr, StringComparison.CurrentCultureIgnoreCase));
         }
 
         [Test]
         public void T2_UseGlobalEnumForGlobalEnumAttribute()
         {
-            var type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(GlobalEnumAttributeType));
-            var prop = type.Members.OfType<PropertyDeclarationSyntax>()
+            ClassDeclarationSyntax type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(GlobalEnumAttributeType));
+            PropertyDeclarationSyntax? prop = type.Members.OfType<PropertyDeclarationSyntax>()
                 .SingleOrDefault(prop => prop.Identifier.Text == "language");
-            var getter =
+            AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
-            var ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
-            Assert.IsTrue(ret.ToString().StartsWith($"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}"));
+            ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(LanguageCodeEnum)}";
+
+            Assert.IsTrue(theReturnExprStr.StartsWith(expectedReturnExprStr));
         }
 
         [Test]
         public void T3_UseNestedEnumForNestedEnumElement()
         {
-            var type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(NestedEnumElementType));
+            ClassDeclarationSyntax type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(NestedEnumElementType));
             Assert.AreEqual(2, type.Members.OfType<EnumDeclarationSyntax>().Count());
-            var prop = type.Members.OfType<PropertyDeclarationSyntax>()
+            PropertyDeclarationSyntax? prop = type.Members.OfType<PropertyDeclarationSyntax>()
                 .SingleOrDefault(prop => prop.Identifier.Text == "Language");
-            var getter =
+            AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
-            var ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
-            Assert.IsTrue(ret.ToString()
-                .StartsWith(
-                    $"return (({EnumTypesNamespace}.{nameof(NestedEnumElementType)}.{nameof(NestedEnumElementType.LanguageEnum)}"));
+            ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(NestedEnumElementType)}.{nameof(NestedEnumElementType.LanguageEnum)}";
+
+            Assert.IsTrue(theReturnExprStr.StartsWith( expectedReturnExprStr));
         }
 
         [Test]
         public void T4_UseNestedEnumForNestedEnumAttribute()
         {
-            var type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(NestedEnumAttributeType));
+            ClassDeclarationSyntax type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(NestedEnumAttributeType));
             Assert.AreEqual(2, type.Members.OfType<EnumDeclarationSyntax>().Count());
-            var prop = type.Members.OfType<PropertyDeclarationSyntax>()
+            PropertyDeclarationSyntax? prop = type.Members.OfType<PropertyDeclarationSyntax>()
                 .SingleOrDefault(prop => prop.Identifier.Text == "language");
-            var getter =
+            AccessorDeclarationSyntax getter =
                 prop.AccessorList.Accessors.Single(accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration));
-            var ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
-            Assert.IsTrue(ret.ToString()
-                .StartsWith(
-                    $"return (({EnumTypesNamespace}.{nameof(NestedEnumAttributeType)}.{nameof(NestedEnumAttributeType.LanguageEnum)}"));
+            ReturnStatementSyntax ret = getter.DescendantNodes().OfType<ReturnStatementSyntax>().Last();
+
+            string theReturnExprStr = ret.ToString();
+            string expectedReturnExprStr = $"return (({EnumTypesNamespace}.{nameof(NestedEnumAttributeType)}.{nameof(NestedEnumAttributeType.LanguageEnum)}";
+
+            Assert.IsTrue(theReturnExprStr.StartsWith(expectedReturnExprStr));
         }
 
         [Test]
         public void T5_DoNotRedefineDerivedNestedEnumAttribute()
         {
-            var type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(NestedDerivedEnumAttributeType));
+            ClassDeclarationSyntax type = GeneratedTypes.Single(type => type.Identifier.Text == nameof(NestedDerivedEnumAttributeType));
             Assert.AreEqual(2, type.Members.OfType<EnumDeclarationSyntax>().Count());
         }
 
         [Test]
         public void T6_InvalidCharEnum()
         {
-            var element1 = new GlobalEnumElementType
+            GlobalEnumElementType element1 = new GlobalEnumElementType
             {
                 Language = LanguageCodeEnum.fr,
                 Invalid  = InvalidCharEnum.en_fr,
@@ -119,7 +128,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual("fr",    ((XElement)element1.Untyped.FirstNode).Value);
             Assert.AreEqual("en-fr", ((XElement)element1.Untyped.FirstNode.NextNode).Value);
 
-            var element2 = new GlobalEnumAttributeType
+            GlobalEnumAttributeType element2 = new GlobalEnumAttributeType
             {
                 language = LanguageCodeEnum.fr,
                 invalid  = InvalidCharEnum.en_fr
@@ -129,7 +138,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual("fr",    element2.Untyped.FirstAttribute.Value);
             Assert.AreEqual("en-fr", element2.Untyped.LastAttribute.Value);
 
-            var element3 = new NestedEnumElementType
+            NestedEnumElementType element3 = new NestedEnumElementType
             {
                 Language = NestedEnumElementType.LanguageEnum.fr,
                 Invalid  = NestedEnumElementType.InvalidEnum.en_fr
@@ -139,7 +148,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual("fr",    ((XElement)element3.Untyped.FirstNode).Value);
             Assert.AreEqual("en-fr", ((XElement)element3.Untyped.LastNode).Value);
 
-            var element4 = new NestedEnumAttributeType
+            NestedEnumAttributeType element4 = new NestedEnumAttributeType
             {
                 language = NestedEnumAttributeType.LanguageEnum.fr,
                 invalid  = NestedEnumAttributeType.InvalidEnum.en_fr
@@ -149,7 +158,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.AreEqual("fr",    element4.Untyped.FirstAttribute.Value);
             Assert.AreEqual("en-fr", element4.Untyped.LastAttribute.Value);
 
-            var element5 = new NestedDerivedEnumAttributeType
+            NestedDerivedEnumAttributeType element5 = new NestedDerivedEnumAttributeType
             {
                 language           = NestedEnumAttributeType.LanguageEnum.fr,
                 invalid            = NestedEnumAttributeType.InvalidEnum.en_fr,
@@ -192,28 +201,28 @@ namespace Xml.Schema.Linq.Tests
     </xs:element>
 </xs:schema>";
 
-            var mfs = new MockFileSystem(new Dictionary<string, MockFileData> {
+            MockFileSystem mfs = new MockFileSystem(new Dictionary<string, MockFileData> {
                 { @"C:\schema.xsd", new MockFileData(xsd) }
             });
 
-            var tree = Utilities.GenerateSyntaxTree(@"C:\schema.xsd", mfs);
-            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(tree);
+            CSharpSyntaxTree tree = Utilities.GenerateSyntaxTree(@"C:\schema.xsd", mfs);
+            Diagnostic[] diags = Utilities.GetSyntaxAndCompilationDiagnostics(tree);
             Assert.AreEqual(0, diags.Length);
 
-            var nodes = tree.GetNamespaceRoot().DescendantNodes();
-            var enums = nodes.OfType<EnumDeclarationSyntax>().ToList();
-            var fontStylesEnum = enums.FirstOrDefault(e => e.Identifier.Text == "fontStylesType");
+            IEnumerable<SyntaxNode> nodes = tree.GetNamespaceRoot().DescendantNodes();
+            List<EnumDeclarationSyntax> enums = nodes.OfType<EnumDeclarationSyntax>().ToList();
+            EnumDeclarationSyntax? fontStylesEnum = enums.FirstOrDefault(e => e.Identifier.Text == "fontStylesType");
             Assert.IsNotNull(fontStylesEnum);
             Assert.IsTrue(fontStylesEnum.Members.Any(m => m.Identifier.Text == "bold"));
             Assert.IsTrue(fontStylesEnum.Members.Any(m => m.Identifier.Text == "italics"));
 
-            var classes = nodes.OfType<ClassDeclarationSyntax>().ToList();
-            var validatorClass = classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesTypeValidator");
+            List<ClassDeclarationSyntax> classes = nodes.OfType<ClassDeclarationSyntax>().ToList();
+            ClassDeclarationSyntax? validatorClass = classes.FirstOrDefault(c => c.Identifier.Text == "fontStylesTypeValidator");
             Assert.IsNotNull(validatorClass);
 
-            var rootClass = classes.FirstOrDefault(c => c.Identifier.Text == "Root");
+            ClassDeclarationSyntax? rootClass = classes.FirstOrDefault(c => c.Identifier.Text == "Root");
             Assert.IsNotNull(rootClass);
-            var styleProp = rootClass.Members.OfType<PropertyDeclarationSyntax>().FirstOrDefault(p => p.Identifier.Text == "STYLE");
+            PropertyDeclarationSyntax? styleProp = rootClass.Members.OfType<PropertyDeclarationSyntax>().FirstOrDefault(p => p.Identifier.Text == "STYLE");
             Assert.IsNotNull(styleProp);
             Assert.AreEqual("IList<fontStylesType>", styleProp.Type.ToString());
         }
@@ -221,7 +230,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void T8_ListOfEnumsRuntime_GetSetValues()
         {
-            var textStyle = new LibraryOfCongress.ALTO.TextStyleType();
+            TextStyleType textStyle = new LibraryOfCongress.ALTO.TextStyleType();
             textStyle.FONTSTYLE = new List<LibraryOfCongress.ALTO.fontStylesType>
             {
                 LibraryOfCongress.ALTO.fontStylesType.bold,

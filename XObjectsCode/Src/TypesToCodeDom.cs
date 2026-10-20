@@ -83,6 +83,7 @@ namespace Xml.Schema.Linq.CodeGen
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
                             var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
                             codeNamespace.AddTypeWithParentNamespace(enumType);
+                            TagWithSourceSchema(enumType, type);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
                             if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
@@ -98,6 +99,7 @@ namespace Xml.Schema.Linq.CodeGen
                             listItemEnumTypeInfo.clrtypeNs = stInfo.clrtypeNs;
                             var enumType = TypeBuilder.CreateEnumType(listItemEnumTypeInfo, settings, stInfo);
                             codeNamespace.AddTypeWithParentNamespace(enumType);
+                            TagWithSourceSchema(enumType, type);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
                                 var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
@@ -107,12 +109,15 @@ namespace Xml.Schema.Linq.CodeGen
                             }
                         }
 
-                        codeNamespace.AddTypeWithParentNamespace(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
+                        var simpleTypeDeclaration = TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings);
+                        codeNamespace.AddTypeWithParentNamespace(simpleTypeDeclaration);
+                        TagWithSourceSchema(simpleTypeDeclaration, type);
                     }
                     else {
                         CodeTypeDeclaration
                             decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
                         codeNamespace.AddTypeWithParentNamespace(decl);
+                        TagWithSourceSchema(decl, type);
 
                         if (type.IsRootElement) {
                             List<CodeTypeDeclaration> types;
@@ -580,6 +585,7 @@ namespace Xml.Schema.Linq.CodeGen
                 builder.ImplementInterfaces(settings.EnableServiceReference);
                 codeNamespace = GetCodeNamespace(typeInfo.clrtypeNs);
                 codeNamespace.AddTypeWithParentNamespace(builder.TypeDeclaration);
+                TagWithSourceSchema(builder.TypeDeclaration, typeInfo);
 
                 List<CodeTypeDeclaration> types;
                 codeNamespace = GetCodeNamespace(typeInfo.clrtypeNs);
@@ -620,23 +626,42 @@ namespace Xml.Schema.Linq.CodeGen
                 rootCodeNamespace.AddTypeWithParentNamespace(typeManagerDeclaration);
                 //Add using statements in the rest of the namespaces for the root namespace to avoid error on TypeManager reference
                 //Add using statements in the root namespace for the rest of the namespaces to avoid errors while building type dictionaries
-                CodeNamespaceImport rootImport = new CodeNamespaceImport(rootCodeNamespace.Name);
                 foreach (CodeNamespace cns in codeNamespacesTable.Values)
                 {
                     if (cns != rootCodeNamespace)
                     {
                         if (rootCodeNamespace.Name.Length > 0)
                         {
-                            cns.Imports.Add(rootImport);
+                            cns.Imports.Add(new CodeNamespaceImport(AddGlobalPrefixIfRequired(rootCodeNamespace.Name, cns.Name)));
                         }
 
                         if (cns.Name.Length > 0)
                         {
-                            rootCodeNamespace.Imports.Add(new CodeNamespaceImport(cns.Name));
+                            rootCodeNamespace.Imports.Add(new CodeNamespaceImport(AddGlobalPrefixIfRequired(cns.Name, rootCodeNamespace.Name)));
                         }
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Decides whether a using import for <paramref name="importNamespace"/>, to be declared inside the code namespace
+        /// <paramref name="importingNamespace"/>, needs the global:: prefix. This mirrors the decision made for the default
+        /// imports in <see cref="AddDefaultImports"/>: the prefix is always applied when the settings demand it, otherwise it
+        /// is applied when the two namespaces share a component, in which case the compiler can resolve the import relative
+        /// to the importing namespace rather than the global one.
+        /// </summary>
+        private string AddGlobalPrefixIfRequired(string importNamespace, string importingNamespace)
+        {
+            bool shouldPrefix = settings.AlwaysPrefixGlobalInUsingDirectives;
+            if (!shouldPrefix)
+            {
+                string[] importComponents = importNamespace.Split(['.']);
+                shouldPrefix = importingNamespace.Split(['.']).Any(component =>
+                    importComponents.Any(ic => ic.Equals(component, StringComparison.CurrentCultureIgnoreCase)));
+            }
+
+            return shouldPrefix ? "global::" + importNamespace : importNamespace;
         }
 
         private bool ForwardProperty(CodeMemberProperty property)
@@ -837,5 +862,13 @@ namespace Xml.Schema.Linq.CodeGen
 
             return currentCodeNamespace;
         }
+
+        /// <summary>
+        /// Records the source schema URI of a generated <see cref="CodeTypeDeclaration"/> so that a merged
+        /// generation pass (multiple entry-point schemas) can later be split back into one output file per
+        /// source schema. See <see cref="XObjectsCoreGenerator.SourceSchemaUserDataKey"/>.
+        /// </summary>
+        private static void TagWithSourceSchema(CodeTypeDeclaration declaration, ClrTypeInfo typeInfo)
+            => declaration.UserData[XObjectsCoreGenerator.SourceSchemaUserDataKey] = typeInfo.SchemaObject?.SourceUri ?? string.Empty;
     }
 }

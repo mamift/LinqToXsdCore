@@ -19,6 +19,22 @@ namespace Xml.Schema.Linq.Tests
     /// </summary>
     public static class TestExtensionsMethods
     {
+        public static void CheckForZeroDiagnosticsAndErrorsOrThrow(this IEnumerable<Diagnostic> diagnostics, string xsdFilePath)
+        {
+            Diagnostic[] allDiags = diagnostics.ToArray();
+
+            string[] acceptableWarnings = ["CS0109", "CS0108"];
+            IEnumerable<Diagnostic> acceptableDiags = allDiags.Where(d => acceptableWarnings.Contains(d.Id));
+            Diagnostic[] diags = allDiags.Except(acceptableDiags).ToArray();
+            
+            if (diags.Length > 0) {
+                if (diags.Any(e => e.Severity == DiagnosticSeverity.Error))
+                {
+                    Assert.Fail($"Errors in code generation for XSD: {xsdFilePath}!");
+                }
+            }
+        }
+
         public static void CopyToRealFileSystem(this MockFileSystem mfs, string parentDir)
         {
             if (!Path.IsPathRooted(parentDir))
@@ -30,7 +46,12 @@ namespace Xml.Schema.Linq.Tests
                 var fileInfo = mfs.FileInfo.New(file);
 
                 var pathRoot = Path.GetPathRoot(file);
-                var unrootedPath = file.Replace(pathRoot, "");
+                // The mock file system keys use '\' as their directory separator regardless of the host
+                // OS. Convert both separators to the platform's own so subdirectories are created
+                // correctly on Unix hosts (where '\' is an ordinary filename character).
+                var unrootedPath = file.Replace(pathRoot, "")
+                    .Replace('\\', Path.DirectorySeparatorChar)
+                    .Replace('/', Path.DirectorySeparatorChar);
 
                 var destInRealFs = Path.Combine(dir.FullName, unrootedPath);
 

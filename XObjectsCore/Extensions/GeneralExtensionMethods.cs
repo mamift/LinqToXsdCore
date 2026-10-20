@@ -11,6 +11,10 @@ namespace Xml.Schema.Linq.Extensions
 {
     public static class GeneralExtensionMethods
     {
+        public const string XmlSchemaDefaultNamespace = "http://www.w3.org/2001/XMLSchema";
+        public const string XmlSchemaVersioningNamespace = "http://www.w3.org/2007/XMLSchema-versioning";
+        public const string XmlSchemaVersion1_1ValueString = "1.1";
+
         /// <summary>
         /// Assuming the file is an XML schema, will return the XML schema version (<see cref="XmlSchemaVersion"/>).
         /// </summary>
@@ -27,14 +31,16 @@ namespace Xml.Schema.Linq.Extensions
             while (reader.Read()) {
                 switch (reader.NodeType) {
                     case XmlNodeType.Element:
-                        if (reader.IsStartElement("schema", "http://www.w3.org/2001/XMLSchema")) {
-                            var version = reader.GetAttribute("version");
-                            if (version == null) {
-                                goto outOfLoop;
-                            }
+                        if (reader.IsStartElement("schema", XmlSchemaDefaultNamespace)) {
+                            string minVersion = reader.GetAttribute("minVersion", XmlSchemaVersioningNamespace);
+                            string maxVersion = reader.GetAttribute("maxVersion", XmlSchemaVersioningNamespace);
 
-                            if (version.EndsWith(".1") && version.StartsWith("1")) return XmlSchemaVersion.Version1_1;
-                            if (version == "1" || (version.EndsWith(".0") && version.StartsWith("1"))) return XmlSchemaVersion.Version1_0;
+                            // when max version is 1, then ignore min version - as a higher min version makes no sense and minVersion also being 1 is redundant
+                            if (maxVersion == "1" || maxVersion == "1.0") return XmlSchemaVersion.Version1_0;
+                            // the presences of any 1.1 schema elements means LinqToXsd cannot process it
+                            if (minVersion == XmlSchemaVersion1_1ValueString || maxVersion == XmlSchemaVersion1_1ValueString) return XmlSchemaVersion.Version1_1;
+                            if ((minVersion?.IsWhiteSpace()).GetValueOrDefault() && (maxVersion?.IsWhiteSpace()).GetValueOrDefault()) return XmlSchemaVersion.Unspecified;
+
                             pastFirstElement = true;
                         }
 
@@ -42,11 +48,10 @@ namespace Xml.Schema.Linq.Extensions
                 }
 
                 if (pastFirstElement) {
-                    goto outOfLoop;
+                    break;
                 }
             }
 
-            outOfLoop:
             return XmlSchemaVersion.Unspecified;
         }
 
@@ -64,13 +69,7 @@ namespace Xml.Schema.Linq.Extensions
             };
 
             newXmlSet.Add(null, reader);
-            try {
-                newXmlSet.Compile();
-            } catch (XmlSchemaException ex) when
-                (ex.Message.Contains("The 'http://www.w3.org/XML/1998/namespace:base' attribute is not declared.")) {
-
-                throw new LinqToXsdException($"Error compiling schema: {reader.BaseURI}", ex);
-            }
+            newXmlSet.Compile();
 
             return newXmlSet;
         }

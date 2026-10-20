@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://niem.gov/niem/domains/emergencyManagement/2.0" version="1" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nc="http://niem.gov/niem/niem-core/2.0" xmlns:em="http://niem.gov/niem/domains/emergencyManagement/2.0" xmlns:i="http://niem.gov/niem/appinfo/2.0">
+  <xsd:annotation>
+    <xsd:documentation>Emergency Management</xsd:documentation>
+    <xsd:appinfo>
+      <i:ConformantIndicator>true</i:ConformantIndicator>
+    </xsd:appinfo>
+  </xsd:annotation>
+  <xsd:import schemaLocation="../../../structures/2.0/structures.xsd" namespace="http://niem.gov/niem/structures/2.0"/>
+  <xsd:import schemaLocation="../../../appinfo/2.0/appinfo.xsd" namespace="http://niem.gov/niem/appinfo/2.0"/>
+  <xsd:import schemaLocation="../../../niem-core/2.0/niem-core.xsd" namespace="http://niem.gov/niem/niem-core/2.0"/>
+  <xsd:complexType name="ResourceType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="s:ComplexObjectType">
+        <xsd:sequence>
+          <xsd:element ref="nc:RoleOfPersonReference" minOccurs="0" maxOccurs="1"/>
+          <xsd:element ref="nc:RoleOfItemReference" minOccurs="0" maxOccurs="1"/>
+          <xsd:element ref="em:ResourceName" minOccurs="0" maxOccurs="1"/>
+          <xsd:element ref="em:ResourceDescriptionText" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Resource" type="em:ResourceType" nillable="true"/>
+  <xsd:element name="ResourceDescriptionText" type="nc:TextType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>Free Text alternative to &quot;Resource Keyword&quot; (or may be used in addition).  Any description of resource or resource characteristics, situation requiring resource assistance, statement of mission resource must satisfy, or RFI text.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ResourceName" type="nc:TextType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>A name or title of the resource.  May be selected via the &lt;Resource Keyword&gt; if available.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

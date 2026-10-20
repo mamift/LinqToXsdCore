@@ -27,12 +27,17 @@ public class FileSystemUtilitiesTests
         // which transitively covers xmldsig-core-schema.xsd via MsgHeader's import.
         Assert.AreEqual(2, entryPointSchemas.Count);
         Assert.That(entryPointSchemas.Any(f => f.EndsWith("V2G_CI_AppProtocol.xsd")), "Should include the standalone AppProtocol schema");
-        Assert.That(entryPointSchemas.Any(f => f.EndsWith("V2G_CI_MsgDataTypes.xsd")), "Should include one representative from the cyclic SCC");
+        // The cyclic SCC {MsgBody, MsgDataTypes, MsgDef, MsgHeader} has no single canonical entry
+        // point: which member is chosen depends on the file enumeration order, which differs between
+        // operating systems. Assert that any one representative of the cycle is present instead.
+        var sccMembers = new[] { "V2G_CI_MsgBody.xsd", "V2G_CI_MsgDataTypes.xsd", "V2G_CI_MsgDef.xsd", "V2G_CI_MsgHeader.xsd" };
+        Assert.That(entryPointSchemas.Any(f => sccMembers.Any(m => f.EndsWith(m))), "Should include one representative from the cyclic SCC");
     }
 
     [Test,TestCaseSource(nameof(GetPhysicalFolderPathsForGeneratedSchemaLibraries))]
-    public void TestResolvePossibleFileAndFolderPathsToProcessableSchemas(object folderPath)
+    public void TestResolvePossibleFileAndFolderPathsToProcessableSchemas(object[] args)
     {
+        object folderPath = args[0];
         var dir = new DirectoryInfo((string)folderPath);
         IEnumerable<string> filesOrFolders = dir.GetFiles("*", SearchOption.AllDirectories).Select(f => f.FullName);
         List<string>? entryPointSchemas =
@@ -85,13 +90,18 @@ public class FileSystemUtilitiesTests
         Assert.AreEqual("xmldsig-core-schema.xsd <- (none)", FindLine("xmldsig-core-schema.xsd"));
     }
 
+    /// <summary>
+    /// The slnf (solution filter) is a JSON file, and contains references to the project folders in the `GeneratedSchemaLibraries`,
+    /// which is why we need to use System.Text.Json here.
+    /// </summary>
+    /// <returns></returns>
     public static IEnumerable<object[]> GetPhysicalFolderPathsForGeneratedSchemaLibraries()
     {
         var cwd = new DirectoryInfo(Environment.CurrentDirectory);
         DirectoryInfo linqToXsdSlnFolder = cwd.AscendToFolder("XObjectsTests").AscendByLevel(1);
         FileInfo testingSuiteFilter = linqToXsdSlnFolder.GetFiles("LinqToXsd-TestingSuite.slnf").Single();
         using FileStream fileStream = testingSuiteFilter.OpenRead();
-        var generatedSchemaLibProjectsInSlnFilter = JsonDocument.Parse(fileStream).RootElement
+        JsonElement generatedSchemaLibProjectsInSlnFilter = JsonDocument.Parse(fileStream).RootElement
             .GetProperty("solution").GetProperty("projects");
 
         DirectoryInfo baseFolder = linqToXsdSlnFolder.DescendToFolder("GeneratedSchemaLibraries");
