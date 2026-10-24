@@ -2,6 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
 
 namespace Xml.Schema.Linq.Tests
@@ -188,6 +191,135 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(genCodeResult == 0);
             Assert.IsTrue(File.Exists(legacyOutputFile));
             Assert.IsTrue(File.Exists(Path.Combine(Path.GetDirectoryName(msBuildXsd.FullName), $"{microsoftBuildXsd}-g.cs")));
+        }
+
+        /// <summary>
+        /// Tests that "gen '(file)'" splits the generated code into one file per class when the configuration sets
+        /// "&lt;SplitCodeFiles By="Class" /&gt;".
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeSplitsByClassWhenConfigured()
+        {
+            _copyOfSchemasFolder.Refresh();
+            const string schemaFileName = "abstracttest.xsd";
+            var schemaFile = _copyOfSchemasFolder.GetFiles(schemaFileName, SearchOption.AllDirectories).Single();
+            var outputFolder = schemaFile.Directory.FullName;
+
+            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, SplitCodeFiles.ByEnum.Class);
+
+            var genCodeResult = LinqToXsd.Program.Main(new[] { "gen", schemaFile.FullName, "-c", configFile });
+            Assert.IsTrue(genCodeResult == 0);
+
+            var generatedFiles = _copyOfSchemasFolder.GetFiles("*.xsd-g.cs", SearchOption.AllDirectories);
+
+            // one file per type declaration, rather than a single 'abstracttest.xsd-g.cs'
+            Assert.IsTrue(generatedFiles.Length > 1);
+            Assert.IsFalse(File.Exists(Path.Combine(outputFolder, $"{schemaFileName}{LinqToXsd.Program.GenerateCodeExtension}")));
+            Assert.IsTrue(generatedFiles.Any(f => f.Name == $"LinqToXsdTypeManager{XObjectsCoreGenerator.SplitCodeFileSuffix}"));
+
+            foreach (var generatedFile in generatedFiles) {
+                var tree = CSharpSyntaxTree.ParseText(File.ReadAllText(generatedFile.FullName));
+                tree.GetDiagnostics().CheckForZeroDiagnosticsAndErrorsOrThrow(generatedFile.Name);
+
+                var declaredTypes = tree.GetCompilationUnitRoot().DescendantNodes().OfType<BaseTypeDeclarationSyntax>();
+                Assert.AreEqual(1, declaredTypes.Count(), $"Expected one type declaration in {generatedFile.Name}");
+            }
+        }
+
+        /// <summary>
+        /// Tests that "gen '(file)'" splits the generated code into one file per CLR namespace when the configuration sets
+        /// "&lt;SplitCodeFiles By="Namespace" /&gt;", using the file name each Namespace element maps its CLR namespace to.
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeSplitsByNamespaceWhenConfigured()
+        {
+            _copyOfSchemasFolder.Refresh();
+            const string schemaFileName = "abstracttest.xsd";
+            var schemaFile = _copyOfSchemasFolder.GetFiles(schemaFileName, SearchOption.AllDirectories).Single();
+
+            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, SplitCodeFiles.ByEnum.Namespace,
+                config => {
+                    foreach (var ns in config.Namespaces.Namespace) ns.File = $"split.{ns.Clr}.cs";
+                });
+
+            var genCodeResult = LinqToXsd.Program.Main(new[] { "gen", schemaFile.FullName, "-c", configFile });
+            Assert.IsTrue(genCodeResult == 0);
+
+            var clrNamespace = Configuration.Load(configFile).Namespaces.Namespace.Single().Clr;
+            var expectedOutputFile = Path.Combine(schemaFile.Directory.FullName, $"split.{clrNamespace}.cs");
+            Assert.IsTrue(File.Exists(expectedOutputFile), $"Expected the Namespace/@File output file: {expectedOutputFile}");
+            Assert.IsFalse(File.Exists(Path.Combine(schemaFile.Directory.FullName, $"{schemaFileName}{LinqToXsd.Program.GenerateCodeExtension}")));
+
+            // every type of the schema belongs in that one output file, because it declares one CLR namespace
+            var generatedCode = File.ReadAllText(expectedOutputFile);
+            StringAssert.Contains($"namespace {clrNamespace}", generatedCode);
+            StringAssert.Contains("partial class UpdateCommand", generatedCode);
+            // the only output is that file: no combined 'abstracttest.xsd-g.cs' and no other split file names
+            Assert.IsTrue(_copyOfSchemasFolder.GetFiles("*.xsd-g.cs", SearchOption.AllDirectories).Length == 0);
+        }
+
+        /// <summary>
+        /// Tests that "gen '(file)' -o '(file).cs'" fails when the configuration asks for the generated code to be split,
+        /// because one output file cannot hold code that belongs in several files.
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeThrowsWhenSplittingConfiguredAndOutputIsAFile()
+        {
+            _copyOfSchemasFolder.Refresh();
+            var schemaFile = _copyOfSchemasFolder.GetFiles("abstracttest.xsd", SearchOption.AllDirectories).Single();
+            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, SplitCodeFiles.ByEnum.Class);
+
+            var outputFile = Path.Combine(schemaFile.Directory.FullName, "all-in-one.cs");
+
+            Assert.Throws<LinqToXsdException>(() => LinqToXsd.Program.Main(new[] { "gen", schemaFile.FullName, "-c", configFile, "-o", outputFile }));
+            Assert.IsFalse(File.Exists(outputFile));
+        }
+
+        /// <summary>
+        /// Tests that "gen '(file1),(file2)'" splits by class for several schemas at once without dropping the types of
+        /// either schema, even though both of them generate types with the same names (such as LinqToXsdTypeManager).
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeSplitsByClassForMultipleSchemasWithoutDroppingTypes()
+        {
+            _copyOfSchemasFolder.Refresh();
+            var abstractTestSchema = _copyOfSchemasFolder.GetFiles("abstracttest.xsd", SearchOption.AllDirectories).Single();
+            var taskSchedulerSchema = _copyOfSchemasFolder.GetFiles("windowsTaskSched.xsd", SearchOption.AllDirectories).Single();
+
+            var configFile = WriteConfigWithSplitCodeFiles(abstractTestSchema.FullName, SplitCodeFiles.ByEnum.Class);
+
+            var schemaFiles = $"{abstractTestSchema.FullName},{taskSchedulerSchema.FullName}";
+            var genCodeResult = LinqToXsd.Program.Main(new[] { "gen", schemaFiles, "-c", configFile });
+            Assert.AreEqual(0, genCodeResult);
+
+            var generatedFileNames = _copyOfSchemasFolder
+                .GetFiles("*.xsd-g.cs", SearchOption.AllDirectories)
+                .Select(f => f.Name)
+                .ToList();
+
+            // file names that both schemas would have produced are prefixed with the name of the schema they came from
+            CollectionAssert.Contains(generatedFileNames, $"abstracttest.LinqToXsdTypeManager{XObjectsCoreGenerator.SplitCodeFileSuffix}");
+            CollectionAssert.Contains(generatedFileNames, $"windowsTaskSched.LinqToXsdTypeManager{XObjectsCoreGenerator.SplitCodeFileSuffix}");
+            CollectionAssert.Contains(generatedFileNames, $"abstracttest.XRoot{XObjectsCoreGenerator.SplitCodeFileSuffix}");
+            CollectionAssert.Contains(generatedFileNames, $"windowsTaskSched.XRoot{XObjectsCoreGenerator.SplitCodeFileSuffix}");
+        }
+
+        /// <summary>
+        /// Writes a configuration file beside the given schema, as "config -e" would, but with a SplitCodeFiles element.
+        /// </summary>
+        /// <returns>The full path of the configuration file.</returns>
+        private static string WriteConfigWithSplitCodeFiles(string xsdFilePath, SplitCodeFiles.ByEnum splitBy,
+            Action<Configuration> customiseConfig = null)
+        {
+            var config = Configuration.LoadForSchema(XDocument.Load(xsdFilePath));
+            config.CodeGeneration.SplitCodeFiles = new SplitCodeFiles { By = splitBy };
+
+            customiseConfig?.Invoke(config);
+
+            var configFile = $"{xsdFilePath}.config";
+            config.Save(configFile);
+
+            return configFile;
         }
 
         /// <summary>

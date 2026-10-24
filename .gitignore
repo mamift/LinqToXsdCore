@@ -266,3 +266,4 @@ LinqToXsd.Schemas/_temp/
 *.DS_Store
 .github-issues/
 .scratch/
+.reasonix

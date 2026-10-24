@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -60,6 +61,44 @@ namespace LinqToXsd
         /// </summary>
         [Option('e', nameof(EnableServiceReference), HelpText = "(bool) Imports the 'System.Xml.Serialization' namespace into the generated code.")]
         public bool EnableServiceReference { get; set; }
+
+        /// <summary>
+        /// Determines whether <see cref="OptionsAbstract.Output"/> refers to a single output file rather than a folder.
+        /// <para>A value ending in <c>.cs</c> (and that isn't an existing folder) is a file; anything else, including a
+        /// folder that doesn't exist yet, is treated as a folder.</para>
+        /// </summary>
+        public bool OutputIsFile
+        {
+            get
+            {
+                var output = Output;
+                if (output.IsEmpty()) return false;
+                if (Directory.Exists(output)) return false;
+                if (File.Exists(output)) return true;
+
+                var lastCharacter = output[output.Length - 1];
+                var endsWithSeparator = lastCharacter == Path.DirectorySeparatorChar || lastCharacter == Path.AltDirectorySeparatorChar;
+                if (endsWithSeparator) return false;
+
+                return string.Equals(Path.GetExtension(output), ".cs", StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
+        /// <summary>
+        /// Loads the configuration files that <see cref="XObjectsCoreGenerator.Generate(IEnumerable{string}, IWarnableObserver{string})"/>
+        /// would use for each of <see cref="OptionsAbstract.SchemaFiles"/>, i.e. a file named 'schema.xsd.config' alongside each schema.
+        /// </summary>
+        /// <returns>One <see cref="LinqToXsdSettings"/> per schema that has an accompanying configuration file.</returns>
+        public IEnumerable<LinqToXsdSettings> LoadConfigInstancesBesideSchemas()
+        {
+            foreach (var schemaFile in SchemaFiles)
+            {
+                var configFile = $"{schemaFile}.config";
+                if (!File.Exists(configFile)) continue;
+
+                yield return XObjectsCoreGenerator.LoadLinqToXsdSettings(configFile);
+            }
+        }
 
         private bool autoConfig;
 

@@ -150,12 +150,11 @@ namespace Xml.Schema.Linq
                 UseTimeOnly = false,
             };
 
-            // currently the below code is disabled as the feature does not entirely work
-#if false
-            var lastConfigChild = codeGeneration.Untyped.DescendantNodes().Last();
-            lastConfigChild.AddAfterSelf(new XComment(new SplitCodeFiles() { By = SplitCodeFiles.ByEnum.Class }.Untyped.ToString(SaveOptions.DisableFormatting)));
-            lastConfigChild.AddAfterSelf(new XComment("Uncomment the below tag to enable splitting the generate code into multiple files; defaults to one C# source code file"));
-#endif
+            // Surface the SplitCodeFiles option as a commented-out example: splitting is opt-in, so writing the
+            // element itself would change the generated output of every configuration the 'config -e' verb creates.
+            var codeGenerationElement = codeGeneration.Untyped;
+            codeGenerationElement.Add(new XComment("Uncomment the below tag to split the generated code into multiple files: @By accepts 'Class' (one file per generated type) or 'Namespace' (one file per CLR namespace). Without it all generated code goes into one C# source code file."));
+            codeGenerationElement.Add(new XComment("<SplitCodeFiles By=\"Class\" />"));
 
             var blankConfigurationInstance = new Configuration {
                 CodeGeneration = codeGeneration,

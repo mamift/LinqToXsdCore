@@ -81,18 +81,58 @@ namespace Xml.Schema.Linq
             // all into a single XmlSchemaSet and emit each schema's types exactly once. Without this,
             // a schema that is xs:include/xs:import'd by more than one entry point is regenerated into
             // every importing file (see GitHub issue #14).
-            if (files.Count > 1 && !settings.SplitFilesByNamespace)
+            // This is skipped when code is split by namespace or class, because each schema is then
+            // responsible for producing its own set of split files.
+            if (files.Count > 1 && settings.SplitCodeFilesBy == null)
             {
                 if (TryGenerateMerged(files, settings, out var mergedWriters))
                     return mergedWriters;
             }
 
-            return files
-                .SelectMany(file => Generate(file, settings))
+            var generated = files
+                .SelectMany(file => Generate(file, settings)
+                    .Select(generatedFile => (sourceSchema: file, filename: generatedFile.filename, writer: generatedFile.writer)));
+
+            return DisambiguateClashingSplitFileNames(generated)
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())
                 .ToDictionary(x => x.filename, x => x.writer);
+        }
+
+        /// <summary>
+        /// Adds the source schema's file name to the name of any split output file that a different schema
+        /// already produced with different content, e.g. the <c>LinqToXsdTypeManager</c> that every schema emits
+        /// gets a file of the same name. Without this, the types of one schema would be silently dropped.
+        /// <para>Files whose content is identical are left alone, as they are the same types generated from a
+        /// schema that several entry points share. When generated code isn't split, no two files can clash and
+        /// this method changes nothing.</para>
+        /// </summary>
+        private static IEnumerable<(string filename, TextWriter writer)> DisambiguateClashingSplitFileNames(
+            IEnumerable<(string sourceSchema, string filename, TextWriter writer)> generatedFiles)
+        {
+            List<(string sourceSchema, string filename, TextWriter writer)> files = generatedFiles.ToList();
+
+            var clashingFileNames = files
+                .GroupBy(f => f.filename, StringComparer.OrdinalIgnoreCase)
+                .Where(g => g.Select(f => f.writer.ToString()).Distinct(StringComparer.Ordinal).Count() > 1)
+                .Select(g => g.Key)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var file in files)
+            {
+                if (!clashingFileNames.Contains(file.filename))
+                {
+                    yield return (file.filename, file.writer);
+                    continue;
+                }
+
+                var directory = Path.GetDirectoryName(file.filename) ?? string.Empty;
+                var sourceSchemaName = Path.GetFileNameWithoutExtension(file.sourceSchema);
+                var disambiguatedFileName = $"{sourceSchemaName}.{Path.GetFileName(file.filename)}";
+
+                yield return (Path.Combine(directory, disambiguatedFileName), file.writer);
+            }
         }
 
         /// <summary>
@@ -327,17 +367,13 @@ namespace Xml.Schema.Linq
                 string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
 
                 return Generate(schemaSet, settings)
-                    .Select(x =>
-                    {
-                        // When SplitCodeFiles by Namespace is configured,
-                        // Generate() returns a tuple (clrNamespace, writer) per CLR namespace that we need to map to a file.
-                        // Otherwise, Generate() returns a single (null, writer) tuple.
-                        var filename = string.IsNullOrEmpty(x.clrNamespace)
+                    .Select(x => {
+                        // When SplitCodeFiles is configured Generate() returns one tuple per output file, whose
+                        // name is relative to the folder of the XSD. Otherwise a single (null, writer) tuple is
+                        // returned and the generated code goes to the XSD's own file name.
+                        var filename = string.IsNullOrEmpty(x.outputFileName)
                             ? xsdFilePath
-                            : settings.NamespaceFileMap.TryGetValue(x.clrNamespace, out string nsFile)
-                            ? Path.Combine(xsdFolder, nsFile)
-                            : throw new LinqToXsdException(
-                                $"CLR namespace {x.clrNamespace} has no output file configured, which is required when using SplitCodeFiles by Namespace configuration.");
+                            : Path.Combine(xsdFolder ?? string.Empty, x.outputFileName);
 
                         return (filename, x.writer);
                     });
@@ -349,11 +385,11 @@ namespace Xml.Schema.Linq
         /// </summary>
         /// <param name="schemaSet"></param>
         /// <returns>
-        ///     A single (null, StringWriter) when configuration doesn't split files per namespace.
-        ///     Otherwise, one StringWriter per CLR namespace.
+        ///     A single (null, StringWriter) when the configuration doesn't split generated code across files.
+        ///     Otherwise, one StringWriter per output file, keyed by the name of that file.
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string clrNamespace, TextWriter writer)> Generate(XmlSchemaSet schemaSet)
+        public static IEnumerable<(string outputFileName, TextWriter writer)> Generate(XmlSchemaSet schemaSet)
         {
             var settings = new LinqToXsdSettings();
             return Generate(schemaSet, settings);
@@ -365,12 +401,12 @@ namespace Xml.Schema.Linq
         /// <param name="schemaSet"></param>
         /// <param name="settings"></param>
         /// <returns>
-        ///     A single (null, StringWriter) when configuration doesn't split files per namespace.
-        ///     Otherwise, one StringWriter per CLR namespace.
+        ///     A single (null, StringWriter) when the configuration doesn't split generated code across files.
+        ///     Otherwise, one StringWriter per output file, keyed by the name of that file.
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string clrNamespace, TextWriter writer)> Generate(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string outputFileName, TextWriter writer)> Generate(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
             return GenerateCodeCompileUnits(schemaSet, settings)
                 .Select(x =>
@@ -387,7 +423,7 @@ namespace Xml.Schema.Linq
                         writer.InsertFilePragma("#nullable enable annotations");
                     }
 
-                    return (x.clrNamespace, (TextWriter)writer);
+                    return (x.outputFileName, (TextWriter)writer);
                 });
         }
 
@@ -397,12 +433,12 @@ namespace Xml.Schema.Linq
         /// <param name="schemaSet"></param>
         /// <param name="settings"></param>
         /// <returns>
-        ///     A single (null, CodeCompileUnit) when configuration doesn't split files per namespaces.
-        ///     Otherwise, one CodeCompileUnit per CLR namespace.
+        ///     A single (null, CodeCompileUnit) when configuration doesn't split generated code across files.
+        ///     Otherwise, one CodeCompileUnit per output file, keyed by the name of that file.
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string clrNamespace, CodeCompileUnit unit)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string outputFileName, CodeCompileUnit unit)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
             if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
@@ -412,17 +448,118 @@ namespace Xml.Schema.Linq
             var codeGenerator = new CodeDomTypesGenerator(settings);
             var namespaces = codeGenerator.GenerateTypes(mapping);
 
-            return settings.SplitFilesByNamespace
-                ? namespaces.GroupBy(ns => ns.Name).Select(g => (g.Key, BuildUnit(g)))
-                : new[] { ((string)null, BuildUnit(namespaces)) };
-
-            static CodeCompileUnit BuildUnit(IEnumerable<CodeNamespace> namespaces)
+            return settings.SplitCodeFilesBy switch
             {
-                var ccu = new CodeCompileUnit();
-                foreach (var ns in namespaces)
-                    ccu.Namespaces.Add(ns);
-                return ccu;
+                SplitCodeFiles.ByEnum.Namespace => SplitByNamespace(namespaces, settings),
+                SplitCodeFiles.ByEnum.Class => SplitByClass(namespaces),
+                _ => new[] { ((string)null, BuildUnit(namespaces)) }
+            };
+        }
+
+        /// <summary>
+        /// The suffix given to each file produced when generated code is split across multiple files. Mirrors the
+        /// file name the CLI gives to the single output file it writes by default, e.g. <c>schema.xsd-g.cs</c>.
+        /// </summary>
+        internal const string SplitCodeFileSuffix = ".xsd-g.cs";
+
+        /// <summary>
+        /// Puts each generated <see cref="CodeNamespace"/> into its own <see cref="CodeCompileUnit"/>.
+        /// </summary>
+        private static IEnumerable<(string outputFileName, CodeCompileUnit unit)> SplitByNamespace(
+            IEnumerable<CodeNamespace> namespaces, LinqToXsdSettings settings)
+        {
+            var usedFileNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var namespaceGroup in namespaces.GroupBy(ns => ns.Name ?? string.Empty)) {
+                var fileName = ConfiguredNamespaceFileName(namespaceGroup.Key, settings);
+                if (fileName == null)
+                    fileName = UniqueOutputFileName(namespaceGroup.Key.IsEmpty() ? "GlobalNamespace" : namespaceGroup.Key, usedFileNames);
+                else
+                    usedFileNames.Add(fileName);
+
+                yield return (fileName, BuildUnit(namespaceGroup));
             }
+        }
+
+        /// <summary>
+        /// Returns the file name the <c>@File</c> attribute of a <c>Namespace</c> configuration element maps a CLR namespace
+        /// to, or <c>null</c> when the configuration doesn't name one.
+        /// </summary>
+        private static string ConfiguredNamespaceFileName(string clrNamespace, LinqToXsdSettings settings)
+        {
+            if (string.IsNullOrEmpty(clrNamespace)) return null;
+
+            return settings.NamespaceFileMap.TryGetValue(clrNamespace, out string configuredFileName) &&
+                   !string.IsNullOrWhiteSpace(configuredFileName)
+                ? configuredFileName
+                : null;
+        }
+
+        /// <summary>
+        /// Puts each top-level type declaration into its own <see cref="CodeCompileUnit"/>, along with the namespace
+        /// (and its using directives) the type is declared in.
+        /// </summary>
+        private static IEnumerable<(string outputFileName, CodeCompileUnit unit)> SplitByClass(IEnumerable<CodeNamespace> namespaces)
+        {
+            var declarations = (from ns in namespaces
+                                from CodeTypeDeclaration type in ns.Types.Cast<CodeTypeDeclaration>()
+                                select (clrNamespace: ns.Name ?? string.Empty, containingNamespace: ns, type)).ToList();
+
+            // The same type name can be generated into different CLR namespaces (e.g. types from an imported schema
+            // are emitted alongside the importing schema's types), so those files are named with their CLR namespace.
+            var clashingTypeNames = declarations
+                .GroupBy(d => d.type.Name, StringComparer.Ordinal)
+                .Where(g => g.Count() > 1)
+                .Select(g => g.Key)
+                .ToHashSet(StringComparer.Ordinal);
+
+            var usedFileNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var declaration in declarations) {
+                var baseName = clashingTypeNames.Contains(declaration.type.Name) && !string.IsNullOrEmpty(declaration.clrNamespace)
+                    ? $"{declaration.clrNamespace}.{declaration.type.Name}"
+                    : declaration.type.Name;
+
+                var unit = new CodeCompileUnit();
+                unit.Namespaces.Add(NamespaceWithType(declaration.containingNamespace, declaration.type));
+
+                yield return (UniqueOutputFileName(baseName, usedFileNames), unit);
+            }
+        }
+
+        /// <summary>
+        /// Appends <see cref="SplitCodeFileSuffix"/> to a file name, adding a counter if another output file has
+        /// already taken that name.
+        /// </summary>
+        private static string UniqueOutputFileName(string baseName, HashSet<string> usedFileNames)
+        {
+            var fileName = $"{baseName}{SplitCodeFileSuffix}";
+            for (var counter = 1; !usedFileNames.Add(fileName); counter++)
+                fileName = $"{baseName}.{counter}{SplitCodeFileSuffix}";
+
+            return fileName;
+        }
+
+        /// <summary>
+        /// Creates a copy of a <see cref="CodeNamespace"/> that holds only the given <paramref name="type"/>, so that
+        /// each split file retains the using directives its type needs.
+        /// </summary>
+        private static CodeNamespace NamespaceWithType(CodeNamespace containingNamespace, CodeTypeDeclaration type)
+        {
+            var codeNamespace = new CodeNamespace(containingNamespace.Name);
+            foreach (CodeNamespaceImport import in containingNamespace.Imports)
+                codeNamespace.Imports.Add(new CodeNamespaceImport(import.Namespace));
+            codeNamespace.Types.Add(type);
+
+            return codeNamespace;
+        }
+
+        private static CodeCompileUnit BuildUnit(IEnumerable<CodeNamespace> namespaces)
+        {
+            var ccu = new CodeCompileUnit();
+            foreach (var ns in namespaces)
+                ccu.Namespaces.Add(ns);
+            return ccu;
         }
 
         /// <summary>
@@ -465,8 +602,9 @@ namespace Xml.Schema.Linq
                     return mergedWriters;
             }
 
-            return pairsToProcess
-                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName, observer))
+            return DisambiguateClashingSplitFileNames(pairsToProcess
+                    .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName, observer)
+                        .Select(generatedFile => (sourceSchema: pair.xsdFile.FullName, filename: generatedFile.filename, writer: generatedFile.writer))))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())

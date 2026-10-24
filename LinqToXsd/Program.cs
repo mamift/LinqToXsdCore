@@ -174,6 +174,15 @@ namespace LinqToXsd
                 ProgressReporter.Report("NOTE: As of v3.4.24 the -a flag (which searches for a config file matching the filename of an XSD) is now always automatically applied. If an .xsd.config is not found, default config values are applied.");
             }
 
+            // A single output file can't hold code that the configuration asks to be split across files,
+            // so refuse to run rather than write a file that doesn't compile.
+            var splitCodeFilesBy = SplittingConfiguredFor(generateOptions, settingsFromFile);
+            if (generateOptions.OutputIsFile && splitCodeFilesBy != null)
+                throw new LinqToXsdException(
+                    $"{nameof(GenerateOptions.Output)} refers to a single file ('{generateOptions.Output}'), but the configuration sets " +
+                    $"SplitCodeFiles By=\"{splitCodeFilesBy}\", which writes the generated code to multiple files. " +
+                    $"Either specify a folder for {nameof(GenerateOptions.Output)}, or remove the SplitCodeFiles element from the configuration.");
+
             Dictionary<string, TextWriter> textWriters;
             if (settingsFromFile is null)
             {
@@ -193,12 +202,50 @@ namespace LinqToXsd
             }
 
             Debug.Assert(generateOptions.Output != null);
-            bool hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
+            if (splitCodeFilesBy != null && !generateOptions.OutputIsFile)
+                WarnAboutStaleCombinedOutputFile(generateOptions, splitCodeFilesBy.Value);
+
             // merge the output into a single file
-            if (hasCsExt)
+            if (generateOptions.OutputIsFile)
                 GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);
             else
                 GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions, textWriters);
+        }
+
+        /// <summary>
+        /// Returns the split mode that applies to the given <paramref name="generateOptions"/>, or <c>null</c> when either
+        /// no configuration sets <c>SplitCodeFiles</c>, or all the configurations that were read agree on one output file.
+        /// </summary>
+        private static SplitCodeFiles.ByEnum? SplittingConfiguredFor(GenerateOptions generateOptions, LinqToXsdSettings? settingsFromFile)
+        {
+            if (settingsFromFile != null) return settingsFromFile.SplitCodeFilesBy;
+
+            // Without a -c argument the generator reads a 'schema.xsd.config' beside each schema, so look there for settings.
+            foreach (var settings in generateOptions.LoadConfigInstancesBesideSchemas())
+            {
+                if (settings.SplitCodeFilesBy != null) return settings.SplitCodeFilesBy;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Tells the user to delete the single file that earlier runs generated, because it declares the same types that are
+        /// now spread across the split output files, and would cause duplicate definition errors if it were left in place.
+        /// </summary>
+        private static void WarnAboutStaleCombinedOutputFile(GenerateOptions generateOptions, SplitCodeFiles.ByEnum splitCodeFilesBy)
+        {
+            var outputFolder = generateOptions.Output.IsEmpty() || generateOptions.Output == "-1" ? null : generateOptions.Output;
+
+            foreach (var schemaFile in generateOptions.SchemaFiles)
+            {
+                var folder = outputFolder ?? Path.GetDirectoryName(schemaFile) ?? string.Empty;
+                // 'schema.xsd' is written to 'schema.xsd-g.cs' when the generated code is not split.
+                var combinedOutputFile = Path.Combine(folder, Path.GetFileName(schemaFile) + GenerateCodeExtension);
+
+                if (File.Exists(combinedOutputFile))
+                    PrintLn($"NOTE: Generated code is now split into multiple files (SplitCodeFiles By=\"{splitCodeFilesBy}\"). Delete the previously generated file: {combinedOutputFile}".Yellow());
+            }
         }
     }
 }

@@ -21,4 +21,30 @@ public class LinqToXsdConfigurationTests
         var expected = ns1.DefaultVisibility.ToString();
         Assert.AreEqual(expected, "internal");
     }
+
+    [TestCase(null, null)]
+    [TestCase("Class", SplitCodeFiles.ByEnum.Class)]
+    [TestCase("Namespace", SplitCodeFiles.ByEnum.Namespace)]
+    public void TestSplitCodeFilesByIsReadFromConfiguration(string byAttributeValue, SplitCodeFiles.ByEnum? expected)
+    {
+        var splitCodeFilesElement = byAttributeValue == null ? string.Empty : $"<SplitCodeFiles By=\"{byAttributeValue}\" />";
+        var configXml =
+            $@"<Configuration xmlns=""http://www.microsoft.com/xml/schema/linq"">
+  <CodeGeneration>
+    <UseDateOnly>false</UseDateOnly>
+    <UseTimeOnly>false</UseTimeOnly>
+    <UseDateTimeOffset>false</UseDateTimeOffset>
+    <NullableReferences>false</NullableReferences>
+    {splitCodeFilesElement}
+  </CodeGeneration>
+  <Namespaces>
+    <Namespace DefaultVisibility=""public"" Schema=""urn:test"" Clr=""urn.test"" />
+  </Namespaces>
+</Configuration>";
+
+        var settings = new LinqToXsdSettings();
+        settings.Load(System.Xml.Linq.XDocument.Parse(configXml));
+
+        Assert.AreEqual(expected, settings.SplitCodeFilesBy);
+    }
 }

@@ -77,7 +77,7 @@ namespace Xml.Schema.Linq
             UseDateTimeOffset = codegenElement?.Element(XName.Get("UseDateTimeOffset", Constants.TypedXLinqNs))?.Value == "true";
 
             var splitFilesElement = codegenElement?.Element(XName.Get("SplitCodeFiles", Constants.TypedXLinqNs));
-            SplitFilesByNamespace = splitFilesElement?.Attribute("By")?.Value == "Namespace";
+            SplitCodeFilesBy = ReadSplitCodeFilesBy(splitFilesElement);
 
             XAttribute alwaysPrefixGlobalAttr = namespacesElement.Attribute("AlwaysPrefixGlobal");
             AlwaysPrefixGlobalInUsingDirectives = bool.Parse(alwaysPrefixGlobalAttr?.Value ?? "false");
@@ -129,7 +129,12 @@ namespace Xml.Schema.Linq
             return clrNamespace;
         }
 
-        public bool SplitFilesByNamespace { get; set; }
+        /// <summary>
+        /// Determines how generated code is split across output files. A <c>null</c> value (the default) means
+        /// the whole schema is emitted into a single source code file.
+        /// <para>Mirrors the <c>CodeGeneration/SplitCodeFiles/@By</c> configuration element.</para>
+        /// </summary>
+        public SplitCodeFiles.ByEnum? SplitCodeFilesBy { get; set; }
 
         public bool VerifyRequired
         {
@@ -149,6 +154,21 @@ namespace Xml.Schema.Linq
         public bool NullableReferences { get; set; }
         public bool PrefixGlobalNsWhenReferencingXmlSchemaLinqNs { get; set; }
         public bool AlwaysPrefixGlobalInUsingDirectives { get; set; }
+
+        /// <summary>
+        /// Reads the <c>@By</c> attribute of a <c>SplitCodeFiles</c> configuration element. Returns <c>null</c>
+        /// (one output file, the default) when the element or attribute is absent, or when the value is unrecognised;
+        /// the configuration schema only allows <c>Class</c> and <c>Namespace</c>.
+        /// </summary>
+        private static SplitCodeFiles.ByEnum? ReadSplitCodeFilesBy(XElement splitCodeFilesElement)
+        {
+            var byValue = splitCodeFilesElement?.Attribute(XName.Get("By"))?.Value;
+            if (string.IsNullOrWhiteSpace(byValue)) return null;
+
+            return Enum.TryParse(byValue, ignoreCase: false, out SplitCodeFiles.ByEnum by)
+                ? by
+                : null;
+        }
 
         private void AddToNamespaceMapping(XElement namespaces)
         {

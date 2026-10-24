@@ -40,6 +40,23 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(comments.Any());
         }
 
+        /// <summary>
+        /// Splitting generated code across files is opt-in, so the example configuration only shows a commented-out
+        /// SplitCodeFiles element: writing a real one would split the output of every schema the config is used for.
+        /// </summary>
+        [Test]
+        public void TestExampleConfigShowsSplitCodeFilesNoticeButDoesNotEnableIt()
+        {
+            var eg = ConfigurationProvider.ProvideExampleConfigurationXml();
+
+            var codeGenerationElement = eg.Descendants().Single(d => d.Name.LocalName == "CodeGeneration");
+            var comments = codeGenerationElement.Nodes().OfType<XComment>().Select(c => c.Value).ToList();
+
+            Assert.IsTrue(comments.Any(c => c.Contains("<SplitCodeFiles")), "Expected a commented-out SplitCodeFiles example.");
+            Assert.IsFalse(comments.Single(c => c.Contains("<SplitCodeFiles")).Contains("xmlns"), "The example should be usable as-is, without a namespace declaration.");
+            Assert.IsFalse(codeGenerationElement.Elements().Any(e => e.Name.LocalName == "SplitCodeFiles"));
+        }
+
         [Test]
         public void TestThatConfigHasDefaultNamespaceMappingForXsdWithNoTargetNamespace()
         {
