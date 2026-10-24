@@ -174,25 +174,39 @@ namespace LinqToXsd
                 ProgressReporter.Report("NOTE: As of v3.4.24 the -a flag (which searches for a config file matching the filename of an XSD) is now always automatically applied. If an .xsd.config is not found, default config values are applied.");
             }
 
+            // Work out what the configuration (if any) asks for before falling back to the built-in defaults, because a
+            // configuration file is how a user asks for one output file now that splitting by class is the default.
+            bool configurationFound = settingsFromFile is not null;
+            SplitCodeFiles.ByEnum? configuredSplitCodeFilesBy = settingsFromFile?.SplitCodeFilesBy;
+            if (!configurationFound)
+                (configurationFound, configuredSplitCodeFilesBy) = generateOptions.ReadConfigsBesideSchemas();
+
             // A single output file can't hold code that the configuration asks to be split across files,
             // so refuse to run rather than write a file that doesn't compile.
-            var splitCodeFilesBy = SplittingConfiguredFor(generateOptions, settingsFromFile);
-            if (generateOptions.OutputIsFile && splitCodeFilesBy != null)
+            if (generateOptions.OutputIsFile && configuredSplitCodeFilesBy != null)
                 throw new LinqToXsdException(
                     $"{nameof(GenerateOptions.Output)} refers to a single file ('{generateOptions.Output}'), but the configuration sets " +
-                    $"SplitCodeFiles By=\"{splitCodeFilesBy}\", which writes the generated code to multiple files. " +
+                    $"SplitCodeFiles By=\"{configuredSplitCodeFilesBy}\", which writes the generated code to multiple files. " +
                     $"Either specify a folder for {nameof(GenerateOptions.Output)}, or remove the SplitCodeFiles element from the configuration.");
 
+            var settings = settingsFromFile;
+            if (!configurationFound && !generateOptions.OutputIsFile)
+            {
+                // With no configuration at all the defaults apply, and the default is to split the generated code by class
+                // so that a large schema doesn't produce one unwieldy source file.
+                settings = new LinqToXsdSettings { SplitCodeFilesBy = SplitCodeFiles.ByEnum.Class };
+                ProgressReporter.Report("No configuration file found: splitting the generated code by class. Create a configuration file to change that, or pass a file name to -o for a single source code file.");
+            }
+
             Dictionary<string, TextWriter> textWriters;
-            if (settingsFromFile is null)
+            if (settings is null)
             {
                 textWriters = XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, ProgramObserver);
             }
             else
             {
-                settingsFromFile.EnableServiceReference = generateOptions.EnableServiceReference;
-                Debug.Assert(settingsFromFile != null, nameof(settingsFromFile) + " != null");
-                textWriters = XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settingsFromFile, ProgramObserver);
+                settings.EnableServiceReference = generateOptions.EnableServiceReference;
+                textWriters = XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings, ProgramObserver);
             }
 
             if (generateOptions.Output.IsEmpty())
@@ -202,31 +216,14 @@ namespace LinqToXsd
             }
 
             Debug.Assert(generateOptions.Output != null);
-            if (splitCodeFilesBy != null && !generateOptions.OutputIsFile)
-                WarnAboutStaleCombinedOutputFile(generateOptions, splitCodeFilesBy.Value);
+            if (settings?.SplitCodeFilesBy != null && !generateOptions.OutputIsFile)
+                WarnAboutStaleCombinedOutputFile(generateOptions, settings.SplitCodeFilesBy.Value);
 
             // merge the output into a single file
             if (generateOptions.OutputIsFile)
                 GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);
             else
                 GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions, textWriters);
-        }
-
-        /// <summary>
-        /// Returns the split mode that applies to the given <paramref name="generateOptions"/>, or <c>null</c> when either
-        /// no configuration sets <c>SplitCodeFiles</c>, or all the configurations that were read agree on one output file.
-        /// </summary>
-        private static SplitCodeFiles.ByEnum? SplittingConfiguredFor(GenerateOptions generateOptions, LinqToXsdSettings? settingsFromFile)
-        {
-            if (settingsFromFile != null) return settingsFromFile.SplitCodeFilesBy;
-
-            // Without a -c argument the generator reads a 'schema.xsd.config' beside each schema, so look there for settings.
-            foreach (var settings in generateOptions.LoadConfigInstancesBesideSchemas())
-            {
-                if (settings.SplitCodeFilesBy != null) return settings.SplitCodeFilesBy;
-            }
-
-            return null;
         }
 
         /// <summary>

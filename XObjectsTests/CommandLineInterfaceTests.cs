@@ -190,7 +190,40 @@ namespace Xml.Schema.Linq.Tests
 
             Assert.IsTrue(genCodeResult == 0);
             Assert.IsTrue(File.Exists(legacyOutputFile));
-            Assert.IsTrue(File.Exists(Path.Combine(Path.GetDirectoryName(msBuildXsd.FullName), $"{microsoftBuildXsd}-g.cs")));
+
+            // no configuration means the default output: generated code split by class
+            Assert.IsTrue(_copyOfSchemasFolder.GetFiles("*.xsd-g.cs", SearchOption.AllDirectories).Any());
+            Assert.IsFalse(File.Exists(Path.Combine(Path.GetDirectoryName(msBuildXsd.FullName), $"{microsoftBuildXsd}-g.cs")));
+        }
+
+        /// <summary>
+        /// Tests that "gen '(file)'" splits the generated code by class when there is no configuration file at all,
+        /// because that is the default, and that a file passed to <c>-o</c> still produces a single file.
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeDefaultsToSplittingByClassWhenNoConfigFound()
+        {
+            _copyOfSchemasFolder.Refresh();
+            const string schemaFileName = "abstracttest.xsd";
+            var schemaFile = _copyOfSchemasFolder.GetFiles(schemaFileName, SearchOption.AllDirectories).Single();
+            var schemaFolder = schemaFile.Directory.FullName;
+
+            Assert.IsFalse(File.Exists($"{schemaFile.FullName}.config"));
+
+            var genCodeResult = LinqToXsd.Program.Main(new[] { "gen", schemaFile.FullName });
+            Assert.IsTrue(genCodeResult == 0);
+
+            var splitFiles = _copyOfSchemasFolder.GetFiles("*.xsd-g.cs", SearchOption.AllDirectories);
+            Assert.IsTrue(splitFiles.Length > 1);
+            Assert.IsFalse(File.Exists(Path.Combine(schemaFolder, $"{schemaFileName}{LinqToXsd.Program.GenerateCodeExtension}")));
+            Assert.IsTrue(splitFiles.Any(f => f.Name == $"Action{XObjectsCoreGenerator.SplitCodeFileSuffix}"));
+
+            // passing a file to -o asks for one file, which overrides the default rather than conflicting with it
+            var singleOutputFile = Path.Combine(schemaFolder, "all-in-one.cs");
+            var genSingleFileResult = LinqToXsd.Program.Main(new[] { "gen", schemaFile.FullName, "-o", singleOutputFile });
+            Assert.IsTrue(genSingleFileResult == 0);
+            Assert.IsTrue(File.Exists(singleOutputFile));
+            StringAssert.Contains("partial class UpdateCommand", File.ReadAllText(singleOutputFile));
         }
 
         /// <summary>

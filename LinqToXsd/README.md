@@ -49,7 +49,7 @@ It will output code to *'file.xsd-g.cs'*, or in this case *'wss.xsd-g.cs'*.
 
 ### Splitting generated code into multiple files
 
-By default all the generated code for a schema goes into one `file.xsd-g.cs`. To split it up, add a `<SplitCodeFiles />` element to the `<CodeGeneration />` element of your configuration file (`linqtoxsd config -e` writes this element as a commented-out example):
+When `gen` finds no configuration file for your schema, it splits the generated code into one file per class (e.g. `Project.xsd-g.cs`), because a single file for a large schema quickly becomes unwieldy. To choose a different arrangement, add a `<SplitCodeFiles />` element to the `<CodeGeneration />` element of your configuration file (`linqtoxsd config -e` writes this element as a commented-out example):
 
 ```XML
 <CodeGeneration>
@@ -62,7 +62,9 @@ By default all the generated code for a schema goes into one `file.xsd-g.cs`. To
 * `Class` - one file per generated type, named after the type (e.g. `Project.xsd-g.cs`). Types whose names clash across CLR namespaces are named after both.
 * `Namespace` - one file per generated CLR namespace, named after the [`File` attribute](https://github.com/mamift/LinqToXsdCore/blob/master/XObjectsCode/Configuration/LinqToXsdConfiguration.xsd) of the matching `<Namespace />` element when it has one, else after the CLR namespace itself.
 
-Because the generated code is now spread over several files, `-o` must refer to a folder, or be left off to write the files next to the schema; passing a file to `-o` is an error. Delete any `file.xsd-g.cs` left behind by an earlier run, as it declares the same types that now live in the split files.
+Having a configuration file at all turns splitting off unless it sets `<SplitCodeFiles />`, so deleting the element (or working from the file `linqtoxsd config -e` creates) gives you a single `file.xsd-g.cs`; passing a file name to `-o` does the same for a one-off run.
+
+Because the generated code can be spread over several files, `-o` should refer to a folder, or be left off to write the files next to the schema. Delete any `file.xsd-g.cs` left behind by an earlier run, as it declares the same types that now live in the split files.
 
 ### Regenerating code
 

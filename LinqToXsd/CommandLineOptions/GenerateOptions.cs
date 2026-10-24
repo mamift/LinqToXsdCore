@@ -85,19 +85,28 @@ namespace LinqToXsd
         }
 
         /// <summary>
-        /// Loads the configuration files that <see cref="XObjectsCoreGenerator.Generate(IEnumerable{string}, IWarnableObserver{string})"/>
-        /// would use for each of <see cref="OptionsAbstract.SchemaFiles"/>, i.e. a file named 'schema.xsd.config' alongside each schema.
+        /// Reads the configuration files that <see cref="XObjectsCoreGenerator.Generate(IEnumerable{string}, IWarnableObserver{string})"/>
+        /// would find for <see cref="OptionsAbstract.SchemaFiles"/> on its own, i.e. a file named 'schema.xsd.config' alongside
+        /// each schema.
         /// </summary>
-        /// <returns>One <see cref="LinqToXsdSettings"/> per schema that has an accompanying configuration file.</returns>
-        public IEnumerable<LinqToXsdSettings> LoadConfigInstancesBesideSchemas()
+        /// <returns>
+        /// Whether any such configuration file exists, and the <c>SplitCodeFiles</c> mode the first one that sets it asks for.
+        /// </returns>
+        public (bool ConfigurationFound, SplitCodeFiles.ByEnum? SplitCodeFilesBy) ReadConfigsBesideSchemas()
         {
+            var configurationFound = false;
+            SplitCodeFiles.ByEnum? splitCodeFilesBy = null;
+
             foreach (var schemaFile in SchemaFiles)
             {
                 var configFile = $"{schemaFile}.config";
                 if (!File.Exists(configFile)) continue;
 
-                yield return XObjectsCoreGenerator.LoadLinqToXsdSettings(configFile);
+                configurationFound = true;
+                splitCodeFilesBy ??= XObjectsCoreGenerator.LoadLinqToXsdSettings(configFile).SplitCodeFilesBy;
             }
+
+            return (configurationFound, splitCodeFilesBy);
         }
 
         private bool autoConfig;
