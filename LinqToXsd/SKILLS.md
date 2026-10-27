@@ -8,13 +8,12 @@ This skill describes how to drive the CLI: reading W3C XML Schema (XSD) files, w
 
 Use it whenever a task involves:
 
-- generating `*.xsd-g.cs` files from `.xsd` schemas,
-- creating or editing `.xsd.config` configuration files,
-- regenerating the committed schemas under `GeneratedSchemaLibraries/`.
+- generating (or regenerating) C# code from `.xsd` schemas (this will output `*.xsd-g.cs` files),
+- creating or editing `.xsd.config` configuration files to control LinqToXsd code gen behaviour
 
 ## Background
 
-The tool loads XSDs into an `XmlSchemaSet` and emits C# classes that inherit from `XTypedElement` (in the `XObjectsCore` runtime library). Each generated class models an XML element or type so documents can be read and written through a strongly-typed `XDocument`-based API. Only C# source files are produced — this port does not emit assemblies.
+The tool loads XSDs and emits C# classes that inherit from `XTypedElement` (in the `XObjectsCore` runtime library). Each generated class models an XML element or type so documents can be read and written through a strongly-typed `XDocument`-based API. Only C# source files are produced — this does not emit assemblies.
 
 ## Verbs at a glance
 
@@ -38,6 +37,12 @@ Then invoke it as `linqtoxsd` (`LinqToXsd` on a console). When working on this r
 
 ```bash
 dotnet run --project LinqToXsd -- <verb> <args...>
+```
+
+Pre-release versions are also available on this publicly accessible nuget feed (ONLY USE THIS VERSION WHEN INSTRUCTED OR TRYING TO DIAGNOSE A BUG WITH LINQTOXSDCORE):
+
+```
+dotnet tool install LinqToXsdCore --prerelease --add-source https://pkgs.dev.azure.com/mamift1/LinqToXsdCore/_packaging/LinqToXsdCore-AlphaBuilds/nuget/v3/index.json
 ```
 
 ## Quick start
@@ -199,7 +204,16 @@ linqtoxsd gen "$(ProjectDir)wss.xsd" -c "$(ProjectDir)wss.xsd.config"
 
 Generated `*.xsd-g.cs` files compile against the [`XObjectsCore`](https://www.nuget.org/packages/XObjectsCore) runtime package — add that reference to any project that includes generated code. Never add the `LinqToXsdCore` CLI package to a shipping project; depend on the generated code (and `XObjectsCore`) instead.
 
-Generated output must remain compatible with C# 7.3 / .NET Standard 2.0 for .NET Framework consumers.
+Generated output remains compatible with C# 7.3 / .NET Standard 2.0 for .NET Framework consumers. `#nullable` support is also enabled in these older targets when you install `Polysharp` from nuget.
+
+```
+dotnet add package PolySharp
+```
+
+PolySharp provides generated, source-only polyfills for C# language features, to easily use all runtime-agnostic features downlevel. The package is distributed as a source generator, so that it will automatically detect which polyfills are needed depending on the target framework and project in use: just add a reference to PolySharp, set your C# language version to `latest`.
+
+NOTE: Generated code DOES NOT require Polysharp - it's only needed when you use `#nullable` on a target framework version that did not natively support it (such as all .NET Framework versions).
+
 
 ### Extend the generated classes — don't recreate them
 
@@ -237,16 +251,6 @@ linqtoxsd sum a.xsd-g.cs,b.xsd-g.cs -o Docs/
 - Writes `<name>.md` next to each input (`wss.xsd-g.cs` → `wss.md`), or into the folder given with `-o` (created if absent).
 - For each class the summary records the declaration (base types and interfaces included) plus public/protected/internal constructors, methods and properties, reduced to signatures with bodies omitted; private members are excluded. Static `SimpleTypeValidator` fields appear under a "Type validators" section, and enums are listed with their values.
 - Files are parsed with Roslyn at C# 8, so any syntax error makes the command fail with a non-zero exit code. `sum` doubles as a quick validity check of generated output.
-
-## Working in this repository
-
-- **Do not edit `*.xsd-g.cs` files by hand** — they are regenerated. Changes belong in the code generation logic in `XObjectsCode/`.
-- To regenerate a schema's committed output, run the CLI from the repo root, e.g.
-  `dotnet run --project LinqToXsd -- gen GeneratedSchemaLibraries/<Project>/<schema>.xsd`
-  (a `.xsd.config` beside the schema is discovered automatically; where there is none, the no-config default applies and the output is split by class).
-- To regenerate everything in the testing suite, run `Regenerate-TestingSuite.ps1` (optionally `-FolderName '*Orders*'` to filter, `-Configuration release` by default).
-- `LinqToXsd.Schemas` references all `GeneratedSchemaLibraries` projects and `XObjectsTests` references that, so invalid generated C# breaks the test project's build; the generated libraries act as a compile-time gate.
-- Build with `dotnet build LinqToXsd-TestingSuite.slnf`; test with `dotnet test XObjectsTests/XObjectsTests.csproj`.
 
 ## Troubleshooting
 
