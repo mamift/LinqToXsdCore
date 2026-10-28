@@ -112,7 +112,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsTrue(xmlSpecSchemaSet.IsCompiled);
 
             var ccus = XObjectsCoreGenerator.GenerateCodeCompileUnits(xmlSpecSchemaSet,
-                xmlSpecXsdConfig.ToLinqToXsdSettings());
+                xmlSpecXsdConfig.ToLinqToXsdSettings(), Path.GetFileName(xmlSpecXsd));
 
             var classStringWriters = ccus.SelectMany(x => x.unit.ToClassStringWriters()).ToList();
 

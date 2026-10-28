@@ -131,9 +131,9 @@ namespace Xml.Schema.Linq.Tests
             IEnumerable<(string filename, TextWriter writer)> codeWriters;
             if (possibleSettings.Exists) {
                 LinqToXsdSettings settings = XObjectsCoreGenerator.LoadLinqToXsdSettings(XDocument.Load(possibleSettings.OpenRead()));
-                codeWriters = XObjectsCoreGenerator.Generate(schemaSet, settings);
+                codeWriters = XObjectsCoreGenerator.Generate(schemaSet, settings, xsdFileName);
             } else {
-                codeWriters = XObjectsCoreGenerator.Generate(schemaSet);
+                codeWriters = XObjectsCoreGenerator.Generate(schemaSet, xsdFileName);
             }
 
             // This method assumes SplitCodeFile is not used, so there's only a single writer per file.
@@ -177,7 +177,7 @@ namespace Xml.Schema.Linq.Tests
                 : Configuration.GetBlankConfigurationInstance();
 
             var settings = config.ToLinqToXsdSettings();
-            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
+            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings, xsdFileName);
             var writerText = code.Select(t => t.writer.ToString());
             var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
 
@@ -203,7 +203,7 @@ namespace Xml.Schema.Linq.Tests
                 : Configuration.LoadForSchema(XDocument.Parse(mfs.GetFile(xsdFileName).TextContents));
 
             settings ??= config.ToLinqToXsdSettings();
-            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
+            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings, xsdFileName);
             var writerText = code.Select(t => t.writer.ToString());
             var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
 

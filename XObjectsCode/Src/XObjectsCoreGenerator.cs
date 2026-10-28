@@ -366,7 +366,7 @@ namespace Xml.Schema.Linq
 
                 string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
 
-                return Generate(schemaSet, settings)
+                return Generate(schemaSet, settings, Path.ChangeExtension(xsdFilePath, ".xsd-g.cs"))
                     .Select(x => {
                         // When SplitCodeFiles is configured Generate() returns one tuple per output file, whose
                         // name is relative to the folder of the XSD. Otherwise a single (null, writer) tuple is
@@ -384,15 +384,16 @@ namespace Xml.Schema.Linq
         /// Generates code using a given <paramref name="schemaSet"/> of XSDs.
         /// </summary>
         /// <param name="schemaSet"></param>
+        /// <param name="originalXsdFileName"></param>
         /// <returns>
         ///     A single (null, StringWriter) when the configuration doesn't split generated code across files.
         ///     Otherwise, one StringWriter per output file, keyed by the name of that file.
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string outputFileName, TextWriter writer)> Generate(XmlSchemaSet schemaSet)
+        public static IEnumerable<(string outputFileName, TextWriter writer)> Generate(XmlSchemaSet schemaSet, string originalXsdFileName)
         {
             var settings = new LinqToXsdSettings();
-            return Generate(schemaSet, settings);
+            return Generate(schemaSet, settings, originalXsdFileName);
         }
 
         /// <summary>
@@ -400,15 +401,16 @@ namespace Xml.Schema.Linq
         /// </summary>
         /// <param name="schemaSet"></param>
         /// <param name="settings"></param>
+        /// <param name="originalXsdFileName">Used when <see cref="LinqToXsdSettings.SplitCodeFilesBy"/> is <see cref="CodeGeneration.SplitCodeFilesLocalType.ByEnum.None"/> or not specified.</param>
         /// <returns>
         ///     A single (null, StringWriter) when the configuration doesn't split generated code across files.
         ///     Otherwise, one StringWriter per output file, keyed by the name of that file.
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string outputFileName, TextWriter writer)> Generate(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string outputFileName, TextWriter writer)> Generate(XmlSchemaSet schemaSet, LinqToXsdSettings settings, string originalXsdFileName)
         {
-            return GenerateCodeCompileUnits(schemaSet, settings)
+            return GenerateCodeCompileUnits(schemaSet, settings, originalXsdFileName)
                 .Select(x =>
                 {
                     var writer = x.unit.ToStringWriter();
@@ -432,16 +434,18 @@ namespace Xml.Schema.Linq
         /// </summary>
         /// <param name="schemaSet"></param>
         /// <param name="settings"></param>
+        /// <param name="originalXsdFileName"></param>
         /// <returns>
         ///     A single (null, CodeCompileUnit) when configuration doesn't split generated code across files.
         ///     Otherwise, one CodeCompileUnit per output file, keyed by the name of that file.
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string outputFileName, CodeCompileUnit unit)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string outputFileName, CodeCompileUnit unit)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings, string originalXsdFileName)
         {
             if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
+            if (originalXsdFileName == null) throw new ArgumentNullException(nameof(originalXsdFileName));
             var xsdConverter = new XsdToTypesConverter(settings);
             ClrMappingInfo mapping = xsdConverter.GenerateMapping(schemaSet);
 
@@ -452,7 +456,7 @@ namespace Xml.Schema.Linq
             {
                 CodeGeneration.SplitCodeFilesLocalType.ByEnum.Namespace => SplitByNamespace(namespaces, settings),
                 CodeGeneration.SplitCodeFilesLocalType.ByEnum.Class => SplitByClass(namespaces),
-                _ => new[] { ((string)null, BuildUnit(namespaces)) }
+                _ => new[] { (Path.ChangeExtension(originalXsdFileName, ".xsd-g.cs"), BuildUnit(namespaces)) }
             };
         }
 
