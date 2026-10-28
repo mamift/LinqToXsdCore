@@ -205,23 +205,28 @@ Write-Host "Selected $($targetDirs.Count) target directories matching folder nam
 
 $failed = @()
 $succeeded = 0
+#$tfm = 'netframework472';
+$tfm = 'net10.0';
+
 try {
     foreach ($targetDir in $targetDirs) 
     {
         $assertWatcher = Start-AssertDialogWatcher -LogPath .\debug_watcher.log;
         $dirLabel = [System.IO.Path]::GetRelativePath($repoRoot, $targetDir)
 
-        if ($dirLabel -eq "Microsoft Project 2007") { continue; }
+        if ($dirLabel -contains "Microsoft Project 2007") { continue; }
 
         Write-Host "`n[$($succeeded + $failed.Count + 1)/$($targetDirs.Count)] $dirLabel" -ForegroundColor Yellow
         Write-Host "  Running: dotnet run -c $Configuration --project LinqToXsd -- gen -a ."
 
         Push-Location $targetDir
         try {
-            $output = & dotnet run -c $Configuration -v q --framework netframework472 --project $linqToXsdProject -- gen -a . 2>&1
+            $output = & dotnet run -c $Configuration -v q --framework $tfm --project $linqToXsdProject -- gen -a . 2>&1
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "  OK" -ForegroundColor Green
                 $succeeded++
+                # also do xsd-g.cs summarisation
+                $output += & dotnet run -c $Configuration -v q --framework $tfm --project $linqToXsdProject -- sum . 2>&1
             }
             else {
                 Write-Host "  FAILED (exit code: $LASTEXITCODE)" -ForegroundColor Red
