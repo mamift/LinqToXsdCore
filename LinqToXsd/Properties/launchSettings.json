@@ -314,6 +314,12 @@
       "commandLineArgs": "gen -a .",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\XTCE",
       "hotReloadEnabled": false
+    },
+    "XTCE sum": {
+      "commandName": "Project",
+      "commandLineArgs": "sum .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XTCE",
+      "hotReloadEnabled": false
     }
   }
 }

@@ -61,26 +61,43 @@ namespace Sample.Namespace {
         {
             var summary = CodeSummariser.SummariseSource(SampleSource, "sample.xsd-g.cs");
 
+            // top-level file summary is not a markdown heading
+            StringAssert.StartsWith("Summary of `sample.xsd-g.cs`", summary);
+            StringAssert.DoesNotContain("# Summary of", summary);
+
+            // type headings use single #
+            StringAssert.Contains("# `Sample.Namespace.SampleType` — class", summary);
+            StringAssert.Contains("# `Sample.Namespace.SampleType.NestedEnum` — enum", summary);
+            StringAssert.Contains("# `Sample.Namespace.TopLevelEnum` — enum", summary);
+
             // class declaration includes base types and interfaces
             StringAssert.Contains("public partial class SampleType : global::Sample.BaseType, ISample", summary);
-            // non-private constructors are included, along with the static constructor
+            // non-private constructors are included under Constructors, along with the static constructor
+            StringAssert.Contains("### Constructors", summary);
             StringAssert.Contains("public SampleType(int count) : base(count)", summary);
             StringAssert.Contains("static SampleType()", summary);
-            // methods are shortened to signatures only
-            StringAssert.Contains("public static SampleType Load(string xmlFile)", summary);
-            StringAssert.Contains("internal int InternalMethod()", summary);
-            StringAssert.Contains("protected internal static void ProtectedInternalMethod(ref int value, params string[] names)", summary);
-            // properties keep their types and accessor lists, but no bodies
-            StringAssert.Contains("public virtual string Name { get; private set; }", summary);
-            StringAssert.Contains("public string Name2 { get; set; }", summary);
-            StringAssert.Contains("public static int StaticProperty { get; }", summary);
+            // methods are grouped by modifiers into section headers and shortened to signatures
+            StringAssert.Contains("### Public, static, methods", summary);
+            StringAssert.Contains("- `SampleType Load(string xmlFile)`", summary);
+            StringAssert.Contains("### Internal methods", summary);
+            StringAssert.Contains("- `int InternalMethod()`", summary);
+            StringAssert.Contains("### Protected, internal, static, methods", summary);
+            StringAssert.Contains("- `void ProtectedInternalMethod(ref int value, params string[] names)`", summary);
+            // properties are grouped by modifiers into section headers
+            StringAssert.Contains("### Public, virtual, properties", summary);
+            StringAssert.Contains("- `string Name { get; private set; }`", summary);
+            StringAssert.Contains("### Public properties", summary);
+            StringAssert.Contains("- `string Name2 { get; set; }`", summary);
+            StringAssert.Contains("### Public, static, properties", summary);
+            StringAssert.Contains("- `int StaticProperty { get; }`", summary);
             // enums are summarised with their values
-            StringAssert.Contains("Sample.Namespace.SampleType.NestedEnum", summary);
+            StringAssert.Contains("### Values", summary);
             StringAssert.Contains("One = 1", summary);
             StringAssert.Contains("public enum TopLevelEnum : long", summary);
             StringAssert.Contains("B = 2", summary);
-            // type validator fields are included without their initialisers
-            StringAssert.Contains("public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition", summary);
+            // type validator fields are grouped under type validators with hoisted modifiers
+            StringAssert.Contains("### Public, static, type validators", summary);
+            StringAssert.Contains("- `global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition`", summary);
             StringAssert.DoesNotContain("AtomicSimpleTypeValidator()", summary);
             // other fields (XName constants) are not part of the summary
             StringAssert.DoesNotContain("idXName", summary);
@@ -118,7 +135,66 @@ namespace Sample.Namespace {
 
             var summary = CodeSummariser.SummariseSource(csharp8Source, "nullable.xsd-g.cs");
 
-            StringAssert.Contains("public virtual System.String? Name { get; set; }", summary);
+            StringAssert.Contains("### Public, virtual, properties", summary);
+            StringAssert.Contains("- `System.String? Name { get; set; }`", summary);
+        }
+
+        [Test]
+        public void WhenClassHasOverrideMethodAndVirtualPropertiesThenMatchesExpectedFormat()
+        {
+            const string source = @"
+namespace Omg.Xtce {
+    public partial class SpaceSystemType : global::Omg.Xtce.NameDescriptionType, IXMetaData {
+        public SpaceSystemType() {}
+        static SpaceSystemType() {}
+        public override XTypedElement Clone() => null;
+        public virtual HeaderType Header { get; set; }
+        public virtual TelemetryMetaDataType TelemetryMetaData { get; set; }
+        public virtual CommandMetaDataType CommandMetaData { get; set; }
+        public virtual ServiceSetType ServiceSet { get; set; }
+        public virtual IList<SpaceSystem> SpaceSystem { get; set; }
+        public virtual Omg.Xtce.SystemTypeType systemType { get; set; }
+        public virtual string assetType { get; set; }
+        public virtual string operationalStatus { get; set; }
+        public virtual System.Uri @base { get; set; }
+    }
+}
+";
+
+            var summary = CodeSummariser.SummariseSource(source, "SpaceSystem.xsd-g.cs");
+
+            var expected = @"Summary of `SpaceSystem.xsd-g.cs`
+
+Generated by `linqtoxsd sum`.
+
+# `Omg.Xtce.SpaceSystemType` — class
+
+- **Declaration:** `public partial class SpaceSystemType : global::Omg.Xtce.NameDescriptionType, IXMetaData`
+
+### Constructors
+
+- `public SpaceSystemType()`
+- `static SpaceSystemType()`
+
+### Public methods
+
+- `override XTypedElement Clone()`
+
+### Public, virtual, properties
+
+- `HeaderType Header { get; set; }`
+- `TelemetryMetaDataType TelemetryMetaData { get; set; }`
+- `CommandMetaDataType CommandMetaData { get; set; }`
+- `ServiceSetType ServiceSet { get; set; }`
+- `IList<SpaceSystem> SpaceSystem { get; set; }`
+- `Omg.Xtce.SystemTypeType systemType { get; set; }`
+- `string assetType { get; set; }`
+- `string operationalStatus { get; set; }`
+- `System.Uri @base { get; set; }`
+
+";
+
+            Assert.AreEqual(expected.Replace("\r\n", "\n"), summary.Replace("\r\n", "\n"));
         }
 
         [Test]

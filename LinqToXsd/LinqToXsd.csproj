@@ -56,4 +56,11 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="SKILLS.md" />
+    <Resource Include="SKILLS.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>
