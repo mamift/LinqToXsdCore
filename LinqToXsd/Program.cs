@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Alba.CsConsoleFormat;
 using Alba.CsConsoleFormat.Fluent;
 using CommandLine;
 using Xml.Schema.Linq;
@@ -58,7 +59,7 @@ namespace LinqToXsd
             else
                 Debug.WriteLine(element);
         }
-
+        
         /// <summary>
         /// CLI will parse arguments here and then dispatch to the right method.
         /// </summary>
@@ -68,8 +69,14 @@ namespace LinqToXsd
         {
             ReturnCode = 0; // reset in case Main is invoked more than once in the same process (as in unit testing)
             var version = typeof(Program).Assembly.GetName().Version?.ToString() ?? "Unknown";
-            PrintLn(("LinqToXsdCore v" + version).DarkGray());
-            PrintLn(($"Copyright (C) 2008-2011 Microsoft Corp, (C) 2019-{DateTime.Now.Year} github.com/mamift et al" + Environment.NewLine).White());
+            PrintLn(("LinqToXsdCore v" + version).White());
+            PrintLn(($"Copyright (C) 2008-2011 Microsoft Corp, (C) 2019-{DateTime.Now.Year} github.com/mamift et al" + Environment.NewLine).DarkGray());
+            var cwdText = new Document(
+                new Span("Current working directory: ") { Color = ConsoleColor.White },
+                new Span(Environment.CurrentDirectory + Environment.NewLine) { Color = ConsoleColor.Green }
+            );
+            PrintLn(cwdText);
+            
 #if !DEBUG
             try {
                 ParseCliArgsAndDispatch(args);

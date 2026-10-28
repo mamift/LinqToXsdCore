@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Alba.CsConsoleFormat;
 using Alba.CsConsoleFormat.Fluent;
 using Xml.Schema.Linq.Extensions;
 
@@ -41,6 +42,23 @@ namespace LinqToXsd
 
                     PrintLn("Output:".White());
                     PrintLn(outputFile.DarkGreen());
+
+                    var charCountDoc = new Document(
+                        new Span("Character count:") { Color = ConsoleColor.White }, 
+                        " ",
+                        new Span($"{markdown.Length}") { Color = ConsoleColor.Green }
+                    );
+
+                    var wordCount = markdown.CountWords();
+                    
+                    var wordCountText = new Document(
+                        new Span("Word count:") { Color = ConsoleColor.White }, 
+                        " ",
+                        new Span($"{wordCount}") { Color = ConsoleColor.Green }
+                    );
+                    
+                    PrintLn(charCountDoc);
+                    PrintLn(wordCountText);
 
                     File.WriteAllText(outputFile, markdown);
                     PrintLn("");
