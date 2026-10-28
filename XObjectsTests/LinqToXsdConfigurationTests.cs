@@ -23,9 +23,9 @@ public class LinqToXsdConfigurationTests
     }
 
     [TestCase(null, null)]
-    [TestCase("Class", SplitCodeFiles.ByEnum.Class)]
-    [TestCase("Namespace", SplitCodeFiles.ByEnum.Namespace)]
-    public void TestSplitCodeFilesByIsReadFromConfiguration(string byAttributeValue, SplitCodeFiles.ByEnum? expected)
+    [TestCase("Class", CodeGeneration.SplitCodeFilesLocalType.ByEnum.Class)]
+    [TestCase("Namespace", CodeGeneration.SplitCodeFilesLocalType.ByEnum.Namespace)]
+    public void TestSplitCodeFilesByIsReadFromConfiguration(string byAttributeValue, CodeGeneration.SplitCodeFilesLocalType.ByEnum? expected)
     {
         var splitCodeFilesElement = byAttributeValue == null ? string.Empty : $"<SplitCodeFiles By=\"{byAttributeValue}\" />";
         var configXml =

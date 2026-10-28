@@ -92,10 +92,10 @@ namespace LinqToXsd
         /// <returns>
         /// Whether any such configuration file exists, and the <c>SplitCodeFiles</c> mode the first one that sets it asks for.
         /// </returns>
-        public (bool ConfigurationFound, SplitCodeFiles.ByEnum? SplitCodeFilesBy) ReadConfigsBesideSchemas()
+        public (bool ConfigurationFound, CodeGeneration.SplitCodeFilesLocalType.ByEnum? SplitCodeFilesBy) ReadConfigsBesideSchemas()
         {
             var configurationFound = false;
-            SplitCodeFiles.ByEnum? splitCodeFilesBy = null;
+            CodeGeneration.SplitCodeFilesLocalType.ByEnum? splitCodeFilesBy = null;
 
             foreach (var schemaFile in SchemaFiles)
             {

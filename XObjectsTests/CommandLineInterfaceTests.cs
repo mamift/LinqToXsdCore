@@ -238,7 +238,7 @@ namespace Xml.Schema.Linq.Tests
             var schemaFile = _copyOfSchemasFolder.GetFiles(schemaFileName, SearchOption.AllDirectories).Single();
             var outputFolder = schemaFile.Directory.FullName;
 
-            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, SplitCodeFiles.ByEnum.Class);
+            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, CodeGeneration.SplitCodeFilesLocalType.ByEnum.Class);
 
             var genCodeResult = LinqToXsd.Program.Main(new[] { "gen", schemaFile.FullName, "-c", configFile });
             Assert.IsTrue(genCodeResult == 0);
@@ -270,7 +270,7 @@ namespace Xml.Schema.Linq.Tests
             const string schemaFileName = "abstracttest.xsd";
             var schemaFile = _copyOfSchemasFolder.GetFiles(schemaFileName, SearchOption.AllDirectories).Single();
 
-            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, SplitCodeFiles.ByEnum.Namespace,
+            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, CodeGeneration.SplitCodeFilesLocalType.ByEnum.Namespace,
                 config => {
                     foreach (var ns in config.Namespaces.Namespace) ns.File = $"split.{ns.Clr}.cs";
                 });
@@ -300,7 +300,7 @@ namespace Xml.Schema.Linq.Tests
         {
             _copyOfSchemasFolder.Refresh();
             var schemaFile = _copyOfSchemasFolder.GetFiles("abstracttest.xsd", SearchOption.AllDirectories).Single();
-            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, SplitCodeFiles.ByEnum.Class);
+            var configFile = WriteConfigWithSplitCodeFiles(schemaFile.FullName, CodeGeneration.SplitCodeFilesLocalType.ByEnum.Class);
 
             var outputFile = Path.Combine(schemaFile.Directory.FullName, "all-in-one.cs");
 
@@ -319,7 +319,7 @@ namespace Xml.Schema.Linq.Tests
             var abstractTestSchema = _copyOfSchemasFolder.GetFiles("abstracttest.xsd", SearchOption.AllDirectories).Single();
             var taskSchedulerSchema = _copyOfSchemasFolder.GetFiles("windowsTaskSched.xsd", SearchOption.AllDirectories).Single();
 
-            var configFile = WriteConfigWithSplitCodeFiles(abstractTestSchema.FullName, SplitCodeFiles.ByEnum.Class);
+            var configFile = WriteConfigWithSplitCodeFiles(abstractTestSchema.FullName, CodeGeneration.SplitCodeFilesLocalType.ByEnum.Class);
 
             var schemaFiles = $"{abstractTestSchema.FullName},{taskSchedulerSchema.FullName}";
             var genCodeResult = LinqToXsd.Program.Main(new[] { "gen", schemaFiles, "-c", configFile });
@@ -341,11 +341,11 @@ namespace Xml.Schema.Linq.Tests
         /// Writes a configuration file beside the given schema, as "config -e" would, but with a SplitCodeFiles element.
         /// </summary>
         /// <returns>The full path of the configuration file.</returns>
-        private static string WriteConfigWithSplitCodeFiles(string xsdFilePath, SplitCodeFiles.ByEnum splitBy,
+        private static string WriteConfigWithSplitCodeFiles(string xsdFilePath, CodeGeneration.SplitCodeFilesLocalType.ByEnum splitBy,
             Action<Configuration> customiseConfig = null)
         {
             var config = Configuration.LoadForSchema(XDocument.Load(xsdFilePath));
-            config.CodeGeneration.SplitCodeFiles = new SplitCodeFiles { By = splitBy };
+            config.CodeGeneration.SplitCodeFiles = new CodeGeneration.SplitCodeFilesLocalType { By = splitBy };
 
             customiseConfig?.Invoke(config);
 

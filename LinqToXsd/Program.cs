@@ -184,7 +184,7 @@ namespace LinqToXsd
             // Work out what the configuration (if any) asks for before falling back to the built-in defaults, because a
             // configuration file is how a user asks for one output file now that splitting by class is the default.
             bool configurationFound = settingsFromFile is not null;
-            SplitCodeFiles.ByEnum? configuredSplitCodeFilesBy = settingsFromFile?.SplitCodeFilesBy;
+            CodeGeneration.SplitCodeFilesLocalType.ByEnum? configuredSplitCodeFilesBy = settingsFromFile?.SplitCodeFilesBy;
             if (!configurationFound)
                 (configurationFound, configuredSplitCodeFilesBy) = generateOptions.ReadConfigsBesideSchemas();
 
@@ -201,7 +201,7 @@ namespace LinqToXsd
             {
                 // With no configuration at all the defaults apply, and the default is to split the generated code by class
                 // so that a large schema doesn't produce one unwieldy source file.
-                settings = new LinqToXsdSettings { SplitCodeFilesBy = SplitCodeFiles.ByEnum.Class };
+                settings = new LinqToXsdSettings { SplitCodeFilesBy = CodeGeneration.SplitCodeFilesLocalType.ByEnum.Class };
                 ProgressReporter.Report("No configuration file found: splitting the generated code by class. Create a configuration file to change that, or pass a file name to -o for a single source code file.");
             }
 
@@ -237,7 +237,7 @@ namespace LinqToXsd
         /// Tells the user to delete the single file that earlier runs generated, because it declares the same types that are
         /// now spread across the split output files, and would cause duplicate definition errors if it were left in place.
         /// </summary>
-        private static void WarnAboutStaleCombinedOutputFile(GenerateOptions generateOptions, SplitCodeFiles.ByEnum splitCodeFilesBy)
+        private static void WarnAboutStaleCombinedOutputFile(GenerateOptions generateOptions, CodeGeneration.SplitCodeFilesLocalType.ByEnum splitCodeFilesBy)
         {
             var outputFolder = generateOptions.Output.IsEmpty() || generateOptions.Output == "-1" ? null : generateOptions.Output;
 

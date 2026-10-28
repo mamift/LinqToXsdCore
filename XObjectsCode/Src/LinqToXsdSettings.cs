@@ -1,5 +1,5 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
-
+#nullable enable
 using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
@@ -134,7 +134,7 @@ namespace Xml.Schema.Linq
         /// the whole schema is emitted into a single source code file.
         /// <para>Mirrors the <c>CodeGeneration/SplitCodeFiles/@By</c> configuration element.</para>
         /// </summary>
-        public SplitCodeFiles.ByEnum? SplitCodeFilesBy { get; set; }
+        public CodeGeneration.SplitCodeFilesLocalType.ByEnum? SplitCodeFilesBy { get; set; }
 
         public bool VerifyRequired
         {
@@ -160,12 +160,12 @@ namespace Xml.Schema.Linq
         /// (one output file, the default) when the element or attribute is absent, or when the value is unrecognised;
         /// the configuration schema only allows <c>Class</c> and <c>Namespace</c>.
         /// </summary>
-        private static SplitCodeFiles.ByEnum? ReadSplitCodeFilesBy(XElement splitCodeFilesElement)
+        private static CodeGeneration.SplitCodeFilesLocalType.ByEnum? ReadSplitCodeFilesBy(XElement splitCodeFilesElement)
         {
             var byValue = splitCodeFilesElement?.Attribute(XName.Get("By"))?.Value;
             if (string.IsNullOrWhiteSpace(byValue)) return null;
 
-            return Enum.TryParse(byValue, ignoreCase: false, out SplitCodeFiles.ByEnum by)
+            return Enum.TryParse(byValue, ignoreCase: false, out CodeGeneration.SplitCodeFilesLocalType.ByEnum by)
                 ? by
                 : null;
         }

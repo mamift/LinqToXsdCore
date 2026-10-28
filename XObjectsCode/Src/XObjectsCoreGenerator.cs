@@ -450,8 +450,8 @@ namespace Xml.Schema.Linq
 
             return settings.SplitCodeFilesBy switch
             {
-                SplitCodeFiles.ByEnum.Namespace => SplitByNamespace(namespaces, settings),
-                SplitCodeFiles.ByEnum.Class => SplitByClass(namespaces),
+                CodeGeneration.SplitCodeFilesLocalType.ByEnum.Namespace => SplitByNamespace(namespaces, settings),
+                CodeGeneration.SplitCodeFilesLocalType.ByEnum.Class => SplitByClass(namespaces),
                 _ => new[] { ((string)null, BuildUnit(namespaces)) }
             };
         }
