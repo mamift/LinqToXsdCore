@@ -25,7 +25,8 @@ namespace Xml.Schema.Linq
         internal static BinaryFacetsChecker binaryFacetsChecker;
         internal static ListFacetsChecker listFacetsChecker;
         internal static UnionFacetsChecker unionFacetsChecker;
-        private static Dictionary<XmlTypeCode, FacetsChecker> FacetsCheckerMapping;
+        private static Lazy<Dictionary<XmlTypeCode, FacetsChecker>> FacetsCheckerMapping
+            = new(InitMapping, LazyThreadSafetyMode.PublicationOnly);
 
         internal static FacetsChecker ListFacetsChecker
         {
@@ -50,15 +51,9 @@ namespace Xml.Schema.Linq
             unionFacetsChecker = new UnionFacetsChecker();
         }
 
-
         internal static FacetsChecker GetFacetsChecker(XmlTypeCode typeCode)
         {
-            if (FacetsCheckerMapping == null)
-            {
-                FacetsCheckerMapping = InitMapping();
-            }
-
-            return FacetsCheckerMapping[typeCode];
+            return FacetsCheckerMapping.Value[typeCode];
         }
 
         private static Dictionary<XmlTypeCode, FacetsChecker> InitMapping()
