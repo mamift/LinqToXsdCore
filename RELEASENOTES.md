@@ -4,6 +4,16 @@
 - **Also important:** any generated code **should be tracked in git**. Please see [this section in the readme](https://github.com/mamift/LinqToXsdCore#best-practices) for more information.
 - All releases are cumulative - for e.g. v3.4.24 includes all the changes/fixes described in all previous releases. Some releases are not publicly published to nuget.org, so upgrading via `dotnet tool update -g linqtoxsdcore`, you may notice version number skips (and that certain version numbers are not visible on nuget.org) - this is intentional and expected due to the simplified release management strategy employed. If something genuinely seems out of place, please file an issue on GitHub: https://github.com/mamift/LinqToXsdCore
 
+## Version 3.5.1
+
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.5.1
+* https://www.nuget.org/packages/XObjectsCore/3.5.1
+  * Fixes a thread-safety bug (race condition) in the `XObjectsCore` runtime's facet checking. `FacetsChecker.GetFacetsChecker(XmlTypeCode)` lazily built its static `XmlTypeCode` to `FacetsChecker` mapping through an unguarded `if (FacetsCheckerMapping == null) InitMapping();` check. Two threads could therefore enter `InitMapping()` at the same time, and because the dictionary was assigned to the static field *before* its entries were added, a concurrent caller could observe a partially populated dictionary - surfacing as a `KeyNotFoundException` (or `NullReferenceException`) when checking simple type facets under load.
+    - `FacetsCheckerMapping` is now a `Lazy<Dictionary<XmlTypeCode, FacetsChecker>>` initialised with `LazyThreadSafetyMode.PublicationOnly`.
+    - `InitMapping()` is now a pure factory that builds and returns a new dictionary instead of mutating the shared static field, so every concurrently-built mapping is complete, and the `Lazy` publishes exactly one of them. `LazyThreadSafetyMode.PublicationOnly` is the correct mode here because the factory is idempotent and free of side effects, so a redundant second build is harmless.
+    - There is no change to the public API or to generated code; only the internal initialisation strategy changed. Evidence: `FacetCheckerTests.InitMappingIsThreadSafe`.
+
 ## Version 3.5.0
 
 Nuget packages:
