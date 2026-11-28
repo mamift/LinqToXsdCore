@@ -25,7 +25,8 @@ namespace Xml.Schema.Linq
         internal static BinaryFacetsChecker binaryFacetsChecker;
         internal static ListFacetsChecker listFacetsChecker;
         internal static UnionFacetsChecker unionFacetsChecker;
-        private static Dictionary<XmlTypeCode, FacetsChecker> FacetsCheckerMapping;
+        private static Lazy<Dictionary<XmlTypeCode, FacetsChecker>> FacetsCheckerMapping
+            = new(InitMapping, LazyThreadSafetyMode.PublicationOnly);
 
         internal static FacetsChecker ListFacetsChecker
         {
@@ -50,76 +51,73 @@ namespace Xml.Schema.Linq
             unionFacetsChecker = new UnionFacetsChecker();
         }
 
-
         internal static FacetsChecker GetFacetsChecker(XmlTypeCode typeCode)
         {
-            if (FacetsCheckerMapping == null)
-            {
-                InitMapping();
-            }
-
-            return FacetsCheckerMapping[typeCode];
+            return FacetsCheckerMapping.Value[typeCode];
         }
 
-        private static void InitMapping()
+        private static Dictionary<XmlTypeCode, FacetsChecker> InitMapping()
         {
             //This mapping is based on Datatypeimplementation in System.Xml.Schema
-            FacetsCheckerMapping = new Dictionary<XmlTypeCode, FacetsChecker>();
-            FacetsCheckerMapping.Add(XmlTypeCode.AnyAtomicType, miscFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.AnyUri, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Base64Binary, binaryFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Boolean, miscFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Byte, new Numeric10FacetsChecker(sbyte.MinValue, sbyte.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.Date, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.DateTime, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.DayTimeDuration, durationFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Decimal,
+            var mapping = new Dictionary<XmlTypeCode, FacetsChecker>();
+
+            mapping.Add(XmlTypeCode.AnyAtomicType, miscFacetsChecker);
+            mapping.Add(XmlTypeCode.AnyUri, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.Base64Binary, binaryFacetsChecker);
+            mapping.Add(XmlTypeCode.Boolean, miscFacetsChecker);
+            mapping.Add(XmlTypeCode.Byte, new Numeric10FacetsChecker(sbyte.MinValue, sbyte.MaxValue));
+            mapping.Add(XmlTypeCode.Date, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.DateTime, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.DayTimeDuration, durationFacetsChecker);
+            mapping.Add(XmlTypeCode.Decimal,
                 new Numeric10FacetsChecker(decimal.MinValue, decimal.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.Double, numeric2FacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Duration, durationFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Entity, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Float, numeric2FacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.GDay, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.GMonth, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.GMonthDay, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.GYear, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.GYearMonth, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.HexBinary, binaryFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Id, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Idref, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Int, new Numeric10FacetsChecker(int.MinValue, int.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.Integer,
+            mapping.Add(XmlTypeCode.Double, numeric2FacetsChecker);
+            mapping.Add(XmlTypeCode.Duration, durationFacetsChecker);
+            mapping.Add(XmlTypeCode.Entity, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.Float, numeric2FacetsChecker);
+            mapping.Add(XmlTypeCode.GDay, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.GMonth, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.GMonthDay, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.GYear, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.GYearMonth, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.HexBinary, binaryFacetsChecker);
+            mapping.Add(XmlTypeCode.Id, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.Idref, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.Int, new Numeric10FacetsChecker(int.MinValue, int.MaxValue));
+            mapping.Add(XmlTypeCode.Integer,
                 new Numeric10FacetsChecker(decimal.MinValue, decimal.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.Item, miscFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Language, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Long, new Numeric10FacetsChecker(long.MinValue, long.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.Name, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.NCName, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.NegativeInteger,
+            mapping.Add(XmlTypeCode.Item, miscFacetsChecker);
+            mapping.Add(XmlTypeCode.Language, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.Long, new Numeric10FacetsChecker(long.MinValue, long.MaxValue));
+            mapping.Add(XmlTypeCode.Name, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.NCName, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.NegativeInteger,
                 new Numeric10FacetsChecker(decimal.MinValue, decimal.MinusOne));
-            FacetsCheckerMapping.Add(XmlTypeCode.NmToken, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.NonNegativeInteger,
+            mapping.Add(XmlTypeCode.NmToken, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.NonNegativeInteger,
                 new Numeric10FacetsChecker(decimal.Zero, decimal.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.NonPositiveInteger,
+            mapping.Add(XmlTypeCode.NonPositiveInteger,
                 new Numeric10FacetsChecker(decimal.MinValue, decimal.Zero));
-            FacetsCheckerMapping.Add(XmlTypeCode.NormalizedString, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Notation, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.PositiveInteger,
+            mapping.Add(XmlTypeCode.NormalizedString, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.Notation, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.PositiveInteger,
                 new Numeric10FacetsChecker(decimal.One, decimal.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.QName, qNameFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Short, new Numeric10FacetsChecker(short.MinValue, short.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.String, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Time, dateTimeFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.Token, stringFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.UnsignedByte,
+            mapping.Add(XmlTypeCode.QName, qNameFacetsChecker);
+            mapping.Add(XmlTypeCode.Short, new Numeric10FacetsChecker(short.MinValue, short.MaxValue));
+            mapping.Add(XmlTypeCode.String, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.Time, dateTimeFacetsChecker);
+            mapping.Add(XmlTypeCode.Token, stringFacetsChecker);
+            mapping.Add(XmlTypeCode.UnsignedByte,
                 new Numeric10FacetsChecker(byte.MinValue, byte.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.UnsignedInt, new Numeric10FacetsChecker(uint.MinValue, uint.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.UnsignedLong,
+            mapping.Add(XmlTypeCode.UnsignedInt, new Numeric10FacetsChecker(uint.MinValue, uint.MaxValue));
+            mapping.Add(XmlTypeCode.UnsignedLong,
                 new Numeric10FacetsChecker(ulong.MinValue, ulong.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.UnsignedShort,
+            mapping.Add(XmlTypeCode.UnsignedShort,
                 new Numeric10FacetsChecker(ushort.MinValue, ushort.MaxValue));
-            FacetsCheckerMapping.Add(XmlTypeCode.UntypedAtomic, miscFacetsChecker);
-            FacetsCheckerMapping.Add(XmlTypeCode.YearMonthDuration, durationFacetsChecker);
+            mapping.Add(XmlTypeCode.UntypedAtomic, miscFacetsChecker);
+            mapping.Add(XmlTypeCode.YearMonthDuration, durationFacetsChecker);
+
+            return mapping;
         }
 
         internal static decimal Power(int x, int y)
