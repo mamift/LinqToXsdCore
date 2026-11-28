@@ -1,21 +1,21 @@
 {
   "mcpServers": {
     "code-review-graph": {
-      "type": "stdio",
-      "command": "uvx",
+      "command": "code-review-graph",
       "args": [
-        "code-review-graph",
         "serve"
       ],
-      "cwd": "."
+      "cwd": ".",
+      "type": "stdio"
     },
-    "fuse": {
+    "codegraph": {
       "type": "stdio",
-      "command": "fuse",
+      "command": "codegraph",
       "args": [
-        "mcp",
-        "serve"
-      ]
+        "serve",
+        "--mcp"
+      ],
+      "alwaysLoad": true
     }
   }
 }
